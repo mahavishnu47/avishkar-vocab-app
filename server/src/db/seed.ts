@@ -5,7 +5,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { avatarFor, hashPassword } from '../auth.ts';
 import { today } from '../clock.ts';
-import type { DB } from './db.ts';
+import type { DB, Queryable } from './db.ts';
 
 const MINI_BANK = resolve(import.meta.dirname, '../../test/fixtures/mini-bank.json');
 const POS = new Set(['noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'pronoun', 'interjection']);
@@ -37,39 +37,49 @@ function readEntries(file: string): Record<string, unknown>[] {
   return out;
 }
 
-function upsert(db: DB, entries: Record<string, unknown>[]): number {
-  const stmt = db.prepare(
-    `INSERT INTO words (id, day_index, word, part_of_speech, difficulty, meaning, meaning_marathi, example_sentence,
-       distractors_json, syllables_json, tags_json, context_words_json, forms_json, source)
-     VALUES (@id, @dayIndex, @word, @pos, @difficulty, @meaning, @marathi, @example, @distractors, @syllables, @tags, @context, @forms, 'bank')
-     ON CONFLICT(id) DO UPDATE SET day_index = excluded.day_index, word = excluded.word, part_of_speech = excluded.part_of_speech,
-       difficulty = excluded.difficulty, meaning = excluded.meaning, meaning_marathi = excluded.meaning_marathi,
-       example_sentence = excluded.example_sentence, distractors_json = excluded.distractors_json,
-       syllables_json = excluded.syllables_json, tags_json = excluded.tags_json,
-       context_words_json = excluded.context_words_json, forms_json = excluded.forms_json`,
-  );
+const COLS = 14;
+const CHUNK = 200;
+
+/** Multi-row upsert in chunks of 200 (14 params/row stays far below PG's 65535 limit). Ids are de-duplicated (last wins). */
+async function upsert(q: Queryable, entries: Record<string, unknown>[]): Promise<number> {
   const arr = (v: unknown) => JSON.stringify(isStrArr(v) ? v : []);
-  db.transaction(() => {
-    for (const e of entries) {
-      stmt.run({
-        id: e.id, dayIndex: e.dayIndex, word: e.word, pos: e.partOfSpeech, difficulty: e.difficulty, meaning: e.meaning,
-        marathi: typeof e.meaningMarathi === 'string' ? e.meaningMarathi : '', example: e.exampleSentence,
-        distractors: arr(e.distractorMeanings), syllables: arr(e.syllables), tags: arr(e.tags),
-        context: arr(e.contextWords), forms: arr(e.forms),
-      });
+  const byId = new Map<string, Record<string, unknown>>();
+  for (const e of entries) byId.set(e.id as string, e);
+  const rows = [...byId.values()];
+  for (let i = 0; i < rows.length; i += CHUNK) {
+    const chunk = rows.slice(i, i + CHUNK);
+    const params: unknown[] = [];
+    for (const e of chunk) {
+      params.push(
+        e.id, e.dayIndex, e.word, e.partOfSpeech, e.difficulty, e.meaning,
+        typeof e.meaningMarathi === 'string' ? e.meaningMarathi : '', e.exampleSentence,
+        arr(e.distractorMeanings), arr(e.syllables), arr(e.tags), arr(e.contextWords), arr(e.forms), 'bank',
+      );
     }
-  })();
-  return entries.length;
+    const values = chunk.map(() => `(${Array(COLS).fill('?').join(', ')})`).join(', ');
+    await q.run(
+      `INSERT INTO words (id, day_index, word, part_of_speech, difficulty, meaning, meaning_marathi, example_sentence,
+         distractors_json, syllables_json, tags_json, context_words_json, forms_json, source)
+       VALUES ${values}
+       ON CONFLICT (id) DO UPDATE SET day_index = EXCLUDED.day_index, word = EXCLUDED.word, part_of_speech = EXCLUDED.part_of_speech,
+         difficulty = EXCLUDED.difficulty, meaning = EXCLUDED.meaning, meaning_marathi = EXCLUDED.meaning_marathi,
+         example_sentence = EXCLUDED.example_sentence, distractors_json = EXCLUDED.distractors_json,
+         syllables_json = EXCLUDED.syllables_json, tags_json = EXCLUDED.tags_json,
+         context_words_json = EXCLUDED.context_words_json, forms_json = EXCLUDED.forms_json`,
+      params,
+    );
+  }
+  return rows.length;
 }
 
 /**
- * Upsert every entry of content/words/part-*.json into `words` (source='bank').
- * Idempotent (INSERT ... ON CONFLICT(id) DO UPDATE). Missing/empty files are skipped with a warning,
- * so the server boots before content exists. Returns the number of words loaded.
- * If the bank is still empty afterwards, server/test/fixtures/mini-bank.json is loaded instead.
+ * Upsert every entry of content/words/part-*.json into `words` (source='bank') in ONE transaction.
+ * Idempotent (ON CONFLICT (id) DO UPDATE). Missing/unreadable files are skipped with a warning.
+ * Only when the bank is still empty AND opts.allowFixture is set, server/test/fixtures/mini-bank.json is loaded instead.
+ * Returns the number of words loaded.
  */
-export function loadWordBank(db: DB, contentDir: string): number {
-  let loaded = 0;
+export async function loadWordBank(db: DB, contentDir: string, opts: { allowFixture?: boolean } = {}): Promise<number> {
+  const batches: Record<string, unknown>[][] = [];
   let files: string[] = [];
   try {
     files = existsSync(contentDir) ? readdirSync(contentDir).filter((f) => /^part-.*\.json$/.test(f) && !f.startsWith('_')).sort() : [];
@@ -81,43 +91,50 @@ export function loadWordBank(db: DB, contentDir: string): number {
     try {
       const entries = readEntries(join(contentDir, f));
       if (entries.length === 0) console.warn(`[seed] ${f} has no usable entries`);
-      loaded += upsert(db, entries);
+      batches.push(entries);
     } catch (e) {
       console.warn(`[seed] skipping ${f}: ${(e as Error).message}`);
     }
   }
-  const have = (db.prepare("SELECT COUNT(*) AS n FROM words WHERE source = 'bank'").get() as { n: number }).n;
-  if (have === 0) {
-    try {
-      const entries = readEntries(MINI_BANK);
-      console.warn(`[seed] word bank empty: loading ${entries.length} words from mini-bank fixture`);
-      loaded += upsert(db, entries);
-    } catch (e) {
-      console.warn(`[seed] could not load mini-bank fixture: ${(e as Error).message}`);
+  return db.tx(async (q) => {
+    let loaded = 0;
+    for (const entries of batches) loaded += await upsert(q, entries);
+    const have = (await q.get<{ n: number }>("SELECT COUNT(*) AS n FROM words WHERE source = 'bank'"))!.n;
+    if (have === 0 && opts.allowFixture) {
+      try {
+        const entries = readEntries(MINI_BANK);
+        console.warn(`[seed] word bank empty: loading ${entries.length} words from mini-bank fixture`);
+        loaded += await upsert(q, entries);
+      } catch (e) {
+        console.warn(`[seed] could not load mini-bank fixture: ${(e as Error).message}`);
+      }
     }
-  }
-  return loaded;
+    return loaded;
+  });
 }
 
+export const isProduction = (): boolean => process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production';
+
 /**
- * Dev seed when SEED_DEMO=1 and no teachers exist:
+ * Demo seed when no teachers exist (idempotent):
  * teacher demo@school.test / demo1234, class '5A' code 'DEMO5A' (startDate = today IST),
  * 10 students roll 1-10 (Riya, Aarav, Kabir, Sai, Ananya, Om, Isha, Vedant, Gauri, Arjun), all with PIN '1234'.
- * Real classes get random PINs from generatePin().
+ * Refuses (throws) in production (VERCEL_ENV/NODE_ENV = production) unless opts.force.
+ * Returns true if data was created.
  */
-export function seedDemo(db: DB): void {
-  if ((db.prepare('SELECT COUNT(*) AS n FROM teachers').get() as { n: number }).n > 0) return;
-  db.transaction(() => {
-    const t = db
-      .prepare('INSERT INTO teachers (name, email, password_hash) VALUES (?, ?, ?)')
-      .run('Demo Teacher', 'demo@school.test', hashPassword('demo1234'));
-    const c = db
-      .prepare('INSERT INTO classes (teacher_id, name, class_code, start_date) VALUES (?, ?, ?, ?)')
-      .run(Number(t.lastInsertRowid), '5A', 'DEMO5A', today());
-    const ins = db.prepare('INSERT INTO students (class_id, roll_no, first_name, avatar, pin) VALUES (?, ?, ?, ?, ?)');
-    ['Riya', 'Aarav', 'Kabir', 'Sai', 'Ananya', 'Om', 'Isha', 'Vedant', 'Gauri', 'Arjun'].forEach((name, i) => {
-      ins.run(Number(c.lastInsertRowid), i + 1, name, avatarFor(i + 1), '1234');
-    });
-  })();
-  console.log('[seed] demo data: teacher demo@school.test / demo1234, class DEMO5A, students PIN 1234');
+export async function seedDemo(db: DB, opts: { force?: boolean } = {}): Promise<boolean> {
+  if (isProduction() && !opts.force) {
+    throw new Error('refusing to seed demo data in production (demo PIN 1234 would leak); pass --force to override');
+  }
+  return db.tx(async (q) => {
+    if ((await q.get<{ n: number }>('SELECT COUNT(*) AS n FROM teachers'))!.n > 0) return false;
+    const t = await q.run('INSERT INTO teachers (name, email, password_hash) VALUES (?, ?, ?) RETURNING id', ['Demo Teacher', 'demo@school.test', hashPassword('demo1234')]);
+    const c = await q.run('INSERT INTO classes (teacher_id, name, class_code, start_date) VALUES (?, ?, ?, ?) RETURNING id', [t.rows[0]!.id, '5A', 'DEMO5A', today()]);
+    const names = ['Riya', 'Aarav', 'Kabir', 'Sai', 'Ananya', 'Om', 'Isha', 'Vedant', 'Gauri', 'Arjun'];
+    for (const [i, name] of names.entries()) {
+      await q.run('INSERT INTO students (class_id, roll_no, first_name, avatar, pin) VALUES (?, ?, ?, ?, ?)', [c.rows[0]!.id, i + 1, name, avatarFor(i + 1), '1234']);
+    }
+    console.log('[seed] demo data: teacher demo@school.test / demo1234, class DEMO5A, students PIN 1234');
+    return true;
+  });
 }
