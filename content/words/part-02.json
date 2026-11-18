@@ -391,7 +391,7 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a paper that shows you have paid for something",
-    "exampleSentence": "The shopkeeper gave Dad a receipt for the new bag.",
+    "exampleSentence": "The shopkeeper gave Papa a receipt for the new bag.",
     "distractorMeanings": [
       "a letter that tells someone to come",
       "a list of food to cook"
@@ -468,29 +468,29 @@
   {
     "id": "d065-3",
     "dayIndex": 65,
-    "word": "solemn",
+    "word": "roasted",
     "partOfSpeech": "adjective",
     "difficulty": 2,
-    "meaning": "serious and quiet, not joking",
-    "exampleSentence": "Everyone was solemn during the national anthem.",
+    "meaning": "cooked by dry heat in an oven or over a fire",
+    "exampleSentence": "Grandfather ate roasted peanuts on the cold winter evening.",
     "distractorMeanings": [
-      "loud and full of laughter",
-      "tired and sleepy"
+      "cooked in a pot full of boiling water",
+      "kept cold in a fridge to stay fresh"
     ],
     "syllables": [
-      "sol",
-      "emn"
+      "roast",
+      "ed"
     ],
     "tags": [
-      "character-values",
-      "india"
+      "food"
     ],
     "contextWords": [
-      "serious",
-      "quiet",
-      "anthem",
-      "flag",
-      "respect"
+      "peanut",
+      "corn",
+      "fire",
+      "oven",
+      "snack",
+      "winter"
     ]
   },
   {
@@ -2765,30 +2765,31 @@
   {
     "id": "d081-5",
     "dayIndex": 81,
-    "word": "survival",
+    "word": "scientist",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "staying alive in a difficult place or time",
-    "exampleSentence": "Water is necessary for the survival of every plant and animal.",
+    "meaning": "a person who studies nature and tests ideas",
+    "exampleSentence": "The scientist looked at the tiny insect through a lens.",
     "distractorMeanings": [
-      "the first day of a long journey",
-      "the way an animal looks"
+      "a person who sells medicines in a shop",
+      "a person who draws maps for travellers"
     ],
     "syllables": [
-      "sur",
-      "viv",
-      "al"
+      "sci",
+      "en",
+      "tist"
     ],
     "tags": [
-      "nature",
-      "science-space"
+      "science-space",
+      "jobs-work"
     ],
     "contextWords": [
-      "alive",
-      "water",
-      "food",
-      "danger",
-      "life"
+      "lab",
+      "experiment",
+      "discover",
+      "study",
+      "lens",
+      "nature"
     ]
   },
   {
@@ -2849,28 +2850,30 @@
   {
     "id": "d082-3",
     "dayIndex": 82,
-    "word": "earnest",
+    "word": "hardy",
     "partOfSpeech": "adjective",
     "difficulty": 2,
-    "meaning": "serious and sincere in what one does",
-    "exampleSentence": "Riya made an earnest effort to learn the poem.",
+    "meaning": "strong and able to live through hard conditions",
+    "exampleSentence": "Hardy plants like the cactus can live in hot, dry places.",
     "distractorMeanings": [
-      "not caring about anything at all",
-      "very happy about a surprise"
+      "easily harmed by too much heat or cold",
+      "tall with many bright flowers"
     ],
     "syllables": [
-      "ear",
-      "nest"
+      "har",
+      "dy"
     ],
     "tags": [
-      "character-values"
+      "plants-trees",
+      "nature"
     ],
     "contextWords": [
-      "sincere",
-      "effort",
-      "serious",
-      "try",
-      "work"
+      "plant",
+      "cold",
+      "strong",
+      "survive",
+      "weather",
+      "desert"
     ]
   },
   {
@@ -3463,31 +3466,30 @@
   {
     "id": "d086-5",
     "dayIndex": 86,
-    "word": "insignificant",
+    "word": "sufficient",
     "partOfSpeech": "adjective",
     "difficulty": 3,
-    "meaning": "so small or unimportant that it does not matter",
-    "exampleSentence": "The small scratch was insignificant, so Mother only smiled.",
+    "meaning": "as much as is needed",
+    "exampleSentence": "Do we have sufficient water for the whole trip?",
     "distractorMeanings": [
-      "very important and valuable",
-      "bright and shiny"
+      "not enough for what is needed",
+      "of the best quality possible"
     ],
     "syllables": [
-      "in",
-      "sig",
-      "nif",
-      "i",
-      "cant"
+      "suf",
+      "fi",
+      "cient"
     ],
     "tags": [
       "describing-things"
     ],
     "contextWords": [
-      "small",
-      "minor",
-      "scratch",
-      "unimportant",
-      "tiny"
+      "water",
+      "food",
+      "enough",
+      "time",
+      "money",
+      "need"
     ]
   },
   {
@@ -3547,30 +3549,30 @@
   {
     "id": "d087-3",
     "dayIndex": 87,
-    "word": "slippery",
+    "word": "satisfied",
     "partOfSpeech": "adjective",
     "difficulty": 2,
-    "meaning": "smooth or wet so that you may slide",
-    "exampleSentence": "The wet floor was slippery, so Gauri walked carefully.",
+    "meaning": "pleased because you have what you wanted",
+    "exampleSentence": "Gauri felt satisfied after eating a full plate of hot khichdi.",
     "distractorMeanings": [
-      "rough and sharp to touch",
-      "dry and hot in summer"
+      "unhappy because something was lost or broken",
+      "sleepy because it is very late at night"
     ],
     "syllables": [
-      "slip",
-      "per",
-      "y"
+      "sat",
+      "is",
+      "fied"
     ],
     "tags": [
-      "safety",
-      "describing-things"
+      "emotions-feelings"
     ],
     "contextWords": [
-      "wet",
-      "floor",
-      "fall",
-      "soap",
-      "rain"
+      "happy",
+      "meal",
+      "work",
+      "result",
+      "pleased",
+      "full"
     ]
   },
   {
@@ -4021,30 +4023,30 @@
   {
     "id": "d090-5",
     "dayIndex": 90,
-    "word": "vertebrate",
+    "word": "decision",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "an animal with a backbone inside its body",
-    "exampleSentence": "A fish is a vertebrate because it has a backbone.",
+    "meaning": "a choice you make after thinking",
+    "exampleSentence": "It was Aarav's decision to share his lunch with the new boy.",
     "distractorMeanings": [
-      "an animal with a hard shell outside its body",
-      "an animal that lives only in water"
+      "a rule given by a teacher to a class",
+      "a question asked at the end of a test"
     ],
     "syllables": [
-      "ver",
-      "te",
-      "brate"
+      "de",
+      "ci",
+      "sion"
     ],
     "tags": [
-      "animals",
-      "science-space"
+      "character-values"
     ],
     "contextWords": [
-      "backbone",
-      "fish",
-      "bird",
-      "animal",
-      "bones"
+      "choose",
+      "think",
+      "plan",
+      "right",
+      "wrong",
+      "final"
     ]
   },
   {
@@ -4636,28 +4638,29 @@
   {
     "id": "d095-2",
     "dayIndex": 95,
-    "word": "creek",
+    "word": "shower",
     "partOfSpeech": "noun",
     "difficulty": 1,
-    "meaning": "a small narrow stream of water",
-    "exampleSentence": "We crossed a shallow creek on the way to the village.",
+    "meaning": "a short fall of light rain",
+    "exampleSentence": "A short shower of rain cooled the hot village.",
     "distractorMeanings": [
-      "a big lake in the middle of a city",
-      "a wide road beside a river"
+      "a heavy storm with loud thunder",
+      "a long period of very hot weather"
     ],
     "syllables": [
-      "creek"
+      "show",
+      "er"
     ],
     "tags": [
-      "water-rivers-sea",
-      "nature"
+      "weather-seasons"
     ],
     "contextWords": [
-      "stream",
-      "water",
-      "village",
-      "bridge",
-      "fish"
+      "rain",
+      "cloud",
+      "wet",
+      "umbrella",
+      "light",
+      "drops"
     ]
   },
   {
@@ -4857,30 +4860,31 @@
   {
     "id": "d096-5",
     "dayIndex": 96,
-    "word": "invention",
+    "word": "addition",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "a new thing that someone makes for the first time",
-    "exampleSentence": "The bulb is a wonderful invention that gives us light at night.",
+    "meaning": "the act of putting numbers or things together",
+    "exampleSentence": "Riya is good at addition and finishes her sums quickly.",
     "distractorMeanings": [
-      "an old thing that is broken",
-      "a story told by grandparents"
+      "the act of taking one number away from another",
+      "the act of splitting a number into equal parts"
     ],
     "syllables": [
-      "in",
-      "ven",
+      "ad",
+      "di",
       "tion"
     ],
     "tags": [
-      "science-space",
-      "technology"
+      "time-numbers",
+      "school"
     ],
     "contextWords": [
-      "new",
-      "machine",
-      "scientist",
-      "bulb",
-      "idea"
+      "sum",
+      "plus",
+      "number",
+      "maths",
+      "total",
+      "count"
     ]
   },
   {
@@ -4943,7 +4947,7 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to say something briefly",
-    "exampleSentence": "Please do not mention the surprise party to Dad.",
+    "exampleSentence": "Please do not mention the surprise party to Papa.",
     "distractorMeanings": [
       "to forget something very important",
       "to write a long letter"
@@ -5533,7 +5537,7 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "having done nothing wrong",
-    "exampleSentence": "The innocent child smiled at everyone in the bus.",
+    "exampleSentence": "The teacher knew Om was innocent because he was absent that day.",
     "distractorMeanings": [
       "guilty of telling a lie",
       "afraid of every stranger"
@@ -6346,7 +6350,7 @@
     "word": "slogan",
     "partOfSpeech": "noun",
     "difficulty": 2,
-    "meaning": "a short famous phrase that tells an idea",
+    "meaning": "a short catchy phrase that tells an idea",
     "exampleSentence": "We wrote a slogan to save water on our poster.",
     "distractorMeanings": [
       "a long story written in a book",
@@ -7322,28 +7326,30 @@
   {
     "id": "d114-3",
     "dayIndex": 114,
-    "word": "lonesome",
+    "word": "heroic",
     "partOfSpeech": "adjective",
     "difficulty": 2,
-    "meaning": "sad because you are alone",
-    "exampleSentence": "The lonesome puppy waited at the gate for his friend.",
+    "meaning": "very brave, like a hero",
+    "exampleSentence": "The firefighter made a heroic effort to save the kitten.",
     "distractorMeanings": [
-      "surrounded by many friends",
-      "full of energy and noise"
+      "afraid and ready to run away",
+      "lazy and always late for work"
     ],
     "syllables": [
-      "lone",
-      "some"
+      "he",
+      "ro",
+      "ic"
     ],
     "tags": [
-      "emotions-feelings"
+      "character-values"
     ],
     "contextWords": [
-      "alone",
-      "sad",
-      "friend",
-      "quiet",
-      "gate"
+      "hero",
+      "brave",
+      "save",
+      "rescue",
+      "courage",
+      "danger"
     ]
   },
   {
@@ -7377,29 +7383,30 @@
   {
     "id": "d114-5",
     "dayIndex": 114,
-    "word": "orphan",
+    "word": "politeness",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "a child who has no parents to look after him",
-    "exampleSentence": "The kind teacher helped the orphan to go to school.",
+    "meaning": "good manners when you speak to others",
+    "exampleSentence": "Gauri's politeness made everyone in the class like her.",
     "distractorMeanings": [
-      "a child who lives far away from school",
-      "a boy who looks after cows"
+      "the habit of speaking in a very loud voice",
+      "a strong wish to win every game"
     ],
     "syllables": [
-      "or",
-      "phan"
+      "po",
+      "lite",
+      "ness"
     ],
     "tags": [
-      "community-helpers",
-      "emotions-feelings"
+      "character-values"
     ],
     "contextWords": [
-      "child",
-      "kind",
-      "school",
-      "care",
-      "help"
+      "manners",
+      "please",
+      "thank",
+      "respect",
+      "elder",
+      "kind"
     ]
   },
   {
@@ -8053,7 +8060,7 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a chart that shows the days, weeks and months of the year",
-    "exampleSentence": "Dad marked Ganesh Chaturthi on the calendar with a red pen.",
+    "exampleSentence": "Papa marked Ganesh Chaturthi on the calendar with a red pen.",
     "distractorMeanings": [
       "a book where we write our daily lessons",
       "a clock that shows the time"
@@ -8275,7 +8282,7 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to touch lightly so that someone laughs",
-    "exampleSentence": "The baby giggled when Dad began to tickle her feet.",
+    "exampleSentence": "The baby giggled when Papa began to tickle her feet.",
     "distractorMeanings": [
       "to hit someone gently on the head",
       "to hold someone's hand tightly"

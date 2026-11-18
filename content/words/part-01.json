@@ -440,7 +440,7 @@
     "word": "thick",
     "partOfSpeech": "adjective",
     "difficulty": 1,
-    "meaning": "wide from one side to the other",
+    "meaning": "not thin, with a big distance from side to side",
     "exampleSentence": "Aarav wore a thick sweater in the cold morning.",
     "distractorMeanings": [
       "very thin and light like paper",
@@ -555,7 +555,7 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a small red fruit with tiny seeds on its skin",
-    "exampleSentence": "We picked a sweet strawberry in the farm at Mahabaleshwar.",
+    "exampleSentence": "We picked a sweet strawberry at a farm in Mahabaleshwar.",
     "distractorMeanings": [
       "a big green fruit with a hard skin",
       "a long yellow fruit that grows in bunches"
@@ -987,7 +987,7 @@
     "exampleSentence": "Aai packed a potato paratha in my tiffin.",
     "distractorMeanings": [
       "a thin white cake made with eggs",
-      "a big round bread cooked in an oven"
+      "a soft round bun filled with sweet cream"
     ],
     "syllables": [
       "pa",
@@ -2096,7 +2096,7 @@
     "word": "proudly",
     "partOfSpeech": "adverb",
     "difficulty": 2,
-    "meaning": "with a happy feeling about something you or others have done",
+    "meaning": "with a happy feeling about something good you did",
     "exampleSentence": "Aarav proudly held up the trophy for the whole school to see.",
     "distractorMeanings": [
       "with a feeling of fear about a dark room",
@@ -3634,7 +3634,7 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to say something suddenly and loudly because of surprise",
-    "exampleSentence": "\"What a big rainbow!\" Aarav began to exclaim.",
+    "exampleSentence": "\"What a big rainbow!\" Aarav exclaimed in surprise.",
     "distractorMeanings": [
       "to whisper something softly to yourself",
       "to ask a question in a calm voice"
@@ -3950,7 +3950,7 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "the son of your brother or sister",
-    "exampleSentence": "My uncle's nephew came to Pune for the holidays.",
+    "exampleSentence": "My aunt took her nephew to the zoo in Pune.",
     "distractorMeanings": [
       "the daughter of your brother or sister",
       "the father of your mother"
@@ -6204,7 +6204,7 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "known by many people",
-    "exampleSentence": "Lata Mangeshkar was a famous singer from Maharashtra.",
+    "exampleSentence": "A famous singer from our town sang at the Ganesh festival.",
     "distractorMeanings": [
       "known by only a few close friends",
       "forgotten by everyone long ago"
@@ -7221,31 +7221,29 @@
   {
     "id": "d051-4",
     "dayIndex": 51,
-    "word": "vacation",
+    "word": "feast",
     "partOfSpeech": "noun",
     "difficulty": 2,
-    "meaning": "a long break from school or work",
-    "exampleSentence": "We visit our village every summer vacation.",
+    "meaning": "a big meal for many people on a special day",
+    "exampleSentence": "We had a big feast at home on Diwali.",
     "distractorMeanings": [
-      "a short test given at school",
-      "a long speech given on stage"
+      "a small snack eaten between two meals",
+      "a thin soup served before the meal"
     ],
     "syllables": [
-      "va",
-      "ca",
-      "tion"
+      "feast"
     ],
     "tags": [
-      "school",
-      "transport-travel"
+      "food",
+      "festivals"
     ],
     "contextWords": [
-      "holiday",
-      "school",
-      "trip",
-      "village",
-      "summer",
-      "rest"
+      "diwali",
+      "meal",
+      "family",
+      "sweets",
+      "guest",
+      "festival"
     ]
   },
   {
@@ -7573,7 +7571,7 @@
     "word": "behave",
     "partOfSpeech": "verb",
     "difficulty": 1,
-    "meaning": "to act in a good or bad way",
+    "meaning": "to act in a polite and proper way",
     "exampleSentence": "Please behave well when guests visit our home.",
     "distractorMeanings": [
       "to forget all the rules of a game",
