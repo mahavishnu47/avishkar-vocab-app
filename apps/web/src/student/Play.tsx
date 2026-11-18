@@ -6,7 +6,7 @@ import { enqueue, flush, pendingCount } from '../shared/outbox.ts';
 import { KeyboardDisplay, OnScreenKeyboard } from '../shared/OnScreenKeyboard.tsx';
 import { loadSession, loadToday, pruneSessions, saveSession, saveToday } from '../shared/session-store.ts';
 import { currentVoiceName, speak, speechSupported, stopSpeaking } from '../shared/speech.ts';
-import { handleAuthError, lsGet, lsSet, LS, storedStudent, TopBar, useRequireToken } from './common.tsx';
+import { handleAuthError, storedStudent, TopBar, useRequireToken } from './common.tsx';
 import {
   emptyRec, freshState, freshWord, highlightParts, praise, seededShuffle, starterFor, uuid, wordIdxFromProgress,
 } from './play-logic.ts';
@@ -224,7 +224,6 @@ function SpellStage({ st, update, word, sessionId }: StageProps) {
 // ------------------------------------------------------------------ Stage 2a
 function LearnStage({ st, update, word }: StageProps) {
   void st;
-  const [mr, setMr] = useState(lsGet(LS.showMarathi) === '1');
   const [ready, setReady] = useState(false);
   useEffect(() => { const t = setTimeout(() => setReady(true), 3000); return () => { clearTimeout(t); stopSpeaking(); }; }, []);
   const read = async () => {
@@ -240,15 +239,12 @@ function LearnStage({ st, update, word }: StageProps) {
         <div><span className="chip pos">{word.partOfSpeech}</span></div>
         <div className="syl">{word.syllables.join(' · ')}</div>
         <div style={{ fontSize: 20 }}>{word.meaning}</div>
-        {mr && <div lang="mr" style={{ fontSize: 20, color: 'var(--c-learn)' }}>{word.meaningMarathi}</div>}
         <div className="example muted" style={{ fontSize: 19 }}>
           {highlightParts(word.exampleSentence, word).map(([t, hl], i) => (hl ? <mark key={i}>{t}</mark> : <span key={i}>{t}</span>))}
         </div>
       </div>
-      <div className="speak-row">
+      <div className="speak-row" style={{ gridTemplateColumns: '1fr' }}>
         <button className="btn btn-learn" aria-label="Read aloud" onClick={() => void read()}>🔊 Listen</button>
-        <button className="btn" aria-pressed={mr} onClick={() => { const n = !mr; setMr(n); lsSet(LS.showMarathi, n ? '1' : '0'); }}>
-          <span lang="mr">मराठी</span></button>
       </div>
       <button className="btn btn-learn btn-block" disabled={!ready} onClick={() => update((s) => ({ ...s, stage: 'check' }))}>Next ▶</button>
     </>

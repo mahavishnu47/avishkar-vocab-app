@@ -7,7 +7,6 @@ import './student.css';
 
 export const LS = {
   classCode: 'shabd.classCode',
-  showMarathi: 'shabd.showMarathi',
   student: 'shabd.student',
   home: 'shabd.home',
 };

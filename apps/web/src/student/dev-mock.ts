@@ -12,16 +12,16 @@ import { api, ApiRequestError } from '../shared/api.ts';
 
 const KEY = 'shabd.mock.db';
 const DATE = '2026-11-18';
-const W = (n: number, word: string, pos: Word['partOfSpeech'], meaning: string, mr: string, ex: string, d: [string, string], syl: string[]): Word => ({
-  id: `d${String(n).padStart(3, '0')}-${n}`, dayIndex: 1, source: 'bank', word, partOfSpeech: pos, difficulty: 2, meaning, meaningMarathi: mr,
+const W = (n: number, word: string, pos: Word['partOfSpeech'], meaning: string, ex: string, d: [string, string], syl: string[]): Word => ({
+  id: `d${String(n).padStart(3, '0')}-${n}`, dayIndex: 1, source: 'bank', word, partOfSpeech: pos, difficulty: 2, meaning,
   exampleSentence: ex, distractorMeanings: d, syllables: syl, tags: ['school'], contextWords: ['day'],
 });
 const WORDS: Word[] = [
-  W(1, 'whisper', 'verb', 'to speak very softly', 'हळू आवाजात बोलणे', 'The children whisper in the library.', ['to shout loudly', 'to run fast'], ['whis', 'per']),
-  W(2, 'enormous', 'adjective', 'very, very big', 'प्रचंड मोठा', 'An elephant is an enormous animal.', ['very small', 'very cold'], ['e', 'nor', 'mous']),
-  W(3, 'knife', 'noun', 'a tool with a sharp edge for cutting', 'सुरी', 'Mother cut the fruit with a knife.', ['a tool for writing', 'a bowl for water'], ['knife']),
-  W(4, 'bravely', 'adverb', 'in a way that is not afraid', 'धैर्याने', 'The boy bravely jumped into the river.', ['in a sleepy way', 'in a noisy way'], ['brave', 'ly']),
-  W(5, 'island', 'noun', 'land with water all around it', 'बेट', 'We took a boat to the island.', ['a very tall hill', 'a big forest'], ['is', 'land']),
+  W(1, 'whisper', 'verb', 'to speak very softly', 'The children whisper in the library.', ['to shout loudly', 'to run fast'], ['whis', 'per']),
+  W(2, 'enormous', 'adjective', 'very, very big', 'An elephant is an enormous animal.', ['very small', 'very cold'], ['e', 'nor', 'mous']),
+  W(3, 'knife', 'noun', 'a tool with a sharp edge for cutting', 'Mother cut the fruit with a knife.', ['a tool for writing', 'a bowl for water'], ['knife']),
+  W(4, 'bravely', 'adverb', 'in a way that is not afraid', 'The boy bravely jumped into the river.', ['in a sleepy way', 'in a noisy way'], ['brave', 'ly']),
+  W(5, 'island', 'noun', 'land with water all around it', 'We took a boat to the island.', ['a very tall hill', 'a big forest'], ['is', 'land']),
 ];
 const STUDENTS = [
   { id: 1, firstName: 'Riya', avatar: '🦁' }, { id: 2, firstName: 'Aarav', avatar: '🐯' }, { id: 3, firstName: 'Sai', avatar: '🐼' },
