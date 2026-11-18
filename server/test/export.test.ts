@@ -5,7 +5,7 @@ import { auth, makeClass, registerTeacher, setup, studentLogin, type Ctx } from 
 let ctx: Ctx;
 let teacher: string;
 beforeEach(async () => {
-  ctx = setup();
+  ctx = await setup();
   teacher = await registerTeacher(ctx.app);
 });
 
@@ -95,21 +95,26 @@ describe('CSV export', () => {
 
 describe('weakness labels and hardest words', () => {
   /** Insert a finished-looking session with n wrong spell attempts of the given primary code (direct SQL: no need to play). */
-  function seedWrong(studentId: number, classId: number, date: string, code: string, n: number, wordIds = ['d001-1']) {
-    const ins = ctx.db.prepare('INSERT INTO sessions (student_id, class_id, date, day_index, word_ids_json, scoring_version) VALUES (?, ?, ?, 1, ?, ?)');
-    const sid = Number(ins.run(studentId, classId, date, JSON.stringify(wordIds), 'mvp-1.0').lastInsertRowid);
-    const att = ctx.db.prepare(
-      `INSERT INTO word_attempts (client_id, session_id, student_id, word_id, stage, attempt_no, input_text, is_correct, error_tags_json, primary_error, client_ts)
-       VALUES (?, ?, ?, ?, 'spell', 1, 'x', 0, ?, ?, ?)`,
+  async function seedWrong(studentId: number, classId: number, date: string, code: string, n: number, wordIds = ['d001-1']) {
+    const ins = await ctx.db.run(
+      'INSERT INTO sessions (student_id, class_id, date, day_index, word_ids_json, scoring_version) VALUES (?, ?, ?, 1, ?, ?) RETURNING id',
+      [studentId, classId, date, JSON.stringify(wordIds), 'mvp-1.0'],
     );
-    for (let i = 0; i < n; i++) att.run(crypto.randomUUID(), sid, studentId, wordIds[i % wordIds.length], JSON.stringify([code]), code, ts());
+    const sid = Number(ins.rows[0]!.id);
+    for (let i = 0; i < n; i++) {
+      await ctx.db.run(
+        `INSERT INTO word_attempts (client_id, session_id, student_id, word_id, stage, attempt_no, input_text, is_correct, error_tags_json, primary_error, client_ts)
+         VALUES (?, ?, ?, ?, 'spell', 1, 'x', 0, ?, ?, ?)`,
+        [crypto.randomUUID(), sid, studentId, wordIds[i % wordIds.length], JSON.stringify([code]), code, ts()],
+      );
+    }
   }
 
   it('labels a student with >= 10 events at >= 1.5x the class rate, at most 2 labels', async () => {
     const { cls, students } = await makeClass(ctx.app, teacher, ['Riya', 'Aarav', 'Kabir', 'Sai']);
-    seedWrong(students[0]!.id, cls.id, '2026-11-18', 'SP_SILENT', 11);
-    seedWrong(students[0]!.id, cls.id, '2026-11-19', 'SP_VOWEL', 1);
-    for (const s of students.slice(1)) seedWrong(s.id, cls.id, '2026-11-18', 'SP_VOWEL', 10);
+    await seedWrong(students[0]!.id, cls.id, '2026-11-18', 'SP_SILENT', 11);
+    await seedWrong(students[0]!.id, cls.id, '2026-11-19', 'SP_VOWEL', 1);
+    for (const s of students.slice(1)) await seedWrong(s.id, cls.id, '2026-11-18', 'SP_VOWEL', 10);
 
     const an = (await request(ctx.app).get(`/api/classes/${cls.id}/analytics`).set(auth(teacher))).body;
     const by = (name: string) => an.students.find((s: { firstName: string }) => s.firstName === name);
@@ -122,8 +127,8 @@ describe('weakness labels and hardest words', () => {
     // fewer than 10 events -> no label even at a high ratio
     const t2 = await registerTeacher(ctx.app, 'other@x.in');
     const c2 = await makeClass(ctx.app, t2, ['A', 'B']);
-    seedWrong(c2.students[0]!.id, c2.cls.id, '2026-11-18', 'SP_SILENT', 9);
-    seedWrong(c2.students[1]!.id, c2.cls.id, '2026-11-18', 'SP_VOWEL', 30);
+    await seedWrong(c2.students[0]!.id, c2.cls.id, '2026-11-18', 'SP_SILENT', 9);
+    await seedWrong(c2.students[1]!.id, c2.cls.id, '2026-11-18', 'SP_VOWEL', 30);
     const an2 = (await request(ctx.app).get(`/api/classes/${c2.cls.id}/analytics`).set(auth(t2))).body;
     expect(an2.students[0].weaknessLabels).toEqual([]);
 
@@ -135,14 +140,19 @@ describe('weakness labels and hardest words', () => {
   it('lists hardest words (>= 3 students, lowest first-attempt accuracy first)', async () => {
     const { cls, students } = await makeClass(ctx.app, teacher, ['Riya', 'Aarav', 'Kabir', 'Sai']);
     // d001-1: 3 students all wrong at attempt 1 (accuracy 0); d001-2: 4 students, 2 right (0.5); d001-3: only 2 students (excluded)
-    students.slice(0, 3).forEach((s) => seedWrong(s.id, cls.id, '2026-11-18', 'SP_OMISSION', 1, ['d001-1']));
-    students.forEach((s, i) => {
-      const sid = Number(ctx.db.prepare('INSERT INTO sessions (student_id, class_id, date, day_index, word_ids_json, scoring_version) VALUES (?, ?, ?, 1, ?, ?)')
-        .run(s.id, cls.id, '2026-11-19', '["d001-2"]', 'mvp-1.0').lastInsertRowid);
-      ctx.db.prepare(`INSERT INTO word_attempts (client_id, session_id, student_id, word_id, stage, attempt_no, input_text, is_correct, primary_error, client_ts)
-        VALUES (?, ?, ?, 'd001-2', 'spell', 1, 'x', ?, ?, ?)`).run(crypto.randomUUID(), sid, s.id, i < 2 ? 1 : 0, i < 2 ? 'SP_CORRECT' : 'SP_OMISSION', ts());
-    });
-    students.slice(0, 2).forEach((s) => seedWrong(s.id, cls.id, '2026-11-17', 'SP_OMISSION', 1, ['d001-3']));
+    for (const s of students.slice(0, 3)) await seedWrong(s.id, cls.id, '2026-11-18', 'SP_OMISSION', 1, ['d001-1']);
+    for (const [i, s] of students.entries()) {
+      const ins = await ctx.db.run(
+        'INSERT INTO sessions (student_id, class_id, date, day_index, word_ids_json, scoring_version) VALUES (?, ?, ?, 1, ?, ?) RETURNING id',
+        [s.id, cls.id, '2026-11-19', '["d001-2"]', 'mvp-1.0'],
+      );
+      await ctx.db.run(
+        `INSERT INTO word_attempts (client_id, session_id, student_id, word_id, stage, attempt_no, input_text, is_correct, primary_error, client_ts)
+         VALUES (?, ?, ?, 'd001-2', 'spell', 1, 'x', ?, ?, ?)`,
+        [crypto.randomUUID(), Number(ins.rows[0]!.id), s.id, i < 2 ? 1 : 0, i < 2 ? 'SP_CORRECT' : 'SP_OMISSION', ts()],
+      );
+    }
+    for (const s of students.slice(0, 2)) await seedWrong(s.id, cls.id, '2026-11-17', 'SP_OMISSION', 1, ['d001-3']);
     const an = (await request(ctx.app).get(`/api/classes/${cls.id}/analytics`).set(auth(teacher))).body;
     expect(an.hardestWords).toEqual([
       { wordId: 'd001-1', word: 'kitchen', attempts: 3, firstAttemptAccuracy: 0 },

@@ -6,13 +6,13 @@ import { auth, makeClass, registerTeacher, setup, studentLogin, type Ctx } from 
 let ctx: Ctx;
 let teacher: string;
 beforeEach(async () => {
-  ctx = setup();
+  ctx = await setup();
   teacher = await registerTeacher(ctx.app);
 });
 
 const uuid = () => crypto.randomUUID();
 const ts = () => new Date().toISOString();
-const count = (table: string) => (ctx.db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get() as { n: number }).n;
+const count = async (table: string) => (await ctx.db.get<{ n: number }>(`SELECT COUNT(*) AS n FROM ${table}`))!.n;
 
 async function start(token: string): Promise<TodaySessionRes> {
   const r = await request(ctx.app).post('/api/student/sessions/today').set(auth(token)).send({});
@@ -62,7 +62,7 @@ describe('full student flow', () => {
     expect(today.session).toMatchObject({ date: '2026-11-20', dayIndex: 1, completedAt: null });
     expect(today.progress).toEqual({ completedWordIds: [], wordScores: [] });
     expect((await start(riya)).session.id).toBe(today.session.id); // same session returned
-    expect(count('sessions')).toBe(1);
+    expect(await count('sessions')).toBe(1);
 
     const sid = today.session.id;
     const first = await playWord(riya, sid, today.words[0]!, { hints: ['first_letter'] });
@@ -101,10 +101,10 @@ describe('full student flow', () => {
     expect(s.level).toEqual(levelFor(s.xpTotal));
 
     // idempotent completion: same summary, no extra ledger rows
-    const ledger = count('xp_ledger');
+    const ledger = await count('xp_ledger');
     const again = await request(ctx.app).post(`/api/student/sessions/${sid}/complete`).set(auth(riya)).send({});
     expect(again.body).toEqual(s);
-    expect(count('xp_ledger')).toBe(ledger);
+    expect(await count('xp_ledger')).toBe(ledger);
     expect((await request(ctx.app).post(`/api/student/sessions/${sid}/words/${today.words[0]!.id}/complete`).set(auth(riya)).send({})).body.total).toBe(first.score.total);
 
     const home = await request(ctx.app).get('/api/student/home').set(auth(riya));
@@ -172,19 +172,19 @@ describe('full student flow', () => {
     const r1 = await request(ctx.app).post(`/api/student/sessions/${sid}/attempts`).set(auth(tok)).send(body);
     const r2 = await request(ctx.app).post(`/api/student/sessions/${sid}/attempts`).set(auth(tok)).send(body);
     expect(r2.body).toEqual(r1.body);
-    expect(count('word_attempts')).toBe(2);
+    expect(await count('word_attempts')).toBe(2);
 
     const sb = { clientId: uuid(), wordId: w.id, submissionNo: 1, text: 'The kitchen is a big room.', starterHintUsed: true, msElapsed: 1, clientTs: ts() };
     const a = await request(ctx.app).post(`/api/student/sessions/${sid}/sentences`).set(auth(tok)).send(sb);
     const b = await request(ctx.app).post(`/api/student/sessions/${sid}/sentences`).set(auth(tok)).send(sb);
     expect(b.body).toEqual(a.body);
-    expect(count('sentence_submissions')).toBe(1);
+    expect(await count('sentence_submissions')).toBe(1);
     expect(a.body.finalMarks).toBe(Math.max(0, a.body.evaluation.rawTotal - 5)); // starter hint costs 5
 
     const c1 = await request(ctx.app).post(`/api/student/sessions/${sid}/words/${w.id}/complete`).set(auth(tok)).send({});
     const c2 = await request(ctx.app).post(`/api/student/sessions/${sid}/words/${w.id}/complete`).set(auth(tok)).send({});
     expect(c2.body).toEqual(c1.body);
-    expect(count('word_scores')).toBe(1);
+    expect(await count('word_scores')).toBe(1);
     expect(c1.body).toMatchObject({ spelling: 0, meaning: 20 }); // wrong spelling only once; meaning right first time
 
     const s1 = await request(ctx.app).post(`/api/student/sessions/${sid}/complete`).set(auth(tok)).send({});
@@ -192,7 +192,7 @@ describe('full student flow', () => {
     expect(s2.body).toEqual(s1.body);
     expect(s1.body.wordScores).toHaveLength(5); // unfinished words are scored from whatever is stored (0)
     expect(s1.body.xp.total).toBe(s2.body.xp.total);
-    expect(count('xp_ledger')).toBe(4);
+    expect(await count('xp_ledger')).toBe(4);
   });
 
   it('limits counted sentences to 2, applies the 0.8 multiplier, and does not count gated ones', async () => {
@@ -212,7 +212,7 @@ describe('full student flow', () => {
     expect(missing.body).toMatchObject({ counted: false, finalMarks: null, evaluation: { gate: 'word_missing' } });
     const dev = await post('माझे स्वयंपाकघर kitchen');
     expect(dev.body.evaluation.gate).toBe('devanagari');
-    expect(count('sentence_submissions')).toBe(3); // gated rows are still stored for analytics
+    expect(await count('sentence_submissions')).toBe(3); // gated rows are still stored for analytics
 
     const one = await post('The kitchen in our house is big and clean.');
     expect(one.body.counted).toBe(true);
@@ -249,7 +249,7 @@ describe('full student flow', () => {
     expect((await att(a, { meaning: [{ clientId: uuid(), wordId: w.id, attemptNo: 3, chosen: w.meaning, isCorrect: true, msElapsed: 1, clientTs: ts() }] })).status).toBe(400);
     expect((await att(a, { meaning: [{ clientId: uuid(), wordId: w.id, attemptNo: 1, chosen: 'not an option', isCorrect: true, msElapsed: 1, clientTs: ts() }] })).status).toBe(400);
     expect((await request(ctx.app).post(`/api/student/sessions/${sid}/words/d009-1/complete`).set(auth(a)).send({})).status).toBe(400);
-    expect(count('word_attempts')).toBe(0);
+    expect(await count('word_attempts')).toBe(0);
     // the client cannot claim a correct spelling
     const r = await att(a, spell({ input: 'wrongword', isCorrect: true }));
     expect(Object.values(r.body.classifications as Record<string, { isCorrect: boolean }>)[0]!.isCorrect).toBe(false);
@@ -258,7 +258,7 @@ describe('full student flow', () => {
       { clientId: 'm-1', wordId: w.id, attemptNo: 1, chosen: w.distractorMeanings[0], isCorrect: false, msElapsed: 1, clientTs: ts() },
       { clientId: 'm-2', wordId: w.id, attemptNo: 2, chosen: w.distractorMeanings[1], isCorrect: false, msElapsed: 1, clientTs: ts() },
     ] });
-    expect((ctx.db.prepare("SELECT primary_error FROM word_attempts WHERE client_id = 'm-2'").get() as { primary_error: string }).primary_error).toBe('MN_WRONG_2');
+    expect(((await ctx.db.get<{ primary_error: string }>("SELECT primary_error FROM word_attempts WHERE client_id = 'm-2'"))!).primary_error).toBe('MN_WRONG_2');
   });
 
   it('keeps a session snapshot after the teacher overrides words, and tracks streaks across days', async () => {
@@ -286,6 +286,24 @@ describe('full student flow', () => {
     // week boundary: 2026-11-24 is in the week of 2026-11-23, the earlier days are in the week of 2026-11-16
     const wk = await request(ctx.app).get('/api/student/home').set(auth(tok));
     expect(wk.body.xpWeek).toBeLessThan(wk.body.xpTotal);
+  });
+
+  it('completing the same session concurrently never duplicates XP ledger rows', async () => {
+    const { cls, students } = await makeClass(ctx.app, teacher, ['Riya']);
+    const tok = await studentLogin(ctx.app, cls, students[0]!);
+    const today = await start(tok);
+    const sid = today.session.id;
+    for (const w of today.words.slice(0, 2)) await playWord(tok, sid, w);
+    const results = await Promise.all(
+      [1, 2, 3].map(() => request(ctx.app).post(`/api/student/sessions/${sid}/complete`).set(auth(tok)).send({})),
+    );
+    for (const r of results) expect(r.status).toBe(200);
+    expect(results[1]!.body).toEqual(results[0]!.body);
+    expect(results[2]!.body).toEqual(results[0]!.body);
+    expect(await count('xp_ledger')).toBe(4);
+    const sum = await ctx.db.get<{ n: number }>('SELECT COALESCE(SUM(amount), 0) AS n FROM xp_ledger WHERE student_id = ?', [students[0]!.id]);
+    expect(sum!.n).toBe(results[0]!.body.xp.total);
+    expect(results[0]!.body.xpTotal).toBe(results[0]!.body.xp.total);
   });
 
   it('hides the student leaderboard when the teacher switches it off', async () => {

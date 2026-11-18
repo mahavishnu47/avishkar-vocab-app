@@ -12,7 +12,7 @@ export function isValidDate(s: unknown): s is IsoDate {
 }
 
 export function today(): IsoDate {
-  const fake = process.env.FAKE_TODAY;
+  const fake = process.env.VERCEL_ENV === 'production' ? undefined : process.env.FAKE_TODAY;
   if (fake && isValidDate(fake)) return fake;
   return todayIST();
 }

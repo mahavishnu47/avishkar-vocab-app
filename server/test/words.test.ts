@@ -8,7 +8,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 let ctx: Ctx;
-beforeEach(() => { ctx = setup(); });
+beforeEach(async () => { ctx = await setup(); });
 
 describe('daily words', () => {
   it('auto set -> teacher override -> reset', async () => {
@@ -116,7 +116,7 @@ describe('word bank', () => {
 });
 
 describe('word bank loading', () => {
-  it('loads part files, skips _files and bad entries, is idempotent, and only falls back to the fixture when empty', () => {
+  it('loads part files, skips _files and bad entries, is idempotent, and only falls back to the fixture when empty', async () => {
     const dir = mkdtempSync(join(tmpdir(), 'bank-'));
     const entry = (id: string, day: number, word: string) => ({
       id, dayIndex: day, word, partOfSpeech: 'noun', difficulty: 1, meaning: 'a thing here', meaningMarathi: 'x',
@@ -126,10 +126,10 @@ describe('word bank loading', () => {
     writeFileSync(join(dir, 'part-02.json'), '{ not json');
     writeFileSync(join(dir, '_example.json'), JSON.stringify([entry('d300-1', 300, 'ghost')]));
     const { db } = ctx;
-    db.exec('DELETE FROM words');
-    expect(loadWordBank(db, dir)).toBe(2);
-    expect(loadWordBank(db, dir)).toBe(2);
-    expect((db.prepare('SELECT COUNT(*) AS n FROM words').get() as { n: number }).n).toBe(2);
-    expect(() => getDailySet(db, 1, '2026-11-20')).toThrow(); // no class, and fewer than 5 words
+    await db.exec('DELETE FROM words');
+    expect(await loadWordBank(db, dir)).toBe(2);
+    expect(await loadWordBank(db, dir)).toBe(2);
+    expect((await db.get<{ n: number }>('SELECT COUNT(*) AS n FROM words'))!.n).toBe(2);
+    await expect(getDailySet(db, 1, '2026-11-20')).rejects.toThrow(); // no class, and fewer than 5 words
   });
 });

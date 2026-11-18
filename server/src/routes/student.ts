@@ -10,7 +10,7 @@ import {
 } from '@shabd/core';
 import { requireStudent } from '../auth.ts';
 import { today } from '../clock.ts';
-import { getDb, type DB } from '../db/db.ts';
+import { getDb, type Queryable } from '../db/db.ts';
 import { HttpError, badRequest, notFound, type H } from '../http.ts';
 import { classOf, studentOf } from '../mappers.ts';
 import { leaderboard } from '../services/analytics.ts';
@@ -27,33 +27,33 @@ const HINTS: SpellingHint[] = ['first_letter', 'letter_tiles'];
 const sid = (req: { auth?: { role: string; studentId?: number } }) => req.auth!.studentId!;
 
 /** Load a session owned by the student (404 otherwise). */
-function ownSession(db: DB, sessionId: number, studentId: number): Row {
-  const s = db.prepare('SELECT * FROM sessions WHERE id = ? AND student_id = ?').get(sessionId, studentId) as Row | undefined;
+async function ownSession(db: Queryable, sessionId: number, studentId: number): Promise<Row> {
+  const s = await db.get('SELECT * FROM sessions WHERE id = ? AND student_id = ?', [sessionId, studentId]);
   if (!s) throw notFound('Session not found');
   return s;
 }
 
-function wordInSession(db: DB, session: Row, wordId: string): Word {
+async function wordInSession(db: Queryable, session: Row, wordId: string): Promise<Word> {
   if (!sessionWordIds(session).includes(wordId)) throw badRequest('That word is not part of this session');
-  return getWordsByIds(db, [wordId])[0]!;
+  return (await getWordsByIds(db, [wordId]))[0]!;
 }
 
-const home: H<{}, StudentHomeRes> = (req, res) => {
+const home: H<{}, StudentHomeRes> = async (req, res) => {
   const db = getDb();
   const studentId = sid(req);
-  const st = db.prepare('SELECT * FROM students WHERE id = ?').get(studentId) as Row;
-  const cls = classOf(db.prepare('SELECT * FROM classes WHERE id = ?').get(st.class_id) as Row);
+  const st = (await db.get('SELECT * FROM students WHERE id = ?', [studentId]))!;
+  const cls = classOf((await db.get('SELECT * FROM classes WHERE id = ?', [st.class_id]))!);
   const date = today();
-  const session = db.prepare('SELECT * FROM sessions WHERE student_id = ? AND date = ?').get(studentId, date) as Row | undefined;
+  const session = await db.get('SELECT * FROM sessions WHERE student_id = ? AND date = ?', [studentId, date]);
   let status: DayStatus = 'not_started';
   let wordsDone = 0;
   if (session) {
     status = session.completed_at ? 'completed' : 'in_progress';
-    wordsDone = (db.prepare('SELECT COUNT(*) AS n FROM word_scores WHERE session_id = ?').get(session.id) as { n: number }).n;
+    wordsDone = Number((await db.get<{ n: number }>('SELECT COUNT(*) AS n FROM word_scores WHERE session_id = ?', [session.id]))!.n);
   }
-  const streak = getStreak(db, studentId);
-  const total = xpTotal(db, studentId);
-  const xpWeek = (db.prepare('SELECT COALESCE(SUM(amount), 0) AS n FROM xp_ledger WHERE student_id = ? AND week_start = ?').get(studentId, weekStart(date)) as { n: number }).n;
+  const streak = await getStreak(db, studentId);
+  const total = await xpTotal(db, studentId);
+  const xpWeek = Number((await db.get<{ n: number }>('SELECT COALESCE(SUM(amount), 0) AS n FROM xp_ledger WHERE student_id = ? AND week_start = ?', [studentId, weekStart(date)]))!.n);
   res.json({
     student: studentOf(st),
     className: cls.name,
@@ -67,22 +67,24 @@ const home: H<{}, StudentHomeRes> = (req, res) => {
   });
 };
 
-const startToday: H<{}, TodaySessionRes> = (req, res) => {
+const startToday: H<{}, TodaySessionRes> = async (req, res) => {
   const db = getDb();
   const studentId = sid(req);
   const classId = (req.auth as { classId: number }).classId;
   const date = today();
-  let session = db.prepare('SELECT * FROM sessions WHERE student_id = ? AND date = ?').get(studentId, date) as Row | undefined;
+  let session = await db.get('SELECT * FROM sessions WHERE student_id = ? AND date = ?', [studentId, date]);
   if (!session) {
-    const set = getDailySet(db, classId, date);
-    db.prepare(
-      `INSERT OR IGNORE INTO sessions (student_id, class_id, date, day_index, word_ids_json, scoring_version)
-       VALUES (?, ?, ?, ?, ?, ?)`,
-    ).run(studentId, classId, date, set.dayIndex, JSON.stringify(set.words.map((w) => w.id)), SCORING_VERSION);
-    session = db.prepare('SELECT * FROM sessions WHERE student_id = ? AND date = ?').get(studentId, date) as Row;
+    const set = await getDailySet(db, classId, date);
+    // Double-tap / two devices: the loser of the race hits ON CONFLICT and just re-reads the winner's row.
+    await db.run(
+      `INSERT INTO sessions (student_id, class_id, date, day_index, word_ids_json, scoring_version)
+       VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT (student_id, date) DO NOTHING`,
+      [studentId, classId, date, set.dayIndex, JSON.stringify(set.words.map((w) => w.id)), SCORING_VERSION],
+    );
+    session = (await db.get('SELECT * FROM sessions WHERE student_id = ? AND date = ?', [studentId, date]))!;
   }
   const ids = sessionWordIds(session);
-  const wordScores = storedWordScores(db, session.id as number);
+  const wordScores = await storedWordScores(db, session.id as number);
   res.json({
     session: {
       id: session.id as number,
@@ -91,7 +93,7 @@ const startToday: H<{}, TodaySessionRes> = (req, res) => {
       startedAt: session.started_at as string,
       completedAt: (session.completed_at as string | null) ?? null,
     },
-    words: getWordsByIds(db, ids),
+    words: await getWordsByIds(db, ids),
     progress: { completedWordIds: ids.filter((i) => wordScores.some((s) => s.wordId === i)), wordScores },
   });
 };
@@ -105,9 +107,9 @@ function classificationFromRow(r: Row): SpellingClassification {
   };
 }
 
-const attempts: H<{ sessionId: string }, AttemptsRes, AttemptsReq> = (req, res) => {
+const attempts: H<{ sessionId: string }, AttemptsRes, AttemptsReq> = async (req, res) => {
   const db = getDb();
-  const session = ownSession(db, idParam(req.params.sessionId), sid(req));
+  const session = await ownSession(db, idParam(req.params.sessionId), sid(req));
   const sessionId = session.id as number;
   const studentId = sid(req);
   const b = asObject(req.body);
@@ -118,62 +120,77 @@ const attempts: H<{ sessionId: string }, AttemptsRes, AttemptsReq> = (req, res) 
 
   const accepted: string[] = [];
   const classifications: Record<string, SpellingClassification> = {};
-  const findExisting = db.prepare('SELECT * FROM word_attempts WHERE client_id = ?');
-  const insert = db.prepare(
-    `INSERT INTO word_attempts (client_id, session_id, student_id, word_id, stage, attempt_no, input_text, is_correct, hints_json,
+  const INSERT_SQL = `INSERT INTO word_attempts (client_id, session_id, student_id, word_id, stage, attempt_no, input_text, is_correct, hints_json,
        error_tags_json, primary_error, edit_distance, audio_plays, ms_elapsed, client_ts)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-  );
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+     ON CONFLICT (client_id) DO NOTHING RETURNING id`;
 
-  db.transaction(() => {
-    spell.forEach((raw) => {
-      const o = asObject(raw);
-      const clientId = reqString(o, 'clientId', 1, 64);
-      const wordId = reqString(o, 'wordId', 1, 20);
-      const attemptNo = reqInt(o, 'attemptNo', 1, 3);
-      if (typeof o.input !== 'string' || o.input.length > 100) throw badRequest('spell input must be text up to 100 characters');
-      const hints = Array.isArray(o.hints) ? (o.hints.filter((h) => HINTS.includes(h as SpellingHint)) as SpellingHint[]) : [];
-      const audioPlays = reqInt(o, 'audioPlays', 0, 10_000);
-      const msElapsed = reqInt(o, 'msElapsed', 0, 86_400_000);
-      const clientTs = reqIsoTs(o, 'clientTs');
-      const word = wordInSession(db, session, wordId);
-      const existing = findExisting.get(clientId) as Row | undefined;
-      if (existing) {
-        if (existing.session_id !== sessionId) throw new HttpError(409, 'conflict', 'clientId already used');
-        accepted.push(clientId);
-        classifications[clientId] = classificationFromRow(existing);
-        return;
-      }
-      const cls = classifySpellingError(word.word, o.input);
-      insert.run(clientId, sessionId, studentId, wordId, 'spell', attemptNo, o.input.trim(), cls.isCorrect ? 1 : 0, JSON.stringify(hints),
-        JSON.stringify(cls.tags), cls.primary, cls.editDistance, audioPlays, msElapsed, clientTs);
-      accepted.push(clientId);
-      classifications[clientId] = cls;
+  // Validate and score everything first (no DB writes), then write in one transaction.
+  // A failed statement aborts a PG transaction, so nothing here may catch-and-continue inside tx.
+  type Pending = { clientId: string; params?: unknown[]; cls?: SpellingClassification };
+  const pending: Pending[] = [];
+  for (const raw of spell) {
+    const o = asObject(raw);
+    const clientId = reqString(o, 'clientId', 1, 64);
+    const wordId = reqString(o, 'wordId', 1, 20);
+    const attemptNo = reqInt(o, 'attemptNo', 1, 3);
+    if (typeof o.input !== 'string' || o.input.length > 100) throw badRequest('spell input must be text up to 100 characters');
+    const hints = Array.isArray(o.hints) ? (o.hints.filter((h) => HINTS.includes(h as SpellingHint)) as SpellingHint[]) : [];
+    const audioPlays = reqInt(o, 'audioPlays', 0, 10_000);
+    const msElapsed = reqInt(o, 'msElapsed', 0, 86_400_000);
+    const clientTs = reqIsoTs(o, 'clientTs');
+    const word = await wordInSession(db, session, wordId);
+    const existing = await db.get('SELECT * FROM word_attempts WHERE client_id = ?', [clientId]);
+    if (existing) {
+      if (existing.session_id !== sessionId) throw new HttpError(409, 'conflict', 'clientId already used');
+      pending.push({ clientId, cls: classificationFromRow(existing) });
+      continue;
+    }
+    const cls = classifySpellingError(word.word, o.input);
+    pending.push({
+      clientId, cls,
+      params: [clientId, sessionId, studentId, wordId, 'spell', attemptNo, o.input.trim(), cls.isCorrect ? 1 : 0, JSON.stringify(hints),
+        JSON.stringify(cls.tags), cls.primary, cls.editDistance, audioPlays, msElapsed, clientTs],
     });
+  }
+  for (const raw of meaning) {
+    const o = asObject(raw);
+    const clientId = reqString(o, 'clientId', 1, 64);
+    const wordId = reqString(o, 'wordId', 1, 20);
+    const attemptNo = reqInt(o, 'attemptNo', 1, 2);
+    if (typeof o.chosen !== 'string') throw badRequest('chosen must be a string');
+    const isCorrect = reqBool(o, 'isCorrect');
+    const msElapsed = reqInt(o, 'msElapsed', 0, 86_400_000);
+    const clientTs = reqIsoTs(o, 'clientTs');
+    const word = await wordInSession(db, session, wordId);
+    const existing = await db.get('SELECT * FROM word_attempts WHERE client_id = ?', [clientId]);
+    if (existing) {
+      if (existing.session_id !== sessionId) throw new HttpError(409, 'conflict', 'clientId already used');
+      pending.push({ clientId });
+      continue;
+    }
+    const options = [word.meaning, ...word.distractorMeanings];
+    if (!options.includes(o.chosen)) throw badRequest('chosen is not one of the options for this word');
+    const primary = attemptNo === 2 ? (isCorrect ? 'MN_WRONG_1' : 'MN_WRONG_2') : null;
+    pending.push({ clientId, params: [clientId, sessionId, studentId, wordId, 'meaning', attemptNo, o.chosen, isCorrect ? 1 : 0, '[]', '[]', primary, null, 0, msElapsed, clientTs] });
+  }
 
-    meaning.forEach((raw) => {
-      const o = asObject(raw);
-      const clientId = reqString(o, 'clientId', 1, 64);
-      const wordId = reqString(o, 'wordId', 1, 20);
-      const attemptNo = reqInt(o, 'attemptNo', 1, 2);
-      if (typeof o.chosen !== 'string') throw badRequest('chosen must be a string');
-      const isCorrect = reqBool(o, 'isCorrect');
-      const msElapsed = reqInt(o, 'msElapsed', 0, 86_400_000);
-      const clientTs = reqIsoTs(o, 'clientTs');
-      const word = wordInSession(db, session, wordId);
-      const existing = findExisting.get(clientId) as Row | undefined;
-      if (existing) {
-        if (existing.session_id !== sessionId) throw new HttpError(409, 'conflict', 'clientId already used');
-        accepted.push(clientId);
-        return;
+  await db.tx(async (q) => {
+    for (const p of pending) {
+      if (!p.params) continue;
+      const r = await q.run(INSERT_SQL, p.params);
+      if (r.rowCount === 0) {
+        // The same clientId landed concurrently (outbox replay): accept it if it belongs to this session.
+        const existing = await q.get('SELECT * FROM word_attempts WHERE client_id = ?', [p.clientId]);
+        if (!existing || existing.session_id !== sessionId) throw new HttpError(409, 'conflict', 'clientId already used');
+        if (p.cls) p.cls = classificationFromRow(existing);
       }
-      const options = [word.meaning, ...word.distractorMeanings];
-      if (!options.includes(o.chosen)) throw badRequest('chosen is not one of the options for this word');
-      const primary = attemptNo === 2 ? (isCorrect ? 'MN_WRONG_1' : 'MN_WRONG_2') : null;
-      insert.run(clientId, sessionId, studentId, wordId, 'meaning', attemptNo, o.chosen, isCorrect ? 1 : 0, '[]', '[]', primary, null, 0, msElapsed, clientTs);
-      accepted.push(clientId);
-    });
-  })();
+    }
+  });
+  for (const p of pending) {
+    accepted.push(p.clientId);
+    if (p.cls) classifications[p.clientId] = p.cls;
+  }
   res.json({ accepted, classifications });
 };
 
@@ -193,7 +210,7 @@ function evaluationFromRow(r: Row): SentenceEvaluation {
 const sentence: H<{ sessionId: string }, SentenceRes, SentenceReq> = async (req, res) => {
   const db = getDb();
   const studentId = sid(req);
-  const session = ownSession(db, idParam(req.params.sessionId), studentId);
+  const session = await ownSession(db, idParam(req.params.sessionId), studentId);
   const sessionId = session.id as number;
   const b = asObject(req.body);
   const clientId = reqString(b, 'clientId', 1, 64);
@@ -204,26 +221,27 @@ const sentence: H<{ sessionId: string }, SentenceRes, SentenceReq> = async (req,
   const starterHintUsed = b.starterHintUsed === undefined ? false : reqBool(b, 'starterHintUsed');
   const msElapsed = reqInt(b, 'msElapsed', 0, 86_400_000);
   const clientTs = reqIsoTs(b, 'clientTs');
-  const word = wordInSession(db, session, wordId);
+  const word = await wordInSession(db, session, wordId);
 
-  const stored = (): SentenceRes | null => {
-    const r = db.prepare('SELECT * FROM sentence_submissions WHERE client_id = ?').get(clientId) as Row | undefined;
+  const stored = async (q: Queryable): Promise<SentenceRes | null> => {
+    const r = await q.get('SELECT * FROM sentence_submissions WHERE client_id = ?', [clientId]);
     if (!r) return null;
     if (r.session_id !== sessionId) throw new HttpError(409, 'conflict', 'clientId already used');
     return { evaluation: evaluationFromRow(r), counted: r.counted === 1, finalMarks: (r.final_marks as number | null) ?? null };
   };
-  const prior = stored();
+  const prior = await stored(db);
   if (prior) { res.json(prior); return; }
 
   const evaluation = await evaluateSentence(text, word);
   const counted = evaluation.gate === 'ok';
-  const countCounted = () =>
-    (db.prepare('SELECT COUNT(*) AS n FROM sentence_submissions WHERE session_id = ? AND word_id = ? AND counted = 1').get(sessionId, wordId) as { n: number }).n;
-
-  const result = ((): SentenceRes => {
-    const done = stored(); // another request with the same clientId may have landed while we evaluated
+  const result = await db.tx(async (q): Promise<SentenceRes> => {
+    // Serialise concurrent submissions for the same session word (also guards the 2-scored-sentences cap).
+    await q.get('SELECT id FROM sessions WHERE id = ? FOR UPDATE', [sessionId]);
+    const done = await stored(q); // another request with the same clientId may have landed while we evaluated
     if (done) return done;
-    const existingCounted = countCounted();
+    const existingCounted = Number(
+      (await q.get<{ n: number }>('SELECT COUNT(*) AS n FROM sentence_submissions WHERE session_id = ? AND word_id = ? AND counted = 1', [sessionId, wordId]))!.n,
+    );
     if (counted && existingCounted >= SCORING.sentence.maxSubmissions) {
       throw new HttpError(409, 'conflict', 'You already have 2 scored sentences for this word');
     }
@@ -231,35 +249,36 @@ const sentence: H<{ sessionId: string }, SentenceRes, SentenceReq> = async (req,
     const finalMarks = counted ? scoreSentenceSubmission({ submissionNo: effectiveNo, rubric: evaluation.rubric, starterHintUsed }) : null;
     const rules = evaluation.evaluator.startsWith('rules') ? null : evaluateSentenceRules(text, word);
     const reason = evaluation.gate === 'blocked' ? (moderateSentence(text).reason ?? null) : null;
-    db.prepare(
+    await q.run(
       `INSERT INTO sentence_submissions (client_id, session_id, student_id, word_id, submission_no, text, gate, counted,
          r_use, r_grammar, r_relevance, r_length, raw_total, multiplier, hint_cost, final_marks, error_codes_json, feedback_json,
          confidence, evaluator, tip, rules_json, moderation_reason, ms_elapsed, client_ts)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    ).run(clientId, sessionId, studentId, wordId, effectiveNo, text, evaluation.gate, counted ? 1 : 0,
-      evaluation.rubric.use, evaluation.rubric.grammar, evaluation.rubric.relevance, evaluation.rubric.length, evaluation.rawTotal,
-      SCORING.sentence.submissionMultipliers[effectiveNo - 1], starterHintUsed ? SCORING.sentence.starterHintCost : 0, finalMarks,
-      JSON.stringify(evaluation.errorCodes), JSON.stringify(evaluation.feedback), evaluation.confidence, evaluation.evaluator,
-      evaluation.tip ?? null, rules ? JSON.stringify(rules) : null, reason, msElapsed, clientTs);
+      [clientId, sessionId, studentId, wordId, effectiveNo, text, evaluation.gate, counted ? 1 : 0,
+        evaluation.rubric.use, evaluation.rubric.grammar, evaluation.rubric.relevance, evaluation.rubric.length, evaluation.rawTotal,
+        SCORING.sentence.submissionMultipliers[effectiveNo - 1], starterHintUsed ? SCORING.sentence.starterHintCost : 0, finalMarks,
+        JSON.stringify(evaluation.errorCodes), JSON.stringify(evaluation.feedback), evaluation.confidence, evaluation.evaluator,
+        evaluation.tip ?? null, rules ? JSON.stringify(rules) : null, reason, msElapsed, clientTs],
+    );
     return { evaluation, counted, finalMarks };
-  })();
+  });
   res.json(result);
 };
 
-const completeWordRoute: H<{ sessionId: string; wordId: string }, CompleteWordRes> = (req, res) => {
+const completeWordRoute: H<{ sessionId: string; wordId: string }, CompleteWordRes> = async (req, res) => {
   const db = getDb();
-  const session = ownSession(db, idParam(req.params.sessionId), sid(req));
-  res.json(completeWord(db, session.id as number, req.params.wordId));
+  const session = await ownSession(db, idParam(req.params.sessionId), sid(req));
+  res.json(await completeWord(db, session.id as number, req.params.wordId));
 };
 
-const completeSessionRoute: H<{ sessionId: string }, SessionSummaryRes> = (req, res) => {
+const completeSessionRoute: H<{ sessionId: string }, SessionSummaryRes> = async (req, res) => {
   const db = getDb();
-  const session = ownSession(db, idParam(req.params.sessionId), sid(req));
-  res.json(completeSession(db, session.id as number));
+  const session = await ownSession(db, idParam(req.params.sessionId), sid(req));
+  res.json(await completeSession(db, session.id as number));
 };
 
-const studentLeaderboard: H<{}, LeaderboardRes> = (req, res) => {
-  res.json(leaderboard(getDb(), (req.auth as { classId: number }).classId, 'week', today(), sid(req)));
+const studentLeaderboard: H<{}, LeaderboardRes> = async (req, res) => {
+  res.json(await leaderboard(getDb(), (req.auth as { classId: number }).classId, 'week', today(), sid(req)));
 };
 
 studentRouter.get('/student/home', home);

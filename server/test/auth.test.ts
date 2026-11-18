@@ -4,7 +4,7 @@ import { auth, makeClass, registerTeacher, setup, studentLogin, type Ctx } from 
 import { generateClassCode, generatePin, hashPassword, verifyPassword } from '../src/auth.ts';
 
 let ctx: Ctx;
-beforeEach(() => { ctx = setup(); });
+beforeEach(async () => { ctx = await setup(); });
 
 describe('auth primitives', () => {
   it('hashes and verifies passwords', () => {
@@ -70,7 +70,7 @@ describe('teacher auth', () => {
     expect((await request(ctx.app).get('/api/student/home')).status).toBe(401);
 
     const t = await registerTeacher(ctx.app);
-    ctx.db.prepare("UPDATE auth_tokens SET expires_at = '2000-01-01T00:00:00.000Z' WHERE token = ?").run(t);
+    await ctx.db.run("UPDATE auth_tokens SET expires_at = '2000-01-01T00:00:00.000Z' WHERE token = ?", [t]);
     expect((await request(ctx.app).get('/api/classes').set(auth(t))).status).toBe(401);
   });
 
@@ -159,14 +159,14 @@ describe('student auth', () => {
     // lock expires by time
     for (let i = 0; i < 6; i++) await login(reset.body.pin === '9999' ? '9998' : '9999');
     expect((await login(reset.body.pin)).status).toBe(423);
-    ctx.db.prepare("UPDATE students SET locked_until = '2000-01-01T00:00:00.000Z' WHERE id = ?").run(riya.id);
+    await ctx.db.run("UPDATE students SET locked_until = '2000-01-01T00:00:00.000Z' WHERE id = ?", [riya.id]);
     expect((await login(reset.body.pin)).status).toBe(200);
   });
 });
 
 describe('misc', () => {
   it('health, unknown route and bad JSON', async () => {
-    expect((await request(ctx.app).get('/api/health')).body).toEqual({ ok: true, ai: false, version: '0.1.0' });
+    expect((await request(ctx.app).get('/api/health')).body).toEqual({ ok: true, db: 'ok', words: expect.any(Number), ai: false, version: '0.1.0' });
     const nf = await request(ctx.app).get('/api/nope');
     expect(nf.status).toBe(404);
     expect(nf.body.error.code).toBe('not_found');

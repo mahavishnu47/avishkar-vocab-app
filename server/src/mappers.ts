@@ -2,7 +2,7 @@
  * DB row -> API object mappers shared by routes.
  */
 import type { ClassRoom, LeaderboardMode, Student, StudentWithPin, Teacher } from '@shabd/core';
-import type { DB } from './db/db.ts';
+import type { Queryable } from './db/db.ts';
 import { notFound } from './http.ts';
 
 type Row = Record<string, unknown>;
@@ -29,8 +29,8 @@ export const studentOf = (r: Row): Student => ({
 
 export const studentWithPinOf = (r: Row): StudentWithPin => ({ ...studentOf(r), pin: r.pin as string });
 
-export function getClassRow(db: DB, classId: number): Row {
-  const row = db.prepare('SELECT * FROM classes WHERE id = ?').get(classId) as Row | undefined;
+export async function getClassRow(db: Queryable, classId: number): Promise<Row> {
+  const row = await db.get('SELECT * FROM classes WHERE id = ?', [classId]);
   if (!row) throw notFound('Class not found');
   return row;
 }

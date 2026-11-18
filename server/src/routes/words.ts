@@ -27,7 +27,7 @@ function intQuery(v: string | undefined, name: string, min: number, max: number)
   return n;
 }
 
-const searchWords: H<{}, WordSearchRes, unknown, WordQuery> = (req, res) => {
+const searchWords: H<{}, WordSearchRes, unknown, WordQuery> = async (req, res) => {
   const q = (req.query.q ?? '').trim().toLowerCase();
   const difficulty = intQuery(req.query.difficulty, 'difficulty', 1, 3);
   const dayIndex = intQuery(req.query.dayIndex, 'dayIndex', 1, 366);
@@ -39,26 +39,26 @@ const searchWords: H<{}, WordSearchRes, unknown, WordQuery> = (req, res) => {
   const where: string[] = [];
   const args: (string | number)[] = [];
   if (q) {
-    where.push("(word LIKE ? ESCAPE '\\' OR meaning LIKE ? ESCAPE '\\')");
+    where.push("(word ILIKE ? ESCAPE '\\' OR meaning ILIKE ? ESCAPE '\\')");
     args.push(`%${likeEscape(q)}%`, `%${likeEscape(q)}%`);
   }
   if (difficulty !== undefined) { where.push('difficulty = ?'); args.push(difficulty); }
   if (pos) { where.push('part_of_speech = ?'); args.push(pos); }
-  if (req.query.tag) { where.push("tags_json LIKE ? ESCAPE '\\'"); args.push(`%"${likeEscape(req.query.tag)}"%`); }
+  if (req.query.tag) { where.push("tags_json ILIKE ? ESCAPE '\\'"); args.push(`%"${likeEscape(req.query.tag)}"%`); }
   if (dayIndex !== undefined) { where.push('day_index = ?'); args.push(dayIndex); }
   const w = where.length ? `WHERE ${where.join(' AND ')}` : '';
 
   const db = getDb();
-  const total = (db.prepare(`SELECT COUNT(*) AS n FROM words ${w}`).get(...args) as { n: number }).n;
+  const total = Number((await db.get<{ n: number }>(`SELECT COUNT(*) AS n FROM words ${w}`, args))!.n);
   const orderArgs: (string | number)[] = q ? [q, `${likeEscape(q)}%`] : [];
   const order = q
-    ? "ORDER BY (word = ?) DESC, (word LIKE ? ESCAPE '\\') DESC, day_index IS NULL, day_index, id"
+    ? "ORDER BY (word = ?) DESC, (word ILIKE ? ESCAPE '\\') DESC, day_index IS NULL, day_index, id"
     : 'ORDER BY day_index IS NULL, day_index, id';
-  const rows = db.prepare(`SELECT * FROM words ${w} ${order} LIMIT ? OFFSET ?`).all(...args, ...orderArgs, limit, offset) as Record<string, unknown>[];
+  const rows = await db.all(`SELECT * FROM words ${w} ${order} LIMIT ? OFFSET ?`, [...args, ...orderArgs, limit, offset]);
   res.json({ total, items: rows.map(rowToWord) });
 };
 
-const createWord: H<{}, Word, CreateWordReq> = (req, res) => {
+const createWord: H<{}, Word, CreateWordReq> = async (req, res) => {
   const b = asObject(req.body);
   const word = reqString(b, 'word', 3, 14).toLowerCase();
   if (!/^[a-z]{3,14}$/.test(word)) throw badRequest('word must be 3-14 letters a-z');
@@ -85,30 +85,27 @@ const createWord: H<{}, Word, CreateWordReq> = (req, res) => {
   const forms = b.forms === undefined ? [] : stringArray(b.forms, 'forms', 0, 10, 20);
 
   const db = getDb();
-  const id = db.transaction(() => {
-    const next = (db.prepare("SELECT COALESCE(MAX(CAST(SUBSTR(id, 3) AS INTEGER)), 0) + 1 AS n FROM words WHERE source = 'teacher'").get() as { n: number }).n;
-    const wid = `c-${next}`;
-    db.prepare(
-      `INSERT INTO words (id, day_index, word, part_of_speech, difficulty, meaning, meaning_marathi, example_sentence,
-         distractors_json, syllables_json, tags_json, context_words_json, forms_json, source, created_by)
-       VALUES (?, NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'teacher', ?)`,
-    ).run(wid, word, partOfSpeech, difficulty, meaning, meaningMarathi, exampleSentence, JSON.stringify(distractors),
-      JSON.stringify(syllables), JSON.stringify(tags), JSON.stringify(contextWords), JSON.stringify(forms), teacherId(req));
-    return wid;
-  })();
-  res.status(201).json(rowToWord(db.prepare('SELECT * FROM words WHERE id = ?').get(id) as Record<string, unknown>));
+  // Ids come from a sequence, so concurrent creates cannot collide (no MAX()+1 race).
+  const ins = await db.run(
+    `INSERT INTO words (id, day_index, word, part_of_speech, difficulty, meaning, meaning_marathi, example_sentence,
+       distractors_json, syllables_json, tags_json, context_words_json, forms_json, source, created_by)
+     VALUES ('c-' || nextval('teacher_word_seq'), NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'teacher', ?) RETURNING *`,
+    [word, partOfSpeech, difficulty, meaning, meaningMarathi, exampleSentence, JSON.stringify(distractors),
+      JSON.stringify(syllables), JSON.stringify(tags), JSON.stringify(contextWords), JSON.stringify(forms), teacherId(req)],
+  );
+  res.status(201).json(rowToWord(ins.rows[0]!));
 };
 
-const getDaily: H<{ classId: string }, DailySet, unknown, { date?: string }> = (req, res) => {
+const getDaily: H<{ classId: string }, DailySet, unknown, { date?: string }> = async (req, res) => {
   const classId = idParam(req.params.classId);
-  assertTeacherOwnsClass(teacherId(req), classId);
+  await assertTeacherOwnsClass(teacherId(req), classId);
   const date = optDate(req.query.date, 'date') ?? today();
-  res.json(getDailySet(getDb(), classId, date));
+  res.json(await getDailySet(getDb(), classId, date));
 };
 
-const putDaily: H<{ classId: string; date: string }, DailySet, SetDailyWordsReq> = (req, res) => {
+const putDaily: H<{ classId: string; date: string }, DailySet, SetDailyWordsReq> = async (req, res) => {
   const classId = idParam(req.params.classId);
-  assertTeacherOwnsClass(teacherId(req), classId);
+  await assertTeacherOwnsClass(teacherId(req), classId);
   const date = reqDate(req.params.date, 'date');
   const b = asObject(req.body);
   const ids = b.wordIds;
@@ -116,23 +113,25 @@ const putDaily: H<{ classId: string; date: string }, DailySet, SetDailyWordsReq>
     throw badRequest('wordIds must be exactly 5 distinct word ids');
   }
   const db = getDb();
-  const exists = db.prepare('SELECT 1 FROM words WHERE id = ?');
-  for (const id of ids as string[]) if (!exists.get(id)) throw badRequest(`wordIds: unknown word ${id}`);
-  db.transaction(() => {
-    db.prepare('DELETE FROM daily_word_overrides WHERE class_id = ? AND date = ?').run(classId, date);
-    const ins = db.prepare('INSERT INTO daily_word_overrides (class_id, date, position, word_id) VALUES (?, ?, ?, ?)');
-    (ids as string[]).forEach((id, i) => ins.run(classId, date, i + 1, id));
-  })();
-  res.json(getDailySet(db, classId, date));
+  for (const id of ids as string[]) if (!(await db.get('SELECT 1 FROM words WHERE id = ?', [id]))) throw badRequest(`wordIds: unknown word ${id}`);
+  await db.tx(async (q) => {
+    await q.run('DELETE FROM daily_word_overrides WHERE class_id = ? AND date = ?', [classId, date]);
+    let i = 0;
+    for (const id of ids as string[]) {
+      i++;
+      await q.run('INSERT INTO daily_word_overrides (class_id, date, position, word_id) VALUES (?, ?, ?, ?)', [classId, date, i, id]);
+    }
+  });
+  res.json(await getDailySet(db, classId, date));
 };
 
-const deleteDaily: H<{ classId: string; date: string }, DailySet> = (req, res) => {
+const deleteDaily: H<{ classId: string; date: string }, DailySet> = async (req, res) => {
   const classId = idParam(req.params.classId);
-  assertTeacherOwnsClass(teacherId(req), classId);
+  await assertTeacherOwnsClass(teacherId(req), classId);
   const date = reqDate(req.params.date, 'date');
   const db = getDb();
-  db.prepare('DELETE FROM daily_word_overrides WHERE class_id = ? AND date = ?').run(classId, date);
-  res.json(getDailySet(db, classId, date));
+  await db.run('DELETE FROM daily_word_overrides WHERE class_id = ? AND date = ?', [classId, date]);
+  res.json(await getDailySet(db, classId, date));
 };
 
 wordsRouter.get('/words', searchWords);

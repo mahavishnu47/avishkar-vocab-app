@@ -2,7 +2,7 @@
  * Daily word set resolution. OWNER: Lane A (server).
  */
 import { dayIndexFor, type DailySet, type IsoDate, type Word } from '@shabd/core';
-import type { DB } from '../db/db.ts';
+import type { Queryable } from '../db/db.ts';
 import { HttpError, notFound } from '../http.ts';
 
 type Row = Record<string, unknown>;
@@ -35,15 +35,15 @@ export function rowToWord(row: Record<string, unknown>): Word {
   };
 }
 
-export function getWordsByIds(db: DB, ids: string[]): Word[] {
-  const stmt = db.prepare('SELECT * FROM words WHERE id = ?');
-  const out: Word[] = [];
-  for (const id of ids) {
-    const r = stmt.get(id) as Row | undefined;
+export async function getWordsByIds(db: Queryable, ids: string[]): Promise<Word[]> {
+  if (ids.length === 0) return [];
+  const rows = await db.all('SELECT * FROM words WHERE id = ANY(?::text[])', [ids]);
+  const byId = new Map(rows.map((r) => [r.id as string, r]));
+  return ids.map((id) => {
+    const r = byId.get(id);
     if (!r) throw notFound(`Word ${id} not found`);
-    out.push(rowToWord(r));
-  }
-  return out;
+    return rowToWord(r);
+  });
 }
 
 /**
@@ -52,19 +52,19 @@ export function getWordsByIds(db: DB, ids: string[]): Word[] {
  * If the bank has < 5 words for that day (content not loaded yet), fill from the nearest
  * lower dayIndex that has words; throws HttpError 404 if the bank is empty.
  */
-export function getDailySet(db: DB, classId: number, date: IsoDate): DailySet {
-  const cls = db.prepare('SELECT start_date FROM classes WHERE id = ?').get(classId) as { start_date: string } | undefined;
+export async function getDailySet(db: Queryable, classId: number, date: IsoDate): Promise<DailySet> {
+  const cls = await db.get<{ start_date: string }>('SELECT start_date FROM classes WHERE id = ?', [classId]);
   if (!cls) throw notFound('Class not found');
   const dayIndex = dayIndexFor(cls.start_date, date);
 
-  const overrides = db
-    .prepare('SELECT word_id FROM daily_word_overrides WHERE class_id = ? AND date = ? ORDER BY position')
-    .all(classId, date) as { word_id: string }[];
+  const overrides = await db.all<{ word_id: string }>(
+    'SELECT word_id FROM daily_word_overrides WHERE class_id = ? AND date = ? ORDER BY position',
+    [classId, date],
+  );
   if (overrides.length === 5) {
-    return { classId, date, dayIndex, source: 'teacher', words: getWordsByIds(db, overrides.map((o) => o.word_id)) };
+    return { classId, date, dayIndex, source: 'teacher', words: await getWordsByIds(db, overrides.map((o) => o.word_id)) };
   }
 
-  const byDay = db.prepare("SELECT * FROM words WHERE source = 'bank' AND day_index = ? ORDER BY id");
   const words: Word[] = [];
   const seen = new Set<string>();
   // dayIndex, then lower days down to 1, then wrap from 366 down to dayIndex + 1
@@ -72,7 +72,7 @@ export function getDailySet(db: DB, classId: number, date: IsoDate): DailySet {
   for (let d = dayIndex; d >= 1; d--) order.push(d);
   for (let d = 366; d > dayIndex; d--) order.push(d);
   for (const d of order) {
-    for (const r of byDay.all(d) as Row[]) {
+    for (const r of await db.all("SELECT * FROM words WHERE source = 'bank' AND day_index = ? ORDER BY id", [d])) {
       if (words.length >= 5) break;
       if (!seen.has(r.id as string)) {
         seen.add(r.id as string);

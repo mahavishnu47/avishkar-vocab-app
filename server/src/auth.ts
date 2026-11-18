@@ -66,32 +66,31 @@ export function avatarFor(rollNo: number): string {
 }
 
 /** Create and store a token; returns it. */
-export function issueToken(role: 'teacher' | 'student', id: number): string {
+export async function issueToken(role: 'teacher' | 'student', id: number): Promise<string> {
   const token = newToken();
   const days = role === 'teacher' ? TEACHER_TOKEN_DAYS : STUDENT_TOKEN_DAYS;
   const expires = new Date(Date.now() + days * 86_400_000).toISOString();
-  getDb()
-    .prepare('INSERT INTO auth_tokens (token, role, teacher_id, student_id, expires_at) VALUES (?, ?, ?, ?, ?)')
-    .run(token, role, role === 'teacher' ? id : null, role === 'student' ? id : null, expires);
+  await getDb().run('INSERT INTO auth_tokens (token, role, teacher_id, student_id, expires_at) VALUES (?, ?, ?, ?, ?)', [
+    token, role, role === 'teacher' ? id : null, role === 'student' ? id : null, expires,
+  ]);
   return token;
 }
 
 interface TokenRow { role: 'teacher' | 'student'; teacher_id: number | null; student_id: number | null; class_id: number | null; active: number | null }
 
 /** Resolves Authorization: Bearer <token> into req.auth (if valid and unexpired). Never rejects. */
-export function attachAuth(req: Request, _res: Response, next: NextFunction): void {
+export async function attachAuth(req: Request, _res: Response, next: NextFunction): Promise<void> {
   try {
     const header = req.headers.authorization;
     const m = typeof header === 'string' ? /^Bearer\s+([0-9a-f]{64})$/i.exec(header.trim()) : null;
     if (m) {
       const token = m[1]!.toLowerCase();
-      const row = getDb()
-        .prepare(
-          `SELECT t.role, t.teacher_id, t.student_id, s.class_id, s.active
-             FROM auth_tokens t LEFT JOIN students s ON s.id = t.student_id
-            WHERE t.token = ? AND t.expires_at > ?`,
-        )
-        .get(token, new Date().toISOString()) as TokenRow | undefined;
+      const row = await getDb().get<TokenRow>(
+        `SELECT t.role, t.teacher_id, t.student_id, s.class_id, s.active
+           FROM auth_tokens t LEFT JOIN students s ON s.id = t.student_id
+          WHERE t.token = ? AND t.expires_at > ?`,
+        [token, new Date().toISOString()],
+      );
       if (row?.role === 'teacher' && row.teacher_id !== null) {
         req.auth = { role: 'teacher', teacherId: row.teacher_id, token };
       } else if (row?.role === 'student' && row.student_id !== null && row.class_id !== null && row.active === 1) {
@@ -99,7 +98,10 @@ export function attachAuth(req: Request, _res: Response, next: NextFunction): vo
       }
     }
   } catch (err) {
+    // A DB failure must not look like "not logged in": surface it as a 500 instead of a misleading 401.
     console.error('[auth] token lookup failed', err);
+    next(err);
+    return;
   }
   next();
 }
@@ -117,15 +119,15 @@ export function requireStudent(req: Request, _res: Response, next: NextFunction)
 }
 
 /** Throws 404 unless the class belongs to the authenticated teacher (other teachers' classes are not revealed). */
-export function assertTeacherOwnsClass(teacherId: number, classId: number): void {
-  const row = getDb().prepare('SELECT 1 FROM classes WHERE id = ? AND teacher_id = ?').get(classId, teacherId);
+export async function assertTeacherOwnsClass(teacherId: number, classId: number): Promise<void> {
+  const row = await getDb().get('SELECT 1 FROM classes WHERE id = ? AND teacher_id = ?', [classId, teacherId]);
   if (!row) throw notFound('Class not found');
 }
 
 /** Throws 404 unless the student is in one of the teacher's classes. */
-export function assertTeacherOwnsStudent(teacherId: number, studentId: number): void {
-  const row = getDb()
-    .prepare('SELECT 1 FROM students s JOIN classes c ON c.id = s.class_id WHERE s.id = ? AND c.teacher_id = ?')
-    .get(studentId, teacherId);
+export async function assertTeacherOwnsStudent(teacherId: number, studentId: number): Promise<void> {
+  const row = await getDb().get('SELECT 1 FROM students s JOIN classes c ON c.id = s.class_id WHERE s.id = ? AND c.teacher_id = ?', [
+    studentId, teacherId,
+  ]);
   if (!row) throw notFound('Student not found');
 }

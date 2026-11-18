@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { auth, makeClass, registerTeacher, setup, type Ctx } from './helpers.ts';
 
 let ctx: Ctx;
-beforeEach(() => { ctx = setup(); });
+beforeEach(async () => { ctx = await setup(); });
 
 describe('classes', () => {
   it('creates, lists (newest first) and patches classes', async () => {
