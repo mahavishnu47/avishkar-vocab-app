@@ -7,9 +7,25 @@
  *                                             on ANY error/timeout -> return rules
  *   else                                   -> return rules
  */
-import type { SentenceEvaluation, Word } from '@shabd/core';
+import { evaluateSentenceRules, type SentenceEvaluation, type Word } from '@shabd/core';
+import { claudeEnabled, evaluateWithClaude } from './claudeEvaluator.ts';
+
+export const CLAUDE_TIMEOUT_MS = 6000;
 
 export async function evaluateSentence(text: string, word: Word): Promise<SentenceEvaluation> {
-  void text; void word;
-  throw new Error('not implemented');
+  const rules = evaluateSentenceRules(text, word);
+  if (rules.gate !== 'ok' || !claudeEnabled()) return rules;
+
+  let timer: NodeJS.Timeout | undefined;
+  try {
+    const timeout = new Promise<never>((_, reject) => {
+      timer = setTimeout(() => reject(new Error('claude evaluator timed out')), CLAUDE_TIMEOUT_MS);
+    });
+    return await Promise.race([evaluateWithClaude(text, word, rules), timeout]);
+  } catch (err) {
+    console.warn('[sentence] Claude evaluator failed, using rules:', (err as Error).message);
+    return rules;
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
 }

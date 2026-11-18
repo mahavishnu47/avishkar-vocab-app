@@ -35,6 +35,11 @@ export const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
     res.status(err.status).json({ error: { code: err.code, message: err.message } } satisfies ApiError);
     return;
   }
+  const e = err as { type?: string; status?: number };
+  if (e?.type === 'entity.parse.failed' || e?.type === 'entity.too.large' || e?.type === 'encoding.unsupported') {
+    res.status(400).json({ error: { code: 'bad_request', message: e.type === 'entity.too.large' ? 'Request body too large' : 'Request body is not valid JSON' } } satisfies ApiError);
+    return;
+  }
   console.error(err);
   res.status(500).json({ error: { code: 'internal', message: 'Something went wrong' } } satisfies ApiError);
 };

@@ -1,0 +1,1376 @@
+[
+  {
+    "id": "d001-1",
+    "dayIndex": 1,
+    "word": "kitchen",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a room where food is cooked",
+    "meaningMarathi": "स्वयंपाकघर",
+    "exampleSentence": "Aai makes hot bhakri in the kitchen every morning.",
+    "distractorMeanings": [
+      "a place where you keep a car",
+      "a room where you sleep"
+    ],
+    "syllables": [
+      "kit",
+      "chen"
+    ],
+    "tags": [
+      "home"
+    ],
+    "contextWords": [
+      "cook",
+      "food",
+      "mother",
+      "room"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d001-2",
+    "dayIndex": 1,
+    "word": "wash",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to clean something using water",
+    "meaningMarathi": "धुणे",
+    "exampleSentence": "Riya washes her hands before she eats lunch.",
+    "distractorMeanings": [
+      "to cut something into pieces",
+      "to throw something far away"
+    ],
+    "syllables": [
+      "wash"
+    ],
+    "tags": [
+      "home"
+    ],
+    "contextWords": [
+      "hands",
+      "soap",
+      "water",
+      "clean"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d001-3",
+    "dayIndex": 1,
+    "word": "happy",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "feeling joy and pleasure",
+    "meaningMarathi": "आनंदी",
+    "exampleSentence": "Aarav was happy when he won the race at school.",
+    "distractorMeanings": [
+      "feeling very hungry and weak",
+      "feeling afraid of the dark"
+    ],
+    "syllables": [
+      "hap",
+      "py"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "smile",
+      "laugh",
+      "play",
+      "friend"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d001-4",
+    "dayIndex": 1,
+    "word": "table",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a piece of furniture with a flat top",
+    "meaningMarathi": "मेज",
+    "exampleSentence": "Sai put his books on the wooden table near the window.",
+    "distractorMeanings": [
+      "a soft bed for a baby",
+      "a tool for cutting paper"
+    ],
+    "syllables": [
+      "ta",
+      "ble"
+    ],
+    "tags": [
+      "home"
+    ],
+    "contextWords": [
+      "chair",
+      "book",
+      "eat",
+      "wooden"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d001-5",
+    "dayIndex": 1,
+    "word": "warm",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "a little hot but not too hot",
+    "meaningMarathi": "उबदार",
+    "exampleSentence": "Gauri drank warm milk before going to bed.",
+    "distractorMeanings": [
+      "very cold like ice",
+      "wet from the rain"
+    ],
+    "syllables": [
+      "warm"
+    ],
+    "tags": [
+      "weather-seasons"
+    ],
+    "contextWords": [
+      "milk",
+      "sun",
+      "blanket",
+      "summer"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d002-1",
+    "dayIndex": 2,
+    "word": "school",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a place where children go to learn",
+    "meaningMarathi": "शाळा",
+    "exampleSentence": "Om walks to school with his friends every day.",
+    "distractorMeanings": [
+      "a place where doctors treat people",
+      "a shop that sells fruit"
+    ],
+    "syllables": [
+      "school"
+    ],
+    "tags": [
+      "school"
+    ],
+    "contextWords": [
+      "teacher",
+      "study",
+      "class",
+      "friends"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d002-2",
+    "dayIndex": 2,
+    "word": "read",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to look at words and understand them",
+    "meaningMarathi": "वाचणे",
+    "exampleSentence": "Isha loves to read story books in the evening.",
+    "distractorMeanings": [
+      "to draw a picture with colours",
+      "to run very fast"
+    ],
+    "syllables": [
+      "read"
+    ],
+    "tags": [
+      "school"
+    ],
+    "contextWords": [
+      "book",
+      "story",
+      "page",
+      "words"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d002-3",
+    "dayIndex": 2,
+    "word": "tall",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "having a large height from bottom to top",
+    "meaningMarathi": "उंच",
+    "exampleSentence": "The tall coconut tree stands near our village well.",
+    "distractorMeanings": [
+      "having a very small size",
+      "having a smooth and shiny surface"
+    ],
+    "syllables": [
+      "tall"
+    ],
+    "tags": [
+      "describing-things"
+    ],
+    "contextWords": [
+      "tree",
+      "boy",
+      "building",
+      "high"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d002-4",
+    "dayIndex": 2,
+    "word": "teacher",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a person who helps students learn",
+    "meaningMarathi": "शिक्षक",
+    "exampleSentence": "Our teacher tells us a new story on Fridays.",
+    "distractorMeanings": [
+      "a person who grows crops in fields",
+      "a person who drives a bus"
+    ],
+    "syllables": [
+      "teach",
+      "er"
+    ],
+    "tags": [
+      "school"
+    ],
+    "contextWords": [
+      "class",
+      "student",
+      "board",
+      "lesson"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d002-5",
+    "dayIndex": 2,
+    "word": "listen",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to pay attention to a sound",
+    "meaningMarathi": "ऐकणे",
+    "exampleSentence": "Kabir likes to listen to birds singing in the morning.",
+    "distractorMeanings": [
+      "to jump over a small wall",
+      "to smell a sweet flower"
+    ],
+    "syllables": [
+      "lis",
+      "ten"
+    ],
+    "tags": [
+      "communication"
+    ],
+    "contextWords": [
+      "ears",
+      "music",
+      "sound",
+      "carefully"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d003-1",
+    "dayIndex": 3,
+    "word": "garden",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a place where flowers and plants grow",
+    "meaningMarathi": "बाग",
+    "exampleSentence": "Ananya waters the plants in the garden after school.",
+    "distractorMeanings": [
+      "a big building with many shops",
+      "a road for fast cars"
+    ],
+    "syllables": [
+      "gar",
+      "den"
+    ],
+    "tags": [
+      "plants-trees"
+    ],
+    "contextWords": [
+      "flowers",
+      "plants",
+      "grass",
+      "water"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d003-2",
+    "dayIndex": 3,
+    "word": "plant",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to put a seed or small tree in the ground",
+    "meaningMarathi": "लावणे",
+    "exampleSentence": "Vedant helped his father to plant a mango tree.",
+    "distractorMeanings": [
+      "to pull a tree out of the ground",
+      "to cut grass with a tool"
+    ],
+    "syllables": [
+      "plant"
+    ],
+    "tags": [
+      "plants-trees"
+    ],
+    "contextWords": [
+      "seed",
+      "soil",
+      "tree",
+      "water"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d003-3",
+    "dayIndex": 3,
+    "word": "green",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "having the colour of fresh grass",
+    "meaningMarathi": "हिरवा",
+    "exampleSentence": "The green parrot sat on the branch of the neem tree.",
+    "distractorMeanings": [
+      "having the colour of a ripe tomato",
+      "having the colour of the night sky"
+    ],
+    "syllables": [
+      "green"
+    ],
+    "tags": [
+      "shapes-colours"
+    ],
+    "contextWords": [
+      "grass",
+      "leaf",
+      "parrot",
+      "tree"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d003-4",
+    "dayIndex": 3,
+    "word": "flower",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "the colourful part of a plant",
+    "meaningMarathi": "फूल",
+    "exampleSentence": "Gauri put a yellow flower in her hair.",
+    "distractorMeanings": [
+      "the hard outside part of a nut",
+      "the long root of a tree"
+    ],
+    "syllables": [
+      "flow",
+      "er"
+    ],
+    "tags": [
+      "plants-trees"
+    ],
+    "contextWords": [
+      "petal",
+      "smell",
+      "garden",
+      "bee"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d003-5",
+    "dayIndex": 3,
+    "word": "gentle",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "soft and kind, not rough",
+    "meaningMarathi": "सौम्य",
+    "exampleSentence": "Be gentle with the baby rabbit when you hold it.",
+    "distractorMeanings": [
+      "loud and always angry",
+      "strong and very heavy"
+    ],
+    "syllables": [
+      "gen",
+      "tle"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "soft",
+      "kind",
+      "touch",
+      "careful"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d004-1",
+    "dayIndex": 4,
+    "word": "market",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a place where people buy and sell things",
+    "meaningMarathi": "बाजार",
+    "exampleSentence": "Aai goes to the market on Sunday to buy vegetables.",
+    "distractorMeanings": [
+      "a place where trains stop",
+      "a room where students write exams"
+    ],
+    "syllables": [
+      "mar",
+      "ket"
+    ],
+    "tags": [
+      "city-town"
+    ],
+    "contextWords": [
+      "buy",
+      "sell",
+      "vegetables",
+      "shop"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d004-2",
+    "dayIndex": 4,
+    "word": "buy",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to get something by paying money",
+    "meaningMarathi": "विकत घेणे",
+    "exampleSentence": "Arjun will buy a notebook with his pocket money.",
+    "distractorMeanings": [
+      "to give something to a friend",
+      "to break something by mistake"
+    ],
+    "syllables": [
+      "buy"
+    ],
+    "tags": [
+      "city-town"
+    ],
+    "contextWords": [
+      "money",
+      "shop",
+      "pay",
+      "market"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d004-3",
+    "dayIndex": 4,
+    "word": "fresh",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "newly made or picked, not old",
+    "meaningMarathi": "ताजे",
+    "exampleSentence": "Aaji sells fresh guavas from her small cart.",
+    "distractorMeanings": [
+      "covered with dust and dirt",
+      "broken into small pieces"
+    ],
+    "syllables": [
+      "fresh"
+    ],
+    "tags": [
+      "food"
+    ],
+    "contextWords": [
+      "fruit",
+      "vegetables",
+      "morning",
+      "market"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d004-4",
+    "dayIndex": 4,
+    "word": "basket",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a container made of woven sticks for carrying things",
+    "meaningMarathi": "टोपली",
+    "exampleSentence": "Riya filled the basket with ripe red tomatoes.",
+    "distractorMeanings": [
+      "a metal pot for cooking rice",
+      "a cloth bag for school books"
+    ],
+    "syllables": [
+      "bas",
+      "ket"
+    ],
+    "tags": [
+      "home"
+    ],
+    "contextWords": [
+      "carry",
+      "fruit",
+      "weave",
+      "market"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d004-5",
+    "dayIndex": 4,
+    "word": "carry",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to hold something and take it somewhere",
+    "meaningMarathi": "वाहून नेणे",
+    "exampleSentence": "Sai helped his mother carry the heavy bags home.",
+    "distractorMeanings": [
+      "to leave something on the road",
+      "to wash something with soap"
+    ],
+    "syllables": [
+      "car",
+      "ry"
+    ],
+    "tags": [
+      "actions-movement"
+    ],
+    "contextWords": [
+      "bag",
+      "heavy",
+      "hold",
+      "home"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d005-1",
+    "dayIndex": 5,
+    "word": "river",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a large stream of water that flows to the sea",
+    "meaningMarathi": "नदी",
+    "exampleSentence": "The river near our village is full in the monsoon.",
+    "distractorMeanings": [
+      "a high hill covered with trees",
+      "a dry land with sand"
+    ],
+    "syllables": [
+      "riv",
+      "er"
+    ],
+    "tags": [
+      "water-rivers-sea"
+    ],
+    "contextWords": [
+      "water",
+      "flow",
+      "boat",
+      "fish"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d005-2",
+    "dayIndex": 5,
+    "word": "swim",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to move through water using your arms and legs",
+    "meaningMarathi": "पोहणे",
+    "exampleSentence": "Om learned to swim in the river last summer.",
+    "distractorMeanings": [
+      "to climb up a tall tree",
+      "to sleep under a warm blanket"
+    ],
+    "syllables": [
+      "swim"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "water",
+      "river",
+      "fish",
+      "summer"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d005-3",
+    "dayIndex": 5,
+    "word": "deep",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "going far down from the top",
+    "meaningMarathi": "खोल",
+    "exampleSentence": "Be careful, the water in this well is very deep.",
+    "distractorMeanings": [
+      "having very little height",
+      "having a rough surface"
+    ],
+    "syllables": [
+      "deep"
+    ],
+    "tags": [
+      "describing-things"
+    ],
+    "contextWords": [
+      "water",
+      "well",
+      "river",
+      "sea"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d005-4",
+    "dayIndex": 5,
+    "word": "bridge",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a structure that helps people cross a river",
+    "meaningMarathi": "पूल",
+    "exampleSentence": "We crossed the old bridge on our way to Pune.",
+    "distractorMeanings": [
+      "a wall around a house",
+      "a path inside a garden"
+    ],
+    "syllables": [
+      "bridge"
+    ],
+    "tags": [
+      "transport-travel"
+    ],
+    "contextWords": [
+      "river",
+      "cross",
+      "road",
+      "train"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d005-5",
+    "dayIndex": 5,
+    "word": "cross",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to go from one side to the other",
+    "meaningMarathi": "ओलांडणे",
+    "exampleSentence": "Always look both ways before you cross the road.",
+    "distractorMeanings": [
+      "to stand still in one place",
+      "to paint a wall with colour"
+    ],
+    "syllables": [
+      "cross"
+    ],
+    "tags": [
+      "safety"
+    ],
+    "contextWords": [
+      "road",
+      "bridge",
+      "river",
+      "careful"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d006-1",
+    "dayIndex": 6,
+    "word": "village",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a small place in the countryside where people live",
+    "meaningMarathi": "गाव",
+    "exampleSentence": "Aarav visits his grandparents in their village every Diwali.",
+    "distractorMeanings": [
+      "a very big city with tall buildings",
+      "a place where ships come in"
+    ],
+    "syllables": [
+      "vil",
+      "lage"
+    ],
+    "tags": [
+      "farming-village"
+    ],
+    "contextWords": [
+      "farm",
+      "farmer",
+      "fields",
+      "people"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d006-2",
+    "dayIndex": 6,
+    "word": "build",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to make something by putting parts together",
+    "meaningMarathi": "बांधणे",
+    "exampleSentence": "The workers will build a new school in our village.",
+    "distractorMeanings": [
+      "to break a building into pieces",
+      "to paint a picture on paper"
+    ],
+    "syllables": [
+      "build"
+    ],
+    "tags": [
+      "jobs-work"
+    ],
+    "contextWords": [
+      "house",
+      "wall",
+      "bricks",
+      "workers"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d006-3",
+    "dayIndex": 6,
+    "word": "quiet",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "making very little or no noise",
+    "meaningMarathi": "शांत",
+    "exampleSentence": "The library is quiet so everyone can read in peace.",
+    "distractorMeanings": [
+      "full of loud music and shouting",
+      "very bright and shiny"
+    ],
+    "syllables": [
+      "qui",
+      "et"
+    ],
+    "tags": [
+      "describing-things"
+    ],
+    "contextWords": [
+      "library",
+      "night",
+      "sleep",
+      "peace"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d006-4",
+    "dayIndex": 6,
+    "word": "farmer",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a person who grows crops or keeps animals",
+    "meaningMarathi": "शेतकरी",
+    "exampleSentence": "The farmer wakes up early to work in his field.",
+    "distractorMeanings": [
+      "a person who teaches in a school",
+      "a person who sews clothes"
+    ],
+    "syllables": [
+      "farm",
+      "er"
+    ],
+    "tags": [
+      "farming-village"
+    ],
+    "contextWords": [
+      "field",
+      "crop",
+      "tractor",
+      "bullock"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d006-5",
+    "dayIndex": 6,
+    "word": "narrow",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "not wide, with a small distance across",
+    "meaningMarathi": "अरुंद",
+    "exampleSentence": "The narrow lane in the old town has tiny shops.",
+    "distractorMeanings": [
+      "wide enough for many buses",
+      "covered with soft green grass"
+    ],
+    "syllables": [
+      "nar",
+      "row"
+    ],
+    "tags": [
+      "describing-things"
+    ],
+    "contextWords": [
+      "road",
+      "lane",
+      "street",
+      "small"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d007-1",
+    "dayIndex": 7,
+    "word": "friend",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a person you like and enjoy being with",
+    "meaningMarathi": "मित्र",
+    "exampleSentence": "Gauri shares her lunch with her best friend.",
+    "distractorMeanings": [
+      "a person who lives far away",
+      "a person who sells vegetables"
+    ],
+    "syllables": [
+      "friend"
+    ],
+    "tags": [
+      "friends"
+    ],
+    "contextWords": [
+      "play",
+      "share",
+      "school",
+      "laugh"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d007-2",
+    "dayIndex": 7,
+    "word": "share",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to give a part of something to others",
+    "meaningMarathi": "वाटून देणे",
+    "exampleSentence": "Kabir likes to share his sweets with everyone in class.",
+    "distractorMeanings": [
+      "to keep everything only for yourself",
+      "to hide something under a bed"
+    ],
+    "syllables": [
+      "share"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "give",
+      "friend",
+      "sweets",
+      "together"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d007-3",
+    "dayIndex": 7,
+    "word": "kind",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "caring about others and helpful to them",
+    "meaningMarathi": "दयाळू",
+    "exampleSentence": "The kind shopkeeper gave the lost boy some water.",
+    "distractorMeanings": [
+      "rude and always shouting",
+      "lazy and sleepy all day"
+    ],
+    "syllables": [
+      "kind"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "help",
+      "friend",
+      "gentle",
+      "care"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d007-4",
+    "dayIndex": 7,
+    "word": "laugh",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to make happy sounds because something is funny",
+    "meaningMarathi": "हसणे",
+    "exampleSentence": "Everyone began to laugh at the clown in the circus.",
+    "distractorMeanings": [
+      "to cry loudly because of pain",
+      "to whisper a secret to someone"
+    ],
+    "syllables": [
+      "laugh"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "funny",
+      "joke",
+      "smile",
+      "friends"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d007-5",
+    "dayIndex": 7,
+    "word": "picture",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a drawing or photo of something",
+    "meaningMarathi": "चित्र",
+    "exampleSentence": "Isha drew a picture of a peacock in her notebook.",
+    "distractorMeanings": [
+      "a sound made by a bird",
+      "a tool used for digging"
+    ],
+    "syllables": [
+      "pic",
+      "ture"
+    ],
+    "tags": [
+      "music-art"
+    ],
+    "contextWords": [
+      "draw",
+      "colour",
+      "photo",
+      "wall"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d008-1",
+    "dayIndex": 8,
+    "word": "window",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "an opening in a wall that lets in light",
+    "meaningMarathi": "खिडकी",
+    "exampleSentence": "Ananya looked out of the window and saw the rain.",
+    "distractorMeanings": [
+      "a door made of strong iron",
+      "a roof made of tiles"
+    ],
+    "syllables": [
+      "win",
+      "dow"
+    ],
+    "tags": [
+      "home"
+    ],
+    "contextWords": [
+      "glass",
+      "light",
+      "curtain",
+      "room"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d008-2",
+    "dayIndex": 8,
+    "word": "open",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to move something so that it is not closed",
+    "meaningMarathi": "उघडणे",
+    "exampleSentence": "Please open the door and let the cat come in.",
+    "distractorMeanings": [
+      "to lock something with a key",
+      "to cover something with cloth"
+    ],
+    "syllables": [
+      "o",
+      "pen"
+    ],
+    "tags": [
+      "actions-movement"
+    ],
+    "contextWords": [
+      "door",
+      "window",
+      "box",
+      "book"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d008-3",
+    "dayIndex": 8,
+    "word": "clean",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "not dirty, free from dust or stains",
+    "meaningMarathi": "स्वच्छ",
+    "exampleSentence": "Vedant wears a clean white shirt to school.",
+    "distractorMeanings": [
+      "covered with mud and dust",
+      "torn into many pieces"
+    ],
+    "syllables": [
+      "clean"
+    ],
+    "tags": [
+      "describing-things"
+    ],
+    "contextWords": [
+      "wash",
+      "room",
+      "shirt",
+      "water"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d008-4",
+    "dayIndex": 8,
+    "word": "curtain",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a piece of cloth that hangs over a window",
+    "meaningMarathi": "पडदा",
+    "exampleSentence": "Aai hung a blue curtain in the living room.",
+    "distractorMeanings": [
+      "a flat stone used for grinding",
+      "a rope used for pulling water"
+    ],
+    "syllables": [
+      "cur",
+      "tain"
+    ],
+    "tags": [
+      "home"
+    ],
+    "contextWords": [
+      "window",
+      "cloth",
+      "room",
+      "light"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d008-5",
+    "dayIndex": 8,
+    "word": "shine",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to give out bright light",
+    "meaningMarathi": "चमकणे",
+    "exampleSentence": "The stars shine brightly in the clear night sky.",
+    "distractorMeanings": [
+      "to fall slowly from the sky",
+      "to hide behind a big cloud"
+    ],
+    "syllables": [
+      "shine"
+    ],
+    "tags": [
+      "science-space"
+    ],
+    "contextWords": [
+      "sun",
+      "star",
+      "light",
+      "bright"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d009-1",
+    "dayIndex": 9,
+    "word": "mango",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a sweet yellow fruit that grows on big trees",
+    "meaningMarathi": "आंबा",
+    "exampleSentence": "Sai ate a juicy mango in the hot summer.",
+    "distractorMeanings": [
+      "a sour green leaf for tea",
+      "a hard nut with a thick shell"
+    ],
+    "syllables": [
+      "man",
+      "go"
+    ],
+    "tags": [
+      "food"
+    ],
+    "contextWords": [
+      "fruit",
+      "summer",
+      "juice",
+      "tree"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d009-2",
+    "dayIndex": 9,
+    "word": "eat",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to put food in your mouth and swallow it",
+    "meaningMarathi": "खाणे",
+    "exampleSentence": "Riya likes to eat poha for breakfast every day.",
+    "distractorMeanings": [
+      "to drink water from a glass",
+      "to cook food on a fire"
+    ],
+    "syllables": [
+      "eat"
+    ],
+    "tags": [
+      "food"
+    ],
+    "contextWords": [
+      "food",
+      "lunch",
+      "hungry",
+      "mouth"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d009-3",
+    "dayIndex": 9,
+    "word": "sweet",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "having a taste like sugar or honey",
+    "meaningMarathi": "गोड",
+    "exampleSentence": "The sweet laddoo melted in Om's mouth.",
+    "distractorMeanings": [
+      "having a very sour taste",
+      "having a hot and spicy taste"
+    ],
+    "syllables": [
+      "sweet"
+    ],
+    "tags": [
+      "food"
+    ],
+    "contextWords": [
+      "sugar",
+      "laddoo",
+      "honey",
+      "taste"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d009-4",
+    "dayIndex": 9,
+    "word": "seed",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "the small part of a plant that grows into a new plant",
+    "meaningMarathi": "बी",
+    "exampleSentence": "Kabir planted a tiny seed in a pot.",
+    "distractorMeanings": [
+      "the thick skin of a fruit",
+      "the long stem of a flower"
+    ],
+    "syllables": [
+      "seed"
+    ],
+    "tags": [
+      "plants-trees"
+    ],
+    "contextWords": [
+      "plant",
+      "soil",
+      "grow",
+      "farmer"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d009-5",
+    "dayIndex": 9,
+    "word": "ripe",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "fully grown and ready to be eaten",
+    "meaningMarathi": "पिकलेले",
+    "exampleSentence": "The ripe bananas turned soft and yellow in the sun.",
+    "distractorMeanings": [
+      "green and hard like a stone",
+      "dry and without any taste"
+    ],
+    "syllables": [
+      "ripe"
+    ],
+    "tags": [
+      "farming-village"
+    ],
+    "contextWords": [
+      "fruit",
+      "mango",
+      "yellow",
+      "sweet"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d010-1",
+    "dayIndex": 10,
+    "word": "rain",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "water that falls from the clouds",
+    "meaningMarathi": "पाऊस",
+    "exampleSentence": "Heavy rain filled the village pond last night.",
+    "distractorMeanings": [
+      "a strong wind that blows dust",
+      "small white pieces of ice on mountains"
+    ],
+    "syllables": [
+      "rain"
+    ],
+    "tags": [
+      "weather-seasons"
+    ],
+    "contextWords": [
+      "cloud",
+      "monsoon",
+      "wet",
+      "umbrella"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d010-2",
+    "dayIndex": 10,
+    "word": "jump",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to push yourself up into the air",
+    "meaningMarathi": "उडी मारणे",
+    "exampleSentence": "Aarav likes to jump in the puddles after the rain.",
+    "distractorMeanings": [
+      "to sit down on the floor",
+      "to walk slowly on the road"
+    ],
+    "syllables": [
+      "jump"
+    ],
+    "tags": [
+      "actions-movement"
+    ],
+    "contextWords": [
+      "puddle",
+      "high",
+      "play",
+      "legs"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d010-3",
+    "dayIndex": 10,
+    "word": "wet",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "covered with water or another liquid",
+    "meaningMarathi": "ओले",
+    "exampleSentence": "Gauri hung the wet clothes in the sun.",
+    "distractorMeanings": [
+      "hot and burning like a fire",
+      "dry and covered with dust"
+    ],
+    "syllables": [
+      "wet"
+    ],
+    "tags": [
+      "weather-seasons"
+    ],
+    "contextWords": [
+      "rain",
+      "water",
+      "clothes",
+      "towel"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d010-4",
+    "dayIndex": 10,
+    "word": "umbrella",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a folding cover that keeps rain off you",
+    "meaningMarathi": "छत्री",
+    "exampleSentence": "Isha opened her red umbrella when it began to rain.",
+    "distractorMeanings": [
+      "a bag that holds school books",
+      "a hat made of straw for farmers"
+    ],
+    "syllables": [
+      "um",
+      "brel",
+      "la"
+    ],
+    "tags": [
+      "weather-seasons"
+    ],
+    "contextWords": [
+      "rain",
+      "hold",
+      "open",
+      "monsoon"
+    ],
+    "forms": []
+  },
+  {
+    "id": "d010-5",
+    "dayIndex": 10,
+    "word": "cloudy",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "covered with many clouds",
+    "meaningMarathi": "ढगाळ",
+    "exampleSentence": "It was cloudy all morning, so the match was delayed.",
+    "distractorMeanings": [
+      "bright with a clear blue sky",
+      "very hot with strong sunshine"
+    ],
+    "syllables": [
+      "cloud",
+      "y"
+    ],
+    "tags": [
+      "weather-seasons"
+    ],
+    "contextWords": [
+      "sky",
+      "rain",
+      "grey",
+      "weather"
+    ],
+    "forms": []
+  }
+]
