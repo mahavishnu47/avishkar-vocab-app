@@ -445,30 +445,29 @@
   {
     "id": "d309-2",
     "dayIndex": 309,
-    "word": "analysis",
+    "word": "referee",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "a careful study of something by looking at its parts",
-    "exampleSentence": "The scientist did an analysis of the river water in her laboratory.",
+    "meaning": "the person who makes sure players follow the rules",
+    "exampleSentence": "The referee blew his whistle when the player broke a rule.",
     "distractorMeanings": [
-      "a quick guess made without any thought",
-      "a long walk taken in the morning"
+      "a person who sells tickets at a match",
+      "a player who kicks the ball into the goal"
     ],
     "syllables": [
-      "a",
-      "nal",
-      "y",
-      "sis"
+      "ref",
+      "e",
+      "ree"
     ],
     "tags": [
-      "science-space"
+      "sports-games"
     ],
     "contextWords": [
-      "scientist",
-      "test",
-      "study",
-      "result",
-      "laboratory"
+      "whistle",
+      "match",
+      "rule",
+      "player",
+      "game"
     ]
   },
   {
@@ -585,33 +584,28 @@
   {
     "id": "d310-2",
     "dayIndex": 310,
-    "word": "meteorology",
+    "word": "decade",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "the study of weather and climate",
-    "exampleSentence": "Meteorology helps scientists tell us when the monsoon will arrive.",
+    "meaning": "a period of ten years",
+    "exampleSentence": "This old banyan tree has stood here for over a decade.",
     "distractorMeanings": [
-      "the study of rocks and old mountains",
-      "the study of fish in deep seas"
+      "a period of one hundred years",
+      "a period of seven days"
     ],
     "syllables": [
-      "me",
-      "te",
-      "or",
-      "ol",
-      "o",
-      "gy"
+      "dec",
+      "ade"
     ],
     "tags": [
-      "science-space",
-      "weather-seasons"
+      "time-numbers"
     ],
     "contextWords": [
-      "weather",
-      "rain",
-      "forecast",
-      "monsoon",
-      "scientist"
+      "year",
+      "ago",
+      "long",
+      "century",
+      "time"
     ]
   },
   {
@@ -1209,29 +1203,30 @@
   {
     "id": "d314-4",
     "dayIndex": 314,
-    "word": "insight",
+    "word": "harmony",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "the power to understand something deeply",
-    "exampleSentence": "The old story gave me a deep insight into a farmer's life.",
+    "meaning": "peaceful living together with no fighting",
+    "exampleSentence": "The children of our street live in harmony and celebrate every festival together.",
     "distractorMeanings": [
-      "the habit of looking at a screen all day",
-      "the skill of playing a game very fast"
+      "a loud fight between two groups",
+      "a long journey with many stops"
     ],
     "syllables": [
-      "in",
-      "sight"
+      "har",
+      "mo",
+      "ny"
     ],
     "tags": [
-      "communication",
-      "character-values"
+      "character-values",
+      "music-art"
     ],
     "contextWords": [
-      "understand",
-      "idea",
-      "wise",
-      "think",
-      "learn"
+      "peace",
+      "together",
+      "music",
+      "friends",
+      "live"
     ]
   },
   {
@@ -1325,29 +1320,29 @@
   {
     "id": "d315-3",
     "dayIndex": 315,
-    "word": "nozzle",
+    "word": "boundary",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "the narrow end of a pipe or hose where water comes out",
-    "exampleSentence": "The gardener pointed the nozzle at the plants and sprayed water.",
+    "meaning": "a line that shows where a place ends",
+    "exampleSentence": "A stone wall marks the boundary of our farm.",
     "distractorMeanings": [
-      "the wide base of a tall water tank",
-      "the hard handle of a farm tool"
+      "the middle part of a field",
+      "a road that goes through a town"
     ],
     "syllables": [
-      "noz",
-      "zle"
+      "bound",
+      "a",
+      "ry"
     ],
     "tags": [
-      "science-space",
-      "home"
+      "farming-village"
     ],
     "contextWords": [
-      "hose",
-      "water",
-      "spray",
-      "pipe",
-      "garden"
+      "wall",
+      "fence",
+      "farm",
+      "field",
+      "line"
     ]
   },
   {
@@ -1554,7 +1549,7 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "the body part in the chest that helps you breathe",
-    "exampleSentence": "Your lung fills with air each time you breathe in.",
+    "exampleSentence": "Your lungs fill with air when you breathe in.",
     "distractorMeanings": [
       "the body part that pumps blood to the feet",
       "the body part that holds food after eating"
@@ -1744,30 +1739,30 @@
   {
     "id": "d318-3",
     "dayIndex": 318,
-    "word": "eminent",
+    "word": "understanding",
     "partOfSpeech": "adjective",
     "difficulty": 3,
-    "meaning": "famous and respected for being very good",
-    "exampleSentence": "An eminent doctor came to our school to talk about health.",
+    "meaning": "kind and ready to see how others feel",
+    "exampleSentence": "Our teacher is understanding and listens to every child's problem.",
     "distractorMeanings": [
-      "a young person who has no work",
-      "a new student who has just joined"
+      "unwilling to listen to anyone",
+      "quick to get angry at small things"
     ],
     "syllables": [
-      "em",
-      "i",
-      "nent"
+      "un",
+      "der",
+      "stand",
+      "ing"
     ],
     "tags": [
-      "jobs-work",
-      "community-helpers"
+      "character-values"
     ],
     "contextWords": [
-      "famous",
-      "doctor",
-      "scientist",
-      "respected",
-      "guest"
+      "teacher",
+      "kind",
+      "listen",
+      "feel",
+      "patient"
     ]
   },
   {
@@ -1966,30 +1961,30 @@
   {
     "id": "d320-1",
     "dayIndex": 320,
-    "word": "hypothesis",
+    "word": "experience",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "a smart guess that scientists test to see if it is true",
-    "exampleSentence": "Our hypothesis was that plants grow faster in sunlight.",
+    "meaning": "knowledge or skill you get by doing something",
+    "exampleSentence": "Grandfather has long experience of growing cotton in his field.",
     "distractorMeanings": [
-      "a final answer written at the end of a book",
-      "a rule that is printed on a notice board"
+      "a feeling of being very hungry",
+      "the first page of a new book"
     ],
     "syllables": [
-      "hy",
-      "poth",
-      "e",
-      "sis"
+      "ex",
+      "pe",
+      "ri",
+      "ence"
     ],
     "tags": [
-      "science-space"
+      "jobs-work"
     ],
     "contextWords": [
-      "experiment",
-      "test",
-      "guess",
-      "scientist",
-      "plants"
+      "learn",
+      "skill",
+      "years",
+      "work",
+      "teacher"
     ]
   },
   {
@@ -2051,28 +2046,29 @@
   {
     "id": "d320-4",
     "dayIndex": 320,
-    "word": "conscious",
+    "word": "disgusted",
     "partOfSpeech": "adjective",
     "difficulty": 3,
-    "meaning": "awake and aware of what is around you",
-    "exampleSentence": "The injured boy was conscious and talked to the doctor.",
+    "meaning": "feeling strong dislike for something that smells or looks bad",
+    "exampleSentence": "Gauri felt disgusted by the rotten smell near the dustbin.",
     "distractorMeanings": [
-      "asleep and not able to see anything",
-      "lost and not able to find the way"
+      "feeling happy about a tasty meal",
+      "feeling proud of a good mark"
     ],
     "syllables": [
-      "con",
-      "scious"
+      "dis",
+      "gust",
+      "ed"
     ],
     "tags": [
-      "body-health"
+      "emotions-feelings"
     ],
     "contextWords": [
-      "awake",
-      "aware",
-      "doctor",
-      "alert",
-      "sense"
+      "smell",
+      "dirty",
+      "rotten",
+      "food",
+      "face"
     ]
   },
   {
@@ -2139,7 +2135,7 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to say that something is not true",
-    "exampleSentence": "Aarav did not deny that he broke the window with his ball.",
+    "exampleSentence": "Om could not deny that he had eaten the last laddoo.",
     "distractorMeanings": [
       "to give something to a person who asks",
       "to accept a gift with a smile"
@@ -2307,7 +2303,7 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "how loud a sound is, or the space inside a container",
-    "exampleSentence": "Please turn down the volume of the television when baby is asleep.",
+    "exampleSentence": "Please turn down the volume of the television when the baby is asleep.",
     "distractorMeanings": [
       "how fast a train travels on a track",
       "how long a road is between two towns"
@@ -2390,7 +2386,7 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to speak very softly in a low voice",
-    "exampleSentence": "The students murmur quietly while the teacher is writing on the board.",
+    "exampleSentence": "The students murmured quietly while the teacher wrote on the board.",
     "distractorMeanings": [
       "to shout loudly across a big field",
       "to sing a happy song on a stage"
@@ -2838,7 +2834,7 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "the line where one place or country ends",
-    "exampleSentence": "Aarav saw army trucks near the border of the state.",
+    "exampleSentence": "Our bus stopped for a short while at the border of the state.",
     "distractorMeanings": [
       "the middle part of a big field",
       "a low wall around a small pond"
@@ -3567,7 +3563,7 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a feeling of deep sadness",
-    "exampleSentence": "The family felt great sorrow when their old dog died.",
+    "exampleSentence": "The family felt great sorrow when their pet parrot flew away.",
     "distractorMeanings": [
       "a feeling of great joy at a party",
       "a feeling of strong anger at a loss"
@@ -4370,30 +4366,29 @@
   {
     "id": "d337-2",
     "dayIndex": 337,
-    "word": "speculate",
+    "word": "discuss",
     "partOfSpeech": "verb",
     "difficulty": 3,
-    "meaning": "to guess about something without knowing the facts",
-    "exampleSentence": "People speculate about whether the monsoon will come early this year.",
+    "meaning": "to talk about something with others",
+    "exampleSentence": "The class will discuss ways to keep the school ground clean.",
     "distractorMeanings": [
-      "to check something using strong proof",
-      "to remember something from long ago"
+      "to keep a secret from everyone",
+      "to write about something alone"
     ],
     "syllables": [
-      "spec",
-      "u",
-      "late"
+      "dis",
+      "cuss"
     ],
     "tags": [
       "communication",
-      "science-space"
+      "school"
     ],
     "contextWords": [
-      "guess",
-      "think",
-      "maybe",
+      "talk",
+      "class",
+      "group",
       "idea",
-      "wonder"
+      "topic"
     ]
   },
   {
@@ -5945,7 +5940,7 @@
     "meaning": "the lightest gas, which burns easily",
     "exampleSentence": "Hydrogen is the lightest gas, and the sun is made mostly of it.",
     "distractorMeanings": [
-      "a heavy gas that we breathe in every day",
+      "a heavy gas that makes fizzy drinks bubble",
       "a green gas that fills the rubber tyres"
     ],
     "syllables": [
@@ -6114,7 +6109,7 @@
     "exampleSentence": "The village fair was visited by over a thousand people.",
     "distractorMeanings": [
       "the number 100, which is ten tens",
-      "the number 10,000, which is ten thousands"
+      "the number 10,000, which has four zeros"
     ],
     "syllables": [
       "thou",
@@ -6163,28 +6158,27 @@
   {
     "id": "d350-1",
     "dayIndex": 350,
-    "word": "sift",
+    "word": "twirl",
     "partOfSpeech": "verb",
     "difficulty": 2,
-    "meaning": "to pass flour or sand through a sieve",
-    "exampleSentence": "Mother will sift the wheat flour before making soft rotis.",
+    "meaning": "to turn round and round quickly",
+    "exampleSentence": "Gauri loved to twirl in her new frock on Diwali.",
     "distractorMeanings": [
-      "to mix flour with water in a bowl",
-      "to cook flour on a hot pan"
+      "to walk slowly in a straight line",
+      "to sit still on a chair"
     ],
     "syllables": [
-      "sift"
+      "twirl"
     ],
     "tags": [
-      "food",
-      "home"
+      "actions-movement"
     ],
     "contextWords": [
-      "flour",
-      "sieve",
-      "kitchen",
-      "wheat",
-      "fine"
+      "dance",
+      "spin",
+      "round",
+      "skirt",
+      "music"
     ]
   },
   {
@@ -6302,56 +6296,56 @@
   {
     "id": "d351-1",
     "dayIndex": 351,
-    "word": "pivot",
+    "word": "composer",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "the fixed point on which something turns or balances",
-    "exampleSentence": "The seesaw turns on a pivot in the middle.",
+    "meaning": "a person who writes music",
+    "exampleSentence": "The composer wrote a lovely tune for our school song.",
     "distractorMeanings": [
-      "the high end of a long slide",
-      "the bottom edge of a plastic mat"
+      "a person who writes books for children",
+      "a person who paints pictures on walls"
     ],
     "syllables": [
-      "piv",
-      "ot"
+      "com",
+      "po",
+      "ser"
     ],
     "tags": [
-      "science-space"
+      "music-art"
     ],
     "contextWords": [
-      "turn",
-      "seesaw",
-      "balance",
-      "centre",
-      "lever"
+      "music",
+      "song",
+      "tune",
+      "write",
+      "notes"
     ]
   },
   {
     "id": "d351-2",
     "dayIndex": 351,
-    "word": "rustic",
+    "word": "truthful",
     "partOfSpeech": "adjective",
     "difficulty": 3,
-    "meaning": "simple and plain in the style of the countryside",
-    "exampleSentence": "We stayed in a rustic cottage with a thatched roof in the village.",
+    "meaning": "honest in what you say, never telling lies",
+    "exampleSentence": "A truthful child always tells the teacher what really happened.",
     "distractorMeanings": [
-      "grand and rich like the house of a king",
-      "modern and tall like a building in the city"
+      "fond of telling lies and tricks",
+      "afraid of speaking to elders"
     ],
     "syllables": [
-      "rus",
-      "tic"
+      "truth",
+      "ful"
     ],
     "tags": [
-      "farming-village",
-      "describing-things"
+      "character-values"
     ],
     "contextWords": [
-      "village",
-      "simple",
-      "hut",
-      "country",
-      "farm"
+      "honest",
+      "lie",
+      "teacher",
+      "tell",
+      "promise"
     ]
   },
   {
@@ -7282,7 +7276,7 @@
     "exampleSentence": "When the bell rang, the children came inside immediately.",
     "distractorMeanings": [
       "after a very long wait in line",
-      "never and not at all"
+      "in a very quiet voice"
     ],
     "syllables": [
       "im",
@@ -7952,29 +7946,29 @@
   {
     "id": "d362-5",
     "dayIndex": 362,
-    "word": "beacon",
+    "word": "heroine",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "a bright light or fire used as a signal",
-    "exampleSentence": "The beacon on the hill warned boats about the rocks.",
+    "meaning": "the main girl or woman in a story, often brave",
+    "exampleSentence": "The heroine of the story saved her village from the flood.",
     "distractorMeanings": [
-      "a small torch that is kept in a bag",
-      "a dim lamp that is kept at a bedside"
+      "an evil queen in a fairy tale",
+      "a man who tells the story"
     ],
     "syllables": [
-      "bea",
-      "con"
+      "her",
+      "o",
+      "ine"
     ],
     "tags": [
-      "safety",
-      "water-rivers-sea"
+      "stories-imagination"
     ],
     "contextWords": [
-      "light",
-      "signal",
-      "ship",
-      "warn",
-      "lighthouse"
+      "story",
+      "brave",
+      "film",
+      "save",
+      "girl"
     ]
   },
   {
@@ -8119,29 +8113,30 @@
   {
     "id": "d364-1",
     "dayIndex": 364,
-    "word": "utmost",
+    "word": "amusing",
     "partOfSpeech": "adjective",
     "difficulty": 3,
-    "meaning": "greatest possible",
-    "exampleSentence": "Please handle the glass bottles with the utmost care.",
+    "meaning": "funny and making you smile or laugh",
+    "exampleSentence": "Grandfather told us an amusing story about a monkey and a crocodile.",
     "distractorMeanings": [
-      "the least possible amount of work",
-      "a small gift for a friend"
+      "so sad that it makes you cry",
+      "so scary that you run away"
     ],
     "syllables": [
-      "ut",
-      "most"
+      "a",
+      "mus",
+      "ing"
     ],
     "tags": [
       "describing-things",
-      "character-values"
+      "emotions-feelings"
     ],
     "contextWords": [
-      "greatest",
-      "care",
-      "effort",
-      "important",
-      "very"
+      "story",
+      "funny",
+      "laugh",
+      "joke",
+      "smile"
     ]
   },
   {

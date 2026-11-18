@@ -394,30 +394,30 @@
   {
     "id": "d247-5",
     "dayIndex": 247,
-    "word": "endeavour",
+    "word": "hesitate",
     "partOfSpeech": "verb",
     "difficulty": 3,
-    "meaning": "to try hard to do something",
-    "exampleSentence": "Students endeavour to speak English every day in the class.",
+    "meaning": "to wait for a moment because you are not sure",
+    "exampleSentence": "Do not hesitate to ask the teacher if you have a doubt.",
     "distractorMeanings": [
-      "to avoid doing any hard work",
-      "to stop a task in the middle"
+      "to do something very quickly without thinking",
+      "to say something loudly to everyone"
     ],
     "syllables": [
-      "en",
-      "deav",
-      "our"
+      "hes",
+      "i",
+      "tate"
     ],
     "tags": [
-      "character-values",
-      "school"
+      "communication",
+      "emotions-feelings"
     ],
     "contextWords": [
-      "try",
-      "effort",
-      "speak",
-      "hard",
-      "attempt"
+      "ask",
+      "pause",
+      "sure",
+      "afraid",
+      "wait"
     ]
   },
   {
@@ -899,27 +899,28 @@
   {
     "id": "d251-3",
     "dayIndex": 251,
-    "word": "yearn",
+    "word": "remind",
     "partOfSpeech": "verb",
     "difficulty": 2,
-    "meaning": "to want something very much for a long time",
-    "exampleSentence": "The little girl would yearn for her father to return.",
+    "meaning": "to help someone remember something",
+    "exampleSentence": "Please remind me to bring my water bottle tomorrow.",
     "distractorMeanings": [
-      "to forget about someone quickly",
-      "to refuse a gift from a friend"
+      "to make someone forget a task",
+      "to give someone a surprise gift"
     ],
     "syllables": [
-      "yearn"
+      "re",
+      "mind"
     ],
     "tags": [
-      "emotions-feelings"
+      "communication"
     ],
     "contextWords": [
-      "wish",
-      "long",
-      "miss",
-      "father",
-      "hope"
+      "forget",
+      "tell",
+      "note",
+      "remember",
+      "bell"
     ]
   },
   {
@@ -1183,7 +1184,7 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to eat something very quickly because you are hungry",
-    "exampleSentence": "The hungry boys devour the hot poha in a minute.",
+    "exampleSentence": "The hungry boys devoured the hot poha in a minute.",
     "distractorMeanings": [
       "to cook something on a slow fire",
       "to pack food in a lunch box"
@@ -1236,29 +1237,30 @@
   {
     "id": "d253-5",
     "dayIndex": 253,
-    "word": "flawless",
+    "word": "forgiving",
     "partOfSpeech": "adjective",
     "difficulty": 3,
-    "meaning": "perfect and without any fault",
-    "exampleSentence": "Aarav's handwriting is flawless and very neat.",
+    "meaning": "willing to excuse people who make mistakes",
+    "exampleSentence": "Grandmother is forgiving and never stays angry with us for long.",
     "distractorMeanings": [
-      "full of mistakes and mess",
-      "slow and quite untidy"
+      "keeping anger for a very long time",
+      "quick to punish every small mistake"
     ],
     "syllables": [
-      "flaw",
-      "less"
+      "for",
+      "giv",
+      "ing"
     ],
     "tags": [
-      "describing-things",
-      "school"
+      "character-values",
+      "emotions-feelings"
     ],
     "contextWords": [
-      "perfect",
-      "neat",
+      "sorry",
       "mistake",
-      "writing",
-      "clean"
+      "kind",
+      "anger",
+      "friend"
     ]
   },
   {
@@ -1434,7 +1436,7 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a meeting where one person asks another person questions",
-    "exampleSentence": "The reporter took an interview of the famous cricketer.",
+    "exampleSentence": "The reporter did an interview with the famous cricketer.",
     "distractorMeanings": [
       "a race run by many people",
       "a story told to small children"
@@ -2328,29 +2330,28 @@
   {
     "id": "d261-4",
     "dayIndex": 261,
-    "word": "obstinate",
+    "word": "selfless",
     "partOfSpeech": "adjective",
     "difficulty": 3,
-    "meaning": "refusing to change your mind or way of acting",
-    "exampleSentence": "The obstinate mule would not move an inch from the road.",
+    "meaning": "caring about others more than yourself",
+    "exampleSentence": "Riya is selfless and gave her lunch to a hungry child.",
     "distractorMeanings": [
-      "always ready to listen to others",
-      "quick to change plans"
+      "caring only about your own needs",
+      "too shy to talk to others"
     ],
     "syllables": [
-      "ob",
-      "sti",
-      "nate"
+      "self",
+      "less"
     ],
     "tags": [
       "character-values"
     ],
     "contextWords": [
-      "stubborn",
-      "refuse",
-      "mule",
-      "mind",
-      "pull"
+      "help",
+      "share",
+      "kind",
+      "give",
+      "others"
     ]
   },
   {
@@ -2639,7 +2640,7 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "not allowed",
-    "exampleSentence": "Smoking is forbidden inside the school building.",
+    "exampleSentence": "Running in the school corridor is forbidden for all students.",
     "distractorMeanings": [
       "always allowed for everyone",
       "required by the teacher"
@@ -2891,30 +2892,31 @@
   {
     "id": "d265-4",
     "dayIndex": 265,
-    "word": "worrying",
+    "word": "interested",
     "partOfSpeech": "adjective",
     "difficulty": 3,
-    "meaning": "causing you to feel anxious",
-    "exampleSentence": "The doctor said the high fever was worrying for the baby.",
+    "meaning": "wanting to know or learn more about something",
+    "exampleSentence": "Om is interested in science and reads many books about space.",
     "distractorMeanings": [
-      "causing you to feel happy",
-      "causing you to feel sleepy"
+      "feeling bored and ready to leave",
+      "feeling afraid of every new thing"
     ],
     "syllables": [
-      "wor",
-      "ry",
-      "ing"
+      "in",
+      "ter",
+      "est",
+      "ed"
     ],
     "tags": [
-      "body-health",
-      "emotions-feelings"
+      "emotions-feelings",
+      "school"
     ],
     "contextWords": [
-      "fever",
-      "doctor",
-      "anxious",
-      "sick",
-      "news"
+      "book",
+      "science",
+      "ask",
+      "learn",
+      "hobby"
     ]
   },
   {
@@ -3171,29 +3173,30 @@
   {
     "id": "d267-4",
     "dayIndex": 267,
-    "word": "eloquent",
+    "word": "inspiring",
     "partOfSpeech": "adjective",
     "difficulty": 3,
-    "meaning": "able to speak clearly and beautifully",
-    "exampleSentence": "The eloquent student spoke on stage without any fear.",
+    "meaning": "making people feel hopeful and ready to try",
+    "exampleSentence": "The coach gave an inspiring speech, and every player felt ready to try.",
     "distractorMeanings": [
-      "not able to speak a single word",
-      "always speaking in a harsh voice"
+      "making people feel bored and sleepy",
+      "making people feel scared of the dark"
     ],
     "syllables": [
-      "el",
-      "o",
-      "quent"
+      "in",
+      "spir",
+      "ing"
     ],
     "tags": [
-      "communication"
+      "emotions-feelings",
+      "character-values"
     ],
     "contextWords": [
       "speech",
-      "stage",
-      "words",
-      "speaker",
-      "clear"
+      "story",
+      "teacher",
+      "hero",
+      "courage"
     ]
   },
   {
@@ -3206,7 +3209,7 @@
     "exampleSentence": "The river rose rapidly after the heavy monsoon rain.",
     "distractorMeanings": [
       "very slowly over a long time",
-      "never and not at all"
+      "in a very quiet voice"
     ],
     "syllables": [
       "rap",
@@ -4211,7 +4214,7 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "having no hair on the head",
-    "exampleSentence": "Grandfather is bald but he has a long white moustache.",
+    "exampleSentence": "Grandfather is bald, and he has a long white moustache.",
     "distractorMeanings": [
       "having very long black hair",
       "having a lot of curly hair"
@@ -4288,29 +4291,30 @@
   {
     "id": "d275-4",
     "dayIndex": 275,
-    "word": "athletics",
+    "word": "journalist",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "sports such as running, jumping and throwing",
-    "exampleSentence": "Riya won a medal in athletics on sports day.",
+    "meaning": "a person who writes news for newspapers",
+    "exampleSentence": "The journalist asked the principal questions for the school newspaper.",
     "distractorMeanings": [
-      "games played only on a board",
-      "games played only in water"
+      "a person who cooks food in a hotel",
+      "a person who delivers letters to houses"
     ],
     "syllables": [
-      "ath",
-      "let",
-      "ics"
+      "jour",
+      "nal",
+      "ist"
     ],
     "tags": [
-      "sports-games"
+      "communication",
+      "jobs-work"
     ],
     "contextWords": [
-      "running",
-      "jumping",
-      "throwing",
-      "track",
-      "medal"
+      "news",
+      "newspaper",
+      "write",
+      "report",
+      "story"
     ]
   },
   {
@@ -4349,7 +4353,7 @@
     "word": "arrow",
     "partOfSpeech": "noun",
     "difficulty": 1,
-    "meaning": "a thin stick with a sharp point shot from a bow",
+    "meaning": "a pointed sign that shows which way to go",
     "exampleSentence": "Aarav drew an arrow on the board to show the way.",
     "distractorMeanings": [
       "a round ball thrown in a game",
@@ -4572,7 +4576,7 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to see the difference between two things",
-    "exampleSentence": "Can you distinguish a crow from a raven by its size?",
+    "exampleSentence": "Can you distinguish a crow from a koel by its call?",
     "distractorMeanings": [
       "to mix two things together",
       "to see the same thing twice"
@@ -4746,7 +4750,7 @@
     "exampleSentence": "Our meeting with the teacher was fruitful and helped us a lot.",
     "distractorMeanings": [
       "giving no results at all",
-      "giving only a lot of fruit"
+      "making you feel tired and sleepy"
     ],
     "syllables": [
       "fruit",
@@ -5189,8 +5193,8 @@
     "word": "alive",
     "partOfSpeech": "adjective",
     "difficulty": 1,
-    "meaning": "living and not dead",
-    "exampleSentence": "The bird was still alive when Riya found it in the garden.",
+    "meaning": "having life, like a plant or an animal",
+    "exampleSentence": "The little bird in Riya's garden was alive and hopping about.",
     "distractorMeanings": [
       "made of strong metal",
       "lying fast asleep at night"
@@ -5435,29 +5439,29 @@
   {
     "id": "d283-5",
     "dayIndex": 283,
-    "word": "remorse",
+    "word": "hardship",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "deep sorrow for having done wrong",
-    "exampleSentence": "Sai felt great remorse after he broke his friend's toy.",
+    "meaning": "a time of great trouble and need",
+    "exampleSentence": "The farmer's family faced great hardship when the rains did not come.",
     "distractorMeanings": [
-      "great joy after winning a prize",
-      "great anger at a naughty friend"
+      "a happy time full of play and rest",
+      "a prize given to the best student"
     ],
     "syllables": [
-      "re",
-      "morse"
+      "hard",
+      "ship"
     ],
     "tags": [
-      "emotions-feelings",
-      "character-values"
+      "character-values",
+      "emotions-feelings"
     ],
     "contextWords": [
-      "sorry",
-      "wrong",
-      "toy",
-      "guilt",
-      "apologise"
+      "family",
+      "rain",
+      "farmer",
+      "trouble",
+      "food"
     ]
   },
   {
@@ -5611,7 +5615,7 @@
     "exampleSentence": "Gauri won a gold medal in the running race.",
     "distractorMeanings": [
       "a heavy bag carried on the back",
-      "a shiny coin used in shops"
+      "a flat stone used for grinding spices"
     ],
     "syllables": [
       "med",
@@ -6981,7 +6985,7 @@
     "partOfSpeech": "adverb",
     "difficulty": 3,
     "meaning": "in a nice and friendly way",
-    "exampleSentence": "The shopkeeper pleasantly greeted every child at the door.",
+    "exampleSentence": "The shopkeeper greeted every child pleasantly at the door.",
     "distractorMeanings": [
       "in an angry and cold way",
       "in a sad and slow way"
@@ -7013,7 +7017,7 @@
     "exampleSentence": "Gauri sat on a soft cushion and began to read.",
     "distractorMeanings": [
       "a hard stool made of wood",
-      "a mat spread on the floor for prayer"
+      "a thin sheet spread over a table"
     ],
     "syllables": [
       "cush",
@@ -7400,30 +7404,31 @@
   {
     "id": "d297-5",
     "dayIndex": 297,
-    "word": "constantly",
+    "word": "eventually",
     "partOfSpeech": "adverb",
     "difficulty": 3,
-    "meaning": "again and again without stopping",
-    "exampleSentence": "The baby cried constantly the whole night.",
+    "meaning": "in the end, after a long time",
+    "exampleSentence": "After a long walk, we eventually reached the top of the hill.",
     "distractorMeanings": [
-      "only once in a long time",
-      "never during the whole day"
+      "at once, without any waiting",
+      "never, even after a long time"
     ],
     "syllables": [
-      "con",
-      "stant",
+      "e",
+      "ven",
+      "tu",
+      "al",
       "ly"
     ],
     "tags": [
-      "time-numbers",
-      "describing-things"
+      "time-numbers"
     ],
     "contextWords": [
-      "always",
-      "again",
-      "noise",
-      "keep",
-      "rain"
+      "finally",
+      "long",
+      "reach",
+      "wait",
+      "journey"
     ]
   },
   {
@@ -8080,7 +8085,7 @@
     "exampleSentence": "Gauri promptly raised her hand when the teacher asked a question.",
     "distractorMeanings": [
       "slowly and after a long wait",
-      "never and with no answer"
+      "never, even when asked twice"
     ],
     "syllables": [
       "prompt",
