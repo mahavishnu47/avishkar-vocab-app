@@ -1,0 +1,686 @@
+{
+ "words": {
+  "brave": {
+   "word": "brave",
+   "partOfSpeech": "adjective",
+   "exampleSentence": "The brave firefighter saved the little girl.",
+   "contextWords": [
+    "soldier",
+    "saved",
+    "hero",
+    "fire",
+    "danger",
+    "fight"
+   ]
+  },
+  "enormous": {
+   "word": "enormous",
+   "partOfSpeech": "adjective",
+   "exampleSentence": "The enormous elephant walked slowly to the river.",
+   "contextWords": [
+    "elephant",
+    "whale",
+    "mountain",
+    "house",
+    "tree"
+   ]
+  },
+  "whisper": {
+   "word": "whisper",
+   "partOfSpeech": "verb",
+   "exampleSentence": "The girl whispered a secret to her friend.",
+   "contextWords": [
+    "friend",
+    "teacher",
+    "secret",
+    "quiet",
+    "ear"
+   ]
+  },
+  "protect": {
+   "word": "protect",
+   "partOfSpeech": "verb",
+   "exampleSentence": "Parents protect their children from danger.",
+   "contextWords": [
+    "children",
+    "safe",
+    "danger",
+    "parents",
+    "helmet"
+   ]
+  },
+  "journey": {
+   "word": "journey",
+   "partOfSpeech": "noun",
+   "exampleSentence": "The journey to the village took two hours.",
+   "contextWords": [
+    "train",
+    "bus",
+    "long",
+    "travel",
+    "village"
+   ]
+  },
+  "run": {
+   "word": "run",
+   "partOfSpeech": "verb",
+   "exampleSentence": "I run to school every morning.",
+   "contextWords": [
+    "fast",
+    "race",
+    "school",
+    "park"
+   ],
+   "forms": [
+    "ran",
+    "running"
+   ]
+  }
+ },
+ "cases": [
+  {
+   "word": "brave",
+   "text": "The brave soldier saved the village.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 4
+   },
+   "notCodes": [
+    "SN_COPIED"
+   ],
+   "note": "prd-A"
+  },
+  {
+   "word": "enormous",
+   "text": "elephant is enormous",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 6,
+    "relevance": 12,
+    "length": 0
+   },
+   "codes": [
+    "SN_CAPITAL",
+    "SN_PUNCT",
+    "SN_TOO_SHORT"
+   ],
+   "note": "prd-B"
+  },
+  {
+   "word": "whisper",
+   "text": "The girl whispered a secret to her friend.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 0,
+    "length": 0
+   },
+   "codes": [
+    "SN_COPIED"
+   ],
+   "notCodes": [
+    "SN_TOO_SHORT"
+   ],
+   "note": "prd-C1"
+  },
+  {
+   "word": "whisper",
+   "text": "I whisper to my friend because the teacher is teaching.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 8
+   },
+   "notCodes": [
+    "SN_COPIED"
+   ],
+   "note": "prd-C2"
+  },
+  {
+   "word": "brave",
+   "text": "",
+   "gate": "empty"
+  },
+  {
+   "word": "brave",
+   "text": "   ",
+   "gate": "empty"
+  },
+  {
+   "word": "brave",
+   "text": "...",
+   "gate": "empty"
+  },
+  {
+   "word": "brave",
+   "text": "तो खूप शूर आहे",
+   "gate": "devanagari",
+   "codes": [
+    "SN_NON_ENGLISH"
+   ]
+  },
+  {
+   "word": "brave",
+   "text": "The brave बच्चा ran away.",
+   "gate": "devanagari"
+  },
+  {
+   "word": "brave",
+   "text": "The soldier fought hard.",
+   "gate": "word_missing",
+   "codes": [
+    "SN_WORD_MISSING"
+   ]
+  },
+  {
+   "word": "brave",
+   "text": "He is a bold boy.",
+   "gate": "word_missing",
+   "codes": [
+    "SN_WORD_MISSING"
+   ]
+  },
+  {
+   "word": "brave",
+   "text": "The brave boy called me on 9876543210.",
+   "gate": "blocked",
+   "codes": [
+    "SN_FLAGGED"
+   ]
+  },
+  {
+   "word": "brave",
+   "text": "Mail me at riya@example.com because I am brave.",
+   "gate": "blocked",
+   "codes": [
+    "SN_FLAGGED"
+   ]
+  },
+  {
+   "word": "brave",
+   "text": "My brave father will beat me.",
+   "gate": "blocked",
+   "codes": [
+    "SN_FLAGGED"
+   ]
+  },
+  {
+   "word": "brave",
+   "text": "You are a brave bhenchod.",
+   "gate": "blocked",
+   "codes": [
+    "SN_FLAGGED"
+   ]
+  },
+  {
+   "word": "enormous",
+   "text": "The enormus elephant ate the grass.",
+   "gate": "ok",
+   "rubric": {
+    "use": 5,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 4
+   },
+   "codes": [
+    "SN_WORD_MISSPELT"
+   ],
+   "note": "misspelt"
+  },
+  {
+   "word": "brave",
+   "text": "The bravve soldier saved us.",
+   "gate": "ok",
+   "rubric": {
+    "use": 5,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 2
+   },
+   "codes": [
+    "SN_WORD_MISSPELT"
+   ],
+   "note": "misspelt"
+  },
+  {
+   "word": "whisper",
+   "text": "The students wisper in the library.",
+   "gate": "ok",
+   "rubric": {
+    "use": 5,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 4
+   },
+   "codes": [
+    "SN_WORD_MISSPELT"
+   ],
+   "note": "misspelt"
+  },
+  {
+   "word": "brave",
+   "text": "The brave boy ran home.",
+   "gate": "ok",
+   "notCodes": [
+    "SN_CAPITAL",
+    "SN_PUNCT"
+   ]
+  },
+  {
+   "word": "brave",
+   "text": "the brave soldier saved the village.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 8,
+    "relevance": 12,
+    "length": 4
+   },
+   "codes": [
+    "SN_CAPITAL"
+   ],
+   "notCodes": [
+    "SN_PUNCT"
+   ]
+  },
+  {
+   "word": "brave",
+   "text": "The brave soldier saved the village",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 8,
+    "relevance": 12,
+    "length": 4
+   },
+   "codes": [
+    "SN_PUNCT"
+   ],
+   "notCodes": [
+    "SN_CAPITAL"
+   ]
+  },
+  {
+   "word": "brave",
+   "text": "The brave soldier saved the village!",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 4
+   }
+  },
+  {
+   "word": "brave",
+   "text": "Is the soldier brave?",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 2
+   }
+  },
+  {
+   "word": "brave",
+   "text": "She is very brave.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 2
+   },
+   "notCodes": [
+    "SN_IRRELEVANT"
+   ]
+  },
+  {
+   "word": "brave",
+   "text": "Brave!",
+   "gate": "ok",
+   "codes": [
+    "SN_TOO_SHORT"
+   ]
+  },
+  {
+   "word": "brave",
+   "text": "Brave brave brave brave.",
+   "gate": "ok",
+   "note": "stuffing"
+  },
+  {
+   "word": "brave",
+   "text": "Xqz brave plmk wrtz.",
+   "gate": "ok",
+   "codes": [
+    "SN_NON_ENGLISH"
+   ]
+  },
+  {
+   "word": "brave",
+   "text": "The brave soldier saved the village and the king.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 8,
+    "relevance": 12,
+    "length": 8
+   },
+   "note": "conj-long"
+  },
+  {
+   "word": "brave",
+   "text": "The brave soldier saved the village because he loved it.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 8
+   },
+   "note": "conj-long"
+  },
+  {
+   "word": "brave",
+   "text": "I am brave and strong.",
+   "gate": "ok",
+   "note": "conj-short"
+  },
+  {
+   "word": "brave",
+   "text": "The brave soldier saved the village.",
+   "gate": "ok"
+  },
+  {
+   "word": "brave",
+   "text": "The brave firefighter saved the little girl.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 0,
+    "length": 0
+   },
+   "codes": [
+    "SN_COPIED"
+   ],
+   "note": "copy-exact"
+  },
+  {
+   "word": "brave",
+   "text": "The brave fireman saved the little girl.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 0,
+    "length": 0
+   },
+   "codes": [
+    "SN_COPIED"
+   ],
+   "note": "copy-near"
+  },
+  {
+   "word": "brave",
+   "text": "My brave dog barked at the thief at night.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 6
+   }
+  },
+  {
+   "word": "brave",
+   "text": "A brave tiger lives in the forest near my house.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 6
+   }
+  },
+  {
+   "word": "enormous",
+   "text": "The enormous whale swam in the deep blue sea.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 6
+   }
+  },
+  {
+   "word": "enormous",
+   "text": "An enormous house stood on the hill.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 4
+   }
+  },
+  {
+   "word": "enormous",
+   "text": "The enormous elephant walked slowly to the river.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 0,
+    "length": 0
+   },
+   "codes": [
+    "SN_COPIED"
+   ],
+   "note": "copy-exact"
+  },
+  {
+   "word": "enormous",
+   "text": "Enormous I ate cake.",
+   "gate": "ok",
+   "note": "wrong-slot"
+  },
+  {
+   "word": "whisper",
+   "text": "Whisper to me.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 0
+   }
+  },
+  {
+   "word": "whisper",
+   "text": "Please do not whisper in class.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 4
+   }
+  },
+  {
+   "word": "whisper",
+   "text": "Mother whispers a song when the baby sleeps.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 6
+   }
+  },
+  {
+   "word": "whisper",
+   "text": "She whispered softly.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 0
+   }
+  },
+  {
+   "word": "protect",
+   "text": "Helmets protect our heads from injury.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 4
+   }
+  },
+  {
+   "word": "protect",
+   "text": "We must protect the trees.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 2
+   }
+  },
+  {
+   "word": "protect",
+   "text": "protect",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 6,
+    "relevance": 6,
+    "length": 0
+   },
+   "codes": [
+    "SN_CAPITAL",
+    "SN_PUNCT"
+   ],
+   "note": "single"
+  },
+  {
+   "word": "journey",
+   "text": "Our journey to Pune by train was long.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 4
+   }
+  },
+  {
+   "word": "journey",
+   "text": "The journeys were fun.",
+   "gate": "ok",
+   "note": "plural"
+  },
+  {
+   "word": "journey",
+   "text": "I went on a journey.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 2
+   }
+  },
+  {
+   "word": "run",
+   "text": "I ran to the park.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 2
+   },
+   "note": "irregular"
+  },
+  {
+   "word": "run",
+   "text": "Running is good for health.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 2
+   },
+   "note": "ing"
+  },
+  {
+   "word": "run",
+   "text": "The boys run fast in the race and they win.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 12,
+    "length": 8
+   }
+  },
+  {
+   "word": "run",
+   "text": "He is running.",
+   "gate": "ok",
+   "note": "ing",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 0
+   }
+  },
+  {
+   "word": "brave",
+   "text": "Riya and Aarav are brave children.",
+   "gate": "ok",
+   "rubric": {
+    "use": 10,
+    "grammar": 10,
+    "relevance": 8,
+    "length": 6
+   },
+   "note": "names"
+  },
+  {
+   "word": "brave",
+   "text": "The brave boy is very very very brave.",
+   "gate": "ok",
+   "note": "repeat"
+  },
+  {
+   "word": "brave",
+   "text": "I the brave when go.",
+   "gate": "ok",
+   "note": "nonsense"
+  },
+  {
+   "word": "brave",
+   "text": "Ths brav soldir saved vilage",
+   "gate": "ok",
+   "note": "misspelt-all"
+  }
+ ]
+}

@@ -1,0 +1,552 @@
+[
+ {
+  "target": "brave",
+  "attempt": "Brave ",
+  "primary": "SP_CORRECT",
+  "prd": true
+ },
+ {
+  "target": "brave",
+  "attempt": "",
+  "primary": "SP_BLANK",
+  "prd": true
+ },
+ {
+  "target": "brave",
+  "attempt": "b",
+  "primary": "SP_BLANK"
+ },
+ {
+  "target": "whisper",
+  "attempt": "wisper",
+  "primary": "SP_SILENT",
+  "has": [
+   "SP_PHONETIC"
+  ],
+  "prd": true
+ },
+ {
+  "target": "knife",
+  "attempt": "nife",
+  "primary": "SP_SILENT",
+  "prd": true
+ },
+ {
+  "target": "borrow",
+  "attempt": "borow",
+  "primary": "SP_DOUBLE",
+  "prd": true
+ },
+ {
+  "target": "collect",
+  "attempt": "colect",
+  "primary": "SP_DOUBLE",
+  "prd": true
+ },
+ {
+  "target": "journey",
+  "attempt": "jurney",
+  "primary": "SP_VOWEL",
+  "prd": true
+ },
+ {
+  "target": "honest",
+  "attempt": "honist",
+  "primary": "SP_VOWEL",
+  "prd": true
+ },
+ {
+  "target": "protect",
+  "attempt": "protet",
+  "primary": "SP_OMISSION",
+  "prd": true
+ },
+ {
+  "target": "gentle",
+  "attempt": "gentlle",
+  "primary": "SP_INSERTION",
+  "prd": true
+ },
+ {
+  "target": "ancient",
+  "attempt": "anceint",
+  "primary": "SP_TRANSPOSE",
+  "prd": true
+ },
+ {
+  "target": "shelter",
+  "attempt": "shelder",
+  "primary": "SP_SUBST",
+  "prd": true
+ },
+ {
+  "target": "their",
+  "attempt": "there",
+  "primary": "SP_HOMOPHONE",
+  "prd": true
+ },
+ {
+  "target": "write",
+  "attempt": "right",
+  "primary": "SP_HOMOPHONE",
+  "prd": true
+ },
+ {
+  "target": "brave",
+  "attempt": "brake",
+  "primary": "SP_REALWORD",
+  "prd": true
+ },
+ {
+  "target": "very",
+  "attempt": "wery",
+  "primary": "SP_L1",
+  "prd": true
+ },
+ {
+  "target": "zoo",
+  "attempt": "joo",
+  "primary": "SP_L1",
+  "prd": true
+ },
+ {
+  "target": "cheerful",
+  "attempt": "chrl",
+  "primary": "SP_FARMISS",
+  "prd": true
+ },
+ {
+  "target": "enormous",
+  "attempt": "enormus",
+  "primary": "SP_VOWEL",
+  "has": [
+   "SP_PHONETIC"
+  ],
+  "prd": true
+ },
+ {
+  "target": "festival",
+  "attempt": "festivel",
+  "primary": "SP_VOWEL",
+  "has": [
+   "SP_PHONETIC"
+  ],
+  "prd": true
+ },
+ {
+  "target": "whisper",
+  "attempt": "wispar",
+  "primary": "SP_SILENT",
+  "has": [
+   "SP_VOWEL"
+  ]
+ },
+ {
+  "target": "whisper",
+  "attempt": "whispar",
+  "primary": "SP_VOWEL"
+ },
+ {
+  "target": "knock",
+  "attempt": "nock",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "knee",
+  "attempt": "nee",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "knight",
+  "attempt": "night",
+  "primary": "SP_HOMOPHONE"
+ },
+ {
+  "target": "write",
+  "attempt": "rite",
+  "primary": "SP_HOMOPHONE"
+ },
+ {
+  "target": "wrong",
+  "attempt": "rong",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "wrap",
+  "attempt": "rap",
+  "primary": "SP_HOMOPHONE"
+ },
+ {
+  "target": "wrist",
+  "attempt": "rist",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "climb",
+  "attempt": "clim",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "thumb",
+  "attempt": "thum",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "lamb",
+  "attempt": "lam",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "doubt",
+  "attempt": "dout",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "brave",
+  "attempt": "brav",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "gnaw",
+  "attempt": "naw",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "sign",
+  "attempt": "sin",
+  "primary": "SP_REALWORD"
+ },
+ {
+  "target": "foreign",
+  "attempt": "foren",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "psalm",
+  "attempt": "salm",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "honour",
+  "attempt": "onour",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "thought",
+  "attempt": "thout",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "daughter",
+  "attempt": "daughtar",
+  "primary": "SP_VOWEL"
+ },
+ {
+  "target": "castle",
+  "attempt": "casle",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "listen",
+  "attempt": "lisen",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "walk",
+  "attempt": "wak",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "science",
+  "attempt": "sience",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "borrow",
+  "attempt": "borrrow",
+  "primary": "SP_INSERTION"
+ },
+ {
+  "target": "collect",
+  "attempt": "collectt",
+  "primary": "SP_INSERTION"
+ },
+ {
+  "target": "address",
+  "attempt": "adress",
+  "primary": "SP_DOUBLE"
+ },
+ {
+  "target": "beginning",
+  "attempt": "begining",
+  "primary": "SP_DOUBLE"
+ },
+ {
+  "target": "possible",
+  "attempt": "posible",
+  "primary": "SP_DOUBLE"
+ },
+ {
+  "target": "tomorrow",
+  "attempt": "tomorow",
+  "primary": "SP_DOUBLE"
+ },
+ {
+  "target": "occasion",
+  "attempt": "ocasion",
+  "primary": "SP_DOUBLE"
+ },
+ {
+  "target": "begin",
+  "attempt": "beggin",
+  "primary": "SP_DOUBLE"
+ },
+ {
+  "target": "tomato",
+  "attempt": "tommato",
+  "primary": "SP_DOUBLE"
+ },
+ {
+  "target": "honest",
+  "attempt": "honast",
+  "primary": "SP_VOWEL"
+ },
+ {
+  "target": "people",
+  "attempt": "peopel",
+  "primary": "SP_TRANSPOSE"
+ },
+ {
+  "target": "enormous",
+  "attempt": "enormeus",
+  "primary": "SP_VOWEL"
+ },
+ {
+  "target": "separate",
+  "attempt": "seperate",
+  "primary": "SP_VOWEL"
+ },
+ {
+  "target": "grammar",
+  "attempt": "grammer",
+  "primary": "SP_VOWEL"
+ },
+ {
+  "target": "family",
+  "attempt": "famly",
+  "primary": "SP_L1"
+ },
+ {
+  "target": "different",
+  "attempt": "diffrent",
+  "primary": "SP_L1"
+ },
+ {
+  "target": "chocolate",
+  "attempt": "choclate",
+  "primary": "SP_L1"
+ },
+ {
+  "target": "phone",
+  "attempt": "fone",
+  "primary": "SP_L1"
+ },
+ {
+  "target": "photo",
+  "attempt": "foto",
+  "primary": "SP_L1"
+ },
+ {
+  "target": "shelter",
+  "attempt": "selter",
+  "primary": "SP_L1"
+ },
+ {
+  "target": "village",
+  "attempt": "willage",
+  "primary": "SP_L1"
+ },
+ {
+  "target": "zebra",
+  "attempt": "jebra",
+  "primary": "SP_L1"
+ },
+ {
+  "target": "weather",
+  "attempt": "veather",
+  "primary": "SP_L1"
+ },
+ {
+  "target": "ancient",
+  "attempt": "ancint",
+  "primary": "SP_VOWEL"
+ },
+ {
+  "target": "friend",
+  "attempt": "freind",
+  "primary": "SP_TRANSPOSE"
+ },
+ {
+  "target": "receive",
+  "attempt": "recieve",
+  "primary": "SP_TRANSPOSE"
+ },
+ {
+  "target": "biscuit",
+  "attempt": "biscuti",
+  "primary": "SP_TRANSPOSE"
+ },
+ {
+  "target": "above",
+  "attempt": "abvoe",
+  "primary": "SP_TRANSPOSE"
+ },
+ {
+  "target": "animal",
+  "attempt": "aminal",
+  "primary": "SP_SUBST"
+ },
+ {
+  "target": "remember",
+  "attempt": "rememebr",
+  "primary": "SP_TRANSPOSE"
+ },
+ {
+  "target": "protect",
+  "attempt": "protekt",
+  "primary": "SP_PHONETIC"
+ },
+ {
+  "target": "circle",
+  "attempt": "sircle",
+  "primary": "SP_PHONETIC"
+ },
+ {
+  "target": "cycle",
+  "attempt": "sycle",
+  "primary": "SP_PHONETIC"
+ },
+ {
+  "target": "police",
+  "attempt": "polise",
+  "primary": "SP_PHONETIC"
+ },
+ {
+  "target": "quiet",
+  "attempt": "kwiet",
+  "primary": "SP_PHONETIC"
+ },
+ {
+  "target": "shelter",
+  "attempt": "shelter ",
+  "primary": "SP_CORRECT"
+ },
+ {
+  "target": "giraffe",
+  "attempt": "giraf",
+  "primary": "SP_SILENT"
+ },
+ {
+  "target": "complete",
+  "attempt": "compete",
+  "primary": "SP_REALWORD"
+ },
+ {
+  "target": "beautiful",
+  "attempt": "beutiful",
+  "primary": "SP_VOWEL"
+ },
+ {
+  "target": "protect",
+  "attempt": "protectt",
+  "primary": "SP_INSERTION"
+ },
+ {
+  "target": "elephant",
+  "attempt": "elefant",
+  "primary": "SP_L1"
+ },
+ {
+  "target": "mountain",
+  "attempt": "mountin",
+  "primary": "SP_VOWEL"
+ },
+ {
+  "target": "brave",
+  "attempt": "bravee",
+  "primary": "SP_VOWEL"
+ },
+ {
+  "target": "stranger",
+  "attempt": "strangr",
+  "primary": "SP_L1"
+ },
+ {
+  "target": "hour",
+  "attempt": "our",
+  "primary": "SP_HOMOPHONE"
+ },
+ {
+  "target": "weak",
+  "attempt": "week",
+  "primary": "SP_HOMOPHONE"
+ },
+ {
+  "target": "piece",
+  "attempt": "peace",
+  "primary": "SP_HOMOPHONE"
+ },
+ {
+  "target": "sea",
+  "attempt": "see",
+  "primary": "SP_HOMOPHONE"
+ },
+ {
+  "target": "whole",
+  "attempt": "hole",
+  "primary": "SP_HOMOPHONE"
+ },
+ {
+  "target": "flower",
+  "attempt": "flour",
+  "primary": "SP_HOMOPHONE"
+ },
+ {
+  "target": "through",
+  "attempt": "threw",
+  "primary": "SP_HOMOPHONE"
+ },
+ {
+  "target": "tired",
+  "attempt": "tried",
+  "primary": "SP_REALWORD"
+ },
+ {
+  "target": "dessert",
+  "attempt": "desert",
+  "primary": "SP_HOMOPHONE"
+ },
+ {
+  "target": "cheerful",
+  "attempt": "cheerfull",
+  "primary": "SP_INSERTION"
+ },
+ {
+  "target": "enormous",
+  "attempt": "big",
+  "primary": "SP_REALWORD",
+  "has": [
+   "SP_FARMISS"
+  ]
+ },
+ {
+  "target": "brave",
+  "attempt": "xyzabc",
+  "primary": "SP_FARMISS"
+ },
+ {
+  "target": "giant",
+  "attempt": "jiant",
+  "primary": "SP_PHONETIC"
+ }
+]
