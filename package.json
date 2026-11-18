@@ -20,7 +20,7 @@
     "validate:words": "node scripts/validate-words.mjs",
     "e2e": "node e2e/student-flow.mjs",
     "vercel-build": "npm run build -w @shabd/web && node scripts/build-api.mjs",
-    "deploy": "bash scripts/deploy.sh",
+    "deploy": "node scripts/deploy.mjs",
     "e2e:prod": "node e2e/student-flow.mjs --prod",
     "db:migrate": "npm run db:migrate -w @shabd/server",
     "db:seed": "npm run db:seed -w @shabd/server",
