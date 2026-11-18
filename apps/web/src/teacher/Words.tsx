@@ -52,7 +52,7 @@ function WordPicker({ onPick, onCancel }: { onPick: (w: Word) => void; onCancel:
   );
 }
 
-const emptyForm = { word: '', partOfSpeech: 'noun' as PartOfSpeech, difficulty: '2', meaning: '', meaningMarathi: '', exampleSentence: '', d1: '', d2: '', syllables: '', tags: '', contextWords: '' };
+const emptyForm = { word: '', partOfSpeech: 'noun' as PartOfSpeech, difficulty: '2', meaning: '', exampleSentence: '', d1: '', d2: '', syllables: '', tags: '', contextWords: '' };
 
 function CustomWordForm({ onCreated, onCancel }: { onCreated: (w: Word) => void; onCancel: () => void }) {
   const [f, setF] = useState(emptyForm);
@@ -67,7 +67,7 @@ function CustomWordForm({ onCreated, onCancel }: { onCreated: (w: Word) => void;
     if (syl.join('') !== word) { setErr('Syllables must join to make the word (e.g. el-e-phant)'); return; }
     const body: CreateWordReq = {
       word, partOfSpeech: f.partOfSpeech, difficulty: Number(f.difficulty) as Difficulty,
-      meaning: f.meaning.trim(), meaningMarathi: f.meaningMarathi.trim(), exampleSentence: f.exampleSentence.trim(),
+      meaning: f.meaning.trim(), exampleSentence: f.exampleSentence.trim(),
       distractorMeanings: [f.d1.trim(), f.d2.trim()], syllables: syl, tags: list(f.tags), contextWords: list(f.contextWords),
     };
     try { onCreated(await api.createWord(body)); } catch (er) { setErr(errMsg(er)); }
@@ -81,7 +81,6 @@ function CustomWordForm({ onCreated, onCancel }: { onCreated: (w: Word) => void;
         <label className="t-field">Level<select value={f.difficulty} onChange={set('difficulty')}><option value="1">Easy</option><option value="2">Medium</option><option value="3">Hard</option></select></label>
       </div>
       <label className="t-field">Meaning (simple English)<input value={f.meaning} onChange={set('meaning')} required /></label>
-      <label className="t-field">Meaning in Marathi<input className="deva" value={f.meaningMarathi} onChange={set('meaningMarathi')} required /></label>
       <label className="t-field">Example sentence<input value={f.exampleSentence} onChange={set('exampleSentence')} required /></label>
       <label className="t-field">Wrong meaning 1<input value={f.d1} onChange={set('d1')} required /></label>
       <label className="t-field">Wrong meaning 2<input value={f.d2} onChange={set('d2')} required /></label>

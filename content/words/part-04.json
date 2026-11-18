@@ -6,7 +6,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "clean, with nothing else mixed in",
-    "meaningMarathi": "शुद्ध, निर्मळ",
     "exampleSentence": "Aai gave us a glass of pure water from the well.",
     "distractorMeanings": [
       "having a very bad smell",
@@ -34,7 +33,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "one floor of a building",
-    "meaningMarathi": "मजला",
     "exampleSentence": "Riya lives on the third storey of that building.",
     "distractorMeanings": [
       "the roof on top of a house",
@@ -63,7 +61,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "the head leader of a city's council",
-    "meaningMarathi": "महापौर",
     "exampleSentence": "The mayor opened the new garden in our city.",
     "distractorMeanings": [
       "a person who sells vegetables in a market",
@@ -92,7 +89,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to build again after it is broken",
-    "meaningMarathi": "पुन्हा बांधणे",
     "exampleSentence": "The workers will reconstruct the old bridge after the flood.",
     "distractorMeanings": [
       "to pull down something with a hammer",
@@ -122,7 +118,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a large group that runs a city's services",
-    "meaningMarathi": "महानगरपालिका",
     "exampleSentence": "The corporation sends a truck every morning to collect garbage.",
     "distractorMeanings": [
       "a small shop that sells sweets",
@@ -153,7 +148,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "the money you pay for a journey",
-    "meaningMarathi": "भाडे",
     "exampleSentence": "The bus fare from Pune to Satara is fifty rupees.",
     "distractorMeanings": [
       "a gift given on a birthday",
@@ -180,7 +174,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to hold someone back from moving or acting",
-    "meaningMarathi": "आवरणे, रोखणे",
     "exampleSentence": "Sai tried to restrain his excited puppy at the gate.",
     "distractorMeanings": [
       "to chase someone down a road",
@@ -209,7 +202,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a place where buses or goods are kept",
-    "meaningMarathi": "आगार, डेपो",
     "exampleSentence": "The bus came back to the depot at night.",
     "distractorMeanings": [
       "a big hall where plays are shown",
@@ -238,7 +230,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a day that marks a special event every year",
-    "meaningMarathi": "वाढदिवस, वर्धापन दिन",
     "exampleSentence": "Aarav's parents celebrated their wedding anniversary with a family dinner.",
     "distractorMeanings": [
       "the first day of a new school year",
@@ -270,7 +261,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "between or among many countries",
-    "meaningMarathi": "आंतरराष्ट्रीय",
     "exampleSentence": "Mumbai has a big international airport with flights to many countries.",
     "distractorMeanings": [
       "belonging to only one small village",
@@ -302,7 +292,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a round open container with a handle",
-    "meaningMarathi": "बादली",
     "exampleSentence": "Gauri filled the bucket with water from the tap.",
     "distractorMeanings": [
       "a flat board for writing on",
@@ -330,7 +319,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "of a town or city",
-    "meaningMarathi": "शहरी",
     "exampleSentence": "Mumbai is an urban area with many tall buildings.",
     "distractorMeanings": [
       "full of fields and farms",
@@ -358,7 +346,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a liquid that kills germs on a cut",
-    "meaningMarathi": "जंतुनाशक",
     "exampleSentence": "Mother put antiseptic on the cut on Om's knee.",
     "distractorMeanings": [
       "a cloth used to wipe a table",
@@ -389,7 +376,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "the most that a place or thing can hold",
-    "meaningMarathi": "क्षमता",
     "exampleSentence": "The capacity of this bus is fifty passengers.",
     "distractorMeanings": [
       "the colour of a vehicle",
@@ -420,7 +406,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to say who or what someone or something is",
-    "meaningMarathi": "ओळखणे",
     "exampleSentence": "Can you identify your bag among all these bags?",
     "distractorMeanings": [
       "to hide something under a bed",
@@ -451,7 +436,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a person who sells things on the street",
-    "meaningMarathi": "विक्रेता",
     "exampleSentence": "The vendor sold fresh bananas near the bus stop.",
     "distractorMeanings": [
       "a person who drives a taxi",
@@ -480,7 +464,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a person who makes things from hot iron",
-    "meaningMarathi": "लोहार",
     "exampleSentence": "The blacksmith made a new blade for the plough.",
     "distractorMeanings": [
       "a person who stitches clothes",
@@ -509,7 +492,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a flat piece of wood or metal on a wall or door",
-    "meaningMarathi": "फळी, पॅनेल",
     "exampleSentence": "Dad fixed a wooden panel on the broken door.",
     "distractorMeanings": [
       "a thick rope tied to a boat",
@@ -538,7 +520,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "with houses where people live",
-    "meaningMarathi": "निवासी",
     "exampleSentence": "Our school is in a quiet residential area.",
     "distractorMeanings": [
       "where only shops and offices stand",
@@ -568,7 +549,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to make someone feel less willing to try",
-    "meaningMarathi": "निरुत्साही करणे",
     "exampleSentence": "Do not discourage your friend when he is trying something new.",
     "distractorMeanings": [
       "to give someone a gift of sweets",
@@ -598,7 +578,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a tall container for drinks with a narrow neck",
-    "meaningMarathi": "बाटली",
     "exampleSentence": "Riya carries a steel bottle of water to school.",
     "distractorMeanings": [
       "a flat plate for eating food",
@@ -627,7 +606,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to say something clearly in front of everyone",
-    "meaningMarathi": "जाहीर करणे",
     "exampleSentence": "The teacher will declare the winner of the race.",
     "distractorMeanings": [
       "to keep something as a secret",
@@ -656,7 +634,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "a little afraid or worried",
-    "meaningMarathi": "घाबरलेला",
     "exampleSentence": "Sai felt nervous before he went on the stage.",
     "distractorMeanings": [
       "very happy and laughing loudly",
@@ -684,7 +661,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a tool that makes tiny things look big",
-    "meaningMarathi": "सूक्ष्मदर्शक",
     "exampleSentence": "We saw tiny cells through the microscope in the science lab.",
     "distractorMeanings": [
       "a tool that shows the time",
@@ -714,7 +690,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "something useful that people can use",
-    "meaningMarathi": "साधन, संपत्ती",
     "exampleSentence": "Water is a precious resource for every village.",
     "distractorMeanings": [
       "a place where people play games",
@@ -743,7 +718,6 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to shut something that was open",
-    "meaningMarathi": "बंद करणे",
     "exampleSentence": "Please close the window when it starts to rain.",
     "distractorMeanings": [
       "to break a thing into small pieces",
@@ -771,7 +745,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to need someone or something for support",
-    "meaningMarathi": "अवलंबून असणे",
     "exampleSentence": "Farmers depend on the monsoon for their crops.",
     "distractorMeanings": [
       "to wish for a gift",
@@ -800,7 +773,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to take hold of something suddenly and firmly",
-    "meaningMarathi": "घट्ट पकडणे",
     "exampleSentence": "Aarav ran and seized the rope before the boat drifted away.",
     "distractorMeanings": [
       "to let something drop on the floor",
@@ -827,7 +799,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "of or for a city's local government",
-    "meaningMarathi": "महानगरपालिकेचा",
     "exampleSentence": "Our municipal school is next to the garden.",
     "distractorMeanings": [
       "run by a big company for profit",
@@ -858,7 +829,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a big book with facts about many subjects",
-    "meaningMarathi": "ज्ञानकोश",
     "exampleSentence": "Om found facts about tigers in the encyclopedia in the library.",
     "distractorMeanings": [
       "a small book with colouring pictures",
@@ -891,7 +861,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "taking care so that nothing goes wrong",
-    "meaningMarathi": "काळजीपूर्वक",
     "exampleSentence": "Be careful when you cross the busy road.",
     "distractorMeanings": [
       "very fast and in a great hurry",
@@ -920,7 +889,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to keep someone or something safe from harm",
-    "meaningMarathi": "रक्षण करणे",
     "exampleSentence": "Brave Shivaji's soldiers helped defend the fort.",
     "distractorMeanings": [
       "to throw something at someone",
@@ -949,7 +917,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to take something away from a place",
-    "meaningMarathi": "काढून टाकणे",
     "exampleSentence": "Please remove your shoes before you enter the house.",
     "distractorMeanings": [
       "to put something in a box",
@@ -978,7 +945,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "the power of making pictures in your mind",
-    "meaningMarathi": "कल्पनाशक्ती",
     "exampleSentence": "Riya has a wonderful imagination and tells fine stories.",
     "distractorMeanings": [
       "the skill of running very fast",
@@ -1009,7 +975,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a small amount of water in the air or ground",
-    "meaningMarathi": "ओलावा",
     "exampleSentence": "The soil holds moisture after the rain.",
     "distractorMeanings": [
       "a thick layer of dust on a table",
@@ -1038,7 +1003,6 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to make someone feel afraid",
-    "meaningMarathi": "घाबरवणे",
     "exampleSentence": "The loud thunder can scare small children.",
     "distractorMeanings": [
       "to make someone laugh loudly",
@@ -1066,7 +1030,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "wanting to do something very much",
-    "meaningMarathi": "उत्सुक",
     "exampleSentence": "The children were eager to see the train.",
     "distractorMeanings": [
       "too lazy to get out of bed",
@@ -1094,7 +1057,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "two small telescopes joined together to see far away",
-    "meaningMarathi": "दुर्बीण",
     "exampleSentence": "Grandfather watched the birds through his binoculars.",
     "distractorMeanings": [
       "a pair of glasses for reading",
@@ -1125,7 +1087,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a number of different kinds of one thing",
-    "meaningMarathi": "विविधता",
     "exampleSentence": "The market sells a variety of mangoes.",
     "distractorMeanings": [
       "only one kind of thing",
@@ -1156,7 +1117,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "following rules and keeping good order",
-    "meaningMarathi": "शिस्त",
     "exampleSentence": "The students walked in a line with good discipline.",
     "distractorMeanings": [
       "a loud noise made by many children",
@@ -1186,7 +1146,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a person you do not know",
-    "meaningMarathi": "अनोळखी माणूस",
     "exampleSentence": "Never go with a stranger, even if he offers sweets.",
     "distractorMeanings": [
       "a friend who lives next door",
@@ -1214,7 +1173,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to make certain that something happens",
-    "meaningMarathi": "खात्री करणे",
     "exampleSentence": "Please ensure that the gas is off before you leave.",
     "distractorMeanings": [
       "to forget about something important",
@@ -1243,7 +1201,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a person who is learning a job",
-    "meaningMarathi": "प्रशिक्षणार्थी",
     "exampleSentence": "The new trainee learnt to repair bicycles at the shop.",
     "distractorMeanings": [
       "a person who sells old bicycles",
@@ -1271,7 +1228,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a part of a whole, compared with the rest",
-    "meaningMarathi": "प्रमाण",
     "exampleSentence": "Mix sugar and water in the right proportion for sharbat.",
     "distractorMeanings": [
       "the total size of a big field",
@@ -1300,7 +1256,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "good at running, jumping and other sports",
-    "meaningMarathi": "क्रीडापटू, चपळ",
     "exampleSentence": "Our athletic sports teacher can run very fast.",
     "distractorMeanings": [
       "too weak to walk or stand",
@@ -1329,7 +1284,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a narrow road between houses",
-    "meaningMarathi": "गल्ली",
     "exampleSentence": "Children play cricket in the narrow lane near our house.",
     "distractorMeanings": [
       "a wide road with many shops",
@@ -1356,7 +1310,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to stop something from happening",
-    "meaningMarathi": "प्रतिबंध करणे",
     "exampleSentence": "Washing hands can prevent many diseases.",
     "distractorMeanings": [
       "to make something happen faster",
@@ -1385,7 +1338,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "soft and easy to cut or chew",
-    "meaningMarathi": "मऊ, कोवळा",
     "exampleSentence": "Grandmother cooked tender green peas for dinner.",
     "distractorMeanings": [
       "hard and difficult to bite",
@@ -1414,7 +1366,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "one of the seven very large land areas of Earth",
-    "meaningMarathi": "खंड",
     "exampleSentence": "Asia is the biggest continent in the world.",
     "distractorMeanings": [
       "a small island in the sea",
@@ -1444,7 +1395,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "learning at school and from teachers",
-    "meaningMarathi": "शिक्षण",
     "exampleSentence": "Education helps every child to dream big and work hard.",
     "distractorMeanings": [
       "a game played at recess",
@@ -1474,7 +1424,6 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to change from one thing to another",
-    "meaningMarathi": "बदलणे",
     "exampleSentence": "Please switch off the fan when you leave the room.",
     "distractorMeanings": [
       "to move something along the ground",
@@ -1502,7 +1451,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "sure that something is true",
-    "meaningMarathi": "खात्रीचा, निश्चित",
     "exampleSentence": "I am certain that the train will arrive at noon.",
     "distractorMeanings": [
       "not sure about anything at all",
@@ -1531,7 +1479,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a place with walls and a roof",
-    "meaningMarathi": "इमारत",
     "exampleSentence": "Our school building has two floors and a big hall.",
     "distractorMeanings": [
       "a path made of stones",
@@ -1560,7 +1507,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a person who plans and arranges an event",
-    "meaningMarathi": "आयोजक",
     "exampleSentence": "The organiser of the fair put up colourful flags.",
     "distractorMeanings": [
       "a person who sings in a concert",
@@ -1591,7 +1537,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "dirt and harmful things in air or water",
-    "meaningMarathi": "प्रदूषण",
     "exampleSentence": "Smoke from cars adds to pollution in the city.",
     "distractorMeanings": [
       "a pleasant smell of flowers",
@@ -1621,7 +1566,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "simple, with no pattern or decoration",
-    "meaningMarathi": "साधा",
     "exampleSentence": "Dad wore a plain white shirt to the office.",
     "distractorMeanings": [
       "covered with bright colourful designs",
@@ -1649,7 +1593,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a person who travels to enjoy visiting places",
-    "meaningMarathi": "पर्यटक",
     "exampleSentence": "A tourist from Delhi took photos of Shaniwar Wada in Pune.",
     "distractorMeanings": [
       "a person who lives in the same town",
@@ -1678,7 +1621,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to make something longer or bigger",
-    "meaningMarathi": "वाढवणे",
     "exampleSentence": "The workers will extend the road up to the village.",
     "distractorMeanings": [
       "to cut something into smaller parts",
@@ -1707,7 +1649,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a letter that asks for a job or a place",
-    "meaningMarathi": "अर्ज",
     "exampleSentence": "Riya wrote an application for two days of leave.",
     "distractorMeanings": [
       "a bill that you get in a shop",
@@ -1738,7 +1679,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to let fresh air move through a room",
-    "meaningMarathi": "हवा खेळती ठेवणे",
     "exampleSentence": "Open the windows to ventilate the classroom.",
     "distractorMeanings": [
       "to keep a room very dark",
@@ -1768,7 +1708,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "the top covering of a building",
-    "meaningMarathi": "छप्पर",
     "exampleSentence": "Rain drummed on the tin roof of our house.",
     "distractorMeanings": [
       "the wall at the back of a room",
@@ -1795,7 +1734,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "not showing off about yourself",
-    "meaningMarathi": "नम्र, साधा",
     "exampleSentence": "The modest boy said it was only luck that he won.",
     "distractorMeanings": [
       "very proud of everything he does",
@@ -1823,7 +1761,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a coach pulled by horses, or a train coach",
-    "meaningMarathi": "डबा, गाडी",
     "exampleSentence": "We sat in the last carriage of the Deccan Queen train.",
     "distractorMeanings": [
       "a small box for carrying fruit",
@@ -1851,7 +1788,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to keep trying without giving up",
-    "meaningMarathi": "चिकाटीने प्रयत्न करणे",
     "exampleSentence": "If you persist, you will learn to ride a bicycle.",
     "distractorMeanings": [
       "to stop doing a thing quickly",
@@ -1879,7 +1815,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a talk between two or more people",
-    "meaningMarathi": "संवाद",
     "exampleSentence": "We acted out a dialogue between a shopkeeper and a customer.",
     "distractorMeanings": [
       "a song sung by one person",
@@ -1909,7 +1844,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "an electric vehicle that runs on rails in a city street",
-    "meaningMarathi": "ट्राम",
     "exampleSentence": "Long ago, a tram ran along the streets of Kolkata.",
     "distractorMeanings": [
       "a boat that sails on a lake",
@@ -1937,7 +1871,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a brother or a sister",
-    "meaningMarathi": "भावंड",
     "exampleSentence": "Riya and her sibling walk to school together every day.",
     "distractorMeanings": [
       "a friend from the same class",
@@ -1965,7 +1898,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "able to be trusted to do the right thing",
-    "meaningMarathi": "विश्वासू",
     "exampleSentence": "Our bus driver is reliable and always comes on time.",
     "distractorMeanings": [
       "likely to forget his promises",
@@ -1996,7 +1928,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "animals such as cows and goats kept on a farm",
-    "meaningMarathi": "पशुधन",
     "exampleSentence": "The farmer takes good care of his livestock in the shed.",
     "distractorMeanings": [
       "wild animals living in the forest",
@@ -2025,7 +1956,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to make someone know a person or thing",
-    "meaningMarathi": "ओळख करून देणे",
     "exampleSentence": "The teacher will acquaint the new girl with our school.",
     "distractorMeanings": [
       "to forget the name of a friend",
@@ -2054,7 +1984,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a tool with stiff hairs for cleaning or painting",
-    "meaningMarathi": "ब्रश, कुंचला",
     "exampleSentence": "Aarav dipped his brush in blue paint.",
     "distractorMeanings": [
       "a tool with a sharp edge for cutting",
@@ -2082,7 +2011,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to get money for the work you do",
-    "meaningMarathi": "कमावणे",
     "exampleSentence": "Dad works hard at the shop to earn money for us.",
     "distractorMeanings": [
       "to spend money on sweets",
@@ -2109,7 +2037,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "more than two but not very many",
-    "meaningMarathi": "काही, अनेक",
     "exampleSentence": "Several buses were waiting at the bus stand.",
     "distractorMeanings": [
       "only one single thing",
@@ -2139,7 +2066,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a tool or pot used in the kitchen",
-    "meaningMarathi": "भांडे",
     "exampleSentence": "Aai washes every utensil after cooking the meal.",
     "distractorMeanings": [
       "a machine used on a farm",
@@ -2169,7 +2095,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "machines used together to do work",
-    "meaningMarathi": "यंत्रसामग्री",
     "exampleSentence": "Heavy machinery was used to dig the new road.",
     "distractorMeanings": [
       "a group of workers on a boat",
@@ -2200,7 +2125,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "moving or happening very quickly",
-    "meaningMarathi": "वेगवान, जलद",
     "exampleSentence": "A cheetah is a very fast runner.",
     "distractorMeanings": [
       "moving with very slow steps",
@@ -2228,7 +2152,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a building where old and special things are shown",
-    "meaningMarathi": "संग्रहालय",
     "exampleSentence": "Our class visited the museum to see old coins and statues.",
     "distractorMeanings": [
       "a place where fresh fruit is sold",
@@ -2258,7 +2181,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a quicker way to get somewhere",
-    "meaningMarathi": "जवळचा रस्ता",
     "exampleSentence": "We took a shortcut through the field to reach school.",
     "distractorMeanings": [
       "a very long way around a hill",
@@ -2286,7 +2208,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to go on, or to move forward",
-    "meaningMarathi": "पुढे जाणे",
     "exampleSentence": "After the green light, you may proceed across the road.",
     "distractorMeanings": [
       "to go back to the start",
@@ -2315,7 +2236,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to ask an expert for advice",
-    "meaningMarathi": "सल्ला घेणे",
     "exampleSentence": "If you feel sick, consult a doctor.",
     "distractorMeanings": [
       "to run away from a doctor",
@@ -2344,7 +2264,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a flat dish for serving food",
-    "meaningMarathi": "ताट",
     "exampleSentence": "Aai served hot bhakri and bhaji on a steel plate.",
     "distractorMeanings": [
       "a deep bowl for pouring soup",
@@ -2372,7 +2291,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to rub a rough thing against a surface",
-    "meaningMarathi": "खरवडणे",
     "exampleSentence": "A rough stone wall can scrape your hand badly.",
     "distractorMeanings": [
       "to wash a floor with water",
@@ -2400,7 +2318,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a person who belongs to a country or city",
-    "meaningMarathi": "नागरिक",
     "exampleSentence": "Every citizen of India has the right to go to school.",
     "distractorMeanings": [
       "a visitor from another planet",
@@ -2430,7 +2347,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "clear, so that you can see through it",
-    "meaningMarathi": "पारदर्शक",
     "exampleSentence": "The shopkeeper kept sweets in a transparent glass jar.",
     "distractorMeanings": [
       "thick, so that you cannot see inside",
@@ -2460,7 +2376,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a small platform outside an upper window",
-    "meaningMarathi": "गॅलरी",
     "exampleSentence": "Aarav watches the rain from the balcony of his flat.",
     "distractorMeanings": [
       "a staircase inside a building",
@@ -2490,7 +2405,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a place where travellers pay to stay and eat",
-    "meaningMarathi": "हॉटेल",
     "exampleSentence": "We stayed in a small hotel near the beach.",
     "distractorMeanings": [
       "a place where people keep their cars",
@@ -2519,7 +2433,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "nice and giving a good feeling",
-    "meaningMarathi": "आनंददायी, सुखद",
     "exampleSentence": "The morning breeze was cool and pleasant.",
     "distractorMeanings": [
       "rough and not nice at all",
@@ -2548,7 +2461,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a very young child who is learning to walk",
-    "meaningMarathi": "बाळ, पावले टाकणारे मूल",
     "exampleSentence": "The toddler took her first steps across the room.",
     "distractorMeanings": [
       "a boy who goes to high school",
@@ -2576,7 +2488,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to send something to a place",
-    "meaningMarathi": "पाठवणे",
     "exampleSentence": "The post office will dispatch the parcel today.",
     "distractorMeanings": [
       "to keep something in a locked box",
@@ -2605,7 +2516,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a person who keeps records of money",
-    "meaningMarathi": "लेखापाल",
     "exampleSentence": "The accountant checks the shop's bills every evening.",
     "distractorMeanings": [
       "a person who cooks in a restaurant",
@@ -2634,7 +2544,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "giving out a lot of light",
-    "meaningMarathi": "तेजस्वी, चमकदार",
     "exampleSentence": "The sun was bright on the morning of the picnic.",
     "distractorMeanings": [
       "dim and hard to see",
@@ -2662,7 +2571,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a day when you do not go to school or work",
-    "meaningMarathi": "सुट्टी",
     "exampleSentence": "We go to our village every summer holiday.",
     "distractorMeanings": [
       "a day when exams are held",
@@ -2692,7 +2600,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a person whose job is to put out fires",
-    "meaningMarathi": "अग्निशमन जवान",
     "exampleSentence": "The fireman climbed the ladder to rescue the kitten.",
     "distractorMeanings": [
       "a doctor who treats hurt children",
@@ -2721,7 +2628,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to manage and look after an office or area",
-    "meaningMarathi": "व्यवस्थापन करणे",
     "exampleSentence": "The principal helps to administer our school.",
     "distractorMeanings": [
       "to break the rules of a game",
@@ -2752,7 +2658,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a strong feeling of joy about something coming",
-    "meaningMarathi": "उत्साह",
     "exampleSentence": "The children shouted with excitement when they saw the train.",
     "distractorMeanings": [
       "a feeling of being very bored",
@@ -2781,7 +2686,6 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to make a liquid flow out of a container",
-    "meaningMarathi": "ओतणे",
     "exampleSentence": "Please pour some milk into the glass.",
     "distractorMeanings": [
       "to carry a heavy bag",
@@ -2809,7 +2713,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "likely to cause harm or injury",
-    "meaningMarathi": "धोकादायक",
     "exampleSentence": "It is dangerous to cross the railway track.",
     "distractorMeanings": [
       "safe and good for everyone",
@@ -2838,7 +2741,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "the work you do for most of your life",
-    "meaningMarathi": "कारकीर्द, व्यवसाय",
     "exampleSentence": "Gauri wants a career as a doctor when she grows up.",
     "distractorMeanings": [
       "a game that children play together",
@@ -2866,7 +2768,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "an idea that you offer to someone",
-    "meaningMarathi": "सूचना, सल्ला",
     "exampleSentence": "Aarav gave a good suggestion for our school picnic.",
     "distractorMeanings": [
       "a rule that must be followed",
@@ -2895,7 +2796,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a piece of jewellery worn around the neck",
-    "meaningMarathi": "हार",
     "exampleSentence": "Grandmother wore a gold necklace at Diwali.",
     "distractorMeanings": [
       "a ring worn on the finger",
@@ -2924,7 +2824,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "wide from one side to the other",
-    "meaningMarathi": "रुंद",
     "exampleSentence": "The broad road has space for four buses side by side.",
     "distractorMeanings": [
       "very narrow and thin",
@@ -2952,7 +2851,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "an artist who carves figures from stone or clay",
-    "meaningMarathi": "शिल्पकार",
     "exampleSentence": "The sculptor carved a beautiful horse from a block of stone.",
     "distractorMeanings": [
       "an artist who paints pictures on paper",
@@ -2981,7 +2879,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "the city where a country's government sits",
-    "meaningMarathi": "राजधानी",
     "exampleSentence": "Mumbai is the capital of Maharashtra.",
     "distractorMeanings": [
       "the biggest river of a state",
@@ -3011,7 +2908,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a person who works for a company and gets paid",
-    "meaningMarathi": "कर्मचारी",
     "exampleSentence": "Every employee at the factory gets a salary on the first day.",
     "distractorMeanings": [
       "a person who owns a big shop",
@@ -3040,7 +2936,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to expect something and get ready for it",
-    "meaningMarathi": "अपेक्षा करणे",
     "exampleSentence": "We anticipate heavy traffic on the day of the festival.",
     "distractorMeanings": [
       "to forget something that happened",
@@ -3071,7 +2966,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "far above the ground",
-    "meaningMarathi": "उंच",
     "exampleSentence": "The kite flew high above the village.",
     "distractorMeanings": [
       "close to the ground",
@@ -3098,7 +2992,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a small useful machine or tool",
-    "meaningMarathi": "उपकरण, यंत्र",
     "exampleSentence": "Dad bought a new gadget to cut vegetables fast.",
     "distractorMeanings": [
       "a big building in a city",
@@ -3127,7 +3020,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "special clothes worn by people of one school or job",
-    "meaningMarathi": "गणवेश",
     "exampleSentence": "Riya wears a blue uniform to school.",
     "distractorMeanings": [
       "a very old and torn blanket",
@@ -3157,7 +3049,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to confuse someone very much",
-    "meaningMarathi": "गोंधळात टाकणे",
     "exampleSentence": "The big maze can bewilder new visitors.",
     "distractorMeanings": [
       "to make someone laugh loudly",
@@ -3186,7 +3077,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to have a different opinion from someone",
-    "meaningMarathi": "असहमत असणे",
     "exampleSentence": "Aarav and Sai disagree about which game to play.",
     "distractorMeanings": [
       "to agree to do something",
@@ -3216,7 +3106,6 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to become healthy again after being hurt",
-    "meaningMarathi": "बरे होणे",
     "exampleSentence": "A small cut will heal in a few days.",
     "distractorMeanings": [
       "to grow bigger every day",
@@ -3243,7 +3132,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "the panel in front of a driver with dials",
-    "meaningMarathi": "डॅशबोर्ड",
     "exampleSentence": "The dashboard of the car shows the speed.",
     "distractorMeanings": [
       "the back seat of a bus",
@@ -3272,7 +3160,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a cloth worn over clothes to keep them clean",
-    "meaningMarathi": "एप्रन",
     "exampleSentence": "Aai ties an apron before she cooks.",
     "distractorMeanings": [
       "a hat worn in the sun",
@@ -3301,7 +3188,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a large farm where trees or crops are grown",
-    "meaningMarathi": "मळा, लागवड",
     "exampleSentence": "We saw a tea plantation on our trip to the hills.",
     "distractorMeanings": [
       "a big factory that makes toys",
@@ -3331,7 +3217,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "found or happening over a large area",
-    "meaningMarathi": "सर्वत्र पसरलेले",
     "exampleSentence": "Heavy rain was widespread across the whole state.",
     "distractorMeanings": [
       "found in one tiny corner only",
@@ -3359,7 +3244,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a person who cuts men's hair",
-    "meaningMarathi": "न्हावी",
     "exampleSentence": "The barber trimmed Dad's hair at the corner shop.",
     "distractorMeanings": [
       "a person who mends shoes",
@@ -3388,7 +3272,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a place where medicines are given out",
-    "meaningMarathi": "दवाखाना",
     "exampleSentence": "The village dispensary opens at nine in the morning.",
     "distractorMeanings": [
       "a shop where books are sold",
@@ -3419,7 +3302,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to make someone feel calm and less upset",
-    "meaningMarathi": "शांत करणे",
     "exampleSentence": "Aai sang a lullaby to soothe the crying baby.",
     "distractorMeanings": [
       "to make someone shout louder",
@@ -3447,7 +3329,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "the man who is in charge of a school",
-    "meaningMarathi": "मुख्याध्यापक",
     "exampleSentence": "The headmaster gave a speech on Independence Day.",
     "distractorMeanings": [
       "a teacher who plays the harmonium",
@@ -3477,7 +3358,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "of a very big and busy city",
-    "meaningMarathi": "महानगरीय",
     "exampleSentence": "Mumbai is a large metropolitan city with millions of people.",
     "distractorMeanings": [
       "of a quiet village near a river",
@@ -3508,7 +3388,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a small three-wheeled vehicle for carrying passengers",
-    "meaningMarathi": "रिक्षा",
     "exampleSentence": "We took a rickshaw from the station to our house.",
     "distractorMeanings": [
       "a big ship that sails the sea",
@@ -3536,7 +3415,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "straps used to hold a person safely or control an animal",
-    "meaningMarathi": "पट्टा, कवच",
     "exampleSentence": "The climber wore a harness before going up the rock.",
     "distractorMeanings": [
       "a heavy hammer used by workers",
@@ -3565,7 +3443,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to follow someone in order to catch them",
-    "meaningMarathi": "पाठलाग करणे",
     "exampleSentence": "The dog ran to pursue the ball across the field.",
     "distractorMeanings": [
       "to run away from a ball",
@@ -3593,7 +3470,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "so surprising that it is hard to trust",
-    "meaningMarathi": "अविश्वसनीय",
     "exampleSentence": "The magician's trick was simply unbelievable.",
     "distractorMeanings": [
       "easy to understand and expect",
@@ -3625,7 +3501,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a person who makes people laugh on stage",
-    "meaningMarathi": "विनोदी कलाकार",
     "exampleSentence": "The comedian made the whole audience laugh at the fair.",
     "distractorMeanings": [
       "a singer who sings sad songs",
@@ -3656,7 +3531,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a person who makes cloth from threads",
-    "meaningMarathi": "विणकर",
     "exampleSentence": "The weaver made a Paithani saree on his loom.",
     "distractorMeanings": [
       "a farmer who plants rice",
@@ -3685,7 +3559,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a group of houses built close to each other",
-    "meaningMarathi": "वसाहत",
     "exampleSentence": "Our friends live in the same colony in Nagpur.",
     "distractorMeanings": [
       "a big forest with wild animals",
@@ -3715,7 +3588,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to make quick short knocking sounds",
-    "meaningMarathi": "खडखडणे",
     "exampleSentence": "The old bus began to rattle on the bumpy road.",
     "distractorMeanings": [
       "to move without any sound",
@@ -3744,7 +3616,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "having the ability to do something very well",
-    "meaningMarathi": "कुशल",
     "exampleSentence": "The skilful tailor stitched a shirt in one hour.",
     "distractorMeanings": [
       "clumsy and always dropping things",
@@ -3773,7 +3644,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a trained person who helps hurt people in an ambulance",
-    "meaningMarathi": "वैद्यकीय सहायक",
     "exampleSentence": "The paramedic gave first aid to the hurt cyclist.",
     "distractorMeanings": [
       "a teacher who teaches science",
@@ -3804,7 +3674,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a small bag sewn into clothes",
-    "meaningMarathi": "खिसा",
     "exampleSentence": "Om kept a few coins in his shirt pocket.",
     "distractorMeanings": [
       "a long strap on a school bag",
@@ -3832,7 +3701,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a person who does hard physical work for pay",
-    "meaningMarathi": "मजूर",
     "exampleSentence": "The labourer carried bricks to the top of the building.",
     "distractorMeanings": [
       "a person who designs buildings",
@@ -3862,7 +3730,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to stay on top of water without sinking",
-    "meaningMarathi": "तरंगणे",
     "exampleSentence": "Paper boats float on the water during the monsoon.",
     "distractorMeanings": [
       "to fall deep into the water",
@@ -3890,7 +3757,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "about teeth and their care",
-    "meaningMarathi": "दातांचा",
     "exampleSentence": "Gauri visited the dental clinic to check her teeth.",
     "distractorMeanings": [
       "about the eyes and seeing",
@@ -3919,7 +3785,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "your name written in your own style",
-    "meaningMarathi": "सही",
     "exampleSentence": "Dad wrote his signature at the bottom of the form.",
     "distractorMeanings": [
       "a picture drawn on a wall",
@@ -3949,7 +3814,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "having a taste like sugar or honey",
-    "meaningMarathi": "गोड",
     "exampleSentence": "The mango from our tree is very sweet.",
     "distractorMeanings": [
       "tasting like lemon juice",
@@ -3977,7 +3841,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a small cupboard with a lock for keeping things",
-    "meaningMarathi": "कपाट, लॉकर",
     "exampleSentence": "Riya keeps her books in the locker at school.",
     "distractorMeanings": [
       "a basket for carrying vegetables",
@@ -4006,7 +3869,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to bring things together in one place",
-    "meaningMarathi": "गोळा करणे",
     "exampleSentence": "Gauri likes to collect old stamps and coins.",
     "distractorMeanings": [
       "to throw things in a heap",
@@ -4035,7 +3897,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a country that is led by chosen leaders, not a king",
-    "meaningMarathi": "प्रजासत्ताक",
     "exampleSentence": "We celebrate Republic Day on the twenty-sixth of January.",
     "distractorMeanings": [
       "a country ruled by a queen",
@@ -4064,7 +3925,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a part of a state with its own local office",
-    "meaningMarathi": "जिल्हा",
     "exampleSentence": "Pune is a big district in Maharashtra.",
     "distractorMeanings": [
       "a room in a school building",
@@ -4093,7 +3953,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a person who drives a vehicle",
-    "meaningMarathi": "चालक",
     "exampleSentence": "The bus driver waited for all the children to sit.",
     "distractorMeanings": [
       "a person who repairs wheels",
@@ -4122,7 +3981,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "the office at a border where bags are checked",
-    "meaningMarathi": "सीमाशुल्क विभाग",
     "exampleSentence": "The officer at customs checked our bags at the airport.",
     "distractorMeanings": [
       "a shop that sells airplane toys",
@@ -4151,7 +4009,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to push the foot levers to move a bicycle",
-    "meaningMarathi": "पायडल मारणे",
     "exampleSentence": "Sai had to pedal hard to climb the hill.",
     "distractorMeanings": [
       "to ring the bell on a bicycle",
@@ -4180,7 +4037,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a machine that reads pictures or codes",
-    "meaningMarathi": "स्कॅनर",
     "exampleSentence": "The shopkeeper passed the bar code under the scanner.",
     "distractorMeanings": [
       "a machine that makes tea",
@@ -4209,7 +4065,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "against the law",
-    "meaningMarathi": "बेकायदेशीर",
     "exampleSentence": "It is illegal to drive a car without a licence.",
     "distractorMeanings": [
       "allowed by the law",
@@ -4239,7 +4094,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a number of things tied together",
-    "meaningMarathi": "गठ्ठा",
     "exampleSentence": "The farmer carried a bundle of sugarcane on his head.",
     "distractorMeanings": [
       "a single loose leaf",
@@ -4268,7 +4122,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to become bigger in number or size",
-    "meaningMarathi": "वाढणे",
     "exampleSentence": "The number of cars on the road will increase every year.",
     "distractorMeanings": [
       "to become smaller in size",
@@ -4297,7 +4150,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "hard to bend or move",
-    "meaningMarathi": "ताठ, कडक",
     "exampleSentence": "My neck felt stiff after the long bus ride.",
     "distractorMeanings": [
       "soft and easy to bend",
@@ -4325,7 +4177,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "the main part of a country, not the islands",
-    "meaningMarathi": "मुख्य भूमी",
     "exampleSentence": "A ferry takes people from the island to the mainland.",
     "distractorMeanings": [
       "a tiny island in the sea",
@@ -4354,7 +4205,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a doctor who treats animals",
-    "meaningMarathi": "पशुवैद्य",
     "exampleSentence": "The veterinarian gave an injection to the sick cow.",
     "distractorMeanings": [
       "a doctor who treats children",
@@ -4387,7 +4237,6 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to put something where it cannot be seen",
-    "meaningMarathi": "लपवणे, लपणे",
     "exampleSentence": "The little kitten likes to hide under the bed.",
     "distractorMeanings": [
       "to show something to everyone",
@@ -4418,7 +4267,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a person who studies a subject very deeply",
-    "meaningMarathi": "विद्वान",
     "exampleSentence": "The old scholar read many books about Maharashtra's forts.",
     "distractorMeanings": [
       "a farmer who grows sugarcane",
@@ -4447,7 +4295,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "having great value or meaning",
-    "meaningMarathi": "महत्त्वाचा",
     "exampleSentence": "It is important to look both ways before you cross the road.",
     "distractorMeanings": [
       "having no use at all",
@@ -4477,7 +4324,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "all the people born around the same time",
-    "meaningMarathi": "पिढी",
     "exampleSentence": "Three generations of our family live in one big house.",
     "distractorMeanings": [
       "a group of people at a bus stop",
@@ -4507,7 +4353,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a pretty thing used to decorate a place or person",
-    "meaningMarathi": "दागिना, सजावटीची वस्तू",
     "exampleSentence": "Aai hung a glass ornament on the Diwali lantern.",
     "distractorMeanings": [
       "a tool for cutting wood",
@@ -4537,7 +4382,6 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to pull something hard and quickly",
-    "meaningMarathi": "ओढणे",
     "exampleSentence": "The little boy gave a tug on his mother's saree.",
     "distractorMeanings": [
       "to push something far away",
@@ -4564,7 +4408,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "happening again and again at the same time",
-    "meaningMarathi": "नियमित",
     "exampleSentence": "The bus has a regular stop outside our school.",
     "distractorMeanings": [
       "happening only once in a year",
@@ -4594,7 +4437,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a large open square in a city",
-    "meaningMarathi": "चौक, मोकळे पटांगण",
     "exampleSentence": "People sit on benches in the plaza near the market.",
     "distractorMeanings": [
       "a narrow lane between two houses",
@@ -4622,7 +4464,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "the study of the Earth, its land and seas",
-    "meaningMarathi": "भूगोल",
     "exampleSentence": "In geography, we learnt about the rivers of India.",
     "distractorMeanings": [
       "the study of old kings and wars",
@@ -4653,7 +4494,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "words that tell what someone or something is like",
-    "meaningMarathi": "वर्णन",
     "exampleSentence": "Write a short description of your favourite festival.",
     "distractorMeanings": [
       "a list of numbers in order",
@@ -4683,7 +4523,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a thing that gives light",
-    "meaningMarathi": "दिवा, समई",
     "exampleSentence": "Aai lit a clay lamp in front of the house.",
     "distractorMeanings": [
       "a thing that gives heat for cooking",
@@ -4711,7 +4550,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "living with people and not wild",
-    "meaningMarathi": "पाळीव",
     "exampleSentence": "Cows and goats are domestic animals.",
     "distractorMeanings": [
       "living only in thick forests",
@@ -4741,7 +4579,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to make something smaller in size or amount",
-    "meaningMarathi": "कमी करणे",
     "exampleSentence": "We should reduce the use of plastic bags.",
     "distractorMeanings": [
       "to make something bigger and larger",
@@ -4769,7 +4606,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a person who travels daily to work or school",
-    "meaningMarathi": "रोज प्रवास करणारा",
     "exampleSentence": "Every commuter on the local train holds a pass.",
     "distractorMeanings": [
       "a person who sells tickets on a train",
@@ -4799,7 +4635,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "the happy feeling when you get what you need",
-    "meaningMarathi": "समाधान",
     "exampleSentence": "Riya felt great satisfaction when she finished her drawing.",
     "distractorMeanings": [
       "the sad feeling of losing a game",
@@ -4829,7 +4664,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a strip of cloth used to cover a wound",
-    "meaningMarathi": "पट्टी",
     "exampleSentence": "The nurse wrapped a bandage around Om's hurt finger.",
     "distractorMeanings": [
       "a bottle of cough syrup",
@@ -4858,7 +4692,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to plan to do something",
-    "meaningMarathi": "इरादा असणे",
     "exampleSentence": "I intend to visit my grandparents during the holidays.",
     "distractorMeanings": [
       "to forget about something later",
@@ -4887,7 +4720,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a small tool or machine made for one job",
-    "meaningMarathi": "उपकरण",
     "exampleSentence": "The phone is a handy device that helps us talk to far away people.",
     "distractorMeanings": [
       "a big building with many floors",
@@ -4915,7 +4747,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a chance that something good may happen",
-    "meaningMarathi": "शक्यता, संधी",
     "exampleSentence": "There is a good prospect of rain this evening.",
     "distractorMeanings": [
       "a sure fact that cannot change",
@@ -4944,7 +4775,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "many in number",
-    "meaningMarathi": "अनेक, असंख्य",
     "exampleSentence": "Numerous stars shine in the sky on a clear night.",
     "distractorMeanings": [
       "very few in number",
@@ -4974,7 +4804,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a person who comes to visit your home",
-    "meaningMarathi": "पाहुणा",
     "exampleSentence": "A guest came to our house for tea.",
     "distractorMeanings": [
       "a person who lives next door always",
@@ -5002,7 +4831,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to give someone the tools they need",
-    "meaningMarathi": "सज्ज करणे",
     "exampleSentence": "The school will equip the lab with new microscopes.",
     "distractorMeanings": [
       "to take away all the tools",
@@ -5031,7 +4859,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a place where small children are looked after",
-    "meaningMarathi": "पाळणाघर",
     "exampleSentence": "Little Aarav goes to nursery school every morning.",
     "distractorMeanings": [
       "a shop where old things are sold",
@@ -5061,7 +4888,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a person who works a machine",
-    "meaningMarathi": "चालक",
     "exampleSentence": "The crane operator lifted the heavy load carefully.",
     "distractorMeanings": [
       "a person who sells tickets",
@@ -5092,7 +4918,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "worth remembering for a long time",
-    "meaningMarathi": "संस्मरणीय",
     "exampleSentence": "Our trip to Raigad Fort was a memorable day.",
     "distractorMeanings": [
       "easy to forget soon",
@@ -5123,7 +4948,6 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to tell someone about a possible danger",
-    "meaningMarathi": "इशारा देणे",
     "exampleSentence": "The sign will warn drivers about the sharp turn.",
     "distractorMeanings": [
       "to ask someone for a favour",
@@ -5151,7 +4975,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a trip to eat a meal outdoors",
-    "meaningMarathi": "सहल",
     "exampleSentence": "We carried poha and fruits for the school picnic.",
     "distractorMeanings": [
       "a meeting held in a classroom",
@@ -5180,7 +5003,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a one-piece suit worn over clothes to keep them clean",
-    "meaningMarathi": "ओव्हरऑल",
     "exampleSentence": "The mechanic wore overalls while he repaired the engine.",
     "distractorMeanings": [
       "a warm coat for winter",
@@ -5210,7 +5032,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "enough for what is needed",
-    "meaningMarathi": "पुरेसा",
     "exampleSentence": "We carried adequate water for the long walk.",
     "distractorMeanings": [
       "far more than is needed",
@@ -5240,7 +5061,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a very long running race",
-    "meaningMarathi": "मॅरेथॉन",
     "exampleSentence": "Dad ran in the Pune marathon last winter.",
     "distractorMeanings": [
       "a short race in a school ground",
@@ -5269,7 +5089,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a tool with a heavy head for hitting nails",
-    "meaningMarathi": "हातोडा",
     "exampleSentence": "The carpenter hit the nail with a hammer.",
     "distractorMeanings": [
       "a tool with a blade for sawing wood",
@@ -5298,7 +5117,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to go with someone to protect or guide them",
-    "meaningMarathi": "सोबत जाणे",
     "exampleSentence": "The guard will escort the children across the road.",
     "distractorMeanings": [
       "to leave someone alone on a road",
@@ -5327,7 +5145,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a flat open roof of a house",
-    "meaningMarathi": "गच्ची",
     "exampleSentence": "We fly kites on the terrace on Makar Sankranti.",
     "distractorMeanings": [
       "a small room under the stairs",
@@ -5356,7 +5173,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a tall machine with blades turned by the wind",
-    "meaningMarathi": "पवनचक्की",
     "exampleSentence": "We saw a big windmill on the hill near Satara.",
     "distractorMeanings": [
       "a machine that runs on petrol",
@@ -5385,7 +5201,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "lasting through the whole night",
-    "meaningMarathi": "रात्रभर",
     "exampleSentence": "We took an overnight train from Pune to Delhi.",
     "distractorMeanings": [
       "lasting only a few minutes",
@@ -5415,7 +5230,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a bus used for long journeys",
-    "meaningMarathi": "लांब पल्ल्याची बस",
     "exampleSentence": "The tourists travelled in a comfortable coach to Goa.",
     "distractorMeanings": [
       "a small boat used on a lake",
@@ -5442,7 +5256,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a machine used to carry people or goods",
-    "meaningMarathi": "वाहन",
     "exampleSentence": "A bus is a large vehicle that carries many people.",
     "distractorMeanings": [
       "a tool used to cut wood",
@@ -5471,7 +5284,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "thinking kindly about other people",
-    "meaningMarathi": "समजूतदार, विचारी",
     "exampleSentence": "Aarav was thoughtful and gave his seat to the old woman.",
     "distractorMeanings": [
       "not caring about anyone else",
@@ -5499,7 +5311,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "an area of land that belongs to a country or animal",
-    "meaningMarathi": "प्रदेश",
     "exampleSentence": "A tiger guards its own territory in the forest.",
     "distractorMeanings": [
       "a heavy rainfall that floods fields",
@@ -5530,7 +5341,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to move someone to a higher job or class",
-    "meaningMarathi": "बढती देणे, पदोन्नती देणे",
     "exampleSentence": "The company decided to promote Dad to manager.",
     "distractorMeanings": [
       "to send someone to a lower class",
@@ -5559,7 +5369,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "making very little noise",
-    "meaningMarathi": "शांत",
     "exampleSentence": "The library is a quiet place to read.",
     "distractorMeanings": [
       "full of loud music",
@@ -5588,7 +5397,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a break in a bone",
-    "meaningMarathi": "हाड मोडणे, फ्रॅक्चर",
     "exampleSentence": "The doctor said Om has a fracture in his arm.",
     "distractorMeanings": [
       "a small cut on the skin",
@@ -5617,7 +5425,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to give money back to someone",
-    "meaningMarathi": "पैसे परत करणे",
     "exampleSentence": "The shop will refund your money if the toy is broken.",
     "distractorMeanings": [
       "to take away money from someone",
@@ -5646,7 +5453,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a device that makes your voice louder",
-    "meaningMarathi": "मायक्रोफोन",
     "exampleSentence": "The teacher spoke into the microphone at the assembly.",
     "distractorMeanings": [
       "a screen that shows pictures",
@@ -5676,7 +5482,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a story or an account of events",
-    "meaningMarathi": "कथा, निवेदन",
     "exampleSentence": "Write a short narrative about a day at the market.",
     "distractorMeanings": [
       "a list of names in order",
@@ -5706,7 +5511,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a thin metal pin hammered into wood",
-    "meaningMarathi": "खिळा",
     "exampleSentence": "Dad drove a nail into the wall to hang the clock.",
     "distractorMeanings": [
       "a flat piece of wood",
@@ -5734,7 +5538,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "something built to remember a person or event",
-    "meaningMarathi": "स्मारक",
     "exampleSentence": "We visited the memorial in the park on Republic Day.",
     "distractorMeanings": [
       "a shop selling toys and sweets",
@@ -5765,7 +5568,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a task that you must do as part of your job",
-    "meaningMarathi": "कर्तव्य",
     "exampleSentence": "The police officer is on duty at the crossing.",
     "distractorMeanings": [
       "a holiday given by the school",
@@ -5794,7 +5596,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to make something easier to understand",
-    "meaningMarathi": "स्पष्ट करणे",
     "exampleSentence": "Please clarify the question for me, teacher.",
     "distractorMeanings": [
       "to make something harder to understand",
@@ -5824,7 +5625,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "of the past, or connected with history",
-    "meaningMarathi": "ऐतिहासिक",
     "exampleSentence": "Raigad is a famous historical fort in Maharashtra.",
     "distractorMeanings": [
       "about the future and new things",
@@ -5855,7 +5655,6 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to give food to a person or animal",
-    "meaningMarathi": "खायला घालणे",
     "exampleSentence": "Gauri goes to the shed every morning to feed the cows.",
     "distractorMeanings": [
       "to take food away from an animal",
@@ -5886,7 +5685,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "the amount of money left in an account",
-    "meaningMarathi": "शिल्लक रक्कम",
     "exampleSentence": "Dad checked the balance in his bank account.",
     "distractorMeanings": [
       "the first page of a notebook",
@@ -5915,7 +5713,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "empty, with no people in it",
-    "meaningMarathi": "ओसाड, निर्जन",
     "exampleSentence": "The street looked deserted late at night.",
     "distractorMeanings": [
       "full of noisy people",
@@ -5945,7 +5742,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "polite and kind behaviour",
-    "meaningMarathi": "सभ्यपणा, शिष्टाचार",
     "exampleSentence": "Riya showed courtesy and said thank you to the driver.",
     "distractorMeanings": [
       "an act of being rude and loud",
@@ -5974,7 +5770,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a gathering of many people at one place",
-    "meaningMarathi": "सभा, परिपाठ",
     "exampleSentence": "The whole school stands in line for the morning assembly.",
     "distractorMeanings": [
       "a lesson that teaches new words",
@@ -6003,7 +5798,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a sign that tells people when to stop or go",
-    "meaningMarathi": "सिग्नल",
     "exampleSentence": "The car stopped at the red signal.",
     "distractorMeanings": [
       "a loud bell in a temple",
@@ -6032,7 +5826,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "something that can cause danger",
-    "meaningMarathi": "धोका",
     "exampleSentence": "A wet floor is a hazard for people who walk fast.",
     "distractorMeanings": [
       "a safe place to rest",
@@ -6060,7 +5853,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "happening at just the right time",
-    "meaningMarathi": "वेळेवर",
     "exampleSentence": "The timely rescue saved the child from the river.",
     "distractorMeanings": [
       "coming much too late",
@@ -6089,7 +5881,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a promise between people to do something",
-    "meaningMarathi": "करार, सहमती",
     "exampleSentence": "The two shopkeepers made an agreement to share the stall.",
     "distractorMeanings": [
       "a fight between two friends",
@@ -6119,7 +5910,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to offer to do something without being paid",
-    "meaningMarathi": "स्वयंसेवा करणे",
     "exampleSentence": "Sai will volunteer to clean the school ground on Sunday.",
     "distractorMeanings": [
       "to refuse to do any work",
@@ -6149,7 +5939,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a person who sells small things from place to place",
-    "meaningMarathi": "फेरीवाला",
     "exampleSentence": "The hawker sold balloons outside the school gate.",
     "distractorMeanings": [
       "a person who drives a taxi",
@@ -6178,7 +5967,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to become better than before",
-    "meaningMarathi": "सुधारणे",
     "exampleSentence": "Practise every day to improve your handwriting.",
     "distractorMeanings": [
       "to become worse than before",
@@ -6207,7 +5995,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "not clear or exact",
-    "meaningMarathi": "अस्पष्ट",
     "exampleSentence": "The old man gave a vague answer about the way.",
     "distractorMeanings": [
       "clear and full of detail",
@@ -6235,7 +6022,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a number out of one hundred",
-    "meaningMarathi": "टक्केवारी",
     "exampleSentence": "Riya got a high percentage of marks in maths.",
     "distractorMeanings": [
       "a total of all the marks",
@@ -6265,7 +6051,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to bring something back to its old condition",
-    "meaningMarathi": "पूर्वस्थितीत आणणे",
     "exampleSentence": "Workers will restore the old fort wall.",
     "distractorMeanings": [
       "to break something with a hammer",
@@ -6294,7 +6079,6 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to fix something that is broken or torn",
-    "meaningMarathi": "दुरुस्त करणे",
     "exampleSentence": "The cobbler will mend my torn sandal.",
     "distractorMeanings": [
       "to throw something away",
@@ -6322,7 +6106,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "not deep",
-    "meaningMarathi": "उथळ",
     "exampleSentence": "Children can safely play in the shallow water of the pond.",
     "distractorMeanings": [
       "very deep and dark",
@@ -6351,7 +6134,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a stream of water that shoots up in the air",
-    "meaningMarathi": "कारंजे",
     "exampleSentence": "Children played near the fountain in the city garden.",
     "distractorMeanings": [
       "a river that flows to the sea",
@@ -6380,7 +6162,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a big meeting where people discuss a topic",
-    "meaningMarathi": "परिषद",
     "exampleSentence": "Teachers from many schools came to the conference in Pune.",
     "distractorMeanings": [
       "a small birthday party at home",
@@ -6410,7 +6191,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a moving staircase that carries people up and down",
-    "meaningMarathi": "सरकता जिना",
     "exampleSentence": "Little Om held Dad's hand on the escalator at the mall.",
     "distractorMeanings": [
       "a wide lift for heavy goods",
@@ -6441,7 +6221,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a small stone platform where boats stop",
-    "meaningMarathi": "धक्का, जेटी",
     "exampleSentence": "The fishermen tied their boat to the jetty.",
     "distractorMeanings": [
       "a bridge over a railway line",
@@ -6470,7 +6249,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a jacket that keeps you floating in water",
-    "meaningMarathi": "जीवरक्षक जॅकेट",
     "exampleSentence": "Wear a lifejacket when you sit in a boat.",
     "distractorMeanings": [
       "a thick coat for cold weather",
@@ -6500,7 +6278,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to trust someone to help you",
-    "meaningMarathi": "विश्वास ठेवणे",
     "exampleSentence": "You can rely on a good friend in difficult times.",
     "distractorMeanings": [
       "to ignore someone completely",
@@ -6529,7 +6306,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "much better than usual",
-    "meaningMarathi": "असामान्य, उत्कृष्ट",
     "exampleSentence": "Aarav is an exceptional runner and always wins races.",
     "distractorMeanings": [
       "worse than most people",
@@ -6560,7 +6336,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a vehicle that travels in outer space",
-    "meaningMarathi": "अंतराळयान",
     "exampleSentence": "Astronauts travel to the moon in a spaceship.",
     "distractorMeanings": [
       "a boat that sails across the sea",
@@ -6589,7 +6364,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a dark mark on the skin after a knock",
-    "meaningMarathi": "मुका मार, निळा डाग",
     "exampleSentence": "Gauri got a blue bruise on her knee after the fall.",
     "distractorMeanings": [
       "a deep cut that bleeds a lot",
@@ -6617,7 +6391,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "the same in size or number",
-    "meaningMarathi": "समान",
     "exampleSentence": "Aai cut the cake into equal pieces for all of us.",
     "distractorMeanings": [
       "very different in size",
@@ -6646,7 +6419,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to scatter small drops or bits on something",
-    "meaningMarathi": "शिंपडणे",
     "exampleSentence": "Aai will sprinkle some water on the dusty floor.",
     "distractorMeanings": [
       "to pour a whole bucket of water",
@@ -6675,7 +6447,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a person trained to work on machines",
-    "meaningMarathi": "तंत्रज्ञ",
     "exampleSentence": "The technician came to repair our broken fan.",
     "distractorMeanings": [
       "a doctor who treats sick people",
@@ -6705,7 +6476,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a human society with its own culture and cities",
-    "meaningMarathi": "संस्कृती, संस्कृतीचा काळ",
     "exampleSentence": "We read about the Indus Valley civilisation in our history book.",
     "distractorMeanings": [
       "a dry desert with no people",
@@ -6737,7 +6507,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a place where people buy and sell things",
-    "meaningMarathi": "बाजार",
     "exampleSentence": "Aai bought fresh tomatoes from the market.",
     "distractorMeanings": [
       "a school where students study",
@@ -6766,7 +6535,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "the step in front of a door",
-    "meaningMarathi": "उंबरठा",
     "exampleSentence": "The milkman left the milk packet on our doorstep.",
     "distractorMeanings": [
       "the handle of a door",
@@ -6794,7 +6562,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to fall over or make something fall",
-    "meaningMarathi": "कोसळणे",
     "exampleSentence": "The tall stack of boxes may topple if you touch it.",
     "distractorMeanings": [
       "to stay standing straight",
@@ -6823,7 +6590,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "giving you a feeling of rest and ease",
-    "meaningMarathi": "आरामदायक",
     "exampleSentence": "The seats in the new bus are soft and comfortable.",
     "distractorMeanings": [
       "hard and painful to sit on",
@@ -6854,7 +6620,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "the result of something",
-    "meaningMarathi": "निकाल, परिणाम",
     "exampleSentence": "The outcome of the match made everyone happy.",
     "distractorMeanings": [
       "the start of a game",
@@ -6883,7 +6648,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a soft hat with a flat front edge",
-    "meaningMarathi": "टोपी",
     "exampleSentence": "Riya wore a cap to protect her head from the sun.",
     "distractorMeanings": [
       "a long cloth worn around the neck",
@@ -6910,7 +6674,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a person who serves food in a restaurant",
-    "meaningMarathi": "वाढपी, वेटर",
     "exampleSentence": "The waiter brought hot dosas to our table.",
     "distractorMeanings": [
       "a person who cooks the food",
@@ -6939,7 +6702,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "able to be moved from place to place",
-    "meaningMarathi": "फिरता",
     "exampleSentence": "A mobile library visits our village every Sunday.",
     "distractorMeanings": [
       "fixed firmly in one place",
@@ -6968,7 +6730,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "something that is more important than other things",
-    "meaningMarathi": "प्राधान्य",
     "exampleSentence": "Our first priority is to reach the station on time.",
     "distractorMeanings": [
       "something that is not needed at all",
@@ -6999,7 +6760,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to find out what illness a person has",
-    "meaningMarathi": "रोगाचे निदान करणे",
     "exampleSentence": "The doctor will diagnose the cause of the fever.",
     "distractorMeanings": [
       "to give an injection to a patient",
@@ -7029,7 +6789,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a place that keeps people's money safely",
-    "meaningMarathi": "बँक",
     "exampleSentence": "Dad deposits money in the bank every month.",
     "distractorMeanings": [
       "a shop that sells grain",
@@ -7057,7 +6816,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to keep something safe from harm or decay",
-    "meaningMarathi": "जतन करणे",
     "exampleSentence": "We must preserve our old forts for future children.",
     "distractorMeanings": [
       "to destroy something slowly",
@@ -7086,7 +6844,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "quick, done in a short time",
-    "meaningMarathi": "जलद",
     "exampleSentence": "The doctor gave a speedy treatment to the hurt boy.",
     "distractorMeanings": [
       "slow and taking a long time",
@@ -7115,7 +6872,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to work together with other people",
-    "meaningMarathi": "सहकार्य करणे",
     "exampleSentence": "Children should cooperate to keep the classroom clean.",
     "distractorMeanings": [
       "to fight with each other",
@@ -7146,7 +6902,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "something used to make a place look beautiful",
-    "meaningMarathi": "सजावट",
     "exampleSentence": "Riya made a paper decoration for the Ganesh festival.",
     "distractorMeanings": [
       "something used to clean a room",
@@ -7177,7 +6932,6 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to make a hole in the ground",
-    "meaningMarathi": "खणणे",
     "exampleSentence": "The farmer began to dig a well near the field.",
     "distractorMeanings": [
       "to fill a hole with soil",
@@ -7208,7 +6962,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "coverings for the hands",
-    "meaningMarathi": "हातमोजे",
     "exampleSentence": "The gardener wore gloves while he pulled the weeds.",
     "distractorMeanings": [
       "coverings for the feet",
@@ -7236,7 +6989,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "an object that helps you do a job",
-    "meaningMarathi": "अवजार, साधन",
     "exampleSentence": "A spade is a useful tool for digging.",
     "distractorMeanings": [
       "a type of fruit",
@@ -7264,7 +7016,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a crash when two things hit each other",
-    "meaningMarathi": "टक्कर",
     "exampleSentence": "There was a collision between a car and a truck at the junction.",
     "distractorMeanings": [
       "a race between two buses",
@@ -7294,7 +7045,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "usual and not special",
-    "meaningMarathi": "सामान्य, साधा",
     "exampleSentence": "It was an ordinary day until the circus came to town.",
     "distractorMeanings": [
       "very rare and special",
@@ -7324,7 +7074,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a small hand lamp that runs on batteries",
-    "meaningMarathi": "विजेरी, टॉर्च",
     "exampleSentence": "Dad used a torch to look for the key in the dark.",
     "distractorMeanings": [
       "a stick used for walking",
@@ -7352,7 +7101,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a young person or child",
-    "meaningMarathi": "तरुण मुलगा, मूल",
     "exampleSentence": "The youngster ran quickly to catch the bus.",
     "distractorMeanings": [
       "an old man with a stick",
@@ -7381,7 +7129,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "full of too many people",
-    "meaningMarathi": "गर्दीचा",
     "exampleSentence": "The railway platform was crowded before the festival.",
     "distractorMeanings": [
       "empty and very quiet",
@@ -7410,7 +7157,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to make something more active",
-    "meaningMarathi": "चालना देणे, उत्तेजित करणे",
     "exampleSentence": "Rain will stimulate the seeds to grow quickly.",
     "distractorMeanings": [
       "to make something stop moving",
@@ -7440,7 +7186,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a large animal of Australia that hops on strong legs",
-    "meaningMarathi": "कांगारू",
     "exampleSentence": "The mother kangaroo carried her baby in a pouch.",
     "distractorMeanings": [
       "a large grey animal with a trunk",
@@ -7469,7 +7214,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a liquid fuel used to run cars and scooters",
-    "meaningMarathi": "पेट्रोल",
     "exampleSentence": "Dad filled the scooter with petrol at the pump.",
     "distractorMeanings": [
       "a drink made of fruit juice",
@@ -7497,7 +7241,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a liquid that cleans the hands from germs",
-    "meaningMarathi": "सॅनिटायझर",
     "exampleSentence": "Aai keeps a small bottle of sanitiser in her bag.",
     "distractorMeanings": [
       "a soap used for washing clothes",
@@ -7528,7 +7271,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to take money out of a bank account",
-    "meaningMarathi": "काढून घेणे",
     "exampleSentence": "Dad went to the bank to withdraw some money.",
     "distractorMeanings": [
       "to put money into a locked box",
@@ -7560,7 +7302,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "of a whole country",
-    "meaningMarathi": "राष्ट्रीय",
     "exampleSentence": "The peacock is the national bird of India.",
     "distractorMeanings": [
       "of one small village only",
@@ -7589,7 +7330,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to talk and work with other people",
-    "meaningMarathi": "एकमेकांशी संवाद साधणे",
     "exampleSentence": "Children interact with each other during games.",
     "distractorMeanings": [
       "to stay silent all the time",
@@ -7619,7 +7359,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a car with a driver that you pay to ride in",
-    "meaningMarathi": "टॅक्सी",
     "exampleSentence": "We took a taxi from the airport to our hotel.",
     "distractorMeanings": [
       "a boat that sails across a lake",
@@ -7647,7 +7386,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to blow a car's horn",
-    "meaningMarathi": "हॉर्न वाजवणे",
     "exampleSentence": "Please do not honk near the hospital.",
     "distractorMeanings": [
       "to turn on the headlights",
@@ -7675,7 +7413,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a stone platform beside the water where ships stop",
-    "meaningMarathi": "धक्का",
     "exampleSentence": "The ship was tied to the quay at Mumbai.",
     "distractorMeanings": [
       "a bridge over a deep valley",
@@ -7703,7 +7440,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a short account of the main points",
-    "meaningMarathi": "सारांश",
     "exampleSentence": "Write a short summary of the story in your own words.",
     "distractorMeanings": [
       "a long list of every small detail",
@@ -7733,7 +7469,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "famous for something bad",
-    "meaningMarathi": "कुप्रसिद्ध",
     "exampleSentence": "This road is notorious for traffic jams during the rains.",
     "distractorMeanings": [
       "famous for being very beautiful",
@@ -7764,7 +7499,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "not long in length or time",
-    "meaningMarathi": "लहान, कमी",
     "exampleSentence": "The bus journey was short and took only ten minutes.",
     "distractorMeanings": [
       "very long and tiring",
@@ -7792,7 +7526,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to speak angrily with someone who disagrees",
-    "meaningMarathi": "वाद घालणे",
     "exampleSentence": "Do not argue with your friend about a small thing.",
     "distractorMeanings": [
       "to agree with someone politely",
@@ -7821,7 +7554,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a person who travels in a vehicle but does not drive it",
-    "meaningMarathi": "प्रवासी",
     "exampleSentence": "Every passenger must buy a ticket before the journey.",
     "distractorMeanings": [
       "a person who drives the bus",
@@ -7850,7 +7582,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a natural substance in food that keeps us healthy",
-    "meaningMarathi": "जीवनसत्त्व",
     "exampleSentence": "Oranges and lemons have plenty of vitamin C.",
     "distractorMeanings": [
       "a kind of tasty sweet",
@@ -7880,7 +7611,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a school for very young children",
-    "meaningMarathi": "बालवाडी",
     "exampleSentence": "My little sister goes to kindergarten near our house.",
     "distractorMeanings": [
       "a college for older students",
@@ -7911,7 +7641,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "after the proper or usual time",
-    "meaningMarathi": "उशिरा",
     "exampleSentence": "The train was late and we waited on the platform.",
     "distractorMeanings": [
       "before the usual time",
@@ -7939,7 +7668,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to watch and guide people while they work",
-    "meaningMarathi": "देखरेख करणे",
     "exampleSentence": "The teacher will supervise the children at the school ground.",
     "distractorMeanings": [
       "to leave children alone and go away",
@@ -7969,7 +7697,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to cause trouble or worry for someone",
-    "meaningMarathi": "त्रास देणे",
     "exampleSentence": "Please do not bother Dad while he is working.",
     "distractorMeanings": [
       "to help someone with a smile",
@@ -7998,7 +7725,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a planned series of actions to reach a goal",
-    "meaningMarathi": "मोहीम",
     "exampleSentence": "Our school started a campaign to keep the river clean.",
     "distractorMeanings": [
       "a quiet rest after lunch",
@@ -8027,7 +7753,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a worried feeling about something that may happen",
-    "meaningMarathi": "चिंता",
     "exampleSentence": "Riya felt anxiety before her first day at the new school.",
     "distractorMeanings": [
       "a feeling of great joy",
@@ -8057,7 +7782,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a thick strong cord made of twisted threads",
-    "meaningMarathi": "दोरी",
     "exampleSentence": "The villagers pulled the bucket up from the well with a rope.",
     "distractorMeanings": [
       "a thin sheet of paper",
@@ -8085,7 +7809,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to leave a place to begin a journey",
-    "meaningMarathi": "निघणे, प्रस्थान करणे",
     "exampleSentence": "The train will depart from platform two at six o'clock.",
     "distractorMeanings": [
       "to arrive at a station",
@@ -8113,7 +7836,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a short trip for pleasure",
-    "meaningMarathi": "सहल",
     "exampleSentence": "The class went on an outing to the zoo.",
     "distractorMeanings": [
       "a long test at school",
@@ -8142,7 +7864,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "very good and giving great joy",
-    "meaningMarathi": "अद्भुत, छान",
     "exampleSentence": "We had a wonderful time at the fair.",
     "distractorMeanings": [
       "very bad and boring",
@@ -8172,7 +7893,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a person who helps someone in their work",
-    "meaningMarathi": "साहाय्यक",
     "exampleSentence": "The shop assistant packed our groceries in a bag.",
     "distractorMeanings": [
       "the owner of a big shop",
@@ -8201,7 +7921,6 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to go and bring something back",
-    "meaningMarathi": "आणणे",
     "exampleSentence": "Please fetch a glass of water from the kitchen.",
     "distractorMeanings": [
       "to throw something away",
@@ -8229,7 +7948,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "feeling sleepy",
-    "meaningMarathi": "झोपाळू",
     "exampleSentence": "The long bus ride made Gauri feel drowsy.",
     "distractorMeanings": [
       "full of energy and ready to run",
@@ -8258,7 +7976,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a person who writes letters and keeps records for a boss",
-    "meaningMarathi": "चिटणीस, सचिव",
     "exampleSentence": "The secretary typed a letter for the manager.",
     "distractorMeanings": [
       "a person who drives a bus",
@@ -8288,7 +8005,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a person who looks after the books in a library",
-    "meaningMarathi": "ग्रंथपाल",
     "exampleSentence": "The librarian helped Om find a book about birds.",
     "distractorMeanings": [
       "a teacher who teaches science",
@@ -8319,7 +8035,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "the qualities that make a person different from others",
-    "meaningMarathi": "व्यक्तिमत्त्व",
     "exampleSentence": "Riya has a cheerful personality and makes friends easily.",
     "distractorMeanings": [
       "the colour of a person's clothes",
@@ -8351,7 +8066,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 1,
     "meaning": "feeling that everything is spinning around",
-    "meaningMarathi": "चक्कर आलेला",
     "exampleSentence": "I felt dizzy after I spun round and round.",
     "distractorMeanings": [
       "feeling very calm and steady",
@@ -8379,7 +8093,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "the money spent on something",
-    "meaningMarathi": "खर्च",
     "exampleSentence": "The expense of the school trip was two hundred rupees.",
     "distractorMeanings": [
       "the money saved in a box",
@@ -8408,7 +8121,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to be present at an event or place",
-    "meaningMarathi": "उपस्थित राहणे",
     "exampleSentence": "Riya will attend the Republic Day programme at school.",
     "distractorMeanings": [
       "to miss a class on purpose",
@@ -8437,7 +8149,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "the sound you make when something is funny",
-    "meaningMarathi": "हसणे, हास्य",
     "exampleSentence": "Laughter filled the room when the clown fell down.",
     "distractorMeanings": [
       "the sound of a loud thunder",
@@ -8465,7 +8176,6 @@
     "partOfSpeech": "verb",
     "difficulty": 3,
     "meaning": "to go through something, often hard or painful",
-    "meaningMarathi": "अनुभवातून जाणे",
     "exampleSentence": "Dad will undergo a small test at the hospital.",
     "distractorMeanings": [
       "to skip something on purpose",
@@ -8498,7 +8208,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a written message sent to someone by post",
-    "meaningMarathi": "पत्र",
     "exampleSentence": "Riya wrote a letter to her grandmother in the village.",
     "distractorMeanings": [
       "a short call made on a phone",
@@ -8526,7 +8235,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "money matters, such as saving and spending",
-    "meaningMarathi": "आर्थिक व्यवहार",
     "exampleSentence": "My uncle works in finance at a big bank.",
     "distractorMeanings": [
       "games played in a playground",
@@ -8555,7 +8263,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to say strongly that something must happen",
-    "meaningMarathi": "आग्रह धरणे",
     "exampleSentence": "Aai insists that we wash our hands before eating.",
     "distractorMeanings": [
       "to say that something may not happen",
@@ -8584,7 +8291,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "just what you would expect from a kind of thing",
-    "meaningMarathi": "नेहमीचा, ठराविक",
     "exampleSentence": "A typical bus in our town is red and white.",
     "distractorMeanings": [
       "very different from all others",
@@ -8613,7 +8319,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a measurement such as length, width or height",
-    "meaningMarathi": "परिमाण",
     "exampleSentence": "Measure the dimension of the room before you buy a carpet.",
     "distractorMeanings": [
       "the weight of a loaded truck",
@@ -8643,7 +8348,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a person who cleans a place",
-    "meaningMarathi": "सफाई कामगार",
     "exampleSentence": "The cleaner sweeps the school corridor every morning.",
     "distractorMeanings": [
       "a person who cooks in a hotel",
@@ -8672,7 +8376,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a thin book of stories and pictures printed every month",
-    "meaningMarathi": "मासिक",
     "exampleSentence": "Gauri reads a children's magazine every month.",
     "distractorMeanings": [
       "a thick book of maps",
@@ -8702,7 +8405,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to set something on fire",
-    "meaningMarathi": "पेटवणे",
     "exampleSentence": "Be careful, a small spark can ignite dry grass.",
     "distractorMeanings": [
       "to put out a fire with water",
@@ -8731,7 +8433,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "the layer of air around the Earth",
-    "meaningMarathi": "वातावरण",
     "exampleSentence": "The atmosphere around Earth contains the air we breathe.",
     "distractorMeanings": [
       "the bottom of the deep ocean",
@@ -8761,7 +8462,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "happening only in a certain time of the year",
-    "meaningMarathi": "हंगामी",
     "exampleSentence": "Mangoes are a seasonal fruit that we enjoy in summer.",
     "distractorMeanings": [
       "available at every time of the year",
@@ -8791,7 +8491,6 @@
     "partOfSpeech": "noun",
     "difficulty": 1,
     "meaning": "a small round thing used to fasten clothes",
-    "meaningMarathi": "बटण",
     "exampleSentence": "A button came off my school shirt.",
     "distractorMeanings": [
       "a long belt used to tie clothes",
@@ -8819,7 +8518,6 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to get on a ship, plane or train",
-    "meaningMarathi": "चढणे, प्रवासाला निघणे",
     "exampleSentence": "Passengers embark on the ferry at the harbour.",
     "distractorMeanings": [
       "to get off a boat at a port",
@@ -8848,7 +8546,6 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "the last date by which something must be done",
-    "meaningMarathi": "अंतिम मुदत",
     "exampleSentence": "The deadline for the project is next Friday.",
     "distractorMeanings": [
       "the first day of a new class",
@@ -8877,7 +8574,6 @@
     "partOfSpeech": "adjective",
     "difficulty": 3,
     "meaning": "able to be seen",
-    "meaningMarathi": "दृश्य, दिसणारे",
     "exampleSentence": "The hills are visible from our window on a clear day.",
     "distractorMeanings": [
       "too small to be noticed",
@@ -8907,7 +8603,6 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "one half of the Earth",
-    "meaningMarathi": "गोलार्ध",
     "exampleSentence": "India lies in the northern hemisphere of the Earth.",
     "distractorMeanings": [
       "a map showing the roads of a city",

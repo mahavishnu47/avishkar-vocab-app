@@ -40,7 +40,7 @@ function inflections(word, forms = []) {
 }
 
 function checkEntry(e, part, where) {
-  const req = ['id', 'dayIndex', 'word', 'partOfSpeech', 'difficulty', 'meaning', 'meaningMarathi', 'exampleSentence',
+  const req = ['id', 'dayIndex', 'word', 'partOfSpeech', 'difficulty', 'meaning', 'exampleSentence',
     'distractorMeanings', 'syllables', 'tags', 'contextWords'];
   for (const k of req) if (e[k] === undefined || e[k] === null) err(where, `missing field "${k}"`);
   const allowed = new Set([...req, 'forms']);
@@ -67,8 +67,6 @@ function checkEntry(e, part, where) {
     if (w && tokens(e.meaning).includes(w)) err(where, `meaning must not contain the word itself`);
   } else err(where, 'meaning must be a string');
 
-  if (typeof e.meaningMarathi !== 'string' || !DEVANAGARI.test(e.meaningMarathi)) err(where, 'meaningMarathi must be Devanagari text');
-  else if (/[a-z]/i.test(e.meaningMarathi)) warn(where, 'meaningMarathi contains Latin letters');
 
   if (typeof e.exampleSentence === 'string') {
     const s = e.exampleSentence.trim();

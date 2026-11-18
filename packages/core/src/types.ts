@@ -27,7 +27,7 @@ export interface WordEntry {
   /** simple English meaning, <= 12 words, must not contain the word itself */
   meaning: string;
   /** Marathi gloss in Devanagari */
-  meaningMarathi: string;
+  meaningMarathi?: string; // unused: MVP is English-only
   /** 6-14 words, contains the word (or an inflection), starts with capital, ends with . ! or ? */
   exampleSentence: string;
   /** exactly 2 wrong-but-plausible meanings for the 3-option check */
