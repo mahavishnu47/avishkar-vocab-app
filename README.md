@@ -62,3 +62,14 @@ docs            PRD, API, UI, content specs, build plan
 - Students are stored by first name, roll number and avatar only. PINs are 4 digits, kept so they can be reprinted on cards.
 - When `ANTHROPIC_API_KEY` is set, only the target word and the child's sentence are sent to the Claude API, with no names or IDs, and only after the local moderation check passes. The school has collected consent for this.
 - All data stays in the local SQLite file.
+
+## Optional Claude sentence scoring
+
+Sentence scoring uses local rules by default. Set these environment variables on the server to add Claude scoring:
+
+| Variable | Meaning |
+|---|---|
+| `ANTHROPIC_API_KEY` | Enables Claude scoring when set. Unset = rules only. |
+| `CLAUDE_MODEL` | Model to use. Default `claude-haiku-5-5` (cheap; about 1300 calls/day in the pilot). |
+
+Claude only refines grammar, relevance and length, and adds a short tip. The "word used" score and copy detection always come from the rules. Each call has a 6 second timeout; on any error, timeout, refusal or invalid output the rules result is used, so a child is never blocked. Privacy: only the target word, its part of speech and meaning, and the child's sentence are sent (no names or IDs), and only after the local moderation check passes.
