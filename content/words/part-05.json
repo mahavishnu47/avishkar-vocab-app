@@ -1,0 +1,8851 @@
+[
+  {
+    "id": "d245-1",
+    "dayIndex": 245,
+    "word": "ceiling",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "the top surface inside a room above your head",
+    "meaningMarathi": "छत",
+    "exampleSentence": "A small lizard was sitting on the ceiling of the kitchen.",
+    "distractorMeanings": [
+      "the floor that we walk on",
+      "the wall that has a door"
+    ],
+    "syllables": [
+      "ceil",
+      "ing"
+    ],
+    "tags": [
+      "home"
+    ],
+    "contextWords": [
+      "fan",
+      "room",
+      "lizard",
+      "roof",
+      "high"
+    ]
+  },
+  {
+    "id": "d245-2",
+    "dayIndex": 245,
+    "word": "stammer",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to speak with a stop or repeat a sound again and again",
+    "meaningMarathi": "अडखळत बोलणे",
+    "exampleSentence": "Riya would stammer when she was too nervous to speak.",
+    "distractorMeanings": [
+      "to speak very fast without any stop",
+      "to sing in a loud clear voice"
+    ],
+    "syllables": [
+      "stam",
+      "mer"
+    ],
+    "tags": [
+      "communication",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "speak",
+      "nervous",
+      "words",
+      "fear",
+      "stage"
+    ]
+  },
+  {
+    "id": "d245-3",
+    "dayIndex": 245,
+    "word": "trumpet",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a brass instrument you blow to make a loud sound",
+    "meaningMarathi": "तुतारी",
+    "exampleSentence": "The band leader blew the trumpet at the start of the parade.",
+    "distractorMeanings": [
+      "a drum that is beaten with sticks",
+      "a string instrument played with a bow"
+    ],
+    "syllables": [
+      "trum",
+      "pet"
+    ],
+    "tags": [
+      "music-art"
+    ],
+    "contextWords": [
+      "band",
+      "blow",
+      "brass",
+      "parade",
+      "loud"
+    ]
+  },
+  {
+    "id": "d245-4",
+    "dayIndex": 245,
+    "word": "fortunately",
+    "partOfSpeech": "adverb",
+    "difficulty": 3,
+    "meaning": "by good luck",
+    "meaningMarathi": "सुदैवाने",
+    "exampleSentence": "Fortunately, Aarav found his lost bag at the bus stop.",
+    "distractorMeanings": [
+      "by bad luck",
+      "by careful planning"
+    ],
+    "syllables": [
+      "for",
+      "tu",
+      "nate",
+      "ly"
+    ],
+    "tags": [
+      "communication",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "luck",
+      "found",
+      "lost",
+      "good",
+      "happy"
+    ]
+  },
+  {
+    "id": "d245-5",
+    "dayIndex": 245,
+    "word": "uncertain",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "not sure about something",
+    "meaningMarathi": "अनिश्चित",
+    "exampleSentence": "Aarav was uncertain about the answer and checked his book.",
+    "distractorMeanings": [
+      "completely sure about it",
+      "very angry about it"
+    ],
+    "syllables": [
+      "un",
+      "cer",
+      "tain"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "school"
+    ],
+    "contextWords": [
+      "doubt",
+      "sure",
+      "answer",
+      "maybe",
+      "unsure"
+    ]
+  },
+  {
+    "id": "d246-1",
+    "dayIndex": 246,
+    "word": "hop",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to jump on one foot or with small jumps",
+    "meaningMarathi": "एका पायावर उडी मारणे",
+    "exampleSentence": "The little girl began to hop across the playground.",
+    "distractorMeanings": [
+      "to run very fast in a straight line",
+      "to walk slowly with a stick"
+    ],
+    "syllables": [
+      "hop"
+    ],
+    "tags": [
+      "actions-movement",
+      "sports-games"
+    ],
+    "contextWords": [
+      "jump",
+      "foot",
+      "frog",
+      "rabbit",
+      "game"
+    ]
+  },
+  {
+    "id": "d246-2",
+    "dayIndex": 246,
+    "word": "fairy",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a tiny magical girl with wings in stories",
+    "meaningMarathi": "परी",
+    "exampleSentence": "The fairy gave the poor girl a wish.",
+    "distractorMeanings": [
+      "a big ugly monster in a cave",
+      "a brave king in a fort"
+    ],
+    "syllables": [
+      "fair",
+      "y"
+    ],
+    "tags": [
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "wings",
+      "magic",
+      "wish",
+      "story",
+      "wand"
+    ]
+  },
+  {
+    "id": "d246-3",
+    "dayIndex": 246,
+    "word": "comma",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a small mark that shows a short pause in writing",
+    "meaningMarathi": "स्वल्पविराम",
+    "exampleSentence": "Riya put a comma between the names of the fruits.",
+    "distractorMeanings": [
+      "a mark that ends a sentence",
+      "a mark that asks a question"
+    ],
+    "syllables": [
+      "com",
+      "ma"
+    ],
+    "tags": [
+      "school",
+      "communication"
+    ],
+    "contextWords": [
+      "sentence",
+      "punctuation",
+      "write",
+      "pause",
+      "mark"
+    ]
+  },
+  {
+    "id": "d246-4",
+    "dayIndex": 246,
+    "word": "sportsmanship",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "fair and kind behaviour while playing a game",
+    "meaningMarathi": "खिलाडूवृत्ती",
+    "exampleSentence": "Aarav showed good sportsmanship when he clapped for the winning team.",
+    "distractorMeanings": [
+      "the habit of cheating in a game",
+      "the skill of kicking a ball far"
+    ],
+    "syllables": [
+      "sports",
+      "man",
+      "ship"
+    ],
+    "tags": [
+      "sports-games",
+      "character-values"
+    ],
+    "contextWords": [
+      "fair",
+      "game",
+      "team",
+      "winner",
+      "loser"
+    ]
+  },
+  {
+    "id": "d246-5",
+    "dayIndex": 246,
+    "word": "alarming",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "causing fear and worry",
+    "meaningMarathi": "चिंताजनक, भीतीदायक",
+    "exampleSentence": "The alarming sound of the siren made everyone run outside.",
+    "distractorMeanings": [
+      "causing joy and laughter",
+      "causing sleep and rest"
+    ],
+    "syllables": [
+      "a",
+      "larm",
+      "ing"
+    ],
+    "tags": [
+      "safety",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "fear",
+      "siren",
+      "loud",
+      "danger",
+      "warn"
+    ]
+  },
+  {
+    "id": "d247-1",
+    "dayIndex": 247,
+    "word": "kite",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a light toy that flies in the wind on a string",
+    "meaningMarathi": "पतंग",
+    "exampleSentence": "Aarav flew a colourful kite on Makar Sankranti.",
+    "distractorMeanings": [
+      "a small boat that floats on a pond",
+      "a toy car pulled by a rope"
+    ],
+    "syllables": [
+      "kite"
+    ],
+    "tags": [
+      "festivals",
+      "sports-games"
+    ],
+    "contextWords": [
+      "string",
+      "wind",
+      "sky",
+      "sankranti",
+      "fly"
+    ]
+  },
+  {
+    "id": "d247-2",
+    "dayIndex": 247,
+    "word": "cousin",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "the child of your uncle or aunt",
+    "meaningMarathi": "चुलत भाऊ किंवा बहीण",
+    "exampleSentence": "My cousin comes to our house every Diwali holiday.",
+    "distractorMeanings": [
+      "the brother of your father",
+      "the mother of your friend"
+    ],
+    "syllables": [
+      "cous",
+      "in"
+    ],
+    "tags": [
+      "family"
+    ],
+    "contextWords": [
+      "uncle",
+      "aunt",
+      "holiday",
+      "family",
+      "play"
+    ]
+  },
+  {
+    "id": "d247-3",
+    "dayIndex": 247,
+    "word": "grammar",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "the rules about how words are used in a language",
+    "meaningMarathi": "व्याकरण",
+    "exampleSentence": "Aarav learns English grammar from his teacher every Monday.",
+    "distractorMeanings": [
+      "the list of words in a book",
+      "the sounds made by animals"
+    ],
+    "syllables": [
+      "gram",
+      "mar"
+    ],
+    "tags": [
+      "school",
+      "communication"
+    ],
+    "contextWords": [
+      "rules",
+      "language",
+      "sentence",
+      "verb",
+      "teacher"
+    ]
+  },
+  {
+    "id": "d247-4",
+    "dayIndex": 247,
+    "word": "deafening",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "so loud that it hurts your ears",
+    "meaningMarathi": "कर्णकर्कश",
+    "exampleSentence": "The deafening noise of the firecrackers frightened the puppy.",
+    "distractorMeanings": [
+      "so soft that nobody hears it",
+      "so sweet that all listen"
+    ],
+    "syllables": [
+      "deaf",
+      "en",
+      "ing"
+    ],
+    "tags": [
+      "describing-things",
+      "festivals"
+    ],
+    "contextWords": [
+      "noise",
+      "loud",
+      "ears",
+      "crackers",
+      "drum"
+    ]
+  },
+  {
+    "id": "d247-5",
+    "dayIndex": 247,
+    "word": "endeavour",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to try hard to do something",
+    "meaningMarathi": "प्रयत्न करणे",
+    "exampleSentence": "Students endeavour to speak English every day in the class.",
+    "distractorMeanings": [
+      "to avoid doing any hard work",
+      "to stop a task in the middle"
+    ],
+    "syllables": [
+      "en",
+      "deav",
+      "our"
+    ],
+    "tags": [
+      "character-values",
+      "school"
+    ],
+    "contextWords": [
+      "try",
+      "effort",
+      "speak",
+      "hard",
+      "attempt"
+    ]
+  },
+  {
+    "id": "d248-1",
+    "dayIndex": 248,
+    "word": "bulb",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a glass part that gives light when switched on",
+    "meaningMarathi": "बल्ब, दिवा",
+    "exampleSentence": "Aarav changed the bulb because the room was dark.",
+    "distractorMeanings": [
+      "a round fruit that grows on a tree",
+      "a soft toy for small children"
+    ],
+    "syllables": [
+      "bulb"
+    ],
+    "tags": [
+      "home",
+      "describing-things"
+    ],
+    "contextWords": [
+      "light",
+      "switch",
+      "room",
+      "lamp",
+      "electric"
+    ]
+  },
+  {
+    "id": "d248-2",
+    "dayIndex": 248,
+    "word": "hiss",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to make a long sound like the letter s",
+    "meaningMarathi": "फुत्कार टाकणे",
+    "exampleSentence": "The angry snake began to hiss and raise its head.",
+    "distractorMeanings": [
+      "to sing a sweet song",
+      "to bark like a dog"
+    ],
+    "syllables": [
+      "hiss"
+    ],
+    "tags": [
+      "animals",
+      "communication"
+    ],
+    "contextWords": [
+      "snake",
+      "cat",
+      "sound",
+      "angry",
+      "air"
+    ]
+  },
+  {
+    "id": "d248-3",
+    "dayIndex": 248,
+    "word": "kindness",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "the quality of being friendly and caring to others",
+    "meaningMarathi": "दयाळूपणा",
+    "exampleSentence": "Thank you for your kindness in helping me carry the books.",
+    "distractorMeanings": [
+      "the habit of being rude to others",
+      "the fear of speaking in class"
+    ],
+    "syllables": [
+      "kind",
+      "ness"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "help",
+      "gentle",
+      "care",
+      "friend",
+      "heart"
+    ]
+  },
+  {
+    "id": "d248-4",
+    "dayIndex": 248,
+    "word": "purposeful",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "having a clear aim",
+    "meaningMarathi": "ध्येयपूर्ण, हेतुपूर्ण",
+    "exampleSentence": "Riya's purposeful steps showed she knew where she was going.",
+    "distractorMeanings": [
+      "without any aim or plan",
+      "careless and full of fun"
+    ],
+    "syllables": [
+      "pur",
+      "pose",
+      "ful"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "aim",
+      "goal",
+      "plan",
+      "walk",
+      "clear"
+    ]
+  },
+  {
+    "id": "d248-5",
+    "dayIndex": 248,
+    "word": "trustworthy",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "able to be trusted because you are honest",
+    "meaningMarathi": "विश्वासू",
+    "exampleSentence": "A trustworthy friend always keeps your secrets safe.",
+    "distractorMeanings": [
+      "likely to tell lies to others",
+      "always late for every meeting"
+    ],
+    "syllables": [
+      "trust",
+      "wor",
+      "thy"
+    ],
+    "tags": [
+      "character-values",
+      "friends"
+    ],
+    "contextWords": [
+      "honest",
+      "friend",
+      "trust",
+      "secret",
+      "promise"
+    ]
+  },
+  {
+    "id": "d249-1",
+    "dayIndex": 249,
+    "word": "corner",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "the place where two walls or roads meet",
+    "meaningMarathi": "कोपरा",
+    "exampleSentence": "Gauri kept her school bag in the corner of the room.",
+    "distractorMeanings": [
+      "the middle part of a field",
+      "a long road between two towns"
+    ],
+    "syllables": [
+      "cor",
+      "ner"
+    ],
+    "tags": [
+      "home",
+      "city-town"
+    ],
+    "contextWords": [
+      "wall",
+      "room",
+      "road",
+      "turn",
+      "edge"
+    ]
+  },
+  {
+    "id": "d249-2",
+    "dayIndex": 249,
+    "word": "winner",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a person who wins a game or a race",
+    "meaningMarathi": "विजेता",
+    "exampleSentence": "The winner of the race got a shining golden cup.",
+    "distractorMeanings": [
+      "a person who loses a game",
+      "a person who watches a match"
+    ],
+    "syllables": [
+      "win",
+      "ner"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "race",
+      "prize",
+      "cup",
+      "first",
+      "game"
+    ]
+  },
+  {
+    "id": "d249-3",
+    "dayIndex": 249,
+    "word": "struggle",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to try very hard to do something difficult",
+    "meaningMarathi": "धडपड करणे",
+    "exampleSentence": "The ant had to struggle to carry the big grain home.",
+    "distractorMeanings": [
+      "to finish a job very easily",
+      "to sit and watch others work"
+    ],
+    "syllables": [
+      "strug",
+      "gle"
+    ],
+    "tags": [
+      "character-values",
+      "actions-movement"
+    ],
+    "contextWords": [
+      "hard",
+      "try",
+      "ant",
+      "carry",
+      "difficult"
+    ]
+  },
+  {
+    "id": "d249-4",
+    "dayIndex": 249,
+    "word": "admirable",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "deserving respect and praise",
+    "meaningMarathi": "प्रशंसनीय",
+    "exampleSentence": "Riya's honesty in returning the lost purse was admirable.",
+    "distractorMeanings": [
+      "deserving blame and punishment",
+      "deserving a rest and a nap"
+    ],
+    "syllables": [
+      "ad",
+      "mir",
+      "a",
+      "ble"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "praise",
+      "respect",
+      "honest",
+      "good",
+      "brave"
+    ]
+  },
+  {
+    "id": "d249-5",
+    "dayIndex": 249,
+    "word": "jubilant",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "extremely happy because of a success",
+    "meaningMarathi": "आनंदित, विजयोल्हासाने भरलेला",
+    "exampleSentence": "The jubilant fans danced on the road after the victory.",
+    "distractorMeanings": [
+      "very sad after a defeat",
+      "very tired after a journey"
+    ],
+    "syllables": [
+      "ju",
+      "bi",
+      "lant"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "sports-games"
+    ],
+    "contextWords": [
+      "victory",
+      "happy",
+      "crowd",
+      "win",
+      "celebrate"
+    ]
+  },
+  {
+    "id": "d250-1",
+    "dayIndex": 250,
+    "word": "weep",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to cry with tears falling from your eyes",
+    "meaningMarathi": "रडणे, अश्रू गाळणे",
+    "exampleSentence": "Gauri began to weep when her favourite doll broke.",
+    "distractorMeanings": [
+      "to laugh with a loud voice",
+      "to shout at someone in anger"
+    ],
+    "syllables": [
+      "weep"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "tears",
+      "sad",
+      "cry",
+      "doll",
+      "eyes"
+    ],
+    "forms": [
+      "wept"
+    ]
+  },
+  {
+    "id": "d250-2",
+    "dayIndex": 250,
+    "word": "painter",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a person who makes pictures with colours",
+    "meaningMarathi": "चित्रकार",
+    "exampleSentence": "The painter sat by the lake and painted the sunset.",
+    "distractorMeanings": [
+      "a person who makes shoes",
+      "a person who writes songs"
+    ],
+    "syllables": [
+      "paint",
+      "er"
+    ],
+    "tags": [
+      "music-art",
+      "jobs-work"
+    ],
+    "contextWords": [
+      "brush",
+      "colour",
+      "canvas",
+      "picture",
+      "art"
+    ]
+  },
+  {
+    "id": "d250-3",
+    "dayIndex": 250,
+    "word": "gifted",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "having a special natural skill",
+    "meaningMarathi": "प्रतिभावान",
+    "exampleSentence": "The gifted young singer won the school music prize.",
+    "distractorMeanings": [
+      "having no skill in any work",
+      "having a lot of money"
+    ],
+    "syllables": [
+      "gift",
+      "ed"
+    ],
+    "tags": [
+      "music-art",
+      "character-values"
+    ],
+    "contextWords": [
+      "talent",
+      "skill",
+      "singer",
+      "artist",
+      "smart"
+    ]
+  },
+  {
+    "id": "d250-4",
+    "dayIndex": 250,
+    "word": "fiercely",
+    "partOfSpeech": "adverb",
+    "difficulty": 3,
+    "meaning": "in a strong and angry way",
+    "meaningMarathi": "उग्रपणे",
+    "exampleSentence": "The lioness fought fiercely to protect her little cubs.",
+    "distractorMeanings": [
+      "in a soft and gentle way",
+      "in a lazy and sleepy way"
+    ],
+    "syllables": [
+      "fierce",
+      "ly"
+    ],
+    "tags": [
+      "animals",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "angry",
+      "tiger",
+      "fight",
+      "wild",
+      "strong"
+    ]
+  },
+  {
+    "id": "d250-5",
+    "dayIndex": 250,
+    "word": "determination",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a strong will to keep trying until you finish",
+    "meaningMarathi": "जिद्द, दृढनिश्चय",
+    "exampleSentence": "Gauri finished the race with great determination and a smile.",
+    "distractorMeanings": [
+      "a fear of failing in a race",
+      "a habit of giving up quickly"
+    ],
+    "syllables": [
+      "de",
+      "ter",
+      "mi",
+      "na",
+      "tion"
+    ],
+    "tags": [
+      "character-values",
+      "sports-games"
+    ],
+    "contextWords": [
+      "try",
+      "hard",
+      "goal",
+      "effort",
+      "win"
+    ]
+  },
+  {
+    "id": "d251-1",
+    "dayIndex": 251,
+    "word": "blind",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "not able to see",
+    "meaningMarathi": "आंधळा",
+    "exampleSentence": "The kind boy helped a blind man cross the road.",
+    "distractorMeanings": [
+      "not able to hear sounds",
+      "not able to walk fast"
+    ],
+    "syllables": [
+      "blind"
+    ],
+    "tags": [
+      "body-health"
+    ],
+    "contextWords": [
+      "see",
+      "eyes",
+      "stick",
+      "help",
+      "road"
+    ]
+  },
+  {
+    "id": "d251-2",
+    "dayIndex": 251,
+    "word": "fearful",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "feeling afraid or worried",
+    "meaningMarathi": "भित्रा, भयभीत",
+    "exampleSentence": "Om was fearful of the dark corridor at night.",
+    "distractorMeanings": [
+      "very sure and not afraid",
+      "too happy to speak"
+    ],
+    "syllables": [
+      "fear",
+      "ful"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "afraid",
+      "dark",
+      "scared",
+      "night",
+      "worry"
+    ]
+  },
+  {
+    "id": "d251-3",
+    "dayIndex": 251,
+    "word": "yearn",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to want something very much for a long time",
+    "meaningMarathi": "आतुरतेने इच्छा करणे",
+    "exampleSentence": "The little girl would yearn for her father to return.",
+    "distractorMeanings": [
+      "to forget about someone quickly",
+      "to refuse a gift from a friend"
+    ],
+    "syllables": [
+      "yearn"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "wish",
+      "long",
+      "miss",
+      "father",
+      "hope"
+    ]
+  },
+  {
+    "id": "d251-4",
+    "dayIndex": 251,
+    "word": "consequence",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "something that happens because of an action",
+    "meaningMarathi": "परिणाम",
+    "exampleSentence": "The consequence of not studying is a low mark in the exam.",
+    "distractorMeanings": [
+      "the reason for starting a game",
+      "a gift given at the end of a year"
+    ],
+    "syllables": [
+      "con",
+      "se",
+      "quence"
+    ],
+    "tags": [
+      "character-values",
+      "school"
+    ],
+    "contextWords": [
+      "result",
+      "exam",
+      "action",
+      "because",
+      "mistake"
+    ]
+  },
+  {
+    "id": "d251-5",
+    "dayIndex": 251,
+    "word": "protection",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "the act of keeping someone or something safe",
+    "meaningMarathi": "संरक्षण",
+    "exampleSentence": "A helmet gives protection to your head while riding a bike.",
+    "distractorMeanings": [
+      "the act of putting someone in danger",
+      "the act of breaking something by force"
+    ],
+    "syllables": [
+      "pro",
+      "tec",
+      "tion"
+    ],
+    "tags": [
+      "safety"
+    ],
+    "contextWords": [
+      "safe",
+      "helmet",
+      "guard",
+      "umbrella",
+      "care"
+    ]
+  },
+  {
+    "id": "d252-1",
+    "dayIndex": 252,
+    "word": "candle",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a stick of wax that burns to give light",
+    "meaningMarathi": "मेणबत्ती",
+    "exampleSentence": "Riya blew out the candle on her birthday cake.",
+    "distractorMeanings": [
+      "a small box for keeping pencils",
+      "a bright star seen at night"
+    ],
+    "syllables": [
+      "can",
+      "dle"
+    ],
+    "tags": [
+      "festivals",
+      "home"
+    ],
+    "contextWords": [
+      "flame",
+      "wax",
+      "birthday",
+      "light",
+      "cake"
+    ]
+  },
+  {
+    "id": "d252-2",
+    "dayIndex": 252,
+    "word": "fasten",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to join or tie something firmly",
+    "meaningMarathi": "बांधणे, लावणे",
+    "exampleSentence": "Please fasten your seat belt before the bus starts.",
+    "distractorMeanings": [
+      "to open a window wide",
+      "to throw something far away"
+    ],
+    "syllables": [
+      "fas",
+      "ten"
+    ],
+    "tags": [
+      "safety",
+      "transport-travel"
+    ],
+    "contextWords": [
+      "belt",
+      "button",
+      "tie",
+      "tight",
+      "seat"
+    ]
+  },
+  {
+    "id": "d252-3",
+    "dayIndex": 252,
+    "word": "harmful",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "likely to hurt or damage",
+    "meaningMarathi": "हानिकारक",
+    "exampleSentence": "Too much sugar is harmful for your teeth.",
+    "distractorMeanings": [
+      "good and useful for health",
+      "tasty and sweet to eat"
+    ],
+    "syllables": [
+      "harm",
+      "ful"
+    ],
+    "tags": [
+      "body-health",
+      "safety"
+    ],
+    "contextWords": [
+      "bad",
+      "health",
+      "hurt",
+      "smoke",
+      "danger"
+    ]
+  },
+  {
+    "id": "d252-4",
+    "dayIndex": 252,
+    "word": "leadership",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "the ability to guide a group of people",
+    "meaningMarathi": "नेतृत्व",
+    "exampleSentence": "The team won because of the captain's good leadership.",
+    "distractorMeanings": [
+      "the habit of following others blindly",
+      "the fear of speaking before a crowd"
+    ],
+    "syllables": [
+      "lead",
+      "er",
+      "ship"
+    ],
+    "tags": [
+      "character-values",
+      "sports-games"
+    ],
+    "contextWords": [
+      "captain",
+      "team",
+      "guide",
+      "class",
+      "lead"
+    ]
+  },
+  {
+    "id": "d252-5",
+    "dayIndex": 252,
+    "word": "vanity",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "too much pride in how you look or what you do",
+    "meaningMarathi": "अहंकार, गर्व",
+    "exampleSentence": "The peacock in the story lost his friends because of his vanity.",
+    "distractorMeanings": [
+      "a feeling of deep sadness",
+      "a habit of speaking very softly"
+    ],
+    "syllables": [
+      "van",
+      "i",
+      "ty"
+    ],
+    "tags": [
+      "character-values",
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "proud",
+      "mirror",
+      "peacock",
+      "boast",
+      "look"
+    ]
+  },
+  {
+    "id": "d253-1",
+    "dayIndex": 253,
+    "word": "roam",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to walk around freely with no fixed place to go",
+    "meaningMarathi": "भटकणे",
+    "exampleSentence": "Cows roam freely along the village road in the morning.",
+    "distractorMeanings": [
+      "to sit still in one place",
+      "to run in a race"
+    ],
+    "syllables": [
+      "roam"
+    ],
+    "tags": [
+      "actions-movement",
+      "farming-village"
+    ],
+    "contextWords": [
+      "wander",
+      "village",
+      "cows",
+      "walk",
+      "free"
+    ]
+  },
+  {
+    "id": "d253-2",
+    "dayIndex": 253,
+    "word": "uneasy",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "worried and not comfortable",
+    "meaningMarathi": "अस्वस्थ, बेचैन",
+    "exampleSentence": "Riya felt uneasy when she walked alone in the dark.",
+    "distractorMeanings": [
+      "very calm and happy",
+      "ready and full of joy"
+    ],
+    "syllables": [
+      "un",
+      "eas",
+      "y"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "worry",
+      "dark",
+      "alone",
+      "afraid",
+      "quiet"
+    ]
+  },
+  {
+    "id": "d253-3",
+    "dayIndex": 253,
+    "word": "devour",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to eat something very quickly because you are hungry",
+    "meaningMarathi": "फस्त करणे",
+    "exampleSentence": "The hungry boys devour the hot poha in a minute.",
+    "distractorMeanings": [
+      "to cook something on a slow fire",
+      "to pack food in a lunch box"
+    ],
+    "syllables": [
+      "de",
+      "vour"
+    ],
+    "tags": [
+      "food",
+      "actions-movement"
+    ],
+    "contextWords": [
+      "eat",
+      "hungry",
+      "food",
+      "fast",
+      "plate"
+    ]
+  },
+  {
+    "id": "d253-4",
+    "dayIndex": 253,
+    "word": "perfection",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "the state of being without any fault",
+    "meaningMarathi": "परिपूर्णता",
+    "exampleSentence": "The cook made the dal with such perfection that everyone asked for more.",
+    "distractorMeanings": [
+      "the state of having many mistakes",
+      "the state of being late"
+    ],
+    "syllables": [
+      "per",
+      "fec",
+      "tion"
+    ],
+    "tags": [
+      "describing-things",
+      "character-values"
+    ],
+    "contextWords": [
+      "perfect",
+      "best",
+      "practice",
+      "skill",
+      "flawless"
+    ]
+  },
+  {
+    "id": "d253-5",
+    "dayIndex": 253,
+    "word": "flawless",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "perfect and without any fault",
+    "meaningMarathi": "निर्दोष, परिपूर्ण",
+    "exampleSentence": "Aarav's handwriting is flawless and very neat.",
+    "distractorMeanings": [
+      "full of mistakes and mess",
+      "slow and quite untidy"
+    ],
+    "syllables": [
+      "flaw",
+      "less"
+    ],
+    "tags": [
+      "describing-things",
+      "school"
+    ],
+    "contextWords": [
+      "perfect",
+      "neat",
+      "mistake",
+      "writing",
+      "clean"
+    ]
+  },
+  {
+    "id": "d254-1",
+    "dayIndex": 254,
+    "word": "heavy",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "weighing a lot and hard to lift",
+    "meaningMarathi": "जड",
+    "exampleSentence": "Om could not lift the heavy bag of rice.",
+    "distractorMeanings": [
+      "so light that it floats away",
+      "very tiny and thin"
+    ],
+    "syllables": [
+      "heav",
+      "y"
+    ],
+    "tags": [
+      "describing-things"
+    ],
+    "contextWords": [
+      "lift",
+      "bag",
+      "carry",
+      "weight",
+      "stone"
+    ]
+  },
+  {
+    "id": "d254-2",
+    "dayIndex": 254,
+    "word": "rhyme",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a word that ends with the same sound as another",
+    "meaningMarathi": "यमक, ताल",
+    "exampleSentence": "Cat and hat make a rhyme that small children love.",
+    "distractorMeanings": [
+      "a word with the opposite meaning",
+      "a word that has three letters"
+    ],
+    "syllables": [
+      "rhyme"
+    ],
+    "tags": [
+      "school",
+      "music-art"
+    ],
+    "contextWords": [
+      "poem",
+      "sound",
+      "song",
+      "word",
+      "verse"
+    ]
+  },
+  {
+    "id": "d254-3",
+    "dayIndex": 254,
+    "word": "growl",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to make a deep angry sound in the throat",
+    "meaningMarathi": "गुरगुरणे",
+    "exampleSentence": "The dog will growl when a stranger comes near the gate.",
+    "distractorMeanings": [
+      "to wag its tail in joy",
+      "to sleep soundly in the sun"
+    ],
+    "syllables": [
+      "growl"
+    ],
+    "tags": [
+      "animals",
+      "communication"
+    ],
+    "contextWords": [
+      "dog",
+      "angry",
+      "tiger",
+      "throat",
+      "stranger"
+    ]
+  },
+  {
+    "id": "d254-4",
+    "dayIndex": 254,
+    "word": "downcast",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "sad and looking downwards",
+    "meaningMarathi": "खिन्न, उदास",
+    "exampleSentence": "Sai was downcast after his team lost the final match.",
+    "distractorMeanings": [
+      "joyful and looking upwards",
+      "angry and shouting aloud"
+    ],
+    "syllables": [
+      "down",
+      "cast"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "sad",
+      "lost",
+      "match",
+      "head",
+      "eyes"
+    ]
+  },
+  {
+    "id": "d254-5",
+    "dayIndex": 254,
+    "word": "similarity",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a way in which two things are alike",
+    "meaningMarathi": "साम्य, सारखेपणा",
+    "exampleSentence": "There is a great similarity between the twin sisters.",
+    "distractorMeanings": [
+      "a way in which two things differ",
+      "a gift that two people share"
+    ],
+    "syllables": [
+      "sim",
+      "i",
+      "lar",
+      "i",
+      "ty"
+    ],
+    "tags": [
+      "describing-things",
+      "family"
+    ],
+    "contextWords": [
+      "same",
+      "alike",
+      "twins",
+      "compare",
+      "like"
+    ]
+  },
+  {
+    "id": "d255-1",
+    "dayIndex": 255,
+    "word": "frame",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a border that holds a picture or a window",
+    "meaningMarathi": "चौकट, फ्रेम",
+    "exampleSentence": "Grandfather put the family photo in a wooden frame.",
+    "distractorMeanings": [
+      "a pin that holds papers together",
+      "a cloth hung on a window"
+    ],
+    "syllables": [
+      "frame"
+    ],
+    "tags": [
+      "home",
+      "music-art"
+    ],
+    "contextWords": [
+      "picture",
+      "photo",
+      "wall",
+      "wood",
+      "glass"
+    ]
+  },
+  {
+    "id": "d255-2",
+    "dayIndex": 255,
+    "word": "interview",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a meeting where one person asks another person questions",
+    "meaningMarathi": "मुलाखत",
+    "exampleSentence": "The reporter took an interview of the famous cricketer.",
+    "distractorMeanings": [
+      "a race run by many people",
+      "a story told to small children"
+    ],
+    "syllables": [
+      "in",
+      "ter",
+      "view"
+    ],
+    "tags": [
+      "communication",
+      "jobs-work"
+    ],
+    "contextWords": [
+      "question",
+      "answer",
+      "reporter",
+      "job",
+      "television"
+    ]
+  },
+  {
+    "id": "d255-3",
+    "dayIndex": 255,
+    "word": "rehearse",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to practise a play or song before showing it",
+    "meaningMarathi": "तालीम करणे",
+    "exampleSentence": "The class will rehearse the drama every evening for a week.",
+    "distractorMeanings": [
+      "to forget a song after singing",
+      "to sell tickets for a show"
+    ],
+    "syllables": [
+      "re",
+      "hearse"
+    ],
+    "tags": [
+      "music-art",
+      "school"
+    ],
+    "contextWords": [
+      "practise",
+      "drama",
+      "stage",
+      "song",
+      "play"
+    ]
+  },
+  {
+    "id": "d255-4",
+    "dayIndex": 255,
+    "word": "supportive",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "giving help and encouragement",
+    "meaningMarathi": "आधार देणारा, सहकार्य करणारा",
+    "exampleSentence": "Her supportive friends cheered her on during the speech.",
+    "distractorMeanings": [
+      "always blaming and scolding her",
+      "never talking to her at all"
+    ],
+    "syllables": [
+      "sup",
+      "por",
+      "tive"
+    ],
+    "tags": [
+      "character-values",
+      "friends"
+    ],
+    "contextWords": [
+      "help",
+      "cheer",
+      "friend",
+      "family",
+      "encourage"
+    ]
+  },
+  {
+    "id": "d255-5",
+    "dayIndex": 255,
+    "word": "attendance",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "the number of students who are present in class",
+    "meaningMarathi": "उपस्थिती",
+    "exampleSentence": "The teacher marks the attendance as soon as the class begins.",
+    "distractorMeanings": [
+      "the number of books in a bag",
+      "the list of games in a week"
+    ],
+    "syllables": [
+      "at",
+      "ten",
+      "dance"
+    ],
+    "tags": [
+      "school"
+    ],
+    "contextWords": [
+      "present",
+      "absent",
+      "register",
+      "class",
+      "teacher"
+    ]
+  },
+  {
+    "id": "d256-1",
+    "dayIndex": 256,
+    "word": "absent",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "not present in a place where you should be",
+    "meaningMarathi": "गैरहजर",
+    "exampleSentence": "Sai was absent from school because he had a fever.",
+    "distractorMeanings": [
+      "sitting in the front row",
+      "ready to answer in class"
+    ],
+    "syllables": [
+      "ab",
+      "sent"
+    ],
+    "tags": [
+      "school"
+    ],
+    "contextWords": [
+      "school",
+      "class",
+      "fever",
+      "teacher",
+      "attendance"
+    ]
+  },
+  {
+    "id": "d256-2",
+    "dayIndex": 256,
+    "word": "doodle",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to draw small pictures when thinking or bored",
+    "meaningMarathi": "इकडेतिकडे चित्रे काढणे",
+    "exampleSentence": "Gauri likes to doodle flowers in the corner of her notebook.",
+    "distractorMeanings": [
+      "to write a long essay slowly",
+      "to read a book very loudly"
+    ],
+    "syllables": [
+      "doo",
+      "dle"
+    ],
+    "tags": [
+      "music-art",
+      "school"
+    ],
+    "contextWords": [
+      "draw",
+      "pen",
+      "notebook",
+      "bored",
+      "flowers"
+    ]
+  },
+  {
+    "id": "d256-3",
+    "dayIndex": 256,
+    "word": "opponent",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a person you play against in a game",
+    "meaningMarathi": "प्रतिस्पर्धी",
+    "exampleSentence": "Gauri shook hands with her opponent before the chess game.",
+    "distractorMeanings": [
+      "a person who teaches a game",
+      "a person who is on your team"
+    ],
+    "syllables": [
+      "op",
+      "po",
+      "nent"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "game",
+      "chess",
+      "team",
+      "play",
+      "match"
+    ]
+  },
+  {
+    "id": "d256-4",
+    "dayIndex": 256,
+    "word": "convince",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to make someone believe or agree with you",
+    "meaningMarathi": "पटवून देणे",
+    "exampleSentence": "Gauri tried to convince her father to buy a puppy.",
+    "distractorMeanings": [
+      "to make someone angry at you",
+      "to make someone forget everything"
+    ],
+    "syllables": [
+      "con",
+      "vince"
+    ],
+    "tags": [
+      "communication"
+    ],
+    "contextWords": [
+      "persuade",
+      "father",
+      "agree",
+      "reason",
+      "believe"
+    ]
+  },
+  {
+    "id": "d256-5",
+    "dayIndex": 256,
+    "word": "headphones",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "two small speakers worn over your ears to listen to sounds",
+    "meaningMarathi": "हेडफोन",
+    "exampleSentence": "Om wore headphones to listen to a song without disturbing others.",
+    "distractorMeanings": [
+      "a pair of glasses worn on the eyes",
+      "a cap worn on the head in the sun"
+    ],
+    "syllables": [
+      "head",
+      "phones"
+    ],
+    "tags": [
+      "technology",
+      "music-art"
+    ],
+    "contextWords": [
+      "ears",
+      "music",
+      "listen",
+      "song",
+      "wear"
+    ]
+  },
+  {
+    "id": "d257-1",
+    "dayIndex": 257,
+    "word": "prince",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "the son of a king or queen",
+    "meaningMarathi": "राजकुमार",
+    "exampleSentence": "The prince rode a white horse to the forest.",
+    "distractorMeanings": [
+      "a man who serves in the palace kitchen",
+      "the guard who stands at the gate"
+    ],
+    "syllables": [
+      "prince"
+    ],
+    "tags": [
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "king",
+      "queen",
+      "palace",
+      "horse",
+      "princess"
+    ]
+  },
+  {
+    "id": "d257-2",
+    "dayIndex": 257,
+    "word": "regret",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to feel sorry about something you did",
+    "meaningMarathi": "पश्चात्ताप होणे",
+    "exampleSentence": "Sai began to regret his rude words to his friend.",
+    "distractorMeanings": [
+      "to feel proud of a good deed",
+      "to feel afraid of a dark place"
+    ],
+    "syllables": [
+      "re",
+      "gret"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "character-values"
+    ],
+    "contextWords": [
+      "sorry",
+      "mistake",
+      "friend",
+      "wrong",
+      "wish"
+    ]
+  },
+  {
+    "id": "d257-3",
+    "dayIndex": 257,
+    "word": "obey",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to do what you are told to do",
+    "meaningMarathi": "आज्ञा पाळणे",
+    "exampleSentence": "A good child will obey the rules of the school.",
+    "distractorMeanings": [
+      "to break a rule on purpose",
+      "to ask a question to a teacher"
+    ],
+    "syllables": [
+      "o",
+      "bey"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "rules",
+      "teacher",
+      "parent",
+      "listen",
+      "good"
+    ]
+  },
+  {
+    "id": "d257-4",
+    "dayIndex": 257,
+    "word": "temporary",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "lasting for only a short time",
+    "meaningMarathi": "तात्पुरता",
+    "exampleSentence": "The tent is a temporary home for the travelling circus.",
+    "distractorMeanings": [
+      "lasting forever and ever",
+      "made of stone and iron"
+    ],
+    "syllables": [
+      "tem",
+      "po",
+      "rar",
+      "y"
+    ],
+    "tags": [
+      "time-numbers",
+      "describing-things"
+    ],
+    "contextWords": [
+      "short",
+      "tent",
+      "stay",
+      "time",
+      "fixed"
+    ]
+  },
+  {
+    "id": "d257-5",
+    "dayIndex": 257,
+    "word": "examination",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a formal test of what you have learnt",
+    "meaningMarathi": "परीक्षा",
+    "exampleSentence": "The examination begins at nine in the morning.",
+    "distractorMeanings": [
+      "a game played after school",
+      "a holiday given in summer"
+    ],
+    "syllables": [
+      "ex",
+      "am",
+      "i",
+      "na",
+      "tion"
+    ],
+    "tags": [
+      "school"
+    ],
+    "contextWords": [
+      "test",
+      "paper",
+      "pen",
+      "question",
+      "marks"
+    ]
+  },
+  {
+    "id": "d258-1",
+    "dayIndex": 258,
+    "word": "trot",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to run slowly with short steps like a horse",
+    "meaningMarathi": "दुडक्या चालीने चालणे",
+    "exampleSentence": "The pony began to trot along the Pune road.",
+    "distractorMeanings": [
+      "to fly high in the sky",
+      "to jump over a fence"
+    ],
+    "syllables": [
+      "trot"
+    ],
+    "tags": [
+      "actions-movement",
+      "animals"
+    ],
+    "contextWords": [
+      "horse",
+      "pony",
+      "walk",
+      "run",
+      "slow"
+    ]
+  },
+  {
+    "id": "d258-2",
+    "dayIndex": 258,
+    "word": "inventor",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a person who makes something new for the first time",
+    "meaningMarathi": "संशोधक, शोधक",
+    "exampleSentence": "The inventor of the telephone changed how people talk.",
+    "distractorMeanings": [
+      "a person who sells old things",
+      "a person who copies other people"
+    ],
+    "syllables": [
+      "in",
+      "ven",
+      "tor"
+    ],
+    "tags": [
+      "science-space",
+      "jobs-work"
+    ],
+    "contextWords": [
+      "new",
+      "machine",
+      "idea",
+      "make",
+      "science"
+    ]
+  },
+  {
+    "id": "d258-3",
+    "dayIndex": 258,
+    "word": "playful",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "full of fun and liking to play",
+    "meaningMarathi": "खेळकर",
+    "exampleSentence": "The playful kitten chased the ball all around the room.",
+    "distractorMeanings": [
+      "very serious and always silent",
+      "very tired and sleepy"
+    ],
+    "syllables": [
+      "play",
+      "ful"
+    ],
+    "tags": [
+      "animals",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "play",
+      "puppy",
+      "fun",
+      "game",
+      "child"
+    ]
+  },
+  {
+    "id": "d258-4",
+    "dayIndex": 258,
+    "word": "announcer",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a person who tells the news or an event to many people",
+    "meaningMarathi": "उद्घोषक",
+    "exampleSentence": "The announcer called out the names of the winners.",
+    "distractorMeanings": [
+      "a person who writes a book",
+      "a person who paints a wall"
+    ],
+    "syllables": [
+      "an",
+      "nounc",
+      "er"
+    ],
+    "tags": [
+      "communication",
+      "jobs-work"
+    ],
+    "contextWords": [
+      "microphone",
+      "names",
+      "loud",
+      "news",
+      "radio"
+    ]
+  },
+  {
+    "id": "d258-5",
+    "dayIndex": 258,
+    "word": "courteous",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "polite and respectful in manner",
+    "meaningMarathi": "सौजन्यशील, विनयशील",
+    "exampleSentence": "The courteous shopkeeper greeted every customer with a smile.",
+    "distractorMeanings": [
+      "rude and loud in manner",
+      "lazy and slow in every task"
+    ],
+    "syllables": [
+      "cour",
+      "te",
+      "ous"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "polite",
+      "manners",
+      "greet",
+      "shop",
+      "respect"
+    ]
+  },
+  {
+    "id": "d259-1",
+    "dayIndex": 259,
+    "word": "joke",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a funny story told to make people laugh",
+    "meaningMarathi": "विनोद, चेष्टा",
+    "exampleSentence": "Om told a joke and the whole class laughed.",
+    "distractorMeanings": [
+      "a sad story that makes people cry",
+      "a long poem learnt for exams"
+    ],
+    "syllables": [
+      "joke"
+    ],
+    "tags": [
+      "communication",
+      "friends"
+    ],
+    "contextWords": [
+      "laugh",
+      "funny",
+      "class",
+      "friend",
+      "smile"
+    ]
+  },
+  {
+    "id": "d259-2",
+    "dayIndex": 259,
+    "word": "slender",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "thin in a graceful way",
+    "meaningMarathi": "सडपातळ",
+    "exampleSentence": "The slender girl bent like a tree in the wind.",
+    "distractorMeanings": [
+      "fat and round in shape",
+      "short and wide like a box"
+    ],
+    "syllables": [
+      "slen",
+      "der"
+    ],
+    "tags": [
+      "describing-things"
+    ],
+    "contextWords": [
+      "thin",
+      "tall",
+      "body",
+      "graceful",
+      "stem"
+    ]
+  },
+  {
+    "id": "d259-3",
+    "dayIndex": 259,
+    "word": "boast",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to talk too proudly about what you have or can do",
+    "meaningMarathi": "बढाई मारणे",
+    "exampleSentence": "Aarav likes to boast about his new bicycle to everyone.",
+    "distractorMeanings": [
+      "to speak very softly with a shy voice",
+      "to share your things with your friends"
+    ],
+    "syllables": [
+      "boast"
+    ],
+    "tags": [
+      "character-values",
+      "communication"
+    ],
+    "contextWords": [
+      "proud",
+      "brag",
+      "show",
+      "winner",
+      "humble"
+    ]
+  },
+  {
+    "id": "d259-4",
+    "dayIndex": 259,
+    "word": "resourceful",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "good at finding clever ways to solve problems",
+    "meaningMarathi": "साधनसंपन्न, कल्पक",
+    "exampleSentence": "The resourceful girl used a stick to pull the ball out.",
+    "distractorMeanings": [
+      "not able to solve a simple problem",
+      "not willing to try at all"
+    ],
+    "syllables": [
+      "re",
+      "source",
+      "ful"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "clever",
+      "solve",
+      "problem",
+      "idea",
+      "stick"
+    ]
+  },
+  {
+    "id": "d259-5",
+    "dayIndex": 259,
+    "word": "fascinating",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "very interesting and holding your attention",
+    "meaningMarathi": "आकर्षक, मनोरंजक",
+    "exampleSentence": "The story of the brave queen was fascinating to the class.",
+    "distractorMeanings": [
+      "very boring and long",
+      "too hard to understand"
+    ],
+    "syllables": [
+      "fas",
+      "ci",
+      "nat",
+      "ing"
+    ],
+    "tags": [
+      "stories-imagination",
+      "school"
+    ],
+    "contextWords": [
+      "interesting",
+      "story",
+      "class",
+      "book",
+      "listen"
+    ]
+  },
+  {
+    "id": "d260-1",
+    "dayIndex": 260,
+    "word": "aim",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to point something at a target before you throw or shoot",
+    "meaningMarathi": "नेम धरणे",
+    "exampleSentence": "Gauri took a deep breath and aimed at the target.",
+    "distractorMeanings": [
+      "to run away from a target",
+      "to look away from a game"
+    ],
+    "syllables": [
+      "aim"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "target",
+      "arrow",
+      "throw",
+      "eye",
+      "bow"
+    ]
+  },
+  {
+    "id": "d260-2",
+    "dayIndex": 260,
+    "word": "football",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a game played by kicking a round ball into a goal",
+    "meaningMarathi": "फुटबॉल",
+    "exampleSentence": "The boys played football on the muddy school ground.",
+    "distractorMeanings": [
+      "a game played with a bat and a ball",
+      "a game played on a board with coins"
+    ],
+    "syllables": [
+      "foot",
+      "ball"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "kick",
+      "goal",
+      "team",
+      "ground",
+      "player"
+    ]
+  },
+  {
+    "id": "d260-3",
+    "dayIndex": 260,
+    "word": "portrait",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a painting or photo of a person",
+    "meaningMarathi": "व्यक्तिचित्र, छायाचित्र",
+    "exampleSentence": "Riya drew a portrait of her grandmother with a pencil.",
+    "distractorMeanings": [
+      "a picture of a hill",
+      "a drawing of a flower"
+    ],
+    "syllables": [
+      "por",
+      "trait"
+    ],
+    "tags": [
+      "music-art"
+    ],
+    "contextWords": [
+      "face",
+      "draw",
+      "painting",
+      "person",
+      "photo"
+    ]
+  },
+  {
+    "id": "d260-4",
+    "dayIndex": 260,
+    "word": "creative",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "able to think of new and original ideas",
+    "meaningMarathi": "सर्जनशील",
+    "exampleSentence": "Gauri made a creative toy from waste paper and bottles.",
+    "distractorMeanings": [
+      "unable to think of any idea",
+      "likely to copy others always"
+    ],
+    "syllables": [
+      "cre",
+      "a",
+      "tive"
+    ],
+    "tags": [
+      "music-art",
+      "character-values"
+    ],
+    "contextWords": [
+      "idea",
+      "art",
+      "new",
+      "make",
+      "imagine"
+    ]
+  },
+  {
+    "id": "d260-5",
+    "dayIndex": 260,
+    "word": "superior",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "better than others in quality",
+    "meaningMarathi": "श्रेष्ठ, उत्कृष्ट",
+    "exampleSentence": "Mother says the mangoes of Ratnagiri are superior to others.",
+    "distractorMeanings": [
+      "worse than others in quality",
+      "equal to all others in size"
+    ],
+    "syllables": [
+      "su",
+      "pe",
+      "ri",
+      "or"
+    ],
+    "tags": [
+      "describing-things",
+      "food"
+    ],
+    "contextWords": [
+      "better",
+      "best",
+      "quality",
+      "mango",
+      "top"
+    ]
+  },
+  {
+    "id": "d261-1",
+    "dayIndex": 261,
+    "word": "bend",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to curve your body or something straight",
+    "meaningMarathi": "वाकवणे, वाकणे",
+    "exampleSentence": "Gauri had to bend down to pick up her pencil.",
+    "distractorMeanings": [
+      "to stand up very straight",
+      "to spread your arms wide"
+    ],
+    "syllables": [
+      "bend"
+    ],
+    "tags": [
+      "actions-movement",
+      "sports-games"
+    ],
+    "contextWords": [
+      "down",
+      "knee",
+      "back",
+      "touch",
+      "toes"
+    ],
+    "forms": [
+      "bent"
+    ]
+  },
+  {
+    "id": "d261-2",
+    "dayIndex": 261,
+    "word": "scold",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to speak angrily to someone who has done wrong",
+    "meaningMarathi": "रागावणे, ओरडणे",
+    "exampleSentence": "Mother did not scold Om when he told the truth.",
+    "distractorMeanings": [
+      "to give a prize to a child",
+      "to teach a song to a friend"
+    ],
+    "syllables": [
+      "scold"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "family"
+    ],
+    "contextWords": [
+      "angry",
+      "mother",
+      "wrong",
+      "child",
+      "naughty"
+    ]
+  },
+  {
+    "id": "d261-3",
+    "dayIndex": 261,
+    "word": "unusual",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "not common or ordinary",
+    "meaningMarathi": "असामान्य, वेगळा",
+    "exampleSentence": "It is unusual to see snow in Pune.",
+    "distractorMeanings": [
+      "seen every day by everyone",
+      "easy to find in any shop"
+    ],
+    "syllables": [
+      "un",
+      "u",
+      "su",
+      "al"
+    ],
+    "tags": [
+      "describing-things"
+    ],
+    "contextWords": [
+      "rare",
+      "strange",
+      "different",
+      "see",
+      "new"
+    ]
+  },
+  {
+    "id": "d261-4",
+    "dayIndex": 261,
+    "word": "obstinate",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "refusing to change your mind or way of acting",
+    "meaningMarathi": "हट्टी, दुराग्रही",
+    "exampleSentence": "The obstinate mule would not move an inch from the road.",
+    "distractorMeanings": [
+      "always ready to listen to others",
+      "quick to change plans"
+    ],
+    "syllables": [
+      "ob",
+      "sti",
+      "nate"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "stubborn",
+      "refuse",
+      "mule",
+      "mind",
+      "pull"
+    ]
+  },
+  {
+    "id": "d261-5",
+    "dayIndex": 261,
+    "word": "apprentice",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a young person learning a skill from an expert",
+    "meaningMarathi": "शिकाऊ उमेदवार",
+    "exampleSentence": "The apprentice watched the potter and learnt to make pots.",
+    "distractorMeanings": [
+      "a person who owns a big shop",
+      "a person who teaches a class"
+    ],
+    "syllables": [
+      "ap",
+      "pren",
+      "tice"
+    ],
+    "tags": [
+      "jobs-work"
+    ],
+    "contextWords": [
+      "learn",
+      "skill",
+      "master",
+      "work",
+      "potter"
+    ]
+  },
+  {
+    "id": "d262-1",
+    "dayIndex": 262,
+    "word": "add",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to put numbers or things together to get a total",
+    "meaningMarathi": "बेरीज करणे, जोडणे",
+    "exampleSentence": "Aarav can add two big numbers in his head.",
+    "distractorMeanings": [
+      "to take a number away from a total",
+      "to cut a number into equal parts"
+    ],
+    "syllables": [
+      "add"
+    ],
+    "tags": [
+      "school",
+      "time-numbers"
+    ],
+    "contextWords": [
+      "number",
+      "total",
+      "sum",
+      "maths",
+      "plus"
+    ]
+  },
+  {
+    "id": "d262-2",
+    "dayIndex": 262,
+    "word": "perform",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to do a show in front of people",
+    "meaningMarathi": "सादर करणे",
+    "exampleSentence": "Riya will perform a folk dance at the annual day.",
+    "distractorMeanings": [
+      "to sit in the audience and watch",
+      "to clean the stage after a show"
+    ],
+    "syllables": [
+      "per",
+      "form"
+    ],
+    "tags": [
+      "music-art"
+    ],
+    "contextWords": [
+      "stage",
+      "dance",
+      "audience",
+      "show",
+      "annual"
+    ]
+  },
+  {
+    "id": "d262-3",
+    "dayIndex": 262,
+    "word": "loser",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a person who does not win a game",
+    "meaningMarathi": "पराभूत खेळाडू",
+    "exampleSentence": "A good loser shakes hands and smiles after the match.",
+    "distractorMeanings": [
+      "a person who makes the rules",
+      "a person who sells tickets"
+    ],
+    "syllables": [
+      "los",
+      "er"
+    ],
+    "tags": [
+      "sports-games",
+      "character-values"
+    ],
+    "contextWords": [
+      "game",
+      "match",
+      "defeat",
+      "team",
+      "handshake"
+    ]
+  },
+  {
+    "id": "d262-4",
+    "dayIndex": 262,
+    "word": "courtyard",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "an open space with walls around it in a house",
+    "meaningMarathi": "अंगण",
+    "exampleSentence": "Children play in the courtyard of the old wada.",
+    "distractorMeanings": [
+      "a large room with a high roof",
+      "a narrow path between two houses"
+    ],
+    "syllables": [
+      "court",
+      "yard"
+    ],
+    "tags": [
+      "home",
+      "maharashtra-culture"
+    ],
+    "contextWords": [
+      "house",
+      "wada",
+      "open",
+      "play",
+      "rangoli"
+    ]
+  },
+  {
+    "id": "d262-5",
+    "dayIndex": 262,
+    "word": "hospitable",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "friendly and kind to guests",
+    "meaningMarathi": "आदरातिथ्य करणारा",
+    "exampleSentence": "The hospitable family gave us tea and sweets at once.",
+    "distractorMeanings": [
+      "rude and unkind to guests",
+      "always busy and never at home"
+    ],
+    "syllables": [
+      "hos",
+      "pi",
+      "ta",
+      "ble"
+    ],
+    "tags": [
+      "character-values",
+      "maharashtra-culture"
+    ],
+    "contextWords": [
+      "guest",
+      "welcome",
+      "tea",
+      "home",
+      "kind"
+    ]
+  },
+  {
+    "id": "d263-1",
+    "dayIndex": 263,
+    "word": "blanket",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a thick soft cover used on a bed to keep warm",
+    "meaningMarathi": "ब्लँकेट, पांघरूण",
+    "exampleSentence": "Grandmother covered the sleeping baby with a warm blanket.",
+    "distractorMeanings": [
+      "a thin sheet hung at a window",
+      "a soft pillow kept under the head"
+    ],
+    "syllables": [
+      "blan",
+      "ket"
+    ],
+    "tags": [
+      "home",
+      "weather-seasons"
+    ],
+    "contextWords": [
+      "bed",
+      "warm",
+      "winter",
+      "sleep",
+      "cold"
+    ]
+  },
+  {
+    "id": "d263-2",
+    "dayIndex": 263,
+    "word": "scamper",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to run with quick small steps",
+    "meaningMarathi": "पळत जाणे, लगबगीने जाणे",
+    "exampleSentence": "The little squirrel will scamper up the tree when we come.",
+    "distractorMeanings": [
+      "to fly slowly over a field",
+      "to sleep under a warm blanket"
+    ],
+    "syllables": [
+      "scam",
+      "per"
+    ],
+    "tags": [
+      "animals",
+      "actions-movement"
+    ],
+    "contextWords": [
+      "squirrel",
+      "run",
+      "quick",
+      "tree",
+      "small"
+    ]
+  },
+  {
+    "id": "d263-3",
+    "dayIndex": 263,
+    "word": "mood",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "the way you feel at a certain time",
+    "meaningMarathi": "मनःस्थिती",
+    "exampleSentence": "Riya was in a good mood after winning the race.",
+    "distractorMeanings": [
+      "the weight of a heavy bag",
+      "the colour of a new dress"
+    ],
+    "syllables": [
+      "mood"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "feel",
+      "happy",
+      "sad",
+      "angry",
+      "face"
+    ]
+  },
+  {
+    "id": "d263-4",
+    "dayIndex": 263,
+    "word": "wicketkeeper",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "the player who stands behind the stumps in cricket",
+    "meaningMarathi": "यष्टिरक्षक",
+    "exampleSentence": "The wicketkeeper caught the ball and the batsman was out.",
+    "distractorMeanings": [
+      "the player who bowls the ball fast",
+      "the person who counts the runs"
+    ],
+    "syllables": [
+      "wick",
+      "et",
+      "keep",
+      "er"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "cricket",
+      "stumps",
+      "ball",
+      "catch",
+      "gloves"
+    ]
+  },
+  {
+    "id": "d263-5",
+    "dayIndex": 263,
+    "word": "forbidden",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "not allowed",
+    "meaningMarathi": "निषिद्ध",
+    "exampleSentence": "Smoking is forbidden inside the school building.",
+    "distractorMeanings": [
+      "always allowed for everyone",
+      "required by the teacher"
+    ],
+    "syllables": [
+      "for",
+      "bid",
+      "den"
+    ],
+    "tags": [
+      "safety",
+      "school"
+    ],
+    "contextWords": [
+      "rule",
+      "allowed",
+      "ban",
+      "sign",
+      "school",
+      "smoking"
+    ]
+  },
+  {
+    "id": "d264-1",
+    "dayIndex": 264,
+    "word": "nod",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to move your head up and down to say yes",
+    "meaningMarathi": "मान डोलावणे",
+    "exampleSentence": "The teacher asked a question and Om gave a quick nod.",
+    "distractorMeanings": [
+      "to shake your head from side to side",
+      "to turn your head to look behind"
+    ],
+    "syllables": [
+      "nod"
+    ],
+    "tags": [
+      "communication"
+    ],
+    "contextWords": [
+      "head",
+      "yes",
+      "agree",
+      "smile",
+      "teacher"
+    ]
+  },
+  {
+    "id": "d264-2",
+    "dayIndex": 264,
+    "word": "danger",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "the chance that something bad or harmful may happen",
+    "meaningMarathi": "धोका",
+    "exampleSentence": "The sign on the river bank warned of danger.",
+    "distractorMeanings": [
+      "a feeling of great happiness",
+      "a place that is safe and quiet"
+    ],
+    "syllables": [
+      "dan",
+      "ger"
+    ],
+    "tags": [
+      "safety"
+    ],
+    "contextWords": [
+      "risk",
+      "warning",
+      "fire",
+      "road",
+      "careful"
+    ]
+  },
+  {
+    "id": "d264-3",
+    "dayIndex": 264,
+    "word": "popular",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "liked by many people",
+    "meaningMarathi": "लोकप्रिय",
+    "exampleSentence": "Cricket is the most popular game in every Indian village.",
+    "distractorMeanings": [
+      "disliked by all the people",
+      "known by only one person"
+    ],
+    "syllables": [
+      "pop",
+      "u",
+      "lar"
+    ],
+    "tags": [
+      "sports-games",
+      "india"
+    ],
+    "contextWords": [
+      "famous",
+      "liked",
+      "game",
+      "star",
+      "many"
+    ]
+  },
+  {
+    "id": "d264-4",
+    "dayIndex": 264,
+    "word": "temptation",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a strong wish to do something you should not do",
+    "meaningMarathi": "मोह",
+    "exampleSentence": "Riya did not give in to the temptation to eat the sweets.",
+    "distractorMeanings": [
+      "a promise to do a job",
+      "a rule that must be followed"
+    ],
+    "syllables": [
+      "temp",
+      "ta",
+      "tion"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "wish",
+      "sweet",
+      "wrong",
+      "resist",
+      "hungry"
+    ]
+  },
+  {
+    "id": "d264-5",
+    "dayIndex": 264,
+    "word": "solemnly",
+    "partOfSpeech": "adverb",
+    "difficulty": 3,
+    "meaning": "in a serious and quiet way",
+    "meaningMarathi": "गंभीरपणे",
+    "exampleSentence": "The students stood solemnly while the national anthem played.",
+    "distractorMeanings": [
+      "in a funny and noisy way",
+      "in a quick and careless way"
+    ],
+    "syllables": [
+      "sol",
+      "emn",
+      "ly"
+    ],
+    "tags": [
+      "india",
+      "school"
+    ],
+    "contextWords": [
+      "serious",
+      "quiet",
+      "anthem",
+      "flag",
+      "respect"
+    ]
+  },
+  {
+    "id": "d265-1",
+    "dayIndex": 265,
+    "word": "angry",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "feeling very cross about something",
+    "meaningMarathi": "रागावलेला",
+    "exampleSentence": "Father was angry when Om broke the window with a ball.",
+    "distractorMeanings": [
+      "feeling very happy about a gift",
+      "feeling too sleepy to stand"
+    ],
+    "syllables": [
+      "an",
+      "gry"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "shout",
+      "cross",
+      "mad",
+      "face",
+      "teacher"
+    ]
+  },
+  {
+    "id": "d265-2",
+    "dayIndex": 265,
+    "word": "message",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "words sent from one person to another",
+    "meaningMarathi": "संदेश",
+    "exampleSentence": "Sai sent a message to wish his friend a happy birthday.",
+    "distractorMeanings": [
+      "a gift wrapped in paper",
+      "a long walk on a hill"
+    ],
+    "syllables": [
+      "mes",
+      "sage"
+    ],
+    "tags": [
+      "communication",
+      "technology"
+    ],
+    "contextWords": [
+      "send",
+      "phone",
+      "letter",
+      "wish",
+      "read"
+    ]
+  },
+  {
+    "id": "d265-3",
+    "dayIndex": 265,
+    "word": "forget",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to be unable to remember something",
+    "meaningMarathi": "विसरणे",
+    "exampleSentence": "Please do not forget to bring your homework tomorrow.",
+    "distractorMeanings": [
+      "to remember every small thing",
+      "to write something in a notebook"
+    ],
+    "syllables": [
+      "for",
+      "get"
+    ],
+    "tags": [
+      "school",
+      "communication"
+    ],
+    "contextWords": [
+      "remember",
+      "homework",
+      "memory",
+      "bag",
+      "name"
+    ],
+    "forms": [
+      "forgot",
+      "forgotten"
+    ]
+  },
+  {
+    "id": "d265-4",
+    "dayIndex": 265,
+    "word": "worrying",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "causing you to feel anxious",
+    "meaningMarathi": "काळजीत टाकणारा",
+    "exampleSentence": "The doctor said the high fever was worrying for the baby.",
+    "distractorMeanings": [
+      "causing you to feel happy",
+      "causing you to feel sleepy"
+    ],
+    "syllables": [
+      "wor",
+      "ry",
+      "ing"
+    ],
+    "tags": [
+      "body-health",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "fever",
+      "doctor",
+      "anxious",
+      "sick",
+      "news"
+    ]
+  },
+  {
+    "id": "d265-5",
+    "dayIndex": 265,
+    "word": "conversation",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a talk between two or more people",
+    "meaningMarathi": "संवाद, गप्पा",
+    "exampleSentence": "Riya had a long conversation with her friend on the phone.",
+    "distractorMeanings": [
+      "a loud fight between two people",
+      "a quiet walk in the garden"
+    ],
+    "syllables": [
+      "con",
+      "ver",
+      "sa",
+      "tion"
+    ],
+    "tags": [
+      "communication"
+    ],
+    "contextWords": [
+      "talk",
+      "friend",
+      "phone",
+      "speak",
+      "listen"
+    ]
+  },
+  {
+    "id": "d266-1",
+    "dayIndex": 266,
+    "word": "dough",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a soft mixture of flour and water used to make roti",
+    "meaningMarathi": "कणीक",
+    "exampleSentence": "Mother rolled the dough into round soft rotis.",
+    "distractorMeanings": [
+      "a thin soup served with rice",
+      "a sweet made from milk and sugar"
+    ],
+    "syllables": [
+      "dough"
+    ],
+    "tags": [
+      "food",
+      "home"
+    ],
+    "contextWords": [
+      "flour",
+      "roti",
+      "water",
+      "knead",
+      "kitchen"
+    ]
+  },
+  {
+    "id": "d266-2",
+    "dayIndex": 266,
+    "word": "groan",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to make a deep sound because of pain or tiredness",
+    "meaningMarathi": "विव्हळणे, कण्हणे",
+    "exampleSentence": "The tired workers groan when the bag becomes too heavy.",
+    "distractorMeanings": [
+      "to sing a soft song",
+      "to clap hands in joy"
+    ],
+    "syllables": [
+      "groan"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "body-health"
+    ],
+    "contextWords": [
+      "pain",
+      "tired",
+      "sound",
+      "heavy",
+      "sigh"
+    ]
+  },
+  {
+    "id": "d266-3",
+    "dayIndex": 266,
+    "word": "friendly",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "kind and happy to meet new people",
+    "meaningMarathi": "मैत्रीपूर्ण",
+    "exampleSentence": "Riya is friendly and talks to every new girl in class.",
+    "distractorMeanings": [
+      "angry and always fighting",
+      "shy and hiding at home"
+    ],
+    "syllables": [
+      "friend",
+      "ly"
+    ],
+    "tags": [
+      "friends",
+      "character-values"
+    ],
+    "contextWords": [
+      "smile",
+      "kind",
+      "new",
+      "play",
+      "class"
+    ]
+  },
+  {
+    "id": "d266-4",
+    "dayIndex": 266,
+    "word": "appropriate",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "right and suitable for a particular time or place",
+    "meaningMarathi": "योग्य, उचित",
+    "exampleSentence": "A raincoat is the appropriate dress for a rainy day.",
+    "distractorMeanings": [
+      "wrong and not fit for a place",
+      "funny and strange for a party"
+    ],
+    "syllables": [
+      "ap",
+      "pro",
+      "pri",
+      "ate"
+    ],
+    "tags": [
+      "describing-things",
+      "clothes"
+    ],
+    "contextWords": [
+      "right",
+      "suitable",
+      "dress",
+      "proper",
+      "fit"
+    ]
+  },
+  {
+    "id": "d266-5",
+    "dayIndex": 266,
+    "word": "storyline",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "the main events of a story in order",
+    "meaningMarathi": "कथानक",
+    "exampleSentence": "The storyline of the film is about a lost elephant.",
+    "distractorMeanings": [
+      "the title written on a book cover",
+      "the picture drawn on a story page"
+    ],
+    "syllables": [
+      "sto",
+      "ry",
+      "line"
+    ],
+    "tags": [
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "plot",
+      "film",
+      "events",
+      "book",
+      "tale"
+    ]
+  },
+  {
+    "id": "d267-1",
+    "dayIndex": 267,
+    "word": "ankle",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "the joint that joins your foot to your leg",
+    "meaningMarathi": "घोटा",
+    "exampleSentence": "Riya twisted her ankle while running in the school ground.",
+    "distractorMeanings": [
+      "the bone at the top of the head",
+      "the part of the hand that holds a pen"
+    ],
+    "syllables": [
+      "an",
+      "kle"
+    ],
+    "tags": [
+      "body-health"
+    ],
+    "contextWords": [
+      "foot",
+      "leg",
+      "sprain",
+      "walk",
+      "run"
+    ]
+  },
+  {
+    "id": "d267-2",
+    "dayIndex": 267,
+    "word": "loyal",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "always faithful to your friends or your country",
+    "meaningMarathi": "इमानी, निष्ठावान",
+    "exampleSentence": "A dog is a loyal friend who waits at the door for you.",
+    "distractorMeanings": [
+      "ready to leave a friend in trouble",
+      "too proud to talk to anyone"
+    ],
+    "syllables": [
+      "loy",
+      "al"
+    ],
+    "tags": [
+      "character-values",
+      "friends"
+    ],
+    "contextWords": [
+      "friend",
+      "dog",
+      "faithful",
+      "trust",
+      "country"
+    ]
+  },
+  {
+    "id": "d267-3",
+    "dayIndex": 267,
+    "word": "cope",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to deal with a hard problem successfully",
+    "meaningMarathi": "तोंड देणे, सामना करणे",
+    "exampleSentence": "Brave children can cope well when they lose a game.",
+    "distractorMeanings": [
+      "to run away from every problem",
+      "to ask someone else to do work"
+    ],
+    "syllables": [
+      "cope"
+    ],
+    "tags": [
+      "character-values",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "problem",
+      "manage",
+      "hard",
+      "brave",
+      "try"
+    ]
+  },
+  {
+    "id": "d267-4",
+    "dayIndex": 267,
+    "word": "eloquent",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "able to speak clearly and beautifully",
+    "meaningMarathi": "वक्तृत्वपूर्ण, छान बोलणारा",
+    "exampleSentence": "The eloquent student spoke on stage without any fear.",
+    "distractorMeanings": [
+      "not able to speak a single word",
+      "always speaking in a harsh voice"
+    ],
+    "syllables": [
+      "el",
+      "o",
+      "quent"
+    ],
+    "tags": [
+      "communication"
+    ],
+    "contextWords": [
+      "speech",
+      "stage",
+      "words",
+      "speaker",
+      "clear"
+    ]
+  },
+  {
+    "id": "d267-5",
+    "dayIndex": 267,
+    "word": "rapidly",
+    "partOfSpeech": "adverb",
+    "difficulty": 3,
+    "meaning": "very fast",
+    "meaningMarathi": "झपाट्याने",
+    "exampleSentence": "The river rose rapidly after the heavy monsoon rain.",
+    "distractorMeanings": [
+      "very slowly over a long time",
+      "never and not at all"
+    ],
+    "syllables": [
+      "rap",
+      "id",
+      "ly"
+    ],
+    "tags": [
+      "describing-things",
+      "weather-seasons"
+    ],
+    "contextWords": [
+      "fast",
+      "quick",
+      "river",
+      "grow",
+      "rise"
+    ]
+  },
+  {
+    "id": "d268-1",
+    "dayIndex": 268,
+    "word": "sigh",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to breathe out slowly because you are sad or tired",
+    "meaningMarathi": "दीर्घ श्वास सोडणे",
+    "exampleSentence": "Mother gave a sigh and sat down after a long day.",
+    "distractorMeanings": [
+      "to take a quick bite of food",
+      "to clap loudly with both hands"
+    ],
+    "syllables": [
+      "sigh"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "breath",
+      "tired",
+      "sad",
+      "relief",
+      "sit"
+    ]
+  },
+  {
+    "id": "d268-2",
+    "dayIndex": 268,
+    "word": "bashful",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "shy and easily embarrassed",
+    "meaningMarathi": "लाजाळू",
+    "exampleSentence": "The bashful boy hid behind his mother at the party.",
+    "distractorMeanings": [
+      "bold and not afraid of anyone",
+      "loud and rude to others"
+    ],
+    "syllables": [
+      "bash",
+      "ful"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "character-values"
+    ],
+    "contextWords": [
+      "shy",
+      "hide",
+      "smile",
+      "mother",
+      "quiet"
+    ]
+  },
+  {
+    "id": "d268-3",
+    "dayIndex": 268,
+    "word": "arena",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a large place where sports or shows are held",
+    "meaningMarathi": "क्रीडांगण, रंगणभूमी",
+    "exampleSentence": "The wrestlers walked into the arena as the crowd cheered.",
+    "distractorMeanings": [
+      "a small room where books are kept",
+      "a market where fruits are sold"
+    ],
+    "syllables": [
+      "a",
+      "re",
+      "na"
+    ],
+    "tags": [
+      "sports-games",
+      "city-town"
+    ],
+    "contextWords": [
+      "stadium",
+      "crowd",
+      "game",
+      "show",
+      "cheer"
+    ]
+  },
+  {
+    "id": "d268-4",
+    "dayIndex": 268,
+    "word": "obstacle",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "something that blocks your way",
+    "meaningMarathi": "अडथळा",
+    "exampleSentence": "Aarav jumped over every obstacle in the school race.",
+    "distractorMeanings": [
+      "a prize given at the end of a race",
+      "a path that is smooth and wide"
+    ],
+    "syllables": [
+      "ob",
+      "sta",
+      "cle"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "race",
+      "block",
+      "jump",
+      "hurdle",
+      "path"
+    ]
+  },
+  {
+    "id": "d268-5",
+    "dayIndex": 268,
+    "word": "desperate",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "willing to do anything because the situation is very bad",
+    "meaningMarathi": "हताश, मरणाला टेकलेला",
+    "exampleSentence": "The desperate farmer prayed for rain after months of dry weather.",
+    "distractorMeanings": [
+      "calm and sure about a good result",
+      "happy about a bright future"
+    ],
+    "syllables": [
+      "des",
+      "per",
+      "ate"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "farming-village"
+    ],
+    "contextWords": [
+      "hope",
+      "help",
+      "need",
+      "danger",
+      "hard"
+    ]
+  },
+  {
+    "id": "d269-1",
+    "dayIndex": 269,
+    "word": "hollow",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "empty inside, not solid",
+    "meaningMarathi": "पोकळ",
+    "exampleSentence": "Squirrels live in the hollow tree near the temple.",
+    "distractorMeanings": [
+      "full of stones and sand",
+      "made of hard iron"
+    ],
+    "syllables": [
+      "hol",
+      "low"
+    ],
+    "tags": [
+      "describing-things",
+      "nature"
+    ],
+    "contextWords": [
+      "tree",
+      "empty",
+      "drum",
+      "log",
+      "inside"
+    ]
+  },
+  {
+    "id": "d269-2",
+    "dayIndex": 269,
+    "word": "knight",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a brave soldier in old stories who rode a horse",
+    "meaningMarathi": "शूर योद्धा, सरदार",
+    "exampleSentence": "The knight bowed to the queen before leaving the palace.",
+    "distractorMeanings": [
+      "a poor farmer who works in a field",
+      "a clever minister who helps a king"
+    ],
+    "syllables": [
+      "knight"
+    ],
+    "tags": [
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "king",
+      "horse",
+      "castle",
+      "brave",
+      "armour"
+    ]
+  },
+  {
+    "id": "d269-3",
+    "dayIndex": 269,
+    "word": "nightmare",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a bad and scary dream",
+    "meaningMarathi": "वाईट स्वप्न, दुःस्वप्न",
+    "exampleSentence": "Aarav woke up crying after a terrible nightmare.",
+    "distractorMeanings": [
+      "a happy dream about sweets",
+      "a short sleep after lunch"
+    ],
+    "syllables": [
+      "night",
+      "mare"
+    ],
+    "tags": [
+      "stories-imagination",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "dream",
+      "sleep",
+      "scary",
+      "wake",
+      "night"
+    ]
+  },
+  {
+    "id": "d269-4",
+    "dayIndex": 269,
+    "word": "achievement",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "something good that you have done with effort",
+    "meaningMarathi": "कामगिरी, यश",
+    "exampleSentence": "Winning the science prize was a big achievement for Riya.",
+    "distractorMeanings": [
+      "a mistake made by carelessness",
+      "a rule made by the school"
+    ],
+    "syllables": [
+      "a",
+      "chieve",
+      "ment"
+    ],
+    "tags": [
+      "school",
+      "character-values"
+    ],
+    "contextWords": [
+      "prize",
+      "effort",
+      "proud",
+      "win",
+      "hard"
+    ]
+  },
+  {
+    "id": "d269-5",
+    "dayIndex": 269,
+    "word": "encounter",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to meet someone or something by chance",
+    "meaningMarathi": "अचानक भेटणे",
+    "exampleSentence": "We may encounter a deer on the forest path.",
+    "distractorMeanings": [
+      "to chase an animal away",
+      "to run quickly from a wild animal"
+    ],
+    "syllables": [
+      "en",
+      "coun",
+      "ter"
+    ],
+    "tags": [
+      "stories-imagination",
+      "animals"
+    ],
+    "contextWords": [
+      "meet",
+      "chance",
+      "forest",
+      "path",
+      "surprise"
+    ]
+  },
+  {
+    "id": "d270-1",
+    "dayIndex": 270,
+    "word": "bold",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "not afraid to take a risk or speak out",
+    "meaningMarathi": "धाडसी, निर्भय",
+    "exampleSentence": "The bold girl spoke in front of the whole school.",
+    "distractorMeanings": [
+      "very shy and quiet in a crowd",
+      "too lazy to do any work"
+    ],
+    "syllables": [
+      "bold"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "brave",
+      "speak",
+      "stage",
+      "fear",
+      "courage"
+    ]
+  },
+  {
+    "id": "d270-2",
+    "dayIndex": 270,
+    "word": "rejoice",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to feel and show great happiness",
+    "meaningMarathi": "आनंद साजरा करणे",
+    "exampleSentence": "The whole village will rejoice when the rain arrives.",
+    "distractorMeanings": [
+      "to feel and show great sadness",
+      "to feel too sleepy to move"
+    ],
+    "syllables": [
+      "re",
+      "joice"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "festivals"
+    ],
+    "contextWords": [
+      "happy",
+      "celebrate",
+      "village",
+      "rain",
+      "joy"
+    ]
+  },
+  {
+    "id": "d270-3",
+    "dayIndex": 270,
+    "word": "speaker",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a person who talks to a group of people",
+    "meaningMarathi": "वक्ता",
+    "exampleSentence": "The speaker thanked everyone who came to the school function.",
+    "distractorMeanings": [
+      "a person who listens to a story",
+      "a machine that prints paper"
+    ],
+    "syllables": [
+      "speak",
+      "er"
+    ],
+    "tags": [
+      "communication"
+    ],
+    "contextWords": [
+      "speech",
+      "stage",
+      "audience",
+      "microphone",
+      "talk"
+    ]
+  },
+  {
+    "id": "d270-4",
+    "dayIndex": 270,
+    "word": "industrious",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "working hard and being busy",
+    "meaningMarathi": "उद्योगी, कष्टाळू",
+    "exampleSentence": "The industrious ant carries food all day long.",
+    "distractorMeanings": [
+      "lazy and sleeping all day",
+      "noisy and rude to others"
+    ],
+    "syllables": [
+      "in",
+      "dus",
+      "tri",
+      "ous"
+    ],
+    "tags": [
+      "character-values",
+      "animals"
+    ],
+    "contextWords": [
+      "hard",
+      "work",
+      "ant",
+      "busy",
+      "farmer"
+    ]
+  },
+  {
+    "id": "d270-5",
+    "dayIndex": 270,
+    "word": "motionless",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "not moving at all",
+    "meaningMarathi": "निश्चल, स्तब्ध",
+    "exampleSentence": "The deer stood motionless when it heard a sound in the forest.",
+    "distractorMeanings": [
+      "running very fast through trees",
+      "jumping high over a wall"
+    ],
+    "syllables": [
+      "mo",
+      "tion",
+      "less"
+    ],
+    "tags": [
+      "actions-movement",
+      "animals"
+    ],
+    "contextWords": [
+      "still",
+      "statue",
+      "deer",
+      "quiet",
+      "stand"
+    ]
+  },
+  {
+    "id": "d271-1",
+    "dayIndex": 271,
+    "word": "gasp",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to breathe in quickly because of surprise or fear",
+    "meaningMarathi": "दचकून श्वास घेणे",
+    "exampleSentence": "The children began to gasp when the magician made a rabbit appear.",
+    "distractorMeanings": [
+      "to sleep deeply at night",
+      "to sing a song softly"
+    ],
+    "syllables": [
+      "gasp"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "surprise",
+      "breath",
+      "magic",
+      "fear",
+      "shock"
+    ]
+  },
+  {
+    "id": "d271-2",
+    "dayIndex": 271,
+    "word": "humble",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "not proud and not thinking you are better than others",
+    "meaningMarathi": "विनम्र, नम्र",
+    "exampleSentence": "The famous player was humble and thanked his old teacher.",
+    "distractorMeanings": [
+      "always boasting about winning",
+      "very rich and wearing gold"
+    ],
+    "syllables": [
+      "hum",
+      "ble"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "modest",
+      "proud",
+      "teacher",
+      "simple",
+      "thank"
+    ]
+  },
+  {
+    "id": "d271-3",
+    "dayIndex": 271,
+    "word": "lively",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "full of energy and happy",
+    "meaningMarathi": "उत्साही, चैतन्यपूर्ण",
+    "exampleSentence": "The lively children danced on the street during the wari.",
+    "distractorMeanings": [
+      "very slow and tired",
+      "dull and sad in mood"
+    ],
+    "syllables": [
+      "live",
+      "ly"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "festivals"
+    ],
+    "contextWords": [
+      "energy",
+      "happy",
+      "dance",
+      "play",
+      "busy"
+    ]
+  },
+  {
+    "id": "d271-4",
+    "dayIndex": 271,
+    "word": "document",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a paper with important written information",
+    "meaningMarathi": "कागदपत्र",
+    "exampleSentence": "Father kept the school admission document in a safe folder.",
+    "distractorMeanings": [
+      "a picture drawn with crayons",
+      "a song written for a drama"
+    ],
+    "syllables": [
+      "doc",
+      "u",
+      "ment"
+    ],
+    "tags": [
+      "school",
+      "communication"
+    ],
+    "contextWords": [
+      "paper",
+      "file",
+      "school",
+      "important",
+      "write"
+    ]
+  },
+  {
+    "id": "d271-5",
+    "dayIndex": 271,
+    "word": "enquiry",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a question asked to get information",
+    "meaningMarathi": "चौकशी",
+    "exampleSentence": "Father made an enquiry about the bus timings at the counter.",
+    "distractorMeanings": [
+      "an answer given to a friend",
+      "a loud shout in a crowd"
+    ],
+    "syllables": [
+      "en",
+      "quir",
+      "y"
+    ],
+    "tags": [
+      "communication"
+    ],
+    "contextWords": [
+      "ask",
+      "counter",
+      "information",
+      "office",
+      "question"
+    ]
+  },
+  {
+    "id": "d272-1",
+    "dayIndex": 272,
+    "word": "crown",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a gold circle that a king or queen wears on the head",
+    "meaningMarathi": "मुकुट",
+    "exampleSentence": "The king wore a shining crown in the palace.",
+    "distractorMeanings": [
+      "a long stick carried by a soldier",
+      "a seat made for a judge"
+    ],
+    "syllables": [
+      "crown"
+    ],
+    "tags": [
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "king",
+      "queen",
+      "gold",
+      "palace",
+      "jewel"
+    ]
+  },
+  {
+    "id": "d272-2",
+    "dayIndex": 272,
+    "word": "tearful",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "crying or ready to cry",
+    "meaningMarathi": "अश्रूंनी भरलेला, रडवेला",
+    "exampleSentence": "The tearful girl hugged her mother at the bus stop.",
+    "distractorMeanings": [
+      "laughing with a loud voice",
+      "sleeping on a soft bed"
+    ],
+    "syllables": [
+      "tear",
+      "ful"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "cry",
+      "sad",
+      "mother",
+      "eyes",
+      "goodbye"
+    ]
+  },
+  {
+    "id": "d272-3",
+    "dayIndex": 272,
+    "word": "pluck",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to pull off a flower or fruit from a plant",
+    "meaningMarathi": "तोडणे, खुडणे",
+    "exampleSentence": "Grandmother went to the garden to pluck fresh jasmine flowers.",
+    "distractorMeanings": [
+      "to plant a seed in the ground",
+      "to pour water on a plant"
+    ],
+    "syllables": [
+      "pluck"
+    ],
+    "tags": [
+      "farming-village",
+      "plants-trees"
+    ],
+    "contextWords": [
+      "flower",
+      "fruit",
+      "garden",
+      "pick",
+      "tree"
+    ]
+  },
+  {
+    "id": "d272-4",
+    "dayIndex": 272,
+    "word": "extremely",
+    "partOfSpeech": "adverb",
+    "difficulty": 3,
+    "meaning": "to a very great degree",
+    "meaningMarathi": "अत्यंत",
+    "exampleSentence": "Riya was extremely happy to see her old friend again.",
+    "distractorMeanings": [
+      "to a very small degree",
+      "in a slow and lazy way"
+    ],
+    "syllables": [
+      "ex",
+      "treme",
+      "ly"
+    ],
+    "tags": [
+      "describing-things"
+    ],
+    "contextWords": [
+      "very",
+      "much",
+      "happy",
+      "hot",
+      "cold"
+    ]
+  },
+  {
+    "id": "d272-5",
+    "dayIndex": 272,
+    "word": "autograph",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "the name of a famous person written by that person",
+    "meaningMarathi": "स्वाक्षरी",
+    "exampleSentence": "Sai got the autograph of his favourite player on his cap.",
+    "distractorMeanings": [
+      "a photo of a famous person",
+      "a letter written to a friend"
+    ],
+    "syllables": [
+      "au",
+      "to",
+      "graph"
+    ],
+    "tags": [
+      "sports-games",
+      "communication"
+    ],
+    "contextWords": [
+      "signature",
+      "name",
+      "player",
+      "fan",
+      "pen"
+    ]
+  },
+  {
+    "id": "d273-1",
+    "dayIndex": 273,
+    "word": "slow",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "not moving fast",
+    "meaningMarathi": "हळू, मंद",
+    "exampleSentence": "The tortoise is very slow but it never gives up.",
+    "distractorMeanings": [
+      "moving very fast on the road",
+      "very loud and noisy"
+    ],
+    "syllables": [
+      "slow"
+    ],
+    "tags": [
+      "describing-things",
+      "animals"
+    ],
+    "contextWords": [
+      "tortoise",
+      "walk",
+      "speed",
+      "race",
+      "snail"
+    ]
+  },
+  {
+    "id": "d273-2",
+    "dayIndex": 273,
+    "word": "tense",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "nervous and unable to relax",
+    "meaningMarathi": "तणावग्रस्त",
+    "exampleSentence": "Aarav felt tense before the big exam.",
+    "distractorMeanings": [
+      "calm and ready to sleep",
+      "happy and ready to play"
+    ],
+    "syllables": [
+      "tense"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "school"
+    ],
+    "contextWords": [
+      "nervous",
+      "exam",
+      "worry",
+      "wait",
+      "result"
+    ]
+  },
+  {
+    "id": "d273-3",
+    "dayIndex": 273,
+    "word": "applaud",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to clap your hands to show you liked something",
+    "meaningMarathi": "टाळ्या वाजवणे",
+    "exampleSentence": "The audience will applaud when the little singer finishes her song.",
+    "distractorMeanings": [
+      "to shout at a player in anger",
+      "to leave a hall in the middle"
+    ],
+    "syllables": [
+      "ap",
+      "plaud"
+    ],
+    "tags": [
+      "music-art",
+      "communication"
+    ],
+    "contextWords": [
+      "clap",
+      "audience",
+      "hands",
+      "show",
+      "cheer"
+    ]
+  },
+  {
+    "id": "d273-4",
+    "dayIndex": 273,
+    "word": "imitate",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to copy the way someone speaks or acts",
+    "meaningMarathi": "नक्कल करणे",
+    "exampleSentence": "Riya can imitate the call of a cuckoo very well.",
+    "distractorMeanings": [
+      "to ignore what someone says",
+      "to praise what someone does"
+    ],
+    "syllables": [
+      "im",
+      "i",
+      "tate"
+    ],
+    "tags": [
+      "communication",
+      "animals"
+    ],
+    "contextWords": [
+      "copy",
+      "voice",
+      "mimic",
+      "bird",
+      "funny"
+    ]
+  },
+  {
+    "id": "d273-5",
+    "dayIndex": 273,
+    "word": "difficulty",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a problem that makes something hard to do",
+    "meaningMarathi": "अडचण",
+    "exampleSentence": "Om had difficulty in reading the small letters on the board.",
+    "distractorMeanings": [
+      "a thing that makes work easy",
+      "a prize for good work"
+    ],
+    "syllables": [
+      "dif",
+      "fi",
+      "cul",
+      "ty"
+    ],
+    "tags": [
+      "school",
+      "character-values"
+    ],
+    "contextWords": [
+      "hard",
+      "problem",
+      "trouble",
+      "help",
+      "solve"
+    ]
+  },
+  {
+    "id": "d274-1",
+    "dayIndex": 274,
+    "word": "cheap",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "not costing much money",
+    "meaningMarathi": "स्वस्त",
+    "exampleSentence": "The vegetables in the village market are fresh and cheap.",
+    "distractorMeanings": [
+      "very old and broken",
+      "too heavy to carry"
+    ],
+    "syllables": [
+      "cheap"
+    ],
+    "tags": [
+      "city-town",
+      "food"
+    ],
+    "contextWords": [
+      "price",
+      "market",
+      "money",
+      "buy",
+      "cost"
+    ]
+  },
+  {
+    "id": "d274-2",
+    "dayIndex": 274,
+    "word": "strive",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to try very hard to reach a goal",
+    "meaningMarathi": "प्रयत्न करणे",
+    "exampleSentence": "Students strive to do well in their final exams.",
+    "distractorMeanings": [
+      "to give up at the first problem",
+      "to wait and do nothing"
+    ],
+    "syllables": [
+      "strive"
+    ],
+    "tags": [
+      "character-values",
+      "school"
+    ],
+    "contextWords": [
+      "try",
+      "goal",
+      "hard",
+      "exam",
+      "effort"
+    ],
+    "forms": [
+      "strove",
+      "striven"
+    ]
+  },
+  {
+    "id": "d274-3",
+    "dayIndex": 274,
+    "word": "painful",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "causing a hurting feeling in the body",
+    "meaningMarathi": "वेदनादायक",
+    "exampleSentence": "The bee sting on Riya's finger was very painful.",
+    "distractorMeanings": [
+      "soft and comfortable to touch",
+      "so sweet that you smile"
+    ],
+    "syllables": [
+      "pain",
+      "ful"
+    ],
+    "tags": [
+      "body-health"
+    ],
+    "contextWords": [
+      "hurt",
+      "sting",
+      "injury",
+      "doctor",
+      "finger"
+    ]
+  },
+  {
+    "id": "d274-4",
+    "dayIndex": 274,
+    "word": "fabulous",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "extremely good or wonderful",
+    "meaningMarathi": "अप्रतिम, अफलातून",
+    "exampleSentence": "Riya's drawing of the peacock was fabulous.",
+    "distractorMeanings": [
+      "very bad and untidy",
+      "quite plain and dull"
+    ],
+    "syllables": [
+      "fab",
+      "u",
+      "lous"
+    ],
+    "tags": [
+      "describing-things",
+      "music-art"
+    ],
+    "contextWords": [
+      "wonderful",
+      "great",
+      "picture",
+      "peacock",
+      "amazing"
+    ]
+  },
+  {
+    "id": "d274-5",
+    "dayIndex": 274,
+    "word": "designer",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a person who plans how something will look",
+    "meaningMarathi": "आराखडा तयार करणारा",
+    "exampleSentence": "The designer drew a new school uniform on paper.",
+    "distractorMeanings": [
+      "a person who sews buttons on a shirt",
+      "a person who washes clothes"
+    ],
+    "syllables": [
+      "de",
+      "sign",
+      "er"
+    ],
+    "tags": [
+      "jobs-work",
+      "music-art"
+    ],
+    "contextWords": [
+      "draw",
+      "plan",
+      "clothes",
+      "idea",
+      "sketch"
+    ]
+  },
+  {
+    "id": "d275-1",
+    "dayIndex": 275,
+    "word": "bald",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "having no hair on the head",
+    "meaningMarathi": "टक्कल असलेला",
+    "exampleSentence": "Grandfather is bald but he has a long white moustache.",
+    "distractorMeanings": [
+      "having very long black hair",
+      "having a lot of curly hair"
+    ],
+    "syllables": [
+      "bald"
+    ],
+    "tags": [
+      "body-health",
+      "describing-things"
+    ],
+    "contextWords": [
+      "hair",
+      "head",
+      "old",
+      "grandfather",
+      "smooth"
+    ]
+  },
+  {
+    "id": "d275-2",
+    "dayIndex": 275,
+    "word": "homesick",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "sad because you are away from your home",
+    "meaningMarathi": "घराची आठवण येणारा",
+    "exampleSentence": "Sai felt homesick during his first night at the camp.",
+    "distractorMeanings": [
+      "happy to live at a new place",
+      "tired after a long school day"
+    ],
+    "syllables": [
+      "home",
+      "sick"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "home",
+      "camp",
+      "mother",
+      "miss",
+      "night"
+    ]
+  },
+  {
+    "id": "d275-3",
+    "dayIndex": 275,
+    "word": "startle",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to give someone a sudden small shock",
+    "meaningMarathi": "दचकवणे",
+    "exampleSentence": "The loud thunder will startle the sleeping baby.",
+    "distractorMeanings": [
+      "to put a baby gently to sleep",
+      "to sing a song to a baby"
+    ],
+    "syllables": [
+      "star",
+      "tle"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "sudden",
+      "surprise",
+      "noise",
+      "jump",
+      "fear"
+    ]
+  },
+  {
+    "id": "d275-4",
+    "dayIndex": 275,
+    "word": "athletics",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "sports such as running, jumping and throwing",
+    "meaningMarathi": "मैदानी खेळ",
+    "exampleSentence": "Riya won a medal in athletics on sports day.",
+    "distractorMeanings": [
+      "games played only on a board",
+      "games played only in water"
+    ],
+    "syllables": [
+      "ath",
+      "let",
+      "ics"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "running",
+      "jumping",
+      "throwing",
+      "track",
+      "medal"
+    ]
+  },
+  {
+    "id": "d275-5",
+    "dayIndex": 275,
+    "word": "experiment",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a test done to find out how something works",
+    "meaningMarathi": "प्रयोग",
+    "exampleSentence": "Gauri did an experiment to see which things float in water.",
+    "distractorMeanings": [
+      "a long story read in class",
+      "a game played in the rain"
+    ],
+    "syllables": [
+      "ex",
+      "per",
+      "i",
+      "ment"
+    ],
+    "tags": [
+      "science-space",
+      "school"
+    ],
+    "contextWords": [
+      "science",
+      "test",
+      "water",
+      "class",
+      "lab"
+    ]
+  },
+  {
+    "id": "d276-1",
+    "dayIndex": 276,
+    "word": "arrow",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a thin stick with a sharp point shot from a bow",
+    "meaningMarathi": "बाण",
+    "exampleSentence": "Aarav drew an arrow on the board to show the way.",
+    "distractorMeanings": [
+      "a round ball thrown in a game",
+      "a long rope used for climbing"
+    ],
+    "syllables": [
+      "ar",
+      "row"
+    ],
+    "tags": [
+      "shapes-colours",
+      "sports-games"
+    ],
+    "contextWords": [
+      "bow",
+      "point",
+      "sharp",
+      "direction",
+      "target"
+    ]
+  },
+  {
+    "id": "d276-2",
+    "dayIndex": 276,
+    "word": "polite",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "having good manners and showing respect to others",
+    "meaningMarathi": "नम्र, सभ्य",
+    "exampleSentence": "A polite child says thank you and please every day.",
+    "distractorMeanings": [
+      "rude and loud with elders",
+      "lazy and slow in work"
+    ],
+    "syllables": [
+      "po",
+      "lite"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "manners",
+      "please",
+      "thank",
+      "respect",
+      "elders"
+    ]
+  },
+  {
+    "id": "d276-3",
+    "dayIndex": 276,
+    "word": "uncle",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "the brother of your father or mother",
+    "meaningMarathi": "काका, मामा",
+    "exampleSentence": "Uncle Raju gave Aarav a new cricket bat on his birthday.",
+    "distractorMeanings": [
+      "the sister of your father or mother",
+      "the grandfather of your friend"
+    ],
+    "syllables": [
+      "un",
+      "cle"
+    ],
+    "tags": [
+      "family"
+    ],
+    "contextWords": [
+      "aunt",
+      "family",
+      "father",
+      "gift",
+      "visit"
+    ]
+  },
+  {
+    "id": "d276-4",
+    "dayIndex": 276,
+    "word": "contribute",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to give something to help a group",
+    "meaningMarathi": "योगदान देणे, हातभार लावणे",
+    "exampleSentence": "Every child will contribute a rupee to help the flood victims.",
+    "distractorMeanings": [
+      "to take away money from others",
+      "to keep all the sweets for oneself"
+    ],
+    "syllables": [
+      "con",
+      "trib",
+      "ute"
+    ],
+    "tags": [
+      "character-values",
+      "community-helpers"
+    ],
+    "contextWords": [
+      "give",
+      "help",
+      "share",
+      "donate",
+      "team"
+    ]
+  },
+  {
+    "id": "d276-5",
+    "dayIndex": 276,
+    "word": "suspicion",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a feeling that someone has done something wrong",
+    "meaningMarathi": "संशय",
+    "exampleSentence": "The teacher had a suspicion that Om had not done his homework.",
+    "distractorMeanings": [
+      "a feeling of great joy",
+      "a feeling of deep sleep"
+    ],
+    "syllables": [
+      "sus",
+      "pi",
+      "cion"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "character-values"
+    ],
+    "contextWords": [
+      "doubt",
+      "wrong",
+      "teacher",
+      "secret",
+      "sure"
+    ]
+  },
+  {
+    "id": "d277-1",
+    "dayIndex": 277,
+    "word": "worry",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to keep thinking about something bad that may happen",
+    "meaningMarathi": "काळजी करणे",
+    "exampleSentence": "Do not worry, Mother will come to the school soon.",
+    "distractorMeanings": [
+      "to forget something that happened",
+      "to laugh loudly at a joke"
+    ],
+    "syllables": [
+      "wor",
+      "ry"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "afraid",
+      "exam",
+      "mother",
+      "trouble",
+      "think"
+    ]
+  },
+  {
+    "id": "d277-2",
+    "dayIndex": 277,
+    "word": "giddy",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "feeling dizzy and unable to stand steady",
+    "meaningMarathi": "चक्कर आल्यासारखा",
+    "exampleSentence": "Riya felt giddy after spinning round and round in the park.",
+    "distractorMeanings": [
+      "feeling strong and steady",
+      "feeling cold and very sleepy"
+    ],
+    "syllables": [
+      "gid",
+      "dy"
+    ],
+    "tags": [
+      "body-health",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "dizzy",
+      "spin",
+      "round",
+      "fall",
+      "head"
+    ]
+  },
+  {
+    "id": "d277-3",
+    "dayIndex": 277,
+    "word": "mural",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a big picture painted on a wall",
+    "meaningMarathi": "भित्तिचित्र",
+    "exampleSentence": "The students painted a colourful mural on the school wall.",
+    "distractorMeanings": [
+      "a small picture drawn on paper",
+      "a heavy statue made of stone"
+    ],
+    "syllables": [
+      "mu",
+      "ral"
+    ],
+    "tags": [
+      "music-art"
+    ],
+    "contextWords": [
+      "wall",
+      "paint",
+      "colour",
+      "picture",
+      "school"
+    ]
+  },
+  {
+    "id": "d277-4",
+    "dayIndex": 277,
+    "word": "distinguish",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to see the difference between two things",
+    "meaningMarathi": "फरक ओळखणे",
+    "exampleSentence": "Can you distinguish a crow from a raven by its size?",
+    "distractorMeanings": [
+      "to mix two things together",
+      "to see the same thing twice"
+    ],
+    "syllables": [
+      "dis",
+      "tin",
+      "guish"
+    ],
+    "tags": [
+      "science-space",
+      "school"
+    ],
+    "contextWords": [
+      "difference",
+      "tell",
+      "see",
+      "compare",
+      "sort"
+    ]
+  },
+  {
+    "id": "d277-5",
+    "dayIndex": 277,
+    "word": "protest",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to say strongly that you do not agree",
+    "meaningMarathi": "निषेध करणे",
+    "exampleSentence": "The villagers will protest against cutting the old trees.",
+    "distractorMeanings": [
+      "to agree with everything silently",
+      "to clap for a good speech"
+    ],
+    "syllables": [
+      "pro",
+      "test"
+    ],
+    "tags": [
+      "communication",
+      "environment"
+    ],
+    "contextWords": [
+      "against",
+      "loud",
+      "villagers",
+      "voice",
+      "disagree"
+    ]
+  },
+  {
+    "id": "d278-1",
+    "dayIndex": 278,
+    "word": "piano",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a large musical instrument with black and white keys",
+    "meaningMarathi": "पियानो",
+    "exampleSentence": "Riya played a sweet tune on the piano.",
+    "distractorMeanings": [
+      "a drum that is beaten with sticks",
+      "a long pipe blown with the mouth"
+    ],
+    "syllables": [
+      "pi",
+      "an",
+      "o"
+    ],
+    "tags": [
+      "music-art"
+    ],
+    "contextWords": [
+      "keys",
+      "music",
+      "play",
+      "tune",
+      "black"
+    ]
+  },
+  {
+    "id": "d278-2",
+    "dayIndex": 278,
+    "word": "solitary",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "alone and with no other people near",
+    "meaningMarathi": "एकटा, एकाकी",
+    "exampleSentence": "A solitary tree stood in the middle of the dry field.",
+    "distractorMeanings": [
+      "crowded with many people",
+      "full of colour and noise"
+    ],
+    "syllables": [
+      "sol",
+      "i",
+      "tar",
+      "y"
+    ],
+    "tags": [
+      "nature",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "alone",
+      "tree",
+      "single",
+      "quiet",
+      "field"
+    ]
+  },
+  {
+    "id": "d278-3",
+    "dayIndex": 278,
+    "word": "gnaw",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to bite something hard again and again",
+    "meaningMarathi": "कुरतडणे",
+    "exampleSentence": "Rats gnaw the sacks of rice kept in the old shed.",
+    "distractorMeanings": [
+      "to wash something in clean water",
+      "to roll something on a table"
+    ],
+    "syllables": [
+      "gnaw"
+    ],
+    "tags": [
+      "animals",
+      "farming-village"
+    ],
+    "contextWords": [
+      "rat",
+      "bite",
+      "teeth",
+      "bone",
+      "sack"
+    ]
+  },
+  {
+    "id": "d278-4",
+    "dayIndex": 278,
+    "word": "candidate",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a person who takes part in an election or exam",
+    "meaningMarathi": "उमेदवार",
+    "exampleSentence": "Each candidate in the class election gave a short speech.",
+    "distractorMeanings": [
+      "a person who sells tickets",
+      "a person who counts the votes"
+    ],
+    "syllables": [
+      "can",
+      "di",
+      "date"
+    ],
+    "tags": [
+      "school",
+      "communication"
+    ],
+    "contextWords": [
+      "election",
+      "exam",
+      "vote",
+      "speech",
+      "class"
+    ]
+  },
+  {
+    "id": "d278-5",
+    "dayIndex": 278,
+    "word": "fruitful",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "giving good results",
+    "meaningMarathi": "फलदायी",
+    "exampleSentence": "Our meeting with the teacher was fruitful and helped us a lot.",
+    "distractorMeanings": [
+      "giving no results at all",
+      "giving only a lot of fruit"
+    ],
+    "syllables": [
+      "fruit",
+      "ful"
+    ],
+    "tags": [
+      "school",
+      "describing-things"
+    ],
+    "contextWords": [
+      "result",
+      "useful",
+      "work",
+      "meeting",
+      "good"
+    ]
+  },
+  {
+    "id": "d279-1",
+    "dayIndex": 279,
+    "word": "wiggle",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to move from side to side with quick small movements",
+    "meaningMarathi": "वळवळणे, हलवणे",
+    "exampleSentence": "The puppy began to wiggle its tail when it saw Sai.",
+    "distractorMeanings": [
+      "to sit still without any movement",
+      "to jump over a wall"
+    ],
+    "syllables": [
+      "wig",
+      "gle"
+    ],
+    "tags": [
+      "actions-movement"
+    ],
+    "contextWords": [
+      "tail",
+      "puppy",
+      "move",
+      "wriggle",
+      "shake"
+    ]
+  },
+  {
+    "id": "d279-2",
+    "dayIndex": 279,
+    "word": "unlucky",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "having bad things happen by chance",
+    "meaningMarathi": "दुर्दैवी",
+    "exampleSentence": "Gauri felt unlucky when it started raining on her picnic day.",
+    "distractorMeanings": [
+      "having good things happen often",
+      "very clever and quick"
+    ],
+    "syllables": [
+      "un",
+      "luck",
+      "y"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "bad",
+      "chance",
+      "rain",
+      "lost",
+      "wrong"
+    ]
+  },
+  {
+    "id": "d279-3",
+    "dayIndex": 279,
+    "word": "athlete",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a person who is good at sports and trains hard",
+    "meaningMarathi": "खेळाडू",
+    "exampleSentence": "The young athlete runs ten kilometres every morning.",
+    "distractorMeanings": [
+      "a person who writes poems",
+      "a person who repairs shoes"
+    ],
+    "syllables": [
+      "ath",
+      "lete"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "run",
+      "train",
+      "race",
+      "medal",
+      "fit"
+    ]
+  },
+  {
+    "id": "d279-4",
+    "dayIndex": 279,
+    "word": "heritage",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "old things and traditions passed down from earlier times",
+    "meaningMarathi": "वारसा",
+    "exampleSentence": "The old fort is part of our proud heritage.",
+    "distractorMeanings": [
+      "a new building made of glass",
+      "a toy bought from a shop"
+    ],
+    "syllables": [
+      "her",
+      "i",
+      "tage"
+    ],
+    "tags": [
+      "maharashtra-culture",
+      "india"
+    ],
+    "contextWords": [
+      "fort",
+      "history",
+      "culture",
+      "tradition",
+      "old"
+    ]
+  },
+  {
+    "id": "d279-5",
+    "dayIndex": 279,
+    "word": "visualise",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to make a picture of something in your mind",
+    "meaningMarathi": "मनात चित्र उभे करणे",
+    "exampleSentence": "Close your eyes and visualise a quiet beach at sunset.",
+    "distractorMeanings": [
+      "to draw a picture on paper",
+      "to look at a picture on a wall"
+    ],
+    "syllables": [
+      "vis",
+      "u",
+      "al",
+      "ise"
+    ],
+    "tags": [
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "imagine",
+      "picture",
+      "mind",
+      "eyes",
+      "dream"
+    ]
+  },
+  {
+    "id": "d280-1",
+    "dayIndex": 280,
+    "word": "shape",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "the outline or form of something, like a circle or square",
+    "meaningMarathi": "आकार",
+    "exampleSentence": "The cloud in the sky had the shape of an elephant.",
+    "distractorMeanings": [
+      "the colour of a flower",
+      "the weight of a stone"
+    ],
+    "syllables": [
+      "shape"
+    ],
+    "tags": [
+      "shapes-colours",
+      "music-art"
+    ],
+    "contextWords": [
+      "circle",
+      "square",
+      "draw",
+      "cloud",
+      "form"
+    ]
+  },
+  {
+    "id": "d280-2",
+    "dayIndex": 280,
+    "word": "wasteful",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "using more than you need and throwing things away",
+    "meaningMarathi": "उधळपट्टी करणारा",
+    "exampleSentence": "It is wasteful to leave the tap running all day.",
+    "distractorMeanings": [
+      "careful in using all things",
+      "rich in saving every coin"
+    ],
+    "syllables": [
+      "waste",
+      "ful"
+    ],
+    "tags": [
+      "environment",
+      "character-values"
+    ],
+    "contextWords": [
+      "water",
+      "waste",
+      "tap",
+      "save",
+      "throw"
+    ]
+  },
+  {
+    "id": "d280-3",
+    "dayIndex": 280,
+    "word": "tuneful",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "having a sweet and pleasant musical sound",
+    "meaningMarathi": "सुरेल",
+    "exampleSentence": "The tuneful song of the cuckoo woke Aarav in the morning.",
+    "distractorMeanings": [
+      "having a loud and harsh noise",
+      "having no sound at all"
+    ],
+    "syllables": [
+      "tune",
+      "ful"
+    ],
+    "tags": [
+      "music-art"
+    ],
+    "contextWords": [
+      "song",
+      "sweet",
+      "bird",
+      "music",
+      "sing"
+    ]
+  },
+  {
+    "id": "d280-4",
+    "dayIndex": 280,
+    "word": "intelligent",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "good at learning and understanding",
+    "meaningMarathi": "हुशार, बुद्धिमान",
+    "exampleSentence": "The intelligent girl solved the hard puzzle in one minute.",
+    "distractorMeanings": [
+      "slow to learn anything new",
+      "too lazy to try anything"
+    ],
+    "syllables": [
+      "in",
+      "tel",
+      "li",
+      "gent"
+    ],
+    "tags": [
+      "character-values",
+      "school"
+    ],
+    "contextWords": [
+      "clever",
+      "smart",
+      "puzzle",
+      "learn",
+      "brain"
+    ]
+  },
+  {
+    "id": "d280-5",
+    "dayIndex": 280,
+    "word": "commit",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to promise to do something fully",
+    "meaningMarathi": "वचनबद्ध होणे",
+    "exampleSentence": "Sai decided to commit himself to a daily practice of cricket.",
+    "distractorMeanings": [
+      "to refuse to do any work",
+      "to forget a task completely"
+    ],
+    "syllables": [
+      "com",
+      "mit"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "promise",
+      "effort",
+      "daily",
+      "practice",
+      "team"
+    ]
+  },
+  {
+    "id": "d281-1",
+    "dayIndex": 281,
+    "word": "catch",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to stop and hold something that is thrown",
+    "meaningMarathi": "झेलणे, पकडणे",
+    "exampleSentence": "Aarav jumped high to catch the cricket ball.",
+    "distractorMeanings": [
+      "to hit something very hard with a bat",
+      "to throw something to a friend"
+    ],
+    "syllables": [
+      "catch"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "ball",
+      "throw",
+      "hands",
+      "cricket",
+      "fielder"
+    ],
+    "forms": [
+      "caught"
+    ]
+  },
+  {
+    "id": "d281-2",
+    "dayIndex": 281,
+    "word": "wicked",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "very bad and cruel",
+    "meaningMarathi": "दुष्ट, खट",
+    "exampleSentence": "The wicked minister in the story tried to trick the king.",
+    "distractorMeanings": [
+      "good and kind to children",
+      "brave and ready to help"
+    ],
+    "syllables": [
+      "wick",
+      "ed"
+    ],
+    "tags": [
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "minister",
+      "evil",
+      "story",
+      "cruel",
+      "bad"
+    ]
+  },
+  {
+    "id": "d281-3",
+    "dayIndex": 281,
+    "word": "instrument",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a thing used for making musical sounds",
+    "meaningMarathi": "वाद्य",
+    "exampleSentence": "The flute is a sweet instrument played by blowing air.",
+    "distractorMeanings": [
+      "a tool used for digging soil",
+      "a book used for singing"
+    ],
+    "syllables": [
+      "in",
+      "stru",
+      "ment"
+    ],
+    "tags": [
+      "music-art"
+    ],
+    "contextWords": [
+      "music",
+      "play",
+      "flute",
+      "sound",
+      "tabla"
+    ]
+  },
+  {
+    "id": "d281-4",
+    "dayIndex": 281,
+    "word": "artistic",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "having a skill in drawing, painting or making beautiful things",
+    "meaningMarathi": "कलात्मक",
+    "exampleSentence": "Gauri's artistic rangoli won the first prize.",
+    "distractorMeanings": [
+      "having no skill in any work",
+      "having a loud and rough voice"
+    ],
+    "syllables": [
+      "ar",
+      "tis",
+      "tic"
+    ],
+    "tags": [
+      "music-art"
+    ],
+    "contextWords": [
+      "art",
+      "rangoli",
+      "paint",
+      "draw",
+      "creative"
+    ]
+  },
+  {
+    "id": "d281-5",
+    "dayIndex": 281,
+    "word": "maintain",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to keep something in good condition",
+    "meaningMarathi": "राखणे, जतन करणे",
+    "exampleSentence": "We must maintain silence in the library.",
+    "distractorMeanings": [
+      "to break something into small parts",
+      "to make something dirty and old"
+    ],
+    "syllables": [
+      "main",
+      "tain"
+    ],
+    "tags": [
+      "school",
+      "character-values"
+    ],
+    "contextWords": [
+      "keep",
+      "silence",
+      "clean",
+      "library",
+      "care"
+    ]
+  },
+  {
+    "id": "d282-1",
+    "dayIndex": 282,
+    "word": "alive",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "living and not dead",
+    "meaningMarathi": "जिवंत",
+    "exampleSentence": "The bird was still alive when Riya found it in the garden.",
+    "distractorMeanings": [
+      "made of strong metal",
+      "lying fast asleep at night"
+    ],
+    "syllables": [
+      "a",
+      "live"
+    ],
+    "tags": [
+      "animals",
+      "describing-things"
+    ],
+    "contextWords": [
+      "living",
+      "bird",
+      "breathe",
+      "plant",
+      "heart"
+    ]
+  },
+  {
+    "id": "d282-2",
+    "dayIndex": 282,
+    "word": "mould",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to shape soft clay or dough into a form",
+    "meaningMarathi": "आकार देणे, घडवणे",
+    "exampleSentence": "The potter will mould the wet clay into a pot.",
+    "distractorMeanings": [
+      "to break a hard stone with a hammer",
+      "to paint a picture on a wall"
+    ],
+    "syllables": [
+      "mould"
+    ],
+    "tags": [
+      "music-art"
+    ],
+    "contextWords": [
+      "clay",
+      "potter",
+      "shape",
+      "pot",
+      "hands"
+    ]
+  },
+  {
+    "id": "d282-3",
+    "dayIndex": 282,
+    "word": "serve",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to give food or help to someone",
+    "meaningMarathi": "वाढणे, सेवा करणे",
+    "exampleSentence": "Mother will serve hot rice and dal to the guests.",
+    "distractorMeanings": [
+      "to take food away from a table",
+      "to cook food on a stove"
+    ],
+    "syllables": [
+      "serve"
+    ],
+    "tags": [
+      "community-helpers",
+      "food"
+    ],
+    "contextWords": [
+      "food",
+      "guest",
+      "table",
+      "help",
+      "plate"
+    ]
+  },
+  {
+    "id": "d282-4",
+    "dayIndex": 282,
+    "word": "necessity",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "something you must have",
+    "meaningMarathi": "गरज, आवश्यक वस्तू",
+    "exampleSentence": "Water is a necessity for all living things.",
+    "distractorMeanings": [
+      "a toy that is not needed",
+      "a gift given to a friend"
+    ],
+    "syllables": [
+      "ne",
+      "ces",
+      "si",
+      "ty"
+    ],
+    "tags": [
+      "science-space",
+      "home"
+    ],
+    "contextWords": [
+      "need",
+      "water",
+      "food",
+      "important",
+      "must"
+    ]
+  },
+  {
+    "id": "d282-5",
+    "dayIndex": 282,
+    "word": "pronounce",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to say a word in the correct way",
+    "meaningMarathi": "उच्चार करणे",
+    "exampleSentence": "The teacher showed Aarav how to pronounce the word thought.",
+    "distractorMeanings": [
+      "to write a word in a notebook",
+      "to spell a word backwards"
+    ],
+    "syllables": [
+      "pro",
+      "nounce"
+    ],
+    "tags": [
+      "communication",
+      "school"
+    ],
+    "contextWords": [
+      "say",
+      "sound",
+      "word",
+      "speak",
+      "teacher"
+    ]
+  },
+  {
+    "id": "d283-1",
+    "dayIndex": 283,
+    "word": "goal",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a point scored when the ball enters the net",
+    "meaningMarathi": "गोल",
+    "exampleSentence": "Sai kicked the ball and scored a goal for his team.",
+    "distractorMeanings": [
+      "a small flag held by the referee",
+      "the line drawn around the field"
+    ],
+    "syllables": [
+      "goal"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "football",
+      "ball",
+      "score",
+      "net",
+      "team"
+    ]
+  },
+  {
+    "id": "d283-2",
+    "dayIndex": 283,
+    "word": "newspaper",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "printed sheets that bring news every day",
+    "meaningMarathi": "वर्तमानपत्र",
+    "exampleSentence": "Grandfather reads the newspaper with his tea every morning.",
+    "distractorMeanings": [
+      "a book of stories for children",
+      "a letter sent by post"
+    ],
+    "syllables": [
+      "news",
+      "pa",
+      "per"
+    ],
+    "tags": [
+      "communication",
+      "home"
+    ],
+    "contextWords": [
+      "news",
+      "read",
+      "morning",
+      "headline",
+      "paper"
+    ]
+  },
+  {
+    "id": "d283-3",
+    "dayIndex": 283,
+    "word": "weird",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "very strange and not usual",
+    "meaningMarathi": "विचित्र",
+    "exampleSentence": "The weird clouds looked like a giant dragon in the sky.",
+    "distractorMeanings": [
+      "very common and normal",
+      "nice and pleasant to see"
+    ],
+    "syllables": [
+      "weird"
+    ],
+    "tags": [
+      "describing-things",
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "strange",
+      "odd",
+      "sound",
+      "dream",
+      "story"
+    ]
+  },
+  {
+    "id": "d283-4",
+    "dayIndex": 283,
+    "word": "analyse",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to study something carefully in detail",
+    "meaningMarathi": "विश्लेषण करणे",
+    "exampleSentence": "Scientists analyse the water to check if it is clean.",
+    "distractorMeanings": [
+      "to throw something into the sea",
+      "to mix many colours together"
+    ],
+    "syllables": [
+      "an",
+      "a",
+      "lyse"
+    ],
+    "tags": [
+      "science-space"
+    ],
+    "contextWords": [
+      "study",
+      "check",
+      "science",
+      "detail",
+      "result"
+    ]
+  },
+  {
+    "id": "d283-5",
+    "dayIndex": 283,
+    "word": "remorse",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "deep sorrow for having done wrong",
+    "meaningMarathi": "पश्चात्ताप",
+    "exampleSentence": "Sai felt great remorse after he broke his friend's toy.",
+    "distractorMeanings": [
+      "great joy after winning a prize",
+      "great anger at a naughty friend"
+    ],
+    "syllables": [
+      "re",
+      "morse"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "character-values"
+    ],
+    "contextWords": [
+      "sorry",
+      "wrong",
+      "toy",
+      "guilt",
+      "apologise"
+    ]
+  },
+  {
+    "id": "d284-1",
+    "dayIndex": 284,
+    "word": "drawer",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a box that slides in and out of a table or cupboard",
+    "meaningMarathi": "खण, ड्रॉवर",
+    "exampleSentence": "Gauri kept her pencils in the top drawer of the desk.",
+    "distractorMeanings": [
+      "a door that opens to the garden",
+      "a shelf fixed high on the wall"
+    ],
+    "syllables": [
+      "draw",
+      "er"
+    ],
+    "tags": [
+      "home",
+      "school"
+    ],
+    "contextWords": [
+      "desk",
+      "cupboard",
+      "pencil",
+      "open",
+      "table"
+    ]
+  },
+  {
+    "id": "d284-2",
+    "dayIndex": 284,
+    "word": "mystery",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "something strange that nobody can explain",
+    "meaningMarathi": "रहस्य",
+    "exampleSentence": "The missing lunch box was a mystery to the whole class.",
+    "distractorMeanings": [
+      "a thing that everyone already knows",
+      "a game played with cards"
+    ],
+    "syllables": [
+      "mys",
+      "ter",
+      "y"
+    ],
+    "tags": [
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "secret",
+      "detective",
+      "clue",
+      "strange",
+      "story"
+    ]
+  },
+  {
+    "id": "d284-3",
+    "dayIndex": 284,
+    "word": "heartless",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "not showing any kindness or pity",
+    "meaningMarathi": "निर्दय",
+    "exampleSentence": "A heartless man refused to give water to the thirsty bird.",
+    "distractorMeanings": [
+      "kind and ready to share",
+      "brave and ready to fight"
+    ],
+    "syllables": [
+      "heart",
+      "less"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "cruel",
+      "pity",
+      "kind",
+      "thirsty",
+      "bird"
+    ]
+  },
+  {
+    "id": "d284-4",
+    "dayIndex": 284,
+    "word": "emergency",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a sudden dangerous event that needs quick action",
+    "meaningMarathi": "आणीबाणी, तातडीची परिस्थिती",
+    "exampleSentence": "Call the ambulance in case of an emergency.",
+    "distractorMeanings": [
+      "a happy event that happens every year",
+      "a slow job that has no hurry"
+    ],
+    "syllables": [
+      "e",
+      "mer",
+      "gen",
+      "cy"
+    ],
+    "tags": [
+      "safety"
+    ],
+    "contextWords": [
+      "ambulance",
+      "doctor",
+      "help",
+      "call",
+      "quick"
+    ]
+  },
+  {
+    "id": "d284-5",
+    "dayIndex": 284,
+    "word": "prepare",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to make something ready",
+    "meaningMarathi": "तयार करणे",
+    "exampleSentence": "Mother will prepare puran poli for the Holi festival.",
+    "distractorMeanings": [
+      "to eat a meal quickly",
+      "to throw away old food"
+    ],
+    "syllables": [
+      "pre",
+      "pare"
+    ],
+    "tags": [
+      "food",
+      "home",
+      "festivals"
+    ],
+    "contextWords": [
+      "ready",
+      "cook",
+      "festival",
+      "plan",
+      "kitchen"
+    ]
+  },
+  {
+    "id": "d285-1",
+    "dayIndex": 285,
+    "word": "medal",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a small metal disc given to a winner",
+    "meaningMarathi": "पदक",
+    "exampleSentence": "Gauri won a gold medal in the running race.",
+    "distractorMeanings": [
+      "a heavy bag carried on the back",
+      "a shiny coin used in shops"
+    ],
+    "syllables": [
+      "med",
+      "al"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "winner",
+      "gold",
+      "race",
+      "prize",
+      "neck"
+    ]
+  },
+  {
+    "id": "d285-2",
+    "dayIndex": 285,
+    "word": "assist",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to help someone do a job",
+    "meaningMarathi": "मदत करणे",
+    "exampleSentence": "Riya will assist her mother in the kitchen after school.",
+    "distractorMeanings": [
+      "to stop a person from working",
+      "to shout at a person who is working"
+    ],
+    "syllables": [
+      "as",
+      "sist"
+    ],
+    "tags": [
+      "character-values",
+      "jobs-work"
+    ],
+    "contextWords": [
+      "help",
+      "mother",
+      "work",
+      "teacher",
+      "kitchen"
+    ]
+  },
+  {
+    "id": "d285-3",
+    "dayIndex": 285,
+    "word": "sentence",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a group of words that tells a complete idea",
+    "meaningMarathi": "वाक्य",
+    "exampleSentence": "The teacher asked Riya to write a sentence using a new word.",
+    "distractorMeanings": [
+      "a single letter of the alphabet",
+      "a short song sung in class"
+    ],
+    "syllables": [
+      "sen",
+      "tence"
+    ],
+    "tags": [
+      "school",
+      "communication"
+    ],
+    "contextWords": [
+      "word",
+      "write",
+      "grammar",
+      "period",
+      "teacher"
+    ]
+  },
+  {
+    "id": "d285-4",
+    "dayIndex": 285,
+    "word": "incredible",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "so great or strange that it is hard to believe",
+    "meaningMarathi": "अविश्वसनीय",
+    "exampleSentence": "The magician's last trick was incredible and everyone gasped.",
+    "distractorMeanings": [
+      "very ordinary and easy to guess",
+      "very boring and long"
+    ],
+    "syllables": [
+      "in",
+      "cred",
+      "i",
+      "ble"
+    ],
+    "tags": [
+      "describing-things",
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "amazing",
+      "believe",
+      "wonder",
+      "show",
+      "surprise"
+    ]
+  },
+  {
+    "id": "d285-5",
+    "dayIndex": 285,
+    "word": "bouquet",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "flowers tied together as a bunch",
+    "meaningMarathi": "पुष्पगुच्छ",
+    "exampleSentence": "The students gave the principal a bouquet of roses.",
+    "distractorMeanings": [
+      "a basket full of fruits",
+      "a garland made of leaves"
+    ],
+    "syllables": [
+      "bou",
+      "quet"
+    ],
+    "tags": [
+      "festivals",
+      "plants-trees"
+    ],
+    "contextWords": [
+      "flowers",
+      "roses",
+      "gift",
+      "guest",
+      "fragrant"
+    ]
+  },
+  {
+    "id": "d286-1",
+    "dayIndex": 286,
+    "word": "badge",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a small sign worn on a shirt to show who you are",
+    "meaningMarathi": "बिल्ला, बॅज",
+    "exampleSentence": "The class monitor wore a badge on her shirt.",
+    "distractorMeanings": [
+      "a long ribbon tied around the hair",
+      "a bag used for carrying books"
+    ],
+    "syllables": [
+      "badge"
+    ],
+    "tags": [
+      "school",
+      "community-helpers"
+    ],
+    "contextWords": [
+      "shirt",
+      "monitor",
+      "pin",
+      "school",
+      "wear"
+    ]
+  },
+  {
+    "id": "d286-2",
+    "dayIndex": 286,
+    "word": "grim",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "serious and without any smile",
+    "meaningMarathi": "गंभीर, कठोर",
+    "exampleSentence": "The teacher had a grim face when she read the bad news.",
+    "distractorMeanings": [
+      "happy with a big smile",
+      "sleepy with half-open eyes"
+    ],
+    "syllables": [
+      "grim"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "serious",
+      "face",
+      "news",
+      "sad",
+      "stern"
+    ]
+  },
+  {
+    "id": "d286-3",
+    "dayIndex": 286,
+    "word": "stubborn",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "not willing to change your mind even when you should",
+    "meaningMarathi": "हट्टी",
+    "exampleSentence": "The stubborn donkey would not move even when Sai pulled it.",
+    "distractorMeanings": [
+      "very quick to learn new things",
+      "always ready to help others"
+    ],
+    "syllables": [
+      "stub",
+      "born"
+    ],
+    "tags": [
+      "character-values",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "donkey",
+      "refuse",
+      "mind",
+      "angry",
+      "pull"
+    ]
+  },
+  {
+    "id": "d286-4",
+    "dayIndex": 286,
+    "word": "celebrate",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to enjoy a special day with a party or fun",
+    "meaningMarathi": "साजरा करणे",
+    "exampleSentence": "We celebrate Diwali with lamps, sweets and new clothes.",
+    "distractorMeanings": [
+      "to forget a special day completely",
+      "to cry on a festival day"
+    ],
+    "syllables": [
+      "cel",
+      "e",
+      "brate"
+    ],
+    "tags": [
+      "festivals"
+    ],
+    "contextWords": [
+      "festival",
+      "party",
+      "lamps",
+      "sweets",
+      "joy"
+    ]
+  },
+  {
+    "id": "d286-5",
+    "dayIndex": 286,
+    "word": "attach",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to fix or join one thing to another",
+    "meaningMarathi": "जोडणे",
+    "exampleSentence": "Please attach your photo to the form with glue.",
+    "distractorMeanings": [
+      "to cut a thing into pieces",
+      "to take a thing away from another"
+    ],
+    "syllables": [
+      "at",
+      "tach"
+    ],
+    "tags": [
+      "school",
+      "technology"
+    ],
+    "contextWords": [
+      "glue",
+      "photo",
+      "join",
+      "form",
+      "paper"
+    ]
+  },
+  {
+    "id": "d287-1",
+    "dayIndex": 287,
+    "word": "sorry",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "feeling sad about something you did wrong",
+    "meaningMarathi": "दिलगीर",
+    "exampleSentence": "Om felt sorry after he pushed his friend by mistake.",
+    "distractorMeanings": [
+      "feeling proud of a win",
+      "feeling hungry after a game"
+    ],
+    "syllables": [
+      "sor",
+      "ry"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "character-values"
+    ],
+    "contextWords": [
+      "apologise",
+      "mistake",
+      "friend",
+      "hurt",
+      "forgive"
+    ]
+  },
+  {
+    "id": "d287-2",
+    "dayIndex": 287,
+    "word": "nimble",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "quick and light in movement",
+    "meaningMarathi": "चपळ",
+    "exampleSentence": "The nimble monkey jumped from branch to branch.",
+    "distractorMeanings": [
+      "slow and clumsy in movement",
+      "heavy and hard to lift"
+    ],
+    "syllables": [
+      "nim",
+      "ble"
+    ],
+    "tags": [
+      "animals",
+      "actions-movement"
+    ],
+    "contextWords": [
+      "quick",
+      "monkey",
+      "jump",
+      "light",
+      "fast"
+    ]
+  },
+  {
+    "id": "d287-3",
+    "dayIndex": 287,
+    "word": "handshake",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "the act of holding hands to greet someone",
+    "meaningMarathi": "हस्तांदोलन",
+    "exampleSentence": "The principal gave each winner a warm handshake.",
+    "distractorMeanings": [
+      "a wave made from far away",
+      "a hug given to a small child"
+    ],
+    "syllables": [
+      "hand",
+      "shake"
+    ],
+    "tags": [
+      "communication",
+      "friends"
+    ],
+    "contextWords": [
+      "greet",
+      "hand",
+      "meet",
+      "smile",
+      "welcome"
+    ]
+  },
+  {
+    "id": "d287-4",
+    "dayIndex": 287,
+    "word": "optimistic",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "hopeful that good things will happen",
+    "meaningMarathi": "आशावादी",
+    "exampleSentence": "Aarav stayed optimistic and believed the rain would stop soon.",
+    "distractorMeanings": [
+      "sure that bad things will happen",
+      "too sleepy to think about anything"
+    ],
+    "syllables": [
+      "op",
+      "ti",
+      "mis",
+      "tic"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "character-values"
+    ],
+    "contextWords": [
+      "hope",
+      "positive",
+      "good",
+      "smile",
+      "believe"
+    ]
+  },
+  {
+    "id": "d287-5",
+    "dayIndex": 287,
+    "word": "inhabit",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to live in a place",
+    "meaningMarathi": "वस्ती करणे, राहणे",
+    "exampleSentence": "Many tigers inhabit the thick forests of Tadoba.",
+    "distractorMeanings": [
+      "to run away from a place",
+      "to build a house in a city"
+    ],
+    "syllables": [
+      "in",
+      "hab",
+      "it"
+    ],
+    "tags": [
+      "animals",
+      "nature"
+    ],
+    "contextWords": [
+      "live",
+      "forest",
+      "animals",
+      "village",
+      "home"
+    ]
+  },
+  {
+    "id": "d288-1",
+    "dayIndex": 288,
+    "word": "fond",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "liking someone or something very much",
+    "meaningMarathi": "आवडणारा, प्रिय",
+    "exampleSentence": "Riya is fond of her pet cat and plays with it daily.",
+    "distractorMeanings": [
+      "afraid of a big dog",
+      "tired of a long story"
+    ],
+    "syllables": [
+      "fond"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "love",
+      "pet",
+      "like",
+      "grandmother",
+      "care"
+    ]
+  },
+  {
+    "id": "d288-2",
+    "dayIndex": 288,
+    "word": "explore",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to travel to a new place to find out about it",
+    "meaningMarathi": "शोध घेणे",
+    "exampleSentence": "Aarav and Om love to explore the caves of the old fort.",
+    "distractorMeanings": [
+      "to stay at home and sleep",
+      "to draw a map of a house"
+    ],
+    "syllables": [
+      "ex",
+      "plore"
+    ],
+    "tags": [
+      "stories-imagination",
+      "maharashtra-culture"
+    ],
+    "contextWords": [
+      "fort",
+      "cave",
+      "travel",
+      "adventure",
+      "new"
+    ]
+  },
+  {
+    "id": "d288-3",
+    "dayIndex": 288,
+    "word": "describe",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to tell in words what someone or something is like",
+    "meaningMarathi": "वर्णन करणे",
+    "exampleSentence": "Gauri could describe the whole Ganesh festival in five lines.",
+    "distractorMeanings": [
+      "to draw a line with a ruler",
+      "to keep something safe in a box"
+    ],
+    "syllables": [
+      "de",
+      "scribe"
+    ],
+    "tags": [
+      "communication",
+      "school"
+    ],
+    "contextWords": [
+      "tell",
+      "picture",
+      "words",
+      "write",
+      "festival"
+    ]
+  },
+  {
+    "id": "d288-4",
+    "dayIndex": 288,
+    "word": "pessimistic",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "always expecting bad things to happen",
+    "meaningMarathi": "निराशावादी",
+    "exampleSentence": "The pessimistic boy thought he would fail the test.",
+    "distractorMeanings": [
+      "always hoping for good things",
+      "never thinking about anything"
+    ],
+    "syllables": [
+      "pes",
+      "si",
+      "mis",
+      "tic"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "fail",
+      "worry",
+      "doubt",
+      "sad",
+      "bad"
+    ]
+  },
+  {
+    "id": "d288-5",
+    "dayIndex": 288,
+    "word": "novelty",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "something new and unusual",
+    "meaningMarathi": "नवलाई, नावीन्य",
+    "exampleSentence": "A big snowman was a novelty for the children of Pune.",
+    "distractorMeanings": [
+      "something very old and common",
+      "something broken and thrown away"
+    ],
+    "syllables": [
+      "nov",
+      "el",
+      "ty"
+    ],
+    "tags": [
+      "describing-things"
+    ],
+    "contextWords": [
+      "new",
+      "toy",
+      "unusual",
+      "first",
+      "surprise"
+    ]
+  },
+  {
+    "id": "d289-1",
+    "dayIndex": 289,
+    "word": "cotton",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "soft white fibre from a plant used to make cloth",
+    "meaningMarathi": "कापूस",
+    "exampleSentence": "Grandmother wore a soft cotton saree to the temple.",
+    "distractorMeanings": [
+      "a thick wool taken from sheep",
+      "a strong rope made of iron"
+    ],
+    "syllables": [
+      "cot",
+      "ton"
+    ],
+    "tags": [
+      "clothes",
+      "farming-village"
+    ],
+    "contextWords": [
+      "cloth",
+      "shirt",
+      "plant",
+      "soft",
+      "field"
+    ]
+  },
+  {
+    "id": "d289-2",
+    "dayIndex": 289,
+    "word": "lately",
+    "partOfSpeech": "adverb",
+    "difficulty": 2,
+    "meaning": "not long ago, in recent days",
+    "meaningMarathi": "अलीकडे",
+    "exampleSentence": "Riya has been practising the lavani dance a lot lately.",
+    "distractorMeanings": [
+      "a long time ago in the past",
+      "never in your whole life"
+    ],
+    "syllables": [
+      "late",
+      "ly"
+    ],
+    "tags": [
+      "time-numbers",
+      "communication"
+    ],
+    "contextWords": [
+      "recent",
+      "days",
+      "week",
+      "since",
+      "often"
+    ]
+  },
+  {
+    "id": "d289-3",
+    "dayIndex": 289,
+    "word": "squeal",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to make a long high sharp cry",
+    "meaningMarathi": "कर्कश आवाज काढणे, किंचाळणे",
+    "exampleSentence": "The children began to squeal with joy on the swing.",
+    "distractorMeanings": [
+      "to speak in a very low voice",
+      "to snore in a deep sleep"
+    ],
+    "syllables": [
+      "squeal"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "communication"
+    ],
+    "contextWords": [
+      "joy",
+      "pig",
+      "high",
+      "swing",
+      "shout"
+    ]
+  },
+  {
+    "id": "d289-4",
+    "dayIndex": 289,
+    "word": "genuine",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "real and not fake",
+    "meaningMarathi": "खरा, अस्सल",
+    "exampleSentence": "The shopkeeper said the bag was made of genuine leather.",
+    "distractorMeanings": [
+      "made to look real but false",
+      "very old and badly torn"
+    ],
+    "syllables": [
+      "gen",
+      "u",
+      "ine"
+    ],
+    "tags": [
+      "describing-things"
+    ],
+    "contextWords": [
+      "real",
+      "true",
+      "honest",
+      "leather",
+      "fake"
+    ]
+  },
+  {
+    "id": "d289-5",
+    "dayIndex": 289,
+    "word": "undecided",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "not having made a choice yet",
+    "meaningMarathi": "अनिर्णित, संभ्रमात असलेला",
+    "exampleSentence": "Riya was undecided between the red and the blue dress.",
+    "distractorMeanings": [
+      "completely sure about a choice",
+      "angry with the shopkeeper"
+    ],
+    "syllables": [
+      "un",
+      "de",
+      "cid",
+      "ed"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "choose",
+      "choice",
+      "doubt",
+      "dress",
+      "mind"
+    ]
+  },
+  {
+    "id": "d290-1",
+    "dayIndex": 290,
+    "word": "belt",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a strip of leather worn around the waist",
+    "meaningMarathi": "पट्टा, कमरपट्टा",
+    "exampleSentence": "Father wore a brown belt with his school uniform trousers.",
+    "distractorMeanings": [
+      "a thin scarf tied around the neck",
+      "a bag hung from the shoulder"
+    ],
+    "syllables": [
+      "belt"
+    ],
+    "tags": [
+      "clothes"
+    ],
+    "contextWords": [
+      "waist",
+      "trousers",
+      "leather",
+      "buckle",
+      "uniform"
+    ]
+  },
+  {
+    "id": "d290-2",
+    "dayIndex": 290,
+    "word": "trace",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to copy a drawing by following its lines on thin paper",
+    "meaningMarathi": "गिरवणे, रेखाटणे",
+    "exampleSentence": "Aarav used tissue paper to trace the map of India.",
+    "distractorMeanings": [
+      "to throw away a picture",
+      "to colour a picture with crayons"
+    ],
+    "syllables": [
+      "trace"
+    ],
+    "tags": [
+      "music-art",
+      "school"
+    ],
+    "contextWords": [
+      "map",
+      "paper",
+      "pencil",
+      "copy",
+      "lines"
+    ]
+  },
+  {
+    "id": "d290-3",
+    "dayIndex": 290,
+    "word": "navigate",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to find the way using a map or a sign",
+    "meaningMarathi": "दिशा शोधणे",
+    "exampleSentence": "Gauri used a map to navigate through the crowded market.",
+    "distractorMeanings": [
+      "to lose a way in a dark forest",
+      "to close a road with a gate"
+    ],
+    "syllables": [
+      "nav",
+      "i",
+      "gate"
+    ],
+    "tags": [
+      "transport-travel"
+    ],
+    "contextWords": [
+      "map",
+      "road",
+      "way",
+      "direction",
+      "travel"
+    ]
+  },
+  {
+    "id": "d290-4",
+    "dayIndex": 290,
+    "word": "dazzling",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "so bright that it hurts the eyes",
+    "meaningMarathi": "डोळे दिपवणारा",
+    "exampleSentence": "The dazzling lights of Diwali made the whole street glow.",
+    "distractorMeanings": [
+      "so dark that nothing can be seen",
+      "so dull that nobody looks"
+    ],
+    "syllables": [
+      "daz",
+      "zling"
+    ],
+    "tags": [
+      "festivals",
+      "describing-things"
+    ],
+    "contextWords": [
+      "bright",
+      "light",
+      "lamps",
+      "shine",
+      "glow"
+    ]
+  },
+  {
+    "id": "d290-5",
+    "dayIndex": 290,
+    "word": "classmate",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a student who is in the same class as you",
+    "meaningMarathi": "वर्गमित्र",
+    "exampleSentence": "Riya shared her lunch with a new classmate.",
+    "distractorMeanings": [
+      "a teacher who teaches your class",
+      "a book used in your class"
+    ],
+    "syllables": [
+      "class",
+      "mate"
+    ],
+    "tags": [
+      "school",
+      "friends"
+    ],
+    "contextWords": [
+      "class",
+      "friend",
+      "school",
+      "desk",
+      "share"
+    ]
+  },
+  {
+    "id": "d291-1",
+    "dayIndex": 291,
+    "word": "stretch",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to pull your arms or legs out to their full length",
+    "meaningMarathi": "ताणणे",
+    "exampleSentence": "Riya stretched her arms after waking up in the morning.",
+    "distractorMeanings": [
+      "to curl up into a small ball",
+      "to shake your head from side to side"
+    ],
+    "syllables": [
+      "stretch"
+    ],
+    "tags": [
+      "body-health",
+      "sports-games"
+    ],
+    "contextWords": [
+      "arms",
+      "legs",
+      "yoga",
+      "exercise",
+      "morning"
+    ]
+  },
+  {
+    "id": "d291-2",
+    "dayIndex": 291,
+    "word": "dramatic",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "exciting and full of strong feelings",
+    "meaningMarathi": "नाट्यपूर्ण, थरारक",
+    "exampleSentence": "The play had a dramatic end that surprised every child.",
+    "distractorMeanings": [
+      "dull and boring from start to end",
+      "calm and quiet like a lake"
+    ],
+    "syllables": [
+      "dra",
+      "mat",
+      "ic"
+    ],
+    "tags": [
+      "music-art",
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "play",
+      "stage",
+      "excite",
+      "story",
+      "surprise"
+    ]
+  },
+  {
+    "id": "d291-3",
+    "dayIndex": 291,
+    "word": "tedious",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "long and boring",
+    "meaningMarathi": "कंटाळवाणा",
+    "exampleSentence": "Copying the whole lesson was a tedious task for Om.",
+    "distractorMeanings": [
+      "short and full of fun",
+      "quick and easy to finish"
+    ],
+    "syllables": [
+      "te",
+      "dious"
+    ],
+    "tags": [
+      "school",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "boring",
+      "long",
+      "work",
+      "copy",
+      "tired"
+    ]
+  },
+  {
+    "id": "d291-4",
+    "dayIndex": 291,
+    "word": "celebrity",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a famous person",
+    "meaningMarathi": "प्रसिद्ध व्यक्ती",
+    "exampleSentence": "Every child wanted an autograph from the cricket celebrity.",
+    "distractorMeanings": [
+      "a person nobody knows",
+      "a person who sells vegetables"
+    ],
+    "syllables": [
+      "ce",
+      "leb",
+      "ri",
+      "ty"
+    ],
+    "tags": [
+      "jobs-work",
+      "sports-games"
+    ],
+    "contextWords": [
+      "famous",
+      "star",
+      "cricket",
+      "film",
+      "fan"
+    ]
+  },
+  {
+    "id": "d291-5",
+    "dayIndex": 291,
+    "word": "gratefully",
+    "partOfSpeech": "adverb",
+    "difficulty": 3,
+    "meaning": "in a thankful way",
+    "meaningMarathi": "कृतज्ञतेने",
+    "exampleSentence": "Sai smiled gratefully when the old man gave him water.",
+    "distractorMeanings": [
+      "in an angry and rude way",
+      "in a lazy and slow way"
+    ],
+    "syllables": [
+      "grate",
+      "ful",
+      "ly"
+    ],
+    "tags": [
+      "character-values",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "thank",
+      "help",
+      "smile",
+      "kind",
+      "grateful"
+    ]
+  },
+  {
+    "id": "d292-1",
+    "dayIndex": 292,
+    "word": "tissue",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a soft thin paper used for wiping your nose",
+    "meaningMarathi": "टिश्यू, रुमाल",
+    "exampleSentence": "Riya took a tissue and wiped her wet hands.",
+    "distractorMeanings": [
+      "a thick cloth used to cover a bed",
+      "a small towel made of wool"
+    ],
+    "syllables": [
+      "tis",
+      "sue"
+    ],
+    "tags": [
+      "body-health",
+      "home"
+    ],
+    "contextWords": [
+      "paper",
+      "nose",
+      "soft",
+      "wipe",
+      "cold"
+    ]
+  },
+  {
+    "id": "d292-2",
+    "dayIndex": 292,
+    "word": "chuckle",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to laugh quietly",
+    "meaningMarathi": "खुसूखुसू हसणे",
+    "exampleSentence": "Grandfather began to chuckle while reading the funny comic.",
+    "distractorMeanings": [
+      "to cry with a loud sound",
+      "to shout at a naughty child"
+    ],
+    "syllables": [
+      "chuck",
+      "le"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "laugh",
+      "funny",
+      "smile",
+      "joke",
+      "grandfather"
+    ]
+  },
+  {
+    "id": "d292-3",
+    "dayIndex": 292,
+    "word": "witty",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "clever and funny in what you say",
+    "meaningMarathi": "हजरजबाबी, विनोदी",
+    "exampleSentence": "Birbal was a witty minister who answered every question cleverly.",
+    "distractorMeanings": [
+      "slow and dull in everything",
+      "angry and silent at all times"
+    ],
+    "syllables": [
+      "wit",
+      "ty"
+    ],
+    "tags": [
+      "communication",
+      "character-values"
+    ],
+    "contextWords": [
+      "clever",
+      "funny",
+      "joke",
+      "smart",
+      "answer"
+    ]
+  },
+  {
+    "id": "d292-4",
+    "dayIndex": 292,
+    "word": "apologise",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to say sorry for something you did wrong",
+    "meaningMarathi": "माफी मागणे",
+    "exampleSentence": "Om went to apologise to his friend for breaking the pencil box.",
+    "distractorMeanings": [
+      "to thank a friend for a gift",
+      "to complain to a teacher about a game"
+    ],
+    "syllables": [
+      "a",
+      "pol",
+      "o",
+      "gise"
+    ],
+    "tags": [
+      "character-values",
+      "communication"
+    ],
+    "contextWords": [
+      "sorry",
+      "mistake",
+      "friend",
+      "forgive",
+      "wrong"
+    ]
+  },
+  {
+    "id": "d292-5",
+    "dayIndex": 292,
+    "word": "ingredient",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "one of the things used to make a food dish",
+    "meaningMarathi": "घटक, साहित्य",
+    "exampleSentence": "Rice is the main ingredient of poha and pulao.",
+    "distractorMeanings": [
+      "a tool used to cut vegetables",
+      "a pot used for boiling milk"
+    ],
+    "syllables": [
+      "in",
+      "gre",
+      "di",
+      "ent"
+    ],
+    "tags": [
+      "food"
+    ],
+    "contextWords": [
+      "recipe",
+      "cook",
+      "rice",
+      "mix",
+      "kitchen"
+    ]
+  },
+  {
+    "id": "d293-1",
+    "dayIndex": 293,
+    "word": "cling",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to hold on tightly to someone or something",
+    "meaningMarathi": "घट्ट धरून ठेवणे",
+    "exampleSentence": "The small child will cling to his mother in a crowd.",
+    "distractorMeanings": [
+      "to push something far away",
+      "to throw something up in the air"
+    ],
+    "syllables": [
+      "cling"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "hold",
+      "mother",
+      "tight",
+      "afraid",
+      "hug"
+    ],
+    "forms": [
+      "clung"
+    ]
+  },
+  {
+    "id": "d293-2",
+    "dayIndex": 293,
+    "word": "feeble",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "weak and without strength",
+    "meaningMarathi": "अशक्त, दुर्बळ",
+    "exampleSentence": "The feeble old man needed a stick to climb the steps.",
+    "distractorMeanings": [
+      "strong and full of power",
+      "loud and noisy at night"
+    ],
+    "syllables": [
+      "fee",
+      "ble"
+    ],
+    "tags": [
+      "body-health"
+    ],
+    "contextWords": [
+      "weak",
+      "old",
+      "stick",
+      "sick",
+      "strength"
+    ]
+  },
+  {
+    "id": "d293-3",
+    "dayIndex": 293,
+    "word": "gale",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a very strong wind",
+    "meaningMarathi": "वादळी वारा",
+    "exampleSentence": "A strong gale blew the clothes off the washing line.",
+    "distractorMeanings": [
+      "a soft light rain in summer",
+      "a loud sound from the sky"
+    ],
+    "syllables": [
+      "gale"
+    ],
+    "tags": [
+      "weather-seasons"
+    ],
+    "contextWords": [
+      "wind",
+      "storm",
+      "tree",
+      "blow",
+      "strong"
+    ]
+  },
+  {
+    "id": "d293-4",
+    "dayIndex": 293,
+    "word": "ridiculous",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "so silly that nobody can take it seriously",
+    "meaningMarathi": "हास्यास्पद, फालतू",
+    "exampleSentence": "The clown wore a ridiculous hat as big as a basket.",
+    "distractorMeanings": [
+      "a very smart and neat hat",
+      "a very old and torn hat"
+    ],
+    "syllables": [
+      "ri",
+      "dic",
+      "u",
+      "lous"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "music-art"
+    ],
+    "contextWords": [
+      "silly",
+      "funny",
+      "clown",
+      "laugh",
+      "absurd"
+    ]
+  },
+  {
+    "id": "d293-5",
+    "dayIndex": 293,
+    "word": "helplessly",
+    "partOfSpeech": "adverb",
+    "difficulty": 3,
+    "meaning": "in a way that shows you cannot do anything",
+    "meaningMarathi": "असहाय्यपणे",
+    "exampleSentence": "The little puppy looked helplessly at the high wall.",
+    "distractorMeanings": [
+      "in a strong and proud way",
+      "in a happy and playful way"
+    ],
+    "syllables": [
+      "help",
+      "less",
+      "ly"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "cry",
+      "stuck",
+      "afraid",
+      "alone",
+      "need"
+    ]
+  },
+  {
+    "id": "d294-1",
+    "dayIndex": 294,
+    "word": "giant",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a very big and strong person in stories",
+    "meaningMarathi": "राक्षस, महाकाय माणूस",
+    "exampleSentence": "The giant in the story could lift a whole tree.",
+    "distractorMeanings": [
+      "a tiny man who lives in a flower",
+      "a brave soldier who guards a king"
+    ],
+    "syllables": [
+      "gi",
+      "ant"
+    ],
+    "tags": [
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "tall",
+      "story",
+      "strong",
+      "huge",
+      "castle"
+    ]
+  },
+  {
+    "id": "d294-2",
+    "dayIndex": 294,
+    "word": "shameful",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "so bad that it makes you feel ashamed",
+    "meaningMarathi": "लज्जास्पद",
+    "exampleSentence": "It is shameful to cheat in an exam.",
+    "distractorMeanings": [
+      "so good that it makes you proud",
+      "so funny that it makes you laugh"
+    ],
+    "syllables": [
+      "shame",
+      "ful"
+    ],
+    "tags": [
+      "character-values",
+      "school"
+    ],
+    "contextWords": [
+      "cheat",
+      "wrong",
+      "sorry",
+      "guilt",
+      "exam"
+    ]
+  },
+  {
+    "id": "d294-3",
+    "dayIndex": 294,
+    "word": "explain",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to make something clear so others can understand it",
+    "meaningMarathi": "समजावून सांगणे",
+    "exampleSentence": "The teacher will explain the new lesson with a picture.",
+    "distractorMeanings": [
+      "to hide an answer from the class",
+      "to forget a lesson after school"
+    ],
+    "syllables": [
+      "ex",
+      "plain"
+    ],
+    "tags": [
+      "communication",
+      "school"
+    ],
+    "contextWords": [
+      "teacher",
+      "lesson",
+      "understand",
+      "clear",
+      "question"
+    ]
+  },
+  {
+    "id": "d294-4",
+    "dayIndex": 294,
+    "word": "robust",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "strong and healthy",
+    "meaningMarathi": "धडधाकट, मजबूत",
+    "exampleSentence": "The robust farmer carried two heavy sacks on his shoulders.",
+    "distractorMeanings": [
+      "weak and often ill",
+      "small and very thin"
+    ],
+    "syllables": [
+      "ro",
+      "bust"
+    ],
+    "tags": [
+      "body-health",
+      "farming-village"
+    ],
+    "contextWords": [
+      "strong",
+      "healthy",
+      "farmer",
+      "sacks",
+      "fit"
+    ]
+  },
+  {
+    "id": "d294-5",
+    "dayIndex": 294,
+    "word": "pleasantly",
+    "partOfSpeech": "adverb",
+    "difficulty": 3,
+    "meaning": "in a nice and friendly way",
+    "meaningMarathi": "आनंदाने, सुखद रीतीने",
+    "exampleSentence": "The shopkeeper pleasantly greeted every child at the door.",
+    "distractorMeanings": [
+      "in an angry and cold way",
+      "in a sad and slow way"
+    ],
+    "syllables": [
+      "pleas",
+      "ant",
+      "ly"
+    ],
+    "tags": [
+      "communication",
+      "character-values"
+    ],
+    "contextWords": [
+      "nice",
+      "smile",
+      "greet",
+      "kind",
+      "friendly"
+    ]
+  },
+  {
+    "id": "d295-1",
+    "dayIndex": 295,
+    "word": "cushion",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a soft bag you sit or lean on",
+    "meaningMarathi": "गादी, उशी",
+    "exampleSentence": "Gauri sat on a soft cushion and began to read.",
+    "distractorMeanings": [
+      "a hard stool made of wood",
+      "a mat spread on the floor for prayer"
+    ],
+    "syllables": [
+      "cush",
+      "ion"
+    ],
+    "tags": [
+      "home"
+    ],
+    "contextWords": [
+      "sofa",
+      "soft",
+      "sit",
+      "chair",
+      "pillow"
+    ]
+  },
+  {
+    "id": "d295-2",
+    "dayIndex": 295,
+    "word": "alphabet",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "all the letters of a language in a fixed order",
+    "meaningMarathi": "वर्णमाला",
+    "exampleSentence": "Small children sing the alphabet song from A to Z.",
+    "distractorMeanings": [
+      "a list of numbers from one to ten",
+      "a set of rules for a game"
+    ],
+    "syllables": [
+      "al",
+      "pha",
+      "bet"
+    ],
+    "tags": [
+      "school",
+      "communication"
+    ],
+    "contextWords": [
+      "letters",
+      "song",
+      "spell",
+      "order",
+      "language"
+    ]
+  },
+  {
+    "id": "d295-3",
+    "dayIndex": 295,
+    "word": "moan",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to make a long low sound of pain or sadness",
+    "meaningMarathi": "कण्हणे, रडगाणे गाणे",
+    "exampleSentence": "The sick puppy began to moan near the door.",
+    "distractorMeanings": [
+      "to bark loudly at a stranger",
+      "to jump with joy in the garden"
+    ],
+    "syllables": [
+      "moan"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "animals"
+    ],
+    "contextWords": [
+      "pain",
+      "sick",
+      "low",
+      "sound",
+      "cry"
+    ]
+  },
+  {
+    "id": "d295-4",
+    "dayIndex": 295,
+    "word": "theatrical",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "connected with plays and acting",
+    "meaningMarathi": "नाट्यविषयक, नाटकी",
+    "exampleSentence": "Riya joined a theatrical group to act in school dramas.",
+    "distractorMeanings": [
+      "connected with games and sports",
+      "connected with farming and fields"
+    ],
+    "syllables": [
+      "the",
+      "at",
+      "ri",
+      "cal"
+    ],
+    "tags": [
+      "music-art"
+    ],
+    "contextWords": [
+      "drama",
+      "stage",
+      "actor",
+      "play",
+      "costume"
+    ]
+  },
+  {
+    "id": "d295-5",
+    "dayIndex": 295,
+    "word": "exclamation",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a short word or sentence that shows strong feeling",
+    "meaningMarathi": "उद्गार",
+    "exampleSentence": "\"Wow!\" is an exclamation of surprise and joy.",
+    "distractorMeanings": [
+      "a question that needs a long answer",
+      "a number that shows how many"
+    ],
+    "syllables": [
+      "ex",
+      "cla",
+      "ma",
+      "tion"
+    ],
+    "tags": [
+      "communication",
+      "school"
+    ],
+    "contextWords": [
+      "surprise",
+      "mark",
+      "wow",
+      "shout",
+      "sentence"
+    ]
+  },
+  {
+    "id": "d296-1",
+    "dayIndex": 296,
+    "word": "chalk",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a white stick used for writing on a blackboard",
+    "meaningMarathi": "खडू",
+    "exampleSentence": "The teacher wrote the new word on the board with chalk.",
+    "distractorMeanings": [
+      "a thin line drawn with ink",
+      "a cloth used to clean a slate"
+    ],
+    "syllables": [
+      "chalk"
+    ],
+    "tags": [
+      "school"
+    ],
+    "contextWords": [
+      "board",
+      "teacher",
+      "write",
+      "duster",
+      "class"
+    ]
+  },
+  {
+    "id": "d296-2",
+    "dayIndex": 296,
+    "word": "unity",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "the state of people being together as one",
+    "meaningMarathi": "एकता",
+    "exampleSentence": "There is strength in unity, said the teacher to the class.",
+    "distractorMeanings": [
+      "the state of people fighting each other",
+      "the habit of sleeping late"
+    ],
+    "syllables": [
+      "u",
+      "ni",
+      "ty"
+    ],
+    "tags": [
+      "character-values",
+      "india"
+    ],
+    "contextWords": [
+      "together",
+      "team",
+      "friends",
+      "strength",
+      "country"
+    ]
+  },
+  {
+    "id": "d296-3",
+    "dayIndex": 296,
+    "word": "rustle",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to make a soft dry sound like leaves moving",
+    "meaningMarathi": "सळसळणे",
+    "exampleSentence": "Dry leaves rustle in the wind on a quiet evening.",
+    "distractorMeanings": [
+      "to shine brightly in the sun",
+      "to fall down with a loud crash"
+    ],
+    "syllables": [
+      "rus",
+      "tle"
+    ],
+    "tags": [
+      "nature",
+      "communication"
+    ],
+    "contextWords": [
+      "leaves",
+      "wind",
+      "paper",
+      "soft",
+      "sound"
+    ]
+  },
+  {
+    "id": "d296-4",
+    "dayIndex": 296,
+    "word": "speechless",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "unable to speak because of strong feeling",
+    "meaningMarathi": "नि:शब्द, अवाक्",
+    "exampleSentence": "Gauri was speechless with joy when she won the trophy.",
+    "distractorMeanings": [
+      "talking a lot without a pause",
+      "singing a song in a loud voice"
+    ],
+    "syllables": [
+      "speech",
+      "less"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "surprise",
+      "joy",
+      "words",
+      "silent",
+      "shock"
+    ]
+  },
+  {
+    "id": "d296-5",
+    "dayIndex": 296,
+    "word": "occasionally",
+    "partOfSpeech": "adverb",
+    "difficulty": 3,
+    "meaning": "sometimes but not often",
+    "meaningMarathi": "कधीकधी",
+    "exampleSentence": "Grandfather occasionally tells us stories of his village days.",
+    "distractorMeanings": [
+      "every single day without fail",
+      "never in his whole life"
+    ],
+    "syllables": [
+      "oc",
+      "ca",
+      "sion",
+      "al",
+      "ly"
+    ],
+    "tags": [
+      "time-numbers"
+    ],
+    "contextWords": [
+      "sometimes",
+      "rare",
+      "visit",
+      "story",
+      "often"
+    ]
+  },
+  {
+    "id": "d297-1",
+    "dayIndex": 297,
+    "word": "annoy",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to make someone a little angry by doing something again and again",
+    "meaningMarathi": "चिडवणे, त्रास देणे",
+    "exampleSentence": "Loud music can annoy people who are trying to sleep.",
+    "distractorMeanings": [
+      "to make someone feel very proud",
+      "to give a gift to a friend"
+    ],
+    "syllables": [
+      "an",
+      "noy"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "angry",
+      "noise",
+      "bother",
+      "trouble",
+      "irritate"
+    ]
+  },
+  {
+    "id": "d297-2",
+    "dayIndex": 297,
+    "word": "radiant",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "shining brightly with joy or light",
+    "meaningMarathi": "तेजस्वी, तेजःपुंज",
+    "exampleSentence": "The bride looked radiant in her red silk saree.",
+    "distractorMeanings": [
+      "dull and dark with sadness",
+      "tired and pale with fever"
+    ],
+    "syllables": [
+      "ra",
+      "di",
+      "ant"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "festivals"
+    ],
+    "contextWords": [
+      "smile",
+      "bright",
+      "shine",
+      "happy",
+      "face"
+    ]
+  },
+  {
+    "id": "d297-3",
+    "dayIndex": 297,
+    "word": "penalty",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a punishment or a free kick given when a rule is broken",
+    "meaningMarathi": "दंड, पेनल्टी",
+    "exampleSentence": "The referee gave a penalty after the player pushed the boy.",
+    "distractorMeanings": [
+      "a prize given to the best player",
+      "a rule that nobody must follow"
+    ],
+    "syllables": [
+      "pen",
+      "al",
+      "ty"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "referee",
+      "foul",
+      "football",
+      "rule",
+      "kick"
+    ]
+  },
+  {
+    "id": "d297-4",
+    "dayIndex": 297,
+    "word": "devoted",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "loving and loyal with great care",
+    "meaningMarathi": "निष्ठावान, भक्त",
+    "exampleSentence": "The devoted nurse sat by the sick child all night.",
+    "distractorMeanings": [
+      "careless and unkind in every way",
+      "tired and sleepy after work"
+    ],
+    "syllables": [
+      "de",
+      "vot",
+      "ed"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "loyal",
+      "care",
+      "love",
+      "nurse",
+      "help"
+    ]
+  },
+  {
+    "id": "d297-5",
+    "dayIndex": 297,
+    "word": "constantly",
+    "partOfSpeech": "adverb",
+    "difficulty": 3,
+    "meaning": "again and again without stopping",
+    "meaningMarathi": "सतत, सारखे",
+    "exampleSentence": "The baby cried constantly the whole night.",
+    "distractorMeanings": [
+      "only once in a long time",
+      "never during the whole day"
+    ],
+    "syllables": [
+      "con",
+      "stant",
+      "ly"
+    ],
+    "tags": [
+      "time-numbers",
+      "describing-things"
+    ],
+    "contextWords": [
+      "always",
+      "again",
+      "noise",
+      "keep",
+      "rain"
+    ]
+  },
+  {
+    "id": "d298-1",
+    "dayIndex": 298,
+    "word": "chew",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to bite food again and again with your teeth",
+    "meaningMarathi": "चावणे",
+    "exampleSentence": "Sai chewed the hard sugarcane for a long time.",
+    "distractorMeanings": [
+      "to swallow a drink very fast",
+      "to cut paper with scissors"
+    ],
+    "syllables": [
+      "chew"
+    ],
+    "tags": [
+      "food",
+      "body-health"
+    ],
+    "contextWords": [
+      "teeth",
+      "food",
+      "mouth",
+      "bite",
+      "swallow"
+    ]
+  },
+  {
+    "id": "d298-2",
+    "dayIndex": 298,
+    "word": "guilt",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "the bad feeling you have when you have done wrong",
+    "meaningMarathi": "अपराधीपणा",
+    "exampleSentence": "Om felt guilt after he told a lie to his mother.",
+    "distractorMeanings": [
+      "the happy feeling after winning a prize",
+      "the fear of a dark room"
+    ],
+    "syllables": [
+      "guilt"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "character-values"
+    ],
+    "contextWords": [
+      "lie",
+      "wrong",
+      "sorry",
+      "mistake",
+      "heart"
+    ]
+  },
+  {
+    "id": "d298-3",
+    "dayIndex": 298,
+    "word": "ending",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "the last part of a story",
+    "meaningMarathi": "शेवट",
+    "exampleSentence": "Riya liked the happy ending of the story.",
+    "distractorMeanings": [
+      "the first line of a poem",
+      "the middle page of a book"
+    ],
+    "syllables": [
+      "end",
+      "ing"
+    ],
+    "tags": [
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "story",
+      "last",
+      "happy",
+      "book",
+      "finish"
+    ]
+  },
+  {
+    "id": "d298-4",
+    "dayIndex": 298,
+    "word": "breakable",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "easy to break",
+    "meaningMarathi": "तुटण्याजोगा, नाजूक",
+    "exampleSentence": "Please handle the glass bottle gently because it is breakable.",
+    "distractorMeanings": [
+      "too strong to be cut",
+      "so heavy that it cannot be lifted"
+    ],
+    "syllables": [
+      "break",
+      "a",
+      "ble"
+    ],
+    "tags": [
+      "describing-things",
+      "safety"
+    ],
+    "contextWords": [
+      "glass",
+      "fragile",
+      "careful",
+      "drop",
+      "gentle"
+    ]
+  },
+  {
+    "id": "d298-5",
+    "dayIndex": 298,
+    "word": "authority",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "the power to give orders and make decisions",
+    "meaningMarathi": "अधिकार, सत्ता",
+    "exampleSentence": "The principal has the authority to close the school on a rainy day.",
+    "distractorMeanings": [
+      "the duty to clean the school",
+      "the habit of coming late"
+    ],
+    "syllables": [
+      "au",
+      "thor",
+      "i",
+      "ty"
+    ],
+    "tags": [
+      "school",
+      "community-helpers"
+    ],
+    "contextWords": [
+      "power",
+      "orders",
+      "principal",
+      "rules",
+      "decide"
+    ]
+  },
+  {
+    "id": "d299-1",
+    "dayIndex": 299,
+    "word": "cool",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "a little cold in a pleasant way",
+    "meaningMarathi": "थंड, गार",
+    "exampleSentence": "Aarav drank cool water from the clay pot.",
+    "distractorMeanings": [
+      "very hot like fire",
+      "dry and dusty like sand"
+    ],
+    "syllables": [
+      "cool"
+    ],
+    "tags": [
+      "weather-seasons",
+      "describing-things"
+    ],
+    "contextWords": [
+      "water",
+      "breeze",
+      "shade",
+      "wind",
+      "drink"
+    ]
+  },
+  {
+    "id": "d299-2",
+    "dayIndex": 299,
+    "word": "wizard",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a man in stories who can do magic",
+    "meaningMarathi": "जादूगार",
+    "exampleSentence": "The wizard waved his wand and the door opened.",
+    "distractorMeanings": [
+      "a soldier who guards the gate",
+      "a farmer who grows rice"
+    ],
+    "syllables": [
+      "wiz",
+      "ard"
+    ],
+    "tags": [
+      "stories-imagination"
+    ],
+    "contextWords": [
+      "magic",
+      "wand",
+      "spell",
+      "story",
+      "castle"
+    ]
+  },
+  {
+    "id": "d299-3",
+    "dayIndex": 299,
+    "word": "misery",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "great sadness or suffering",
+    "meaningMarathi": "दुःख, हाल",
+    "exampleSentence": "The poor boy lived in misery after losing his home.",
+    "distractorMeanings": [
+      "a feeling of great joy",
+      "a short quiet rest after lunch"
+    ],
+    "syllables": [
+      "mis",
+      "er",
+      "y"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "sad",
+      "poor",
+      "pain",
+      "cry",
+      "suffer"
+    ]
+  },
+  {
+    "id": "d299-4",
+    "dayIndex": 299,
+    "word": "dedicate",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to give your time and effort fully to a task",
+    "meaningMarathi": "समर्पित करणे",
+    "exampleSentence": "Riya will dedicate an hour every day to her music practice.",
+    "distractorMeanings": [
+      "to waste your time on useless things",
+      "to forget about your daily work"
+    ],
+    "syllables": [
+      "ded",
+      "i",
+      "cate"
+    ],
+    "tags": [
+      "character-values",
+      "music-art"
+    ],
+    "contextWords": [
+      "time",
+      "effort",
+      "practice",
+      "devote",
+      "daily"
+    ]
+  },
+  {
+    "id": "d299-5",
+    "dayIndex": 299,
+    "word": "adjective",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a word that tells us more about a noun",
+    "meaningMarathi": "विशेषण",
+    "exampleSentence": "In the phrase red kite, the word red is an adjective.",
+    "distractorMeanings": [
+      "a word that shows an action",
+      "a word that names a person"
+    ],
+    "syllables": [
+      "ad",
+      "jec",
+      "tive"
+    ],
+    "tags": [
+      "school",
+      "communication"
+    ],
+    "contextWords": [
+      "noun",
+      "word",
+      "describe",
+      "grammar",
+      "colour"
+    ]
+  },
+  {
+    "id": "d300-1",
+    "dayIndex": 300,
+    "word": "silly",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "not sensible, in a funny or foolish way",
+    "meaningMarathi": "मूर्ख, खुळचट",
+    "exampleSentence": "Om made a silly face and made everyone laugh.",
+    "distractorMeanings": [
+      "very wise and clever",
+      "serious and quiet"
+    ],
+    "syllables": [
+      "sil",
+      "ly"
+    ],
+    "tags": [
+      "friends",
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "funny",
+      "laugh",
+      "face",
+      "joke",
+      "clown"
+    ]
+  },
+  {
+    "id": "d300-2",
+    "dayIndex": 300,
+    "word": "gloomy",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "sad and without hope, or dark and dull",
+    "meaningMarathi": "उदास, अंधारलेला",
+    "exampleSentence": "The gloomy sky made everyone think it would rain soon.",
+    "distractorMeanings": [
+      "bright and full of sunshine",
+      "loud and full of music"
+    ],
+    "syllables": [
+      "gloom",
+      "y"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "weather-seasons"
+    ],
+    "contextWords": [
+      "dark",
+      "cloud",
+      "sad",
+      "rain",
+      "sky"
+    ]
+  },
+  {
+    "id": "d300-3",
+    "dayIndex": 300,
+    "word": "threaten",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to say that you will hurt or punish someone",
+    "meaningMarathi": "धमकावणे",
+    "exampleSentence": "Good friends never threaten each other during a game.",
+    "distractorMeanings": [
+      "to help a friend in need",
+      "to give a gift to a friend"
+    ],
+    "syllables": [
+      "threat",
+      "en"
+    ],
+    "tags": [
+      "character-values",
+      "communication"
+    ],
+    "contextWords": [
+      "scare",
+      "angry",
+      "bully",
+      "afraid",
+      "words"
+    ]
+  },
+  {
+    "id": "d300-4",
+    "dayIndex": 300,
+    "word": "assignment",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a piece of work given by a teacher",
+    "meaningMarathi": "गृहपाठ, कामगिरी",
+    "exampleSentence": "The teacher gave an assignment on the Sahyadri mountains.",
+    "distractorMeanings": [
+      "a game played in the break",
+      "a gift given to the class"
+    ],
+    "syllables": [
+      "as",
+      "sign",
+      "ment"
+    ],
+    "tags": [
+      "school"
+    ],
+    "contextWords": [
+      "teacher",
+      "homework",
+      "write",
+      "submit",
+      "project"
+    ]
+  },
+  {
+    "id": "d300-5",
+    "dayIndex": 300,
+    "word": "exhausted",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "completely tired",
+    "meaningMarathi": "दमलेला, थकून गेलेला",
+    "exampleSentence": "The exhausted runners sat down in the shade after the race.",
+    "distractorMeanings": [
+      "full of energy after a nap",
+      "ready to start a long run"
+    ],
+    "syllables": [
+      "ex",
+      "haust",
+      "ed"
+    ],
+    "tags": [
+      "body-health",
+      "sports-games"
+    ],
+    "contextWords": [
+      "tired",
+      "race",
+      "rest",
+      "sleep",
+      "run"
+    ]
+  },
+  {
+    "id": "d301-1",
+    "dayIndex": 301,
+    "word": "lonely",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "sad because you have no friends near you",
+    "meaningMarathi": "एकटा, एकाकी",
+    "exampleSentence": "The new boy felt lonely on his first day at school.",
+    "distractorMeanings": [
+      "very proud of his marks",
+      "too tired to eat food"
+    ],
+    "syllables": [
+      "lone",
+      "ly"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "friend",
+      "alone",
+      "new",
+      "sad",
+      "school"
+    ]
+  },
+  {
+    "id": "d301-2",
+    "dayIndex": 301,
+    "word": "reward",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "something given for good work or behaviour",
+    "meaningMarathi": "बक्षीस",
+    "exampleSentence": "Sai got a chocolate as a reward for his good marks.",
+    "distractorMeanings": [
+      "a punishment given for bad work",
+      "a rule written on the board"
+    ],
+    "syllables": [
+      "re",
+      "ward"
+    ],
+    "tags": [
+      "character-values",
+      "school"
+    ],
+    "contextWords": [
+      "gift",
+      "prize",
+      "good",
+      "effort",
+      "marks"
+    ]
+  },
+  {
+    "id": "d301-3",
+    "dayIndex": 301,
+    "word": "pledge",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a serious promise",
+    "meaningMarathi": "प्रतिज्ञा",
+    "exampleSentence": "Every morning the students read the national pledge in assembly.",
+    "distractorMeanings": [
+      "a loud shout in a game",
+      "a long list of rules"
+    ],
+    "syllables": [
+      "pledge"
+    ],
+    "tags": [
+      "school",
+      "india",
+      "character-values"
+    ],
+    "contextWords": [
+      "promise",
+      "assembly",
+      "india",
+      "school",
+      "honest"
+    ]
+  },
+  {
+    "id": "d301-4",
+    "dayIndex": 301,
+    "word": "magician",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a person who does tricks that seem like magic",
+    "meaningMarathi": "जादूगार",
+    "exampleSentence": "The magician pulled a rabbit out of his empty hat.",
+    "distractorMeanings": [
+      "a doctor who treats the sick",
+      "a farmer who grows vegetables"
+    ],
+    "syllables": [
+      "ma",
+      "gi",
+      "cian"
+    ],
+    "tags": [
+      "stories-imagination",
+      "music-art"
+    ],
+    "contextWords": [
+      "trick",
+      "hat",
+      "rabbit",
+      "show",
+      "wand"
+    ]
+  },
+  {
+    "id": "d301-5",
+    "dayIndex": 301,
+    "word": "criticise",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to point out the faults of someone or something",
+    "meaningMarathi": "टीका करणे",
+    "exampleSentence": "It is unkind to criticise a friend's drawing in front of others.",
+    "distractorMeanings": [
+      "to praise a friend's drawing in front of others",
+      "to draw a picture with a friend"
+    ],
+    "syllables": [
+      "crit",
+      "i",
+      "cise"
+    ],
+    "tags": [
+      "communication",
+      "character-values"
+    ],
+    "contextWords": [
+      "fault",
+      "friend",
+      "wrong",
+      "teacher",
+      "say"
+    ]
+  },
+  {
+    "id": "d302-1",
+    "dayIndex": 302,
+    "word": "cheese",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a food made from milk, often yellow and soft or hard",
+    "meaningMarathi": "चीज",
+    "exampleSentence": "Sai put a slice of cheese on his sandwich.",
+    "distractorMeanings": [
+      "a sweet made only from sugar",
+      "a drink made from boiled tea leaves"
+    ],
+    "syllables": [
+      "cheese"
+    ],
+    "tags": [
+      "food"
+    ],
+    "contextWords": [
+      "milk",
+      "sandwich",
+      "slice",
+      "butter",
+      "pizza"
+    ]
+  },
+  {
+    "id": "d302-2",
+    "dayIndex": 302,
+    "word": "fragrant",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "having a sweet smell",
+    "meaningMarathi": "सुगंधी",
+    "exampleSentence": "The fragrant jasmine flowers filled the whole house.",
+    "distractorMeanings": [
+      "having a bad smell",
+      "having no colour at all"
+    ],
+    "syllables": [
+      "fra",
+      "grant"
+    ],
+    "tags": [
+      "nature",
+      "describing-things"
+    ],
+    "contextWords": [
+      "flower",
+      "smell",
+      "jasmine",
+      "sweet",
+      "garden"
+    ]
+  },
+  {
+    "id": "d302-3",
+    "dayIndex": 302,
+    "word": "beyond",
+    "partOfSpeech": "preposition",
+    "difficulty": 2,
+    "meaning": "on the far side of something",
+    "meaningMarathi": "पलीकडे",
+    "exampleSentence": "The village lies beyond the green hills.",
+    "distractorMeanings": [
+      "on the near side of the road",
+      "inside a closed box"
+    ],
+    "syllables": [
+      "be",
+      "yond"
+    ],
+    "tags": [
+      "describing-things",
+      "nature"
+    ],
+    "contextWords": [
+      "hill",
+      "river",
+      "far",
+      "village",
+      "distance"
+    ]
+  },
+  {
+    "id": "d302-4",
+    "dayIndex": 302,
+    "word": "promptly",
+    "partOfSpeech": "adverb",
+    "difficulty": 3,
+    "meaning": "quickly and without delay",
+    "meaningMarathi": "तत्परतेने",
+    "exampleSentence": "Gauri promptly raised her hand when the teacher asked a question.",
+    "distractorMeanings": [
+      "slowly and after a long wait",
+      "never and with no answer"
+    ],
+    "syllables": [
+      "prompt",
+      "ly"
+    ],
+    "tags": [
+      "school",
+      "time-numbers"
+    ],
+    "contextWords": [
+      "quick",
+      "answer",
+      "hand",
+      "ready",
+      "fast"
+    ]
+  },
+  {
+    "id": "d302-5",
+    "dayIndex": 302,
+    "word": "generate",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to make or produce something such as power or heat",
+    "meaningMarathi": "निर्माण करणे",
+    "exampleSentence": "Windmills generate electricity for many villages in Maharashtra.",
+    "distractorMeanings": [
+      "to use up all the electricity",
+      "to stop a machine from working"
+    ],
+    "syllables": [
+      "gen",
+      "er",
+      "ate"
+    ],
+    "tags": [
+      "science-space",
+      "environment"
+    ],
+    "contextWords": [
+      "power",
+      "electricity",
+      "wind",
+      "machine",
+      "make"
+    ]
+  },
+  {
+    "id": "d303-1",
+    "dayIndex": 303,
+    "word": "cube",
+    "partOfSpeech": "noun",
+    "difficulty": 1,
+    "meaning": "a solid shape with six equal square sides",
+    "meaningMarathi": "घन",
+    "exampleSentence": "Om built a tower with every cube in the box.",
+    "distractorMeanings": [
+      "a flat shape with three sides",
+      "a round ball used in games"
+    ],
+    "syllables": [
+      "cube"
+    ],
+    "tags": [
+      "shapes-colours",
+      "school"
+    ],
+    "contextWords": [
+      "dice",
+      "square",
+      "block",
+      "box",
+      "shape"
+    ]
+  },
+  {
+    "id": "d303-2",
+    "dayIndex": 303,
+    "word": "hamlet",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a very small village",
+    "meaningMarathi": "वाडी, लहान गाव",
+    "exampleSentence": "Grandfather's hamlet has only ten houses and one temple.",
+    "distractorMeanings": [
+      "a very big city with tall buildings",
+      "a place in the sea with no houses"
+    ],
+    "syllables": [
+      "ham",
+      "let"
+    ],
+    "tags": [
+      "farming-village",
+      "maharashtra-culture"
+    ],
+    "contextWords": [
+      "village",
+      "houses",
+      "small",
+      "temple",
+      "fields"
+    ]
+  },
+  {
+    "id": "d303-3",
+    "dayIndex": 303,
+    "word": "dodge",
+    "partOfSpeech": "verb",
+    "difficulty": 2,
+    "meaning": "to move quickly to avoid something",
+    "meaningMarathi": "चुकवणे, बाजूला होणे",
+    "exampleSentence": "Riya had to dodge the ball in the playground game.",
+    "distractorMeanings": [
+      "to hit a ball with a bat",
+      "to catch a ball with both hands"
+    ],
+    "syllables": [
+      "dodge"
+    ],
+    "tags": [
+      "sports-games"
+    ],
+    "contextWords": [
+      "ball",
+      "avoid",
+      "move",
+      "game",
+      "quick"
+    ]
+  },
+  {
+    "id": "d303-4",
+    "dayIndex": 303,
+    "word": "tolerant",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "willing to accept other people's ideas and ways",
+    "meaningMarathi": "सहनशील",
+    "exampleSentence": "A tolerant person respects the festivals of all religions.",
+    "distractorMeanings": [
+      "quick to get angry at others",
+      "unwilling to listen to anyone"
+    ],
+    "syllables": [
+      "tol",
+      "er",
+      "ant"
+    ],
+    "tags": [
+      "character-values",
+      "india"
+    ],
+    "contextWords": [
+      "respect",
+      "accept",
+      "festival",
+      "peace",
+      "different"
+    ]
+  },
+  {
+    "id": "d303-5",
+    "dayIndex": 303,
+    "word": "activity",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "something you do for fun or learning",
+    "meaningMarathi": "उपक्रम, कृती",
+    "exampleSentence": "Drawing is Gauri's favourite activity in the art class.",
+    "distractorMeanings": [
+      "a place where you keep books",
+      "a rule written on the board"
+    ],
+    "syllables": [
+      "ac",
+      "tiv",
+      "i",
+      "ty"
+    ],
+    "tags": [
+      "school",
+      "sports-games"
+    ],
+    "contextWords": [
+      "class",
+      "fun",
+      "game",
+      "learn",
+      "art"
+    ]
+  },
+  {
+    "id": "d304-1",
+    "dayIndex": 304,
+    "word": "scream",
+    "partOfSpeech": "verb",
+    "difficulty": 1,
+    "meaning": "to cry out in a loud high voice",
+    "meaningMarathi": "किंचाळणे",
+    "exampleSentence": "Riya began to scream when she saw a big spider.",
+    "distractorMeanings": [
+      "to speak in a very soft voice",
+      "to hum a song quietly"
+    ],
+    "syllables": [
+      "scream"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "communication"
+    ],
+    "contextWords": [
+      "loud",
+      "fear",
+      "voice",
+      "spider",
+      "cry"
+    ]
+  },
+  {
+    "id": "d304-2",
+    "dayIndex": 304,
+    "word": "dancer",
+    "partOfSpeech": "noun",
+    "difficulty": 2,
+    "meaning": "a person who moves to music as a performance",
+    "meaningMarathi": "नर्तक, नर्तकी",
+    "exampleSentence": "The dancer wore bells on her feet during the lavani show.",
+    "distractorMeanings": [
+      "a person who sings in a choir",
+      "a person who paints pictures"
+    ],
+    "syllables": [
+      "danc",
+      "er"
+    ],
+    "tags": [
+      "music-art"
+    ],
+    "contextWords": [
+      "dance",
+      "stage",
+      "music",
+      "show",
+      "feet"
+    ]
+  },
+  {
+    "id": "d304-3",
+    "dayIndex": 304,
+    "word": "upright",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "standing straight, or honest and fair",
+    "meaningMarathi": "ताठ, प्रामाणिक",
+    "exampleSentence": "The upright judge never took money from anyone.",
+    "distractorMeanings": [
+      "bent and dishonest in his work",
+      "lazy and careless in all duties"
+    ],
+    "syllables": [
+      "up",
+      "right"
+    ],
+    "tags": [
+      "character-values"
+    ],
+    "contextWords": [
+      "honest",
+      "straight",
+      "fair",
+      "judge",
+      "good"
+    ]
+  },
+  {
+    "id": "d304-4",
+    "dayIndex": 304,
+    "word": "frankly",
+    "partOfSpeech": "adverb",
+    "difficulty": 3,
+    "meaning": "in an honest and open way",
+    "meaningMarathi": "स्पष्टपणे",
+    "exampleSentence": "Frankly, I did not like the taste of the bitter gourd.",
+    "distractorMeanings": [
+      "in a hidden and secret way",
+      "in a false and tricky way"
+    ],
+    "syllables": [
+      "frank",
+      "ly"
+    ],
+    "tags": [
+      "communication",
+      "character-values"
+    ],
+    "contextWords": [
+      "honest",
+      "say",
+      "truth",
+      "open",
+      "tell"
+    ]
+  },
+  {
+    "id": "d304-5",
+    "dayIndex": 304,
+    "word": "laughable",
+    "partOfSpeech": "adjective",
+    "difficulty": 3,
+    "meaning": "so silly that it makes people laugh",
+    "meaningMarathi": "हास्यास्पद",
+    "exampleSentence": "Om's costume was so laughable that the audience giggled.",
+    "distractorMeanings": [
+      "so sad that it makes people cry",
+      "so scary that it makes people run"
+    ],
+    "syllables": [
+      "laugh",
+      "a",
+      "ble"
+    ],
+    "tags": [
+      "emotions-feelings",
+      "music-art"
+    ],
+    "contextWords": [
+      "funny",
+      "silly",
+      "costume",
+      "laugh",
+      "joke"
+    ]
+  },
+  {
+    "id": "d305-1",
+    "dayIndex": 305,
+    "word": "empty",
+    "partOfSpeech": "adjective",
+    "difficulty": 1,
+    "meaning": "having nothing inside",
+    "meaningMarathi": "रिकामा",
+    "exampleSentence": "Gauri found her lunch box empty after the long walk.",
+    "distractorMeanings": [
+      "full of tasty food",
+      "made of strong metal"
+    ],
+    "syllables": [
+      "emp",
+      "ty"
+    ],
+    "tags": [
+      "describing-things"
+    ],
+    "contextWords": [
+      "box",
+      "bottle",
+      "full",
+      "nothing",
+      "pot"
+    ]
+  },
+  {
+    "id": "d305-2",
+    "dayIndex": 305,
+    "word": "cuddly",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "soft and nice to hug",
+    "meaningMarathi": "मिठी मारावीशी वाटणारा",
+    "exampleSentence": "Gauri got a cuddly teddy bear for her birthday.",
+    "distractorMeanings": [
+      "hard and rough to touch",
+      "sharp and dangerous to hold"
+    ],
+    "syllables": [
+      "cud",
+      "dly"
+    ],
+    "tags": [
+      "animals",
+      "describing-things"
+    ],
+    "contextWords": [
+      "soft",
+      "teddy",
+      "hug",
+      "toy",
+      "fur"
+    ]
+  },
+  {
+    "id": "d305-3",
+    "dayIndex": 305,
+    "word": "grouchy",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "bad-tempered and often complaining",
+    "meaningMarathi": "चिडचिडा",
+    "exampleSentence": "Grandfather is grouchy in the morning before his tea.",
+    "distractorMeanings": [
+      "cheerful and happy every day",
+      "calm and gentle with all"
+    ],
+    "syllables": [
+      "grouch",
+      "y"
+    ],
+    "tags": [
+      "emotions-feelings"
+    ],
+    "contextWords": [
+      "angry",
+      "morning",
+      "complain",
+      "tea",
+      "tired"
+    ]
+  },
+  {
+    "id": "d305-4",
+    "dayIndex": 305,
+    "word": "assure",
+    "partOfSpeech": "verb",
+    "difficulty": 3,
+    "meaning": "to tell someone firmly that something is true",
+    "meaningMarathi": "खात्री देणे",
+    "exampleSentence": "The doctor will assure Grandmother that the pain will go away.",
+    "distractorMeanings": [
+      "to make someone afraid and worried",
+      "to tell someone a long secret"
+    ],
+    "syllables": [
+      "as",
+      "sure"
+    ],
+    "tags": [
+      "communication"
+    ],
+    "contextWords": [
+      "promise",
+      "doctor",
+      "sure",
+      "calm",
+      "trust"
+    ]
+  },
+  {
+    "id": "d305-5",
+    "dayIndex": 305,
+    "word": "musician",
+    "partOfSpeech": "noun",
+    "difficulty": 3,
+    "meaning": "a person who plays music or sings",
+    "meaningMarathi": "संगीतकार",
+    "exampleSentence": "The musician played the harmonium and everyone sang along.",
+    "distractorMeanings": [
+      "a person who dances on a stage",
+      "a person who paints a mural"
+    ],
+    "syllables": [
+      "mu",
+      "si",
+      "cian"
+    ],
+    "tags": [
+      "music-art",
+      "jobs-work"
+    ],
+    "contextWords": [
+      "play",
+      "song",
+      "harmonium",
+      "stage",
+      "band"
+    ]
+  }
+]
