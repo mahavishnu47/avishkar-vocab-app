@@ -189,7 +189,7 @@ Use the `.teacher` theme. Use plain SVG or div bars (no chart library). A mock m
 ### W2-2: Claude sentence evaluator
 Implement `evaluateWithClaude` per its doc comment.
 - **First load the `claude-api` skill** (or read the official `@anthropic-ai/sdk` TypeScript docs) and use current API shapes:
-  - model `process.env.CLAUDE_MODEL ?? 'claude-opus-5-5'`
+  - model `process.env.CLAUDE_MODEL ?? 'claude-haiku-5-5'`
   - structured JSON output via `output_config.format` with a JSON schema: `{use, grammar, relevance, length, errorCodes[], tip}`
   - `output_config.effort: 'low'`
   - `max_tokens` about 1000
