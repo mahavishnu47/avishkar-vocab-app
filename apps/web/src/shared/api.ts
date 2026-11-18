@@ -28,6 +28,16 @@ export class ApiRequestError extends Error {
   get isNetwork(): boolean { return this.code === 'network'; }
 }
 
+/** Central 401 handling: an expired/invalid token is cleared and the user is sent to the matching login. */
+function handleUnauthorized(): void {
+  setToken(null);
+  try {
+    const here = window.location.pathname;
+    const login = here.startsWith('/teacher') ? '/teacher/login' : '/login';
+    if (here !== login) window.location.replace(login);
+  } catch { /* non-browser env */ }
+}
+
 export async function request<T>(method: string, path: string, body?: unknown): Promise<T> {
   const headers: Record<string, string> = {};
   const token = getToken();
@@ -43,6 +53,7 @@ export async function request<T>(method: string, path: string, body?: unknown): 
     let code: ApiErrorCode = 'internal';
     let message = res.statusText;
     try { const j = await res.json(); code = j.error?.code ?? code; message = j.error?.message ?? message; } catch { /* non-json */ }
+    if (res.status === 401 && token && !path.startsWith('/auth/')) handleUnauthorized();
     throw new ApiRequestError(res.status, code, message);
   }
   if (res.status === 204) return undefined as T;

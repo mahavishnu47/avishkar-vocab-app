@@ -12,6 +12,7 @@
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "validate:words": "node scripts/validate-words.mjs",
+    "e2e": "node e2e/student-flow.mjs",
     "db:reset": "npm run db:reset -w @shabd/server"
   },
   "devDependencies": {
