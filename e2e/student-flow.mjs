@@ -1,13 +1,15 @@
 /**
  * End-to-end check: student plays 5 words at two phone sizes; teacher reviews. Re-runnable:
- * every run starts its own API server on a fresh temp SQLite DB (demo seed) plus a Vite dev server.
- * Usage: npm run e2e   (env: FAKE_TODAY=YYYY-MM-DD optional, HEADED=1 to watch)
+ * every run creates a fresh Postgres database (migrate + word bank + demo seed) on the local throwaway cluster
+ * (scripts/pg-local.mjs, or TEST_DATABASE_URL), starts the API plus a Vite dev server, and drops the DB at the end.
+ * Usage: npm run e2e        (dev servers)
+ *        npm run e2e:prod   (built bundle: needs `npm run vercel-build`; scripts/serve-prod.mjs mimics vercel.json)
+ * Env: FAKE_TODAY=YYYY-MM-DD optional, HEADED=1 to watch, E2E_VERBOSE=1 for server logs.
  * Needs the preinstalled `playwright` + chromium (no new deps).
  */
-import { spawn } from 'node:child_process';
+import { spawn, execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
-import { mkdtempSync, rmSync, readFileSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import net from 'node:net';
 
@@ -40,18 +42,58 @@ function run(cmd, args, opts) {
 }
 const killAll = () => { for (const p of procs.splice(0)) { try { process.kill(-p.pid, 'SIGTERM'); } catch { /* gone */ } } };
 
-/** Fresh DB + API + web for one scenario. */
+const PROD = process.argv.includes('--prod');
+const serverRequire = createRequire(join(ROOT, 'server', 'package.json'));
+
+/** Throwaway local Postgres cluster (D1 harness: scripts/pg-local.mjs). TEST_DATABASE_URL overrides it. */
+function clusterUrl() {
+  if (process.env.TEST_DATABASE_URL) return process.env.TEST_DATABASE_URL;
+  const out = execFileSync('node', [join(ROOT, 'scripts/pg-local.mjs'), 'start'], { encoding: 'utf8' });
+  const m = out.match(/postgres(?:ql)?:\/\/\S+/);
+  if (!m) throw new Error(`pg-local.mjs printed no URL:\n${out}`);
+  return m[0];
+}
+function npmRun(script, env) {
+  execFileSync('npm', ['run', script, '-w', '@shabd/server', '--silent'], { cwd: ROOT, env, stdio: process.env.E2E_VERBOSE ? 'inherit' : 'ignore' });
+}
+
+/** Fresh Postgres database + API + web for one scenario. Returns a cleanup() that drops the database. */
 async function startStack() {
-  const dir = mkdtempSync(join(tmpdir(), 'shabd-e2e-'));
+  const { Client } = serverRequire('pg');
+  const adminUrl = clusterUrl();
+  const name = `shabd_e2e_${Math.random().toString(36).slice(2, 10)}`;
+  const admin = new Client({ connectionString: adminUrl });
+  await admin.connect();
+  await admin.query(`CREATE DATABASE ${name}`);
+  const u = new URL(adminUrl); u.pathname = `/${name}`;
+  const databaseUrl = u.toString();
   const apiPort = await freePort();
   const webPort = await freePort();
-  const env = { ...process.env, PORT: String(apiPort), API_PORT: String(apiPort), DB_PATH: join(dir, 'e2e.db'), SEED_DEMO: '1' };
-  run('npx', ['tsx', 'src/index.ts'], { cwd: join(ROOT, 'server'), env });
-  await waitFor(`http://localhost:${apiPort}/api/health`);
-  run('npx', ['vite', '--port', String(webPort), '--strictPort', '--host', '127.0.0.1'], { cwd: join(ROOT, 'apps/web'), env });
-  const base = `http://127.0.0.1:${webPort}`;
-  await waitFor(base);
-  return { base, dir };
+  const env = { ...process.env, PORT: String(apiPort), API_PORT: String(apiPort), DATABASE_URL: databaseUrl, DATABASE_URL_UNPOOLED: databaseUrl, SEED_DEMO: '1' };
+  delete env.VERCEL_ENV; delete env.NODE_ENV;
+  const cleanup = async () => {
+    killAll();
+    try { await admin.query(`DROP DATABASE IF EXISTS ${name} WITH (FORCE)`); } catch (e) { console.error('drop db failed', e.message); }
+    await admin.end().catch(() => {});
+  };
+  try {
+    npmRun('db:migrate', env); npmRun('db:seed', env); npmRun('db:seed:demo', env);
+    let base;
+    if (PROD) {
+      run('node', [join(ROOT, 'scripts/serve-prod.mjs'), String(webPort)], { cwd: ROOT, env });
+      base = `http://127.0.0.1:${webPort}`;
+      await waitFor(`${base}/api/health`);
+      const deep = await fetch(`${base}/teacher/classes/1`);
+      assert((await deep.text()).includes('<div id="root"'), 'deep link should serve index.html');
+    } else {
+      run('npx', ['tsx', 'src/index.ts'], { cwd: join(ROOT, 'server'), env });
+      await waitFor(`http://localhost:${apiPort}/api/health`);
+      run('npx', ['vite', '--port', String(webPort), '--strictPort', '--host', '127.0.0.1'], { cwd: join(ROOT, 'apps/web'), env });
+      base = `http://127.0.0.1:${webPort}`;
+      await waitFor(base);
+    }
+    return { base, name, cleanup };
+  } catch (e) { await cleanup(); throw e; }
 }
 
 let checks = 0;
@@ -170,12 +212,12 @@ async function main() {
   const browser = await pw.chromium.launch({ headless: !process.env.HEADED });
   try {
     for (const vp of [{ width: 320, height: 640 }, { width: 412, height: 915 }]) {
-      const { base, dir } = await startStack();
+      const { base, name, cleanup } = await startStack();
       try {
-        console.log(`scenario ${vp.width}x${vp.height} (fresh DB ${dir})`);
+        console.log(`scenario ${vp.width}x${vp.height} (fresh DB ${name}${PROD ? ', prod bundle' : ''})`);
         await studentFlow(browser, base, vp);
         if (vp.width === 412) await teacherFlow(browser, base);
-      } finally { killAll(); rmSync(dir, { recursive: true, force: true }); }
+      } finally { await cleanup(); }
     }
     console.log(`E2E PASSED (${checks} assertions)`);
   } finally { await browser.close(); killAll(); }
