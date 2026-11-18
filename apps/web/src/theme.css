@@ -1,0 +1,126 @@
+/*
+ * Shabd Mitra design tokens + base primitives. CONTRACT FILE (architect).
+ * Lanes consume tokens via var(--...) and may use the base classes below.
+ * Lane-specific styles go in lane folders (student/*.css, teacher/*.css, shared/OnScreenKeyboard.css).
+ * Targets: low-end Android phones, 320-430px wide, bright sunlight, 10-year-olds. WCAG AA contrast.
+ */
+:root {
+  /* ---- colour: brand & stage colours (PRD 12.4: Listen blue, Learn green, Write purple) */
+  --c-bg: #fffbea;            /* warm paper */
+  --c-surface: #ffffff;
+  --c-surface-2: #fef3c7;
+  --c-text: #1f2937;          /* 14.7:1 on bg */
+  --c-text-muted: #4b5563;    /* 7.5:1 on bg */
+  --c-border: #d6d3d1;
+  --c-primary: #1d4ed8;       /* blue 700, white text 6.7:1 */
+  --c-primary-press: #1e3a8a;
+  --c-on-primary: #ffffff;
+  --c-listen: #1d4ed8;        /* stage 1 */
+  --c-learn: #047857;         /* stage 2, white text 5.5:1 */
+  --c-write: #6d28d9;         /* stage 3, white text 7.1:1 */
+  --c-success: #047857;
+  --c-success-bg: #d1fae5;
+  --c-warn: #b45309;          /* "almost!" - never red for wrong answers */
+  --c-warn-bg: #fef3c7;
+  --c-danger: #b91c1c;        /* destructive teacher actions only */
+  --c-star: #f59e0b;
+  --c-streak: #ea580c;
+  --c-xp: #7c3aed;
+  --c-focus: #f59e0b;
+
+  /* ---- keyboard */
+  --kb-bg: #e5e7eb;
+  --kb-key: #ffffff;
+  --kb-key-text: #111827;
+  --kb-key-press: #c7d2fe;
+  --kb-special: #cbd5e1;
+  --kb-key-h: 48px;           /* >= 44px at 320px wide; 52px at >= 400px (see media query) */
+  --kb-gap: 6px;
+
+  /* ---- type (PRD 12.9: base 18px, word display 40px+) */
+  --font: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Noto Sans Devanagari', sans-serif;
+  --font-deva: 'Noto Sans Devanagari', 'Mukta', system-ui, sans-serif;
+  --fs-sm: 15px;
+  --fs-base: 18px;
+  --fs-lg: 22px;              /* buttons */
+  --fs-xl: 28px;
+  --fs-word: 44px;            /* target word display */
+  --lh: 1.5;
+
+  /* ---- spacing & shape */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --touch: 56px;              /* min primary touch target */
+  --shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
+  --shadow-press: 0 0 0 rgba(0, 0, 0, 0);
+  --dur: 180ms;
+}
+
+@media (min-width: 400px) { :root { --kb-key-h: 52px; } }
+@media (prefers-reduced-motion: reduce) { :root { --dur: 0ms; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* ------------------------------------------------------------------ base */
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font);
+  font-size: var(--fs-base);
+  line-height: var(--lh);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: contain;
+}
+:lang(mr), .deva { font-family: var(--font-deva); }
+:focus-visible { outline: 3px solid var(--c-focus); outline-offset: 2px; }
+button { font: inherit; }
+
+/* ------------------------------------------------------------------ layout primitives */
+.screen { min-height: 100dvh; max-width: 560px; margin: 0 auto; padding: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-4); }
+.screen.center { align-items: center; justify-content: center; text-align: center; }
+.screen.with-keyboard { padding-bottom: calc(5 * var(--kb-key-h) + 6 * var(--kb-gap) + env(safe-area-inset-bottom)); }
+.stack { display: flex; flex-direction: column; gap: var(--sp-3); }
+.row { display: flex; gap: var(--sp-2); align-items: center; }
+.card { background: var(--c-surface); border-radius: var(--radius); padding: var(--sp-4); box-shadow: var(--shadow); border: 1px solid var(--c-border); }
+.title { font-size: var(--fs-xl); font-weight: 700; margin: 0; }
+.word-display { font-size: var(--fs-word); font-weight: 700; letter-spacing: 0.02em; }
+.muted { color: var(--c-text-muted); }
+
+/* ------------------------------------------------------------------ buttons */
+.btn {
+  min-height: var(--touch); padding: 0 var(--sp-5); border-radius: var(--radius); border: 2px solid transparent;
+  font-size: var(--fs-lg); font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2);
+  background: var(--c-surface); color: var(--c-text); border-color: var(--c-border); box-shadow: var(--shadow);
+  text-decoration: none; cursor: pointer; transition: transform var(--dur), box-shadow var(--dur);
+  touch-action: manipulation; user-select: none;
+}
+.btn:active { transform: translateY(2px); box-shadow: var(--shadow-press); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-block { width: 100%; }
+.btn-primary { background: var(--c-primary); color: var(--c-on-primary); border-color: var(--c-primary-press); }
+.btn-listen { background: var(--c-listen); color: #fff; }
+.btn-learn { background: var(--c-learn); color: #fff; }
+.btn-write { background: var(--c-write); color: #fff; }
+.btn-icon { min-width: var(--touch); padding: 0; font-size: 28px; }
+
+/* ------------------------------------------------------------------ feedback */
+.feedback-ok { background: var(--c-success-bg); color: var(--c-success); border-radius: var(--radius-sm); padding: var(--sp-3); font-weight: 700; }
+.feedback-almost { background: var(--c-warn-bg); color: var(--c-warn); border-radius: var(--radius-sm); padding: var(--sp-3); font-weight: 700; }
+@keyframes wobble { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.wobble { animation: wobble 300ms ease-in-out; }
+@keyframes pop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+.pop { animation: pop 250ms ease-out; }
+
+/* ------------------------------------------------------------------ teacher mode: denser, plain, table-friendly */
+.teacher { --fs-base: 16px; --fs-lg: 17px; --touch: 44px; font-size: var(--fs-base); max-width: 1100px; }
+.teacher table { width: 100%; border-collapse: collapse; background: var(--c-surface); }
+.teacher th, .teacher td { padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--c-border); text-align: left; }
+.teacher th { position: sticky; top: 0; background: var(--c-surface-2); }
+.teacher .btn { font-size: var(--fs-lg); box-shadow: none; }
+
+@media print {
+  body { background: #fff; }
+  .no-print { display: none !important; }
+}

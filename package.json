@@ -1,0 +1,21 @@
+{
+  "name": "shabd-mitra",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Shabd Mitra - daily vocabulary app for Maharashtra Std 5 (local MVP)",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "workspaces": ["packages/core", "server", "apps/web"],
+  "scripts": {
+    "dev": "concurrently -k -n server,web -c blue,magenta \"npm run dev -w @shabd/server\" \"npm run dev -w @shabd/web\"",
+    "build": "npm run build -w @shabd/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "validate:words": "node scripts/validate-words.mjs",
+    "db:reset": "npm run db:reset -w @shabd/server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "typescript": "^5.6.3"
+  }
+}

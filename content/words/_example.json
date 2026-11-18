@@ -1,0 +1,16 @@
+[
+  {
+    "id": "d306-1",
+    "dayIndex": 306,
+    "word": "brave",
+    "partOfSpeech": "adjective",
+    "difficulty": 2,
+    "meaning": "not afraid to do something difficult or dangerous",
+    "meaningMarathi": "शूर, धाडसी",
+    "exampleSentence": "The brave girl jumped into the river to save the puppy.",
+    "distractorMeanings": ["very tired after a long day", "making a lot of loud noise"],
+    "syllables": ["brave"],
+    "tags": ["character-values", "emotions-feelings"],
+    "contextWords": ["soldier", "fight", "fear", "save", "danger", "courage"]
+  }
+]
