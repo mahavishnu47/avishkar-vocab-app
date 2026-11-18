@@ -118,7 +118,7 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a large group that runs a city's services",
-    "exampleSentence": "The corporation sends a truck every morning to collect garbage.",
+    "exampleSentence": "The corporation sends a truck every morning to collect rubbish.",
     "distractorMeanings": [
       "a small shop that sells sweets",
       "a group of children playing a game"
@@ -889,7 +889,7 @@
     "partOfSpeech": "verb",
     "difficulty": 2,
     "meaning": "to keep someone or something safe from harm",
-    "exampleSentence": "Brave Shivaji's soldiers helped defend the fort.",
+    "exampleSentence": "The mother hen tried to defend her chicks from the cat.",
     "distractorMeanings": [
       "to throw something at someone",
       "to leave a place in a hurry"
@@ -1424,7 +1424,7 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to change from one thing to another",
-    "exampleSentence": "Please switch off the fan when you leave the room.",
+    "exampleSentence": "Aarav wants to switch from cricket to kabaddi this year.",
     "distractorMeanings": [
       "to move something along the ground",
       "to hold something very tightly"
@@ -1648,7 +1648,7 @@
     "word": "application",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "a letter that asks for a job or a place",
+    "meaning": "a written request for a job, leave or a place",
     "exampleSentence": "Riya wrote an application for two days of leave.",
     "distractorMeanings": [
       "a bill that you get in a shop",
@@ -1760,7 +1760,7 @@
     "word": "carriage",
     "partOfSpeech": "noun",
     "difficulty": 2,
-    "meaning": "a coach pulled by horses, or a train coach",
+    "meaning": "one of the coaches that make up a train",
     "exampleSentence": "We sat in the last carriage of the Deccan Queen train.",
     "distractorMeanings": [
       "a small box for carrying fruit",
@@ -1784,28 +1784,32 @@
   {
     "id": "d196-4",
     "dayIndex": 196,
-    "word": "persist",
+    "word": "participate",
     "partOfSpeech": "verb",
     "difficulty": 3,
-    "meaning": "to keep trying without giving up",
-    "exampleSentence": "If you persist, you will learn to ride a bicycle.",
+    "meaning": "to take part in an activity",
+    "exampleSentence": "Every child in our class will participate in the sports day.",
     "distractorMeanings": [
-      "to stop doing a thing quickly",
-      "to ask someone for a favour"
+      "to watch an activity from far away",
+      "to stop others from joining in"
     ],
     "syllables": [
-      "per",
-      "sist"
+      "par",
+      "tic",
+      "i",
+      "pate"
     ],
     "tags": [
-      "character-values"
+      "school",
+      "sports-games"
     ],
     "contextWords": [
-      "try",
-      "again",
-      "keep",
-      "practice",
-      "effort"
+      "take",
+      "part",
+      "join",
+      "game",
+      "event",
+      "school"
     ]
   },
   {
@@ -1871,7 +1875,7 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a brother or a sister",
-    "exampleSentence": "Riya and her sibling walk to school together every day.",
+    "exampleSentence": "Riya walks to school with her younger sibling every day.",
     "distractorMeanings": [
       "a friend from the same class",
       "an uncle who lives far away"
@@ -2603,7 +2607,7 @@
     "exampleSentence": "The fireman climbed the ladder to rescue the kitten.",
     "distractorMeanings": [
       "a doctor who treats hurt children",
-      "a teacher who plays with fire"
+      "a teacher who helps children read"
     ],
     "syllables": [
       "fire",
@@ -3328,7 +3332,7 @@
     "word": "headmaster",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "the man who is in charge of a school",
+    "meaning": "the teacher in charge of a whole school",
     "exampleSentence": "The headmaster gave a speech on Independence Day.",
     "distractorMeanings": [
       "a teacher who plays the harmonium",
@@ -3442,7 +3446,7 @@
     "word": "pursue",
     "partOfSpeech": "verb",
     "difficulty": 2,
-    "meaning": "to follow someone in order to catch them",
+    "meaning": "to chase or follow something to catch it",
     "exampleSentence": "The dog ran to pursue the ball across the field.",
     "distractorMeanings": [
       "to run away from a ball",
@@ -3977,29 +3981,30 @@
   {
     "id": "d212-2",
     "dayIndex": 212,
-    "word": "customs",
+    "word": "porter",
     "partOfSpeech": "noun",
     "difficulty": 2,
-    "meaning": "the office at a border where bags are checked",
-    "exampleSentence": "The officer at customs checked our bags at the airport.",
+    "meaning": "a person who carries bags at a station",
+    "exampleSentence": "The porter carried our heavy bags to the train.",
     "distractorMeanings": [
-      "a shop that sells airplane toys",
-      "a school for pilots"
+      "a person who checks tickets on a train",
+      "a person who sells tea at a stall"
     ],
     "syllables": [
-      "cus",
-      "toms"
+      "por",
+      "ter"
     ],
     "tags": [
       "transport-travel",
-      "india"
+      "jobs-work"
     ],
     "contextWords": [
-      "airport",
-      "officer",
+      "station",
       "bags",
-      "border",
-      "passport"
+      "train",
+      "luggage",
+      "carry",
+      "platform"
     ]
   },
   {
@@ -4382,7 +4387,7 @@
     "partOfSpeech": "verb",
     "difficulty": 1,
     "meaning": "to pull something hard and quickly",
-    "exampleSentence": "The little boy gave a tug on his mother's saree.",
+    "exampleSentence": "The little boy began to tug at his mother's saree.",
     "distractorMeanings": [
       "to push something far away",
       "to drop something on the floor"
@@ -4433,28 +4438,29 @@
   {
     "id": "d215-3",
     "dayIndex": 215,
-    "word": "plaza",
+    "word": "luggage",
     "partOfSpeech": "noun",
     "difficulty": 2,
-    "meaning": "a large open square in a city",
-    "exampleSentence": "People sit on benches in the plaza near the market.",
+    "meaning": "bags and suitcases that you take on a journey",
+    "exampleSentence": "We packed our luggage the night before the train journey.",
     "distractorMeanings": [
-      "a narrow lane between two houses",
-      "a deep lake outside a town"
+      "a list of train timings on a board",
+      "the place where trains stop"
     ],
     "syllables": [
-      "pla",
-      "za"
+      "lug",
+      "gage"
     ],
     "tags": [
-      "city-town"
+      "transport-travel"
     ],
     "contextWords": [
-      "square",
-      "market",
-      "benches",
-      "crowd",
-      "city"
+      "bag",
+      "suitcase",
+      "pack",
+      "train",
+      "trip",
+      "carry"
     ]
   },
   {
@@ -4806,7 +4812,7 @@
     "meaning": "a person who comes to visit your home",
     "exampleSentence": "A guest came to our house for tea.",
     "distractorMeanings": [
-      "a person who lives next door always",
+      "a person who lives next door to you",
       "a person who sells things at the door"
     ],
     "syllables": [
@@ -4999,30 +5005,29 @@
   {
     "id": "d219-3",
     "dayIndex": 219,
-    "word": "overalls",
+    "word": "hoe",
     "partOfSpeech": "noun",
     "difficulty": 2,
-    "meaning": "a one-piece suit worn over clothes to keep them clean",
-    "exampleSentence": "The mechanic wore overalls while he repaired the engine.",
+    "meaning": "a garden tool with a flat blade for loosening soil",
+    "exampleSentence": "Grandfather used a hoe to remove weeds between the rows.",
     "distractorMeanings": [
-      "a warm coat for winter",
-      "a pair of shoes for sports"
+      "a machine that sprays water on crops",
+      "a basket used for carrying grain"
     ],
     "syllables": [
-      "o",
-      "ver",
-      "alls"
+      "hoe"
     ],
     "tags": [
-      "clothes",
+      "farming-village",
       "jobs-work"
     ],
     "contextWords": [
-      "mechanic",
-      "work",
-      "clothes",
-      "dirty",
-      "suit"
+      "garden",
+      "weeds",
+      "soil",
+      "farmer",
+      "tool",
+      "dig"
     ]
   },
   {
@@ -5456,7 +5461,7 @@
     "exampleSentence": "The teacher spoke into the microphone at the assembly.",
     "distractorMeanings": [
       "a screen that shows pictures",
-      "a speaker that plays music"
+      "a machine that cuts vegetables fast"
     ],
     "syllables": [
       "mi",
@@ -5684,11 +5689,11 @@
     "word": "balance",
     "partOfSpeech": "noun",
     "difficulty": 2,
-    "meaning": "the amount of money left in an account",
-    "exampleSentence": "Dad checked the balance in his bank account.",
+    "meaning": "a steady position in which you do not fall over",
+    "exampleSentence": "Riya kept her balance while walking on the narrow wall.",
     "distractorMeanings": [
-      "the first page of a notebook",
-      "a bag used for keeping coins"
+      "a loud noise made by falling things",
+      "a rope used for climbing walls"
     ],
     "syllables": [
       "bal",
@@ -5699,11 +5704,12 @@
       "city-town"
     ],
     "contextWords": [
-      "bank",
-      "money",
-      "account",
-      "passbook",
-      "left"
+      "steady",
+      "fall",
+      "walk",
+      "wall",
+      "bicycle",
+      "stand"
     ]
   },
   {
@@ -8319,7 +8325,7 @@
     "partOfSpeech": "noun",
     "difficulty": 3,
     "meaning": "a measurement such as length, width or height",
-    "exampleSentence": "Measure the dimension of the room before you buy a carpet.",
+    "exampleSentence": "Measure the dimensions of the room before you buy a carpet.",
     "distractorMeanings": [
       "the weight of a loaded truck",
       "the colour of a wall"

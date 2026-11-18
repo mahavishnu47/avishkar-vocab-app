@@ -505,7 +505,7 @@
     "exampleSentence": "It is sensible to carry an umbrella in the monsoon.",
     "distractorMeanings": [
       "full of fun and always laughing",
-      "ready to fight over small things"
+      "always ready to argue over small things"
     ],
     "syllables": [
       "sen",
@@ -1235,7 +1235,7 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "usual or ordinary, not very good or very bad",
-    "exampleSentence": "The average height of children in our class is four feet.",
+    "exampleSentence": "Aarav is an average swimmer, not the best and not the slowest.",
     "distractorMeanings": [
       "the largest of all in a group",
       "something that is brand new"
@@ -1674,7 +1674,7 @@
     "word": "poisonous",
     "partOfSpeech": "adjective",
     "difficulty": 2,
-    "meaning": "able to harm or kill if eaten or drunk",
+    "meaning": "able to make you very ill if eaten or drunk",
     "exampleSentence": "Never drink river water near a factory because it may be poisonous.",
     "distractorMeanings": [
       "good for making the body strong",
@@ -2168,8 +2168,8 @@
     "word": "circumstance",
     "partOfSpeech": "noun",
     "difficulty": 3,
-    "meaning": "a fact or condition that surrounds an event",
-    "exampleSentence": "In every circumstance, we should help a friend in need.",
+    "meaning": "the conditions and facts around an event",
+    "exampleSentence": "In difficult circumstances, neighbours in the village help each other.",
     "distractorMeanings": [
       "a place where goods are sold",
       "a shape with four equal sides"
@@ -2603,31 +2603,30 @@
   {
     "id": "d140-5",
     "dayIndex": 140,
-    "word": "persevere",
+    "word": "announce",
     "partOfSpeech": "verb",
     "difficulty": 3,
-    "meaning": "to keep trying even when something is hard",
-    "exampleSentence": "If you persevere, you will soon learn to swim well.",
+    "meaning": "to tell everyone something in public",
+    "exampleSentence": "The principal will announce the winners at the school assembly.",
     "distractorMeanings": [
-      "to give up when work is tiring",
-      "to run away from a hard task"
+      "to keep something secret from everyone",
+      "to listen quietly to a speech"
     ],
     "syllables": [
-      "per",
-      "se",
-      "vere"
+      "an",
+      "nounce"
     ],
     "tags": [
-      "character-values",
-      "sports-games"
+      "communication",
+      "school"
     ],
     "contextWords": [
-      "try",
-      "effort",
-      "hard",
-      "never",
-      "swim",
-      "learn"
+      "tell",
+      "news",
+      "loud",
+      "winner",
+      "principal",
+      "speaker"
     ]
   },
   {
@@ -3872,7 +3871,7 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "small, delicate and pretty",
-    "exampleSentence": "The dainty rangoli looked like a lace carpet on the floor.",
+    "exampleSentence": "The dainty rangoli had tiny petals and thin, neat lines.",
     "distractorMeanings": [
       "big, heavy and very rough",
       "dirty and covered with mud"
@@ -4342,7 +4341,7 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a strong feeling like joy or fear",
-    "exampleSentence": "Riya felt a strong emotion when she saw the stage.",
+    "exampleSentence": "Riya felt a strong emotion of joy when she won the prize.",
     "distractorMeanings": [
       "a game played in the evening",
       "a plan made for the week"
@@ -4866,30 +4865,30 @@
   {
     "id": "d156-2",
     "dayIndex": 156,
-    "word": "achieve",
+    "word": "promise",
     "partOfSpeech": "verb",
     "difficulty": 2,
-    "meaning": "to succeed in doing something after effort",
-    "exampleSentence": "Work hard and you will achieve your goal.",
+    "meaning": "to say that you will surely do something",
+    "exampleSentence": "Please promise to come to my birthday party, Om.",
     "distractorMeanings": [
-      "to give up before you start",
-      "to forget your goal completely"
+      "to forget something you agreed to do",
+      "to ask someone for money"
     ],
     "syllables": [
-      "a",
-      "chieve"
+      "prom",
+      "ise"
     ],
     "tags": [
       "character-values",
-      "school"
+      "communication"
     ],
     "contextWords": [
-      "goal",
-      "success",
-      "effort",
-      "hard",
-      "win",
-      "prize"
+      "keep",
+      "friend",
+      "word",
+      "trust",
+      "tell",
+      "sure"
     ]
   },
   {
@@ -5814,7 +5813,7 @@
     "meaning": "a list showing when things will happen",
     "exampleSentence": "Check the bus timetable before you leave for Pune.",
     "distractorMeanings": [
-      "a table used for writing",
+      "a small box for keeping pencils",
       "a clock kept on the wall"
     ],
     "syllables": [
@@ -6224,7 +6223,7 @@
     "partOfSpeech": "adjective",
     "difficulty": 2,
     "meaning": "happening at once, without any delay",
-    "exampleSentence": "The fire alarm needs an immediate exit from the class.",
+    "exampleSentence": "The teacher asked for an immediate reply, so Sai answered quickly.",
     "distractorMeanings": [
       "happening after a very long time",
       "happening only once a year"
@@ -6606,7 +6605,7 @@
     "word": "peach",
     "partOfSpeech": "noun",
     "difficulty": 1,
-    "meaning": "a soft round fruit with fuzzy skin",
+    "meaning": "a soft round juicy fruit with a thin furry skin",
     "exampleSentence": "Aai cut a juicy peach into four pieces for us.",
     "distractorMeanings": [
       "a hard brown nut with a rough shell",
@@ -6922,31 +6921,30 @@
   {
     "id": "d170-2",
     "dayIndex": 170,
-    "word": "terrify",
+    "word": "escape",
     "partOfSpeech": "verb",
     "difficulty": 2,
-    "meaning": "to make someone extremely afraid",
-    "exampleSentence": "Loud thunder can terrify a small child at night.",
+    "meaning": "to get away from danger or from a place",
+    "exampleSentence": "The goat managed to escape through a hole in the fence.",
     "distractorMeanings": [
-      "to make someone feel proud",
-      "to make someone fall asleep"
+      "to catch someone who runs away",
+      "to hide a gift for a friend"
     ],
     "syllables": [
-      "ter",
-      "ri",
-      "fy"
+      "es",
+      "cape"
     ],
     "tags": [
-      "emotions-feelings",
-      "weather-seasons"
+      "actions-movement",
+      "safety"
     ],
     "contextWords": [
-      "afraid",
-      "thunder",
-      "fear",
-      "night",
-      "scream",
-      "scary"
+      "run",
+      "danger",
+      "fence",
+      "free",
+      "cage",
+      "away"
     ]
   },
   {
@@ -7070,31 +7068,30 @@
   {
     "id": "d171-2",
     "dayIndex": 171,
-    "word": "notify",
+    "word": "sharpen",
     "partOfSpeech": "verb",
     "difficulty": 2,
-    "meaning": "to officially tell someone about something",
-    "exampleSentence": "Please notify the teacher if you cannot attend the class.",
+    "meaning": "to make an edge or point sharp",
+    "exampleSentence": "Baba will sharpen the sickle before the harvest begins.",
     "distractorMeanings": [
-      "to hide the news from everyone",
-      "to ask someone to guess the answer"
+      "to wrap a tool in a cloth",
+      "to make a tool wet and dirty"
     ],
     "syllables": [
-      "no",
-      "ti",
-      "fy"
+      "sharp",
+      "en"
     ],
     "tags": [
-      "school",
-      "communication"
+      "farming-village",
+      "home"
     ],
     "contextWords": [
-      "tell",
-      "teacher",
-      "inform",
-      "school",
-      "message",
-      "absent"
+      "knife",
+      "pencil",
+      "blade",
+      "edge",
+      "tool",
+      "point"
     ]
   },
   {
@@ -7680,30 +7677,29 @@
   {
     "id": "d175-3",
     "dayIndex": 175,
-    "word": "instant",
+    "word": "gentle",
     "partOfSpeech": "adjective",
     "difficulty": 2,
-    "meaning": "happening at once, in no time",
-    "exampleSentence": "The cool breeze gave us instant relief from the heat.",
+    "meaning": "soft and kind, not rough",
+    "exampleSentence": "Riya was gentle with the tiny chick and held it softly.",
     "distractorMeanings": [
-      "coming after a very long wait",
-      "happening only in the winter"
+      "rough and careless with things",
+      "very large and hard to move"
     ],
     "syllables": [
-      "in",
-      "stant"
+      "gen",
+      "tle"
     ],
     "tags": [
-      "describing-things",
-      "time-numbers"
+      "character-values",
+      "describing-things"
     ],
     "contextWords": [
-      "quick",
-      "sudden",
-      "breeze",
-      "heat",
-      "relief",
-      "now"
+      "kind",
+      "soft",
+      "careful",
+      "animal",
+      "touch"
     ]
   },
   {
@@ -7828,7 +7824,7 @@
     "word": "hopeless",
     "partOfSpeech": "adjective",
     "difficulty": 2,
-    "meaning": "having no hope or very poor",
+    "meaning": "feeling that nothing good will happen",
     "exampleSentence": "Do not feel hopeless; try the sum once more.",
     "distractorMeanings": [
       "full of hope and happiness",
@@ -8005,7 +8001,7 @@
     "partOfSpeech": "noun",
     "difficulty": 2,
     "meaning": "a collection of gold and other precious things",
-    "exampleSentence": "The children found an old box of coins like a treasure.",
+    "exampleSentence": "The children found a box of old gold coins, a real treasure.",
     "distractorMeanings": [
       "a bag of dry leaves",
       "a pile of old newspapers"
@@ -8115,29 +8111,30 @@
   {
     "id": "d178-3",
     "dayIndex": 178,
-    "word": "gallant",
+    "word": "clever",
     "partOfSpeech": "adjective",
     "difficulty": 2,
-    "meaning": "brave and polite",
-    "exampleSentence": "A gallant boy saved the kitten from the well.",
+    "meaning": "quick to learn and understand things",
+    "exampleSentence": "The clever crow dropped stones into the jug to drink water.",
     "distractorMeanings": [
-      "too scared to help anyone",
-      "rude and careless with others"
+      "slow to understand anything",
+      "tall and strong like a wrestler"
     ],
     "syllables": [
-      "gal",
-      "lant"
+      "clev",
+      "er"
     ],
     "tags": [
-      "character-values"
+      "character-values",
+      "stories-imagination"
     ],
     "contextWords": [
-      "brave",
-      "polite",
-      "hero",
-      "save",
-      "kind",
-      "boy"
+      "smart",
+      "crow",
+      "brain",
+      "idea",
+      "quick",
+      "learn"
     ]
   },
   {
@@ -8407,31 +8404,30 @@
   {
     "id": "d180-3",
     "dayIndex": 180,
-    "word": "jovial",
+    "word": "sturdy",
     "partOfSpeech": "adjective",
     "difficulty": 2,
-    "meaning": "cheerful and friendly",
-    "exampleSentence": "Our jovial uncle told funny jokes at dinner.",
+    "meaning": "strong and not easily broken",
+    "exampleSentence": "Our sturdy old bullock cart has carried heavy loads for years.",
     "distractorMeanings": [
-      "grumpy and always silent",
-      "tired and sleepy all day"
+      "weak and easily broken",
+      "bright and colourful like a flower"
     ],
     "syllables": [
-      "jo",
-      "vi",
-      "al"
+      "stur",
+      "dy"
     ],
     "tags": [
-      "emotions-feelings",
-      "family"
+      "describing-things",
+      "farming-village"
     ],
     "contextWords": [
-      "cheerful",
-      "friendly",
-      "jokes",
-      "laugh",
-      "uncle",
-      "smile"
+      "strong",
+      "cart",
+      "wood",
+      "tough",
+      "heavy",
+      "last"
     ]
   },
   {
