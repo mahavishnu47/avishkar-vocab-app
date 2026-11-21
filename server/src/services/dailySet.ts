@@ -4,6 +4,7 @@
 import { dayIndexFor, type DailySet, type IsoDate, type Word } from '@shabd/core';
 import type { Queryable } from '../db/db.ts';
 import { HttpError, notFound } from '../http.ts';
+import { classStudyDay, planWordIds } from './research/wordplan.ts';
 
 type Row = Record<string, unknown>;
 
@@ -55,7 +56,11 @@ export async function getWordsByIds(db: Queryable, ids: string[]): Promise<Word[
 export async function getDailySet(db: Queryable, classId: number, date: IsoDate): Promise<DailySet> {
   const cls = await db.get<{ start_date: string }>('SELECT start_date FROM classes WHERE id = ?', [classId]);
   if (!cls) throw notFound('Class not found');
-  const dayIndex = dayIndexFor(cls.start_date, date);
+  let dayIndex = dayIndexFor(cls.start_date, date);
+  // F2: an intervention class in a running study uses school-day numbering (weekends and holidays do not consume words)
+  const sd = await classStudyDay(db, classId, date);
+  const studyDayNo = sd && sd.group === 'intervention' ? sd.dayNo : null;
+  if (studyDayNo !== null && sd) dayIndex = studyDayNo;
 
   const overrides = await db.all<{ word_id: string }>(
     'SELECT word_id FROM daily_word_overrides WHERE class_id = ? AND date = ? ORDER BY position',
@@ -63,6 +68,11 @@ export async function getDailySet(db: Queryable, classId: number, date: IsoDate)
   );
   if (overrides.length === 5) {
     return { classId, date, dayIndex, source: 'teacher', words: await getWordsByIds(db, overrides.map((o) => o.word_id)) };
+  }
+
+  if (sd && studyDayNo !== null) {
+    const ids = await planWordIds(db, sd.studyId, studyDayNo);
+    if (ids) return { classId, date, dayIndex, source: 'auto', words: await getWordsByIds(db, ids) };
   }
 
   const words: Word[] = [];
