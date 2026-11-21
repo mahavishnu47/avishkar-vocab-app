@@ -3,6 +3,7 @@
  */
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { academicYearFor } from '@shabd/core';
 import { avatarFor, hashPassword } from '../auth.ts';
 import { today } from '../clock.ts';
 import type { DB, Queryable } from './db.ts';
@@ -117,7 +118,8 @@ export const isProduction = (): boolean => process.env.VERCEL_ENV === 'productio
 
 /**
  * Demo seed when no teachers exist (idempotent):
- * teacher demo@school.test / demo1234, class '5A' code 'DEMO5A' (startDate = today IST),
+ * school 'Demo School' (student_code 'DEMSCH'), school admin demo@school.test / demo1234, teacher invite 'TEACHERS'
+ * (displayed TEAC-HERS, 365 days), class '5A' code 'DEMO5A' (standard 5, A, startDate = today IST),
  * 10 students roll 1-10 (Riya, Aarav, Kabir, Sai, Ananya, Om, Isha, Vedant, Gauri, Arjun), all with PIN '1234'.
  * Refuses (throws) in production (VERCEL_ENV/NODE_ENV = production) unless opts.force.
  * Returns true if data was created.
@@ -128,13 +130,28 @@ export async function seedDemo(db: DB, opts: { force?: boolean } = {}): Promise<
   }
   return db.tx(async (q) => {
     if ((await q.get<{ n: number }>('SELECT COUNT(*) AS n FROM teachers'))!.n > 0) return false;
-    const t = await q.run('INSERT INTO teachers (name, email, password_hash) VALUES (?, ?, ?) RETURNING id', ['Demo Teacher', 'demo@school.test', hashPassword('demo1234')]);
-    const c = await q.run('INSERT INTO classes (teacher_id, name, class_code, start_date) VALUES (?, ?, ?, ?) RETURNING id', [t.rows[0]!.id, '5A', 'DEMO5A', today()]);
+    const day = today();
+    const sch = await q.run("INSERT INTO schools (name, district, student_code) VALUES ('Demo School', 'Demo', 'DEMSCH') ON CONFLICT (student_code) DO UPDATE SET name = EXCLUDED.name RETURNING id");
+    const schoolId = sch.rows[0]!.id;
+    const t = await q.run(
+      "INSERT INTO teachers (name, email, password_hash, school_id, role) VALUES (?, ?, ?, ?, 'school_admin') RETURNING id",
+      ['Demo Teacher', 'demo@school.test', hashPassword('demo1234'), schoolId],
+    );
+    await q.run(
+      "INSERT INTO invites (code, kind, school_id, created_by_teacher_id, max_uses, expires_at) VALUES ('TEACHERS', 'teacher', ?, ?, NULL, ?)",
+      [schoolId, t.rows[0]!.id, new Date(Date.now() + 365 * 86_400_000).toISOString()],
+    );
+    const c = await q.run(
+      'INSERT INTO classes (teacher_id, school_id, name, class_code, start_date, standard, division, academic_year) VALUES (?, ?, ?, ?, ?, 5, ?, ?) RETURNING id',
+      [t.rows[0]!.id, schoolId, '5A', 'DEMO5A', day, 'A', academicYearFor(day)],
+    );
     const names = ['Riya', 'Aarav', 'Kabir', 'Sai', 'Ananya', 'Om', 'Isha', 'Vedant', 'Gauri', 'Arjun'];
     for (const [i, name] of names.entries()) {
       await q.run('INSERT INTO students (class_id, roll_no, first_name, avatar, pin) VALUES (?, ?, ?, ?, ?)', [c.rows[0]!.id, i + 1, name, avatarFor(i + 1), '1234']);
     }
-    console.log('[seed] demo data: teacher demo@school.test / demo1234, class DEMO5A, students PIN 1234');
+    const base = (process.env.PUBLIC_APP_URL ?? 'http://localhost:5173').replace(/\/$/, '');
+    console.log('[seed] demo data: school admin demo@school.test / demo1234, class DEMO5A, students PIN 1234');
+    console.log(`[seed] links: ${base}/j/DEMO5A  ${base}/s/DEMSCH  ${base}/t/TEACHERS`);
     return true;
   });
 }

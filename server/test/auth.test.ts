@@ -25,10 +25,11 @@ describe('auth primitives', () => {
 });
 
 describe('teacher auth', () => {
-  it('registers, rejects duplicates, short passwords and wrong invite code', async () => {
+  it('registers, rejects duplicates, short passwords (TEACHER_INVITE_CODE is gone)', async () => {
     const r = await request(ctx.app).post('/api/auth/teacher/register').send({ name: 'A', email: 'a@x.in', password: 'password1' });
     expect(r.status).toBe(201);
-    expect(r.body.teacher).toMatchObject({ name: 'A', email: 'a@x.in' });
+    expect(r.body.teacher).toMatchObject({ name: 'A', email: 'a@x.in', role: 'teacher', active: true });
+    expect(r.body.school.id).toBe(r.body.teacher.schoolId);
     expect(r.body.token).toMatch(/^[0-9a-f]{64}$/);
 
     const dup = await request(ctx.app).post('/api/auth/teacher/register').send({ name: 'A', email: 'A@x.in', password: 'password1' });
@@ -37,12 +38,6 @@ describe('teacher auth', () => {
 
     const short = await request(ctx.app).post('/api/auth/teacher/register').send({ name: 'B', email: 'b@x.in', password: 'short' });
     expect(short.status).toBe(400);
-
-    process.env.TEACHER_INVITE_CODE = 'letmein';
-    const noInvite = await request(ctx.app).post('/api/auth/teacher/register').send({ name: 'B', email: 'b@x.in', password: 'password1' });
-    expect(noInvite.status).toBe(403);
-    const withInvite = await request(ctx.app).post('/api/auth/teacher/register').send({ name: 'B', email: 'b@x.in', password: 'password1', inviteCode: 'letmein' });
-    expect(withInvite.status).toBe(201);
   });
 
   it('logs in, rejects wrong credentials, serves /me and logs out', async () => {

@@ -1,6 +1,7 @@
 /**
  * Shared domain types. This file is THE CONTRACT between lanes.
  * Changing it requires a coordinated "contract" commit (see docs/BUILD_PLAN.md).
+ * FROZEN by O1 (onboarding v2, docs/ONBOARDING_SPEC.md 6.1): lanes O2-O6 must not edit; report needed changes to the integrator.
  */
 import type { SpellingErrorCode, SentenceErrorCode, MeaningErrorCode } from './taxonomy.ts';
 import type { SpellingHint } from './scoring.config.ts';
@@ -53,10 +54,24 @@ export interface Word extends Omit<WordEntry, 'dayIndex' | 'id'> {
 // ---------------------------------------------------------------- people
 export type LeaderboardMode = 'individual' | 'hidden';
 
+export type StaffRole = 'teacher' | 'school_admin';
+
+export interface School {
+  id: number;
+  name: string;
+  district: string;
+  /** 6-char code used in /s/<code> links */
+  studentCode: string;
+  status: 'active' | 'suspended';
+}
+
 export interface Teacher {
   id: number;
   name: string;
   email: string;
+  schoolId: number;
+  role: StaffRole;
+  active: boolean;
 }
 
 export interface ClassRoom {
@@ -69,6 +84,16 @@ export interface ClassRoom {
   /** date that maps to content day 1 (dayIndex = days since startDate + 1, wraps after 366) */
   startDate: IsoDate;
   leaderboardMode: LeaderboardMode;
+  schoolId: number;
+  standard: number;
+  /** '' or 1-3 uppercase characters */
+  division: string;
+  /** e.g. '2026-27' (June-May) */
+  academicYear: string;
+  archived: boolean;
+  joinEnabled: boolean;
+  linkSharedAt: string | null;
+  consentAttestedAt: string | null;
 }
 
 export interface Student {
@@ -85,6 +110,13 @@ export interface Student {
 export interface StudentWithPin extends Student {
   /** 4 digits, e.g. '0427' */
   pin: string;
+}
+
+/** Roster row for teachers: PIN plus join/lock state. */
+export interface RosterStudent extends StudentWithPin {
+  firstLoginAt: string | null;
+  lastLoginAt: string | null;
+  locked: boolean;
 }
 
 // ---------------------------------------------------------------- daily set

@@ -8,7 +8,7 @@ import type {
   AttemptsReq, AttemptsRes, SentenceEvaluation, SentenceReq, SentenceRes, SessionSummaryRes, StudentHomeRes, TodaySessionRes,
   Word, WordScore, LeaderboardRes, FeedbackItem,
 } from '@shabd/core';
-import { api, ApiRequestError } from '../shared/api.ts';
+import { api, ApiRequestError, getToken } from '../shared/api.ts';
 
 const KEY = 'shabd.mock.db';
 const DATE = '2026-11-18';
@@ -43,7 +43,7 @@ const net = async () => {
   db = load();
 };
 const bad = (status: number, code: ApiRequestError['code'], msg: string) => new ApiRequestError(status, code, msg);
-const authed = () => { if (!db.token || localStorage.getItem('shabd.token') !== db.token) throw bad(401, 'unauthorized', 'login'); };
+const authed = () => { if (!db.token || getToken('student') !== db.token) throw bad(401, 'unauthorized', 'login'); };
 
 function level(xp: number) { let l = 0; while (xp >= 500 * ((l + 1) * (l + 2)) / 2) l++; const lo = 500 * (l * (l + 1)) / 2; const hi = 500 * ((l + 1) * (l + 2)) / 2; return { level: l, xpIntoLevel: xp - lo, xpForNextLevel: hi - lo }; }
 

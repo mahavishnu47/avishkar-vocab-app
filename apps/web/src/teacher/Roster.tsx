@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import type { StudentWithPin } from '@shabd/core';
+import type { RosterStudent } from '@shabd/core';
 import { api } from '../shared/api.ts';
 import { errMsg, Page, SortTable, useLoad } from './ui.tsx';
 import { parseRosterText } from './util.ts';
@@ -29,11 +29,11 @@ export function Roster() {
     } catch (e) { setFormError(errMsg(e)); }
   };
 
-  const patch = (s: StudentWithPin) => setData((data ?? []).map((x) => (x.id === s.id ? s : x)));
-  const toggle = async (s: StudentWithPin) => {
+  const patch = (s: RosterStudent) => setData((data ?? []).map((x) => (x.id === s.id ? s : x)));
+  const toggle = async (s: RosterStudent) => {
     try { patch(await api.updateStudent(s.id, { active: !s.active })); } catch (e) { setMsg(errMsg(e)); }
   };
-  const reset = async (s: StudentWithPin) => {
+  const reset = async (s: RosterStudent) => {
     if (!window.confirm(`Reset PIN for ${s.firstName}?`)) return;
     try { const r = await api.resetPin(s.id); patch(r); setMsg(`New PIN for ${s.firstName}: ${r.pin}`); } catch (e) { setMsg(errMsg(e)); }
   };

@@ -19,26 +19,43 @@ const LOCK_MS = 5 * 60_000;
 // A valid hash used to equalise timing when the email is unknown.
 const DUMMY_HASH = hashPassword('not-a-real-password');
 
+async function schoolOf(id: number): Promise<{ id: number; name: string }> {
+  const r = await getDb().get<{ id: number; name: string }>('SELECT id, name FROM schools WHERE id = ?', [id]);
+  return r ?? { id, name: '' };
+}
+
 const teacherRegister: H<{}, TeacherAuthRes, TeacherRegisterReq> = async (req, res) => {
   const b = asObject(req.body);
   const name = reqString(b, 'name', 1, 80);
   const email = reqString(b, 'email', 3, 120).toLowerCase();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw badRequest('email must be a valid email address');
   if (typeof b.password !== 'string' || b.password.length < 8) throw badRequest('password must be at least 8 characters');
-  const invite = process.env.TEACHER_INVITE_CODE;
-  if (invite && b.inviteCode !== invite) throw forbidden('Invite code is wrong');
+  // O1 TEMPORARY SHIM (O2 replaces with real invite redemption, see docs/ONBOARDING_SPEC.md 4.4):
+  // join the school of a valid teacher/admin invite, else fall back to the first (or a new default) school.
   const db = getDb();
+  const code = typeof b.inviteCode === 'string' ? b.inviteCode.toUpperCase().replace(/[^A-Z0-9]/g, '') : '';
+  const inv = code
+    ? await db.get<{ school_id: number }>(
+        "SELECT school_id FROM invites WHERE code = ? AND kind IN ('teacher','school_admin') AND revoked_at IS NULL AND expires_at > ?",
+        [code, new Date().toISOString()],
+      )
+    : undefined;
+  let schoolId = inv?.school_id;
+  if (schoolId === undefined) {
+    const first = await db.get<{ id: number }>('SELECT min(id) AS id FROM schools');
+    schoolId = first?.id ?? Number((await db.run("INSERT INTO schools (name, district, student_code) VALUES ('My School', '', shabd_rand_code(6)) RETURNING id")).rows[0]!.id);
+  }
   const taken = new HttpError(409, 'conflict', 'This email is already registered');
   if (await db.get('SELECT 1 FROM teachers WHERE lower(email) = lower(?)', [email])) throw taken;
   let ins;
   try {
-    ins = await db.run('INSERT INTO teachers (name, email, password_hash) VALUES (?, ?, ?) RETURNING id', [name, email, hashPassword(b.password)]);
+    ins = await db.run('INSERT INTO teachers (name, email, password_hash, school_id) VALUES (?, ?, ?, ?) RETURNING *', [name, email, hashPassword(b.password), schoolId]);
   } catch (e) {
     if (isUniqueViolation(e)) throw taken; // two simultaneous registrations of the same email
     throw e;
   }
-  const teacher = { id: Number(ins.rows[0]!.id), name, email };
-  res.status(201).json({ token: await issueToken('teacher', teacher.id), teacher });
+  const teacher = teacherOf(ins.rows[0]!);
+  res.status(201).json({ token: await issueToken('teacher', teacher.id), teacher, school: await schoolOf(schoolId) });
 };
 
 const teacherLogin: H<{}, TeacherAuthRes, TeacherLoginReq> = async (req, res) => {
@@ -49,7 +66,7 @@ const teacherLogin: H<{}, TeacherAuthRes, TeacherLoginReq> = async (req, res) =>
   const ok = verifyPassword(password, row ? (row.password_hash as string) : DUMMY_HASH);
   if (!row || !ok) throw unauthorized('Wrong email or password');
   const teacher = teacherOf(row);
-  res.json({ token: await issueToken('teacher', teacher.id), teacher });
+  res.json({ token: await issueToken('teacher', teacher.id), teacher, school: await schoolOf(teacher.schoolId) });
 };
 
 const publicRoster: H<{ classCode: string }, PublicRosterRes> = async (req, res) => {
@@ -87,8 +104,14 @@ const studentLogin: H<{}, StudentAuthRes, StudentLoginReq> = async (req, res) =>
     }
     throw unauthorized('Wrong PIN');
   }
-  await db.run('UPDATE students SET failed_pin_count = 0, locked_until = NULL WHERE id = ?', [studentId]);
-  res.json({ token: await issueToken('student', studentId), student: studentOf(st), className: cls.name as string });
+  const firstLogin = st.first_login_at === null;
+  const nowIso = new Date(now).toISOString();
+  await db.run('UPDATE students SET failed_pin_count = 0, locked_until = NULL, first_login_at = COALESCE(first_login_at, ?), last_login_at = ? WHERE id = ?', [nowIso, nowIso, studentId]);
+  const school = await schoolOf(cls.school_id as number);
+  res.json({
+    token: await issueToken('student', studentId), student: studentOf(st), className: cls.name as string,
+    schoolName: school.name, classCode: cls.class_code as string, firstLogin,
+  });
 };
 
 const me: H<{}, MeRes> = async (req, res) => {
@@ -98,14 +121,17 @@ const me: H<{}, MeRes> = async (req, res) => {
   if (auth.role === 'teacher') {
     const t = await db.get('SELECT * FROM teachers WHERE id = ?', [auth.teacherId]);
     if (!t) throw unauthorized();
-    res.json({ role: 'teacher', teacher: teacherOf(t) });
+    res.json({ role: 'teacher', teacher: teacherOf(t), school: await schoolOf(t.school_id as number) });
     return;
   }
   const st = await db.get('SELECT * FROM students WHERE id = ?', [auth.studentId]);
   const cls = await db.get('SELECT * FROM classes WHERE id = ?', [auth.classId]);
   if (!st || !cls) throw unauthorized();
   const c = classOf(cls);
-  res.json({ role: 'student', student: studentOf(st), classRoom: { id: c.id, name: c.name, leaderboardMode: c.leaderboardMode } });
+  res.json({
+    role: 'student', student: studentOf(st), classRoom: { id: c.id, name: c.name, leaderboardMode: c.leaderboardMode },
+    schoolName: (await schoolOf(c.schoolId)).name,
+  });
 };
 
 const logout: H<{}, void> = async (req, res) => {

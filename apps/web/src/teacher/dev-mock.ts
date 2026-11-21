@@ -4,7 +4,7 @@
  */
 import type {
   ClassAnalyticsRes, ClassRoom, DailySet, SentenceErrorCode, SpellingErrorCode, StudentDetailRes,
-  StudentErrorProfile, StudentWithPin, Word,
+  RosterStudent, StudentErrorProfile, StudentWithPin, Word,
 } from '@shabd/core';
 import { ApiRequestError, api, getToken } from '../shared/api.ts';
 import { addDays, istToday } from './util.ts';
@@ -22,12 +22,13 @@ const bank: Word[] = WORDS.map((w, i) => ({
 const AVATARS = ['🦁', '🐯', '🐼', '🦊', '🐸', '🐵', '🐧', '🦄'];
 
 let nextStudent = 1;
-const mk = (roll: number, name: string): StudentWithPin => ({
+const mk = (roll: number, name: string): RosterStudent => ({
   id: nextStudent++, classId: 1, rollNo: roll, firstName: name, avatar: AVATARS[(roll - 1) % AVATARS.length],
-  active: true, pin: String(1000 + roll * 37).slice(0, 4),
+  active: true, pin: String(1000 + roll * 37).slice(0, 4), firstLoginAt: null, lastLoginAt: null, locked: false,
 });
-let roster: StudentWithPin[] = [mk(1, 'Riya'), mk(2, 'Arjun'), mk(3, 'सानिका'), mk(4, 'Kabir'), mk(5, 'Meera'), mk(6, 'Omkar'), mk(7, 'Tara'), mk(8, 'Yash'), mk(9, 'Neha'), mk(10, 'Dev')];
-let klass: ClassRoom = { id: 1, teacherId: 1, name: '5A', classCode: 'DEMO5A', startDate: addDays(istToday(), -20), leaderboardMode: 'individual' };
+let roster: RosterStudent[] = [mk(1, 'Riya'), mk(2, 'Arjun'), mk(3, 'सानिका'), mk(4, 'Kabir'), mk(5, 'Meera'), mk(6, 'Omkar'), mk(7, 'Tara'), mk(8, 'Yash'), mk(9, 'Neha'), mk(10, 'Dev')];
+let klass: ClassRoom = { id: 1, teacherId: 1, name: '5A', classCode: 'DEMO5A', startDate: addDays(istToday(), -20), leaderboardMode: 'individual',
+  schoolId: 1, standard: 5, division: 'A', academicYear: '2026-27', archived: false, joinEnabled: true, linkSharedAt: null, consentAttestedAt: null };
 const overrides = new Map<string, string[]>();
 
 const dayIndex = (date: string) => Math.max(1, Math.round((Date.parse(date) - Date.parse(klass.startDate)) / 864e5) + 1);
@@ -71,13 +72,14 @@ const csv = (type: string) => '﻿' + (type === 'students'
   : `date,roll_no,first_name\r\n${istToday()},1,Riya\r\n`);
 
 export function installMock(): void {
-  const teacher = { id: 1, name: 'Demo Teacher', email: 'demo@school.test' };
+  const teacher = { id: 1, name: 'Demo Teacher', email: 'demo@school.test', schoolId: 1, role: 'school_admin' as const, active: true };
+  const school = { id: 1, name: 'Demo School' };
   Object.assign(api, {
-    me: () => (getToken() ? delay({ role: 'teacher' as const, teacher }) : Promise.reject(fail(401, 'unauthorized', 'Log in'))),
+    me: () => (getToken() ? delay({ role: 'teacher' as const, teacher, school }) : Promise.reject(fail(401, 'unauthorized', 'Log in'))),
     logout: () => delay(undefined),
     teacherLogin: (b: { email: string; password: string }) =>
-      b.email === 'demo@school.test' && b.password === 'demo1234' ? delay({ token: 'mock-token', teacher }) : Promise.reject(fail(401, 'unauthorized', 'Wrong email or password')),
-    teacherRegister: () => delay({ token: 'mock-token', teacher }),
+      b.email === 'demo@school.test' && b.password === 'demo1234' ? delay({ token: 'mock-token', teacher, school }) : Promise.reject(fail(401, 'unauthorized', 'Wrong email or password')),
+    teacherRegister: () => delay({ token: 'mock-token', teacher, school }),
     listClasses: () => delay([klass]),
     createClass: (b: { name: string; startDate?: string }) => { klass = { ...klass, name: b.name, startDate: b.startDate ?? klass.startDate }; return delay(klass); },
     updateClass: (_id: number, b: Partial<ClassRoom>) => { klass = { ...klass, ...b }; return delay(klass); },

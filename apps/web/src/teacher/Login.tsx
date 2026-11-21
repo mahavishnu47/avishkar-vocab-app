@@ -20,7 +20,7 @@ export function Login() {
     setBusy(true);
     try {
       const res = creating
-        ? await api.teacherRegister({ name: name.trim(), email: email.trim(), password, inviteCode: invite.trim() || undefined })
+        ? await api.teacherRegister({ name: name.trim(), email: email.trim(), password, inviteCode: invite.trim() })
         : await api.teacherLogin({ email: email.trim(), password });
       setToken(res.token);
       navigate('/teacher', { replace: true });

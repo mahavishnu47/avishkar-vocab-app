@@ -10,13 +10,14 @@ import { classesRouter } from './routes/classes.ts';
 import { wordsRouter } from './routes/words.ts';
 import { analyticsRouter } from './routes/analytics.ts';
 import { studentRouter } from './routes/student.ts';
+import { stubsRouter } from './routes/stubs.ts';
 
 export function createApp() {
   const app = express();
   app.disable('x-powered-by');
   app.use(express.json({ limit: '256kb' }));
   app.use('/api', attachAuth);
-  app.use('/api', healthRouter, authRouter, classesRouter, wordsRouter, analyticsRouter, studentRouter);
+  app.use('/api', healthRouter, authRouter, classesRouter, wordsRouter, analyticsRouter, studentRouter, stubsRouter);
   app.use('/api', (_req, _res, next) => next(notFound('Unknown API route')));
   app.use(errorHandler);
   return app;

@@ -3,13 +3,14 @@
  */
 import { Router } from 'express';
 import type {
-  AddStudentsReq, ClassRoom, CreateClassReq, RosterRes, StudentWithPin, UpdateClassReq, UpdateStudentReq,
+  AddStudentsReq, ClassRoom, CreateClassReq, RosterRes, RosterStudent, StudentWithPin, UpdateClassReq, UpdateStudentReq,
 } from '@shabd/core';
 import { assertTeacherOwnsClass, assertTeacherOwnsStudent, avatarFor, generateClassCode, generatePin, requireTeacher } from '../auth.ts';
 import { today } from '../clock.ts';
 import { getDb, isUniqueViolation } from '../db/db.ts';
+import { academicYearFor, className as makeClassName } from '@shabd/core';
 import { HttpError, badRequest, type H } from '../http.ts';
-import { classOf, getClassRow, studentWithPinOf } from '../mappers.ts';
+import { classOf, getClassRow, rosterStudentOf, studentWithPinOf } from '../mappers.ts';
 import { asObject, idParam, optDate, optInt, optString, reqDate, reqInt, reqString } from '../validate.ts';
 
 export const classesRouter = Router();
@@ -24,16 +25,28 @@ const listClasses: H<{}, ClassRoom[]> = async (req, res) => {
 
 const createClass: H<{}, ClassRoom, CreateClassReq> = async (req, res) => {
   const b = asObject(req.body);
-  const name = reqString(b, 'name', 1, 40);
+  // O1 minimal shim; O2 owns the full wizard rules (409 on duplicates, etc.).
+  let standard = optInt(b, 'standard', 1, 12);
+  let division = (optString(b, 'division', 0, 3) ?? '').toUpperCase();
+  let name = optString(b, 'name', 1, 40);
+  if (standard === undefined) {
+    if (name === undefined) throw badRequest('standard or name is required');
+    const m = /^([0-9]{1,2})\s*-?\s*([A-Za-z]?)$/.exec(name.trim());
+    standard = m && Number(m[1]) >= 1 && Number(m[1]) <= 12 ? Number(m[1]) : 5;
+    division = m && Number(m[1]) >= 1 && Number(m[1]) <= 12 ? m[2]!.toUpperCase() : '';
+  }
+  name ??= makeClassName(standard, division);
   const startDate = optDate(b.startDate, 'startDate') ?? today();
   const teacherId = (req.auth as { teacherId: number }).teacherId;
   const db = getDb();
+  const schoolId = (await db.get<{ school_id: number }>('SELECT school_id FROM teachers WHERE id = ?', [teacherId]))!.school_id;
   for (let attempt = 0; attempt < 20; attempt++) {
     try {
       // Not inside a transaction: a unique clash on class_code just retries with a new code.
-      const ins = await db.run('INSERT INTO classes (teacher_id, name, class_code, start_date) VALUES (?, ?, ?, ?) RETURNING id', [
-        teacherId, name, generateClassCode(), startDate,
-      ]);
+      const ins = await db.run(
+        'INSERT INTO classes (teacher_id, school_id, name, class_code, start_date, standard, division, academic_year) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id',
+        [teacherId, schoolId, name, generateClassCode(), startDate, standard, division, academicYearFor(startDate)],
+      );
       res.status(201).json(classOf(await getClassRow(db, Number(ins.rows[0]!.id))));
       return;
     } catch (e) {
@@ -64,7 +77,7 @@ const listStudents: H<{ classId: string }, RosterRes> = async (req, res) => {
   const classId = idParam(req.params.classId);
   await assertTeacherOwnsClass((req.auth as { teacherId: number }).teacherId, classId);
   const rows = await getDb().all('SELECT * FROM students WHERE class_id = ? ORDER BY roll_no', [classId]);
-  res.json(rows.map(studentWithPinOf));
+  res.json(rows.map(rosterStudentOf));
 };
 
 const addStudents: H<{ classId: string }, RosterRes, AddStudentsReq> = async (req, res) => {
@@ -87,10 +100,10 @@ const addStudents: H<{ classId: string }, RosterRes, AddStudentsReq> = async (re
     if (seen.has(s.rollNo)) throw new HttpError(409, 'conflict', `Roll number ${s.rollNo} appears twice`);
     seen.add(s.rollNo);
   }
-  let created: StudentWithPin[];
+  let created: RosterStudent[];
   try {
     created = await getDb().tx(async (q) => {
-      const out: StudentWithPin[] = [];
+      const out: RosterStudent[] = [];
       for (const s of parsed) {
         if (await q.get('SELECT 1 FROM students WHERE class_id = ? AND roll_no = ?', [classId, s.rollNo])) {
           throw new HttpError(409, 'conflict', `Roll number ${s.rollNo} already exists in this class`);
@@ -99,7 +112,7 @@ const addStudents: H<{ classId: string }, RosterRes, AddStudentsReq> = async (re
           'INSERT INTO students (class_id, roll_no, first_name, avatar, pin) VALUES (?, ?, ?, ?, ?) RETURNING *',
           [classId, s.rollNo, s.firstName, avatarFor(s.rollNo), generatePin()],
         );
-        out.push(studentWithPinOf(ins.rows[0]!));
+        out.push(rosterStudentOf(ins.rows[0]!));
       }
       return out;
     });
