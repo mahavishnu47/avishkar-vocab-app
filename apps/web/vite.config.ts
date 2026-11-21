@@ -26,5 +26,5 @@ export default defineConfig({
     host: true,
     proxy: { '/api': `http://localhost:${process.env.API_PORT ?? 4000}` },
   },
-  test: { environment: 'jsdom', setupFiles: ['./src/test-setup.ts'] },
+  test: { environment: 'jsdom' },
 });

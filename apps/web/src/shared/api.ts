@@ -91,16 +91,6 @@ function handleUnauthorized(scope: TokenScope): void {
   } catch { /* non-browser env */ }
 }
 
-/** A request that has not answered after this long is treated like a lost connection (B-07). */
-export const REQUEST_TIMEOUT_MS = 15_000;
-
-/** Reject with a network-style error if `p` has not settled within `ms`; the timer is always cleared. */
-export function withTimeout<T>(p: Promise<T>, ms: number): Promise<T> {
-  let timer: ReturnType<typeof setTimeout>;
-  const timeout = new Promise<never>((_, rej) => { timer = setTimeout(() => rej(new ApiRequestError(0, 'network', 'timeout')), ms); });
-  return Promise.race([p, timeout]).finally(() => clearTimeout(timer));
-}
-
 interface RequestOpts {
   scope?: TokenScope;
   /** explicit token (withToken clients): no 401 side effects */
@@ -119,31 +109,22 @@ export async function request<T>(method: string, path: string, body?: unknown, o
     if (secret) headers['X-Admin-Secret'] = secret;
   }
   if (body !== undefined) headers['Content-Type'] = 'application/json';
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
+  let res: Response;
   try {
-    let res: Response;
-    try {
-      res = await fetch(`/api${path}`, { method, headers, body: body === undefined ? undefined : JSON.stringify(body), signal: ctrl.signal });
-    } catch (e) {
-      throw new ApiRequestError(0, 'network', (e as Error).message);
-    }
-    if (!res.ok) {
-      let code: ApiErrorCode = 'internal';
-      let message = res.statusText;
-      try { const j = await res.json(); code = j.error?.code ?? code; message = j.error?.message ?? message; } catch { /* non-json */ }
-      if (res.status === 401 && token && !explicit && !opts.admin && !path.startsWith('/auth/')) handleUnauthorized(scope);
-      throw new ApiRequestError(res.status, code, message);
-    }
-    if (res.status === 204) return undefined as T;
-    const ct = res.headers.get('content-type') ?? '';
-    return await (ct.includes('application/json') ? res.json() : res.text()) as T;
+    res = await fetch(`/api${path}`, { method, headers, body: body === undefined ? undefined : JSON.stringify(body) });
   } catch (e) {
-    if (ctrl.signal.aborted && !(e instanceof ApiRequestError && e.status !== 0)) throw new ApiRequestError(0, 'network', 'timeout');
-    throw e;
-  } finally {
-    clearTimeout(timer);
+    throw new ApiRequestError(0, 'network', (e as Error).message);
   }
+  if (!res.ok) {
+    let code: ApiErrorCode = 'internal';
+    let message = res.statusText;
+    try { const j = await res.json(); code = j.error?.code ?? code; message = j.error?.message ?? message; } catch { /* non-json */ }
+    if (res.status === 401 && token && !explicit && !opts.admin && !path.startsWith('/auth/')) handleUnauthorized(scope);
+    throw new ApiRequestError(res.status, code, message);
+  }
+  if (res.status === 204) return undefined as T;
+  const ct = res.headers.get('content-type') ?? '';
+  return (ct.includes('application/json') ? res.json() : res.text()) as Promise<T>;
 }
 
 function qs(q: object): string {

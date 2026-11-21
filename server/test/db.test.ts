@@ -2,7 +2,6 @@ import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeEach, describe, expect, it } from 'vitest';
-import { MIGRATIONS } from '../src/db/migrations.ts';
 import { createDb, isUniqueViolation, migrate, poolConfig, pooledUrl, toPgSql, type DB } from '../src/db/db.ts';
 import { loadWordBank, seedDemo } from '../src/db/seed.ts';
 import { closeTestDb, setup, testDb } from './helpers.ts';
@@ -95,7 +94,7 @@ describe('migrate', () => {
     const a = createDb(u.toString(), { max: 2 });
     const b = createDb(u.toString(), { max: 2 });
     const [ra, rb] = await Promise.all([migrate(a), migrate(b)]);
-    expect([ra.length, rb.length].sort()).toEqual([0, MIGRATIONS.length]);
+    expect([ra.length, rb.length].sort()).toEqual([0, 2]);
     await a.end();
     await b.end();
     await admin.exec(`DROP DATABASE ${name} WITH (FORCE)`);

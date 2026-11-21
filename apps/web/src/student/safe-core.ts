@@ -5,7 +5,7 @@
  */
 import {
   classifySpellingError, correctPositions, evaluateSentenceRules, scoreSentence, scoreSpelling, scoreMeaning,
-  scoreWord, computeXp, updateStreak, displayStreak, addDays, EMPTY_STREAK,
+  scoreWord, computeXp, updateStreak, displayStreak, EMPTY_STREAK,
 } from '@shabd/core';
 import type {
   SentenceEvaluation, SentenceWordContext, SpellingClassification, SpellingHint, WordScore, SentenceScoreInput,
@@ -62,15 +62,6 @@ export function localWordScore(wordId: string, r: WordRec): WordScore | null {
 
 export function localSentenceMarks(s: SentenceScoreInput): number | null {
   try { return scoreSentence([s]); } catch { return null; }
-}
-
-/**
- * Streak state before today's session, rebuilt from the cached home numbers. The home streak is only > 0 when the
- * last completed day was yesterday, so that date is restored; a null date would make updateStreak restart at 1 (B-02).
- */
-export function streakBeforeSession(homeStreak: number, bestStreak: number, sessionDate: string): StreakState {
-  const current = Math.max(0, homeStreak);
-  return { current, best: Math.max(bestStreak, current), lastCompletedDate: current > 0 ? addDays(sessionDate, -1) : null };
 }
 
 /** Offline summary computed with core; null if core cannot. */

@@ -1,11 +1,10 @@
 /** Local dev/start entry (never imported by Vercel): migrate, seed bank, seed demo, listen. */
 import { resolve } from 'node:path';
 import { createApp } from './app.ts';
-import { appDatabaseUrl, ensureLocalDatabase, getDb, migrate } from './db/db.ts';
+import { getDb, migrate } from './db/db.ts';
 import { loadWordBank, seedDemo } from './db/seed.ts';
 
 const port = Number(process.env.PORT ?? 4000);
-await ensureLocalDatabase(appDatabaseUrl()); // first run on a fresh local Postgres: create the database too
 const db = getDb();
 await migrate(db);
 const loaded = await loadWordBank(db, resolve(import.meta.dirname, '../../content/words'), { allowFixture: true });

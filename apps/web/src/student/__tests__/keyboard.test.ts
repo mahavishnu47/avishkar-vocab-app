@@ -82,21 +82,3 @@ describe('restrictToLetters (letter tiles)', () => {
     expect(s.value).toBe('ll');
   });
 });
-
-describe('pronoun I (B-13)', () => {
-  const start: KbState = { value: 'We know', shift: null };
-  it('capitalises a lone i when a space follows', () => {
-    expect(type(sentence, [' ', 'i', ' ', 'l', 'o', 's', 't'], start).value).toBe('We know I lost');
-  });
-  it('capitalises a lone i before punctuation and in contractions', () => {
-    expect(type(sentence, [' ', 'i', "'"], start).value).toBe("We know I'");
-    expect(type(sentence, [' ', 'i', '.'], start).value).toBe('We know I.');
-  });
-  it('leaves i inside words alone', () => {
-    expect(type(sentence, [' ', 'h', 'i', ' '], start).value).toBe('We know hi ');
-    expect(type(sentence, [' ', 'a', 'i', 'm', ' '], start).value).toBe('We know aim ');
-  });
-  it('does nothing when auto-capitalise is off', () => {
-    expect(type({ ...sentence, autoCapitalize: false }, [' ', 'i', ' '], start).value).toBe('We know i ');
-  });
-});

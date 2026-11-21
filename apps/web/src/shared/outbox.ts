@@ -81,11 +81,8 @@ async function send(it: OutboxItem, token: string): Promise<void> {
   }
 }
 
-/** Unexpected (non-API) failures, e.g. an unreadable response, are retried a few times, then the item is dropped (B-08). */
-const MAX_UNEXPECTED_TRIES = 5;
-
-function keepOnError(e: unknown, tries: number): boolean {
-  if (!(e instanceof ApiRequestError)) return tries + 1 < MAX_UNEXPECTED_TRIES;
+function keepOnError(e: unknown): boolean {
+  if (!(e instanceof ApiRequestError)) return true;
   if (e.isNetwork || e.status >= 500) return true;
   return e.status === 401 || e.status === 408 || e.status === 429;
 }
@@ -110,7 +107,7 @@ export function flush(): Promise<void> {
         save();
       } catch (e) {
         if (e instanceof ApiRequestError && e.status === 401) markNeedsPin(it.studentId);
-        if (keepOnError(e, it.tries)) {
+        if (keepOnError(e)) {
           it.tries += 1;
           save();
           blocked.add(it.studentId);

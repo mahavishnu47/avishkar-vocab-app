@@ -25,7 +25,7 @@ npm install
 npm run dev        # server on :4000 (API at /api), web on :5173 (proxies /api)
 ```
 
-`npm run dev` creates the local database if it is missing, then the tables, loads the word bank and seeds the demo data by itself. If `DATABASE_URL` is not set it uses `postgres://postgres:postgres@localhost:5432/shabd` (the Docker command above).
+`npm run dev` creates the tables, loads the word bank and seeds the demo data by itself. If `DATABASE_URL` is not set it uses `postgres://postgres:postgres@localhost:5432/shabd` (the Docker command above).
 
 Open http://localhost:5173 (landing page with Student, Teacher and School tiles). Teachers use http://localhost:5173/teacher, school admins `/school`, the platform owner `/admin`. To test on a phone on the same Wi-Fi, open `http://<your-laptop-ip>:5173`.
 

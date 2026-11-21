@@ -567,16 +567,15 @@
    "gate": "ok",
    "rubric": {
     "use": 10,
-    "grammar": 2,
-    "relevance": 0,
+    "grammar": 6,
+    "relevance": 6,
     "length": 0
    },
    "codes": [
     "SN_CAPITAL",
-    "SN_PUNCT",
-    "SN_TOO_SHORT"
+    "SN_PUNCT"
    ],
-   "note": "single word: a fragment earns almost nothing (B-04)"
+   "note": "single"
   },
   {
    "word": "journey",

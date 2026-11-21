@@ -41,11 +41,10 @@ export function Analytics() {
       { key: 'name', label: 'Student', get: (r) => r.firstName, render: (r) => <span className="deva">{r.avatar} {r.firstName}</span> },
       { key: 'spStrength', label: 'Spelling strength', get: (r) => r.spellingStrength, render: (r) => (r.spellingStrength === null ? '–' : `${Math.round(r.spellingStrength)}%`) },
       { key: 'snStrength', label: 'Sentence strength', get: (r) => r.sentenceStrength, render: (r) => (r.sentenceStrength === null ? '–' : `${Math.round(r.sentenceStrength)}%`) },
-      // Weakness is the headline result, so it sits next to the strengths instead of after ~1000px of heatmap (B-17).
-      { key: 'weak', label: 'Weakness', get: (r) => r.weaknessLabels.length, className: 't-weak',
-        render: (r) => r.weaknessLabels.length ? r.weaknessLabels.map((l) => <span key={l} className="t-badge t-badge-warn">{l}</span>) : <span className="muted">–</span> },
       ...spCodes.map((c) => heat('sp', c)),
       ...snCodes.map((c) => heat('sn', c)),
+      { key: 'weak', label: 'Weakness', get: (r) => r.weaknessLabels.length, className: 't-weak',
+        render: (r) => r.weaknessLabels.length ? r.weaknessLabels.map((l) => <span key={l} className="t-badge t-badge-warn">{l}</span>) : <span className="muted">–</span> },
     ];
   }, [data]);
 
@@ -77,7 +76,7 @@ export function Analytics() {
             {data.hardestWords.length === 0 ? <p className="muted">No data yet.</p> : (
               <ol className="t-hard">
                 {data.hardestWords.map((w) => (
-                  <li key={w.wordId}><b>{w.word}</b> <span className="muted">{Math.round(w.firstAttemptAccuracy * 100)}% right first time · {w.attempts} student{w.attempts === 1 ? '' : 's'}</span></li>
+                  <li key={w.wordId}><b>{w.word}</b> <span className="muted">{Math.round(w.firstAttemptAccuracy * 100)}% right first time · {w.attempts} attempts</span></li>
                 ))}
               </ol>
             )}

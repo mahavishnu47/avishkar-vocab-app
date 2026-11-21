@@ -79,11 +79,6 @@ export function tileUsage(tiles: string[], value: string): boolean[] {
   return used;
 }
 
-/** A lone lowercase "i" at the end of the text (start or after a space) becomes the pronoun "I" (B-13). */
-function capitaliseLoneI(value: string): string {
-  return /(^|\s)i$/.test(value) ? value.slice(0, -1) + 'I' : value;
-}
-
 export function applyKey(state: KbState, key: KbKey, cfg: KbConfig): KbResult {
   const { value } = state;
   const ignored = (): KbResult => ({ ...state, rejected: 'ignored' });
@@ -98,7 +93,7 @@ export function applyKey(state: KbState, key: KbKey, cfg: KbConfig): KbResult {
     case 'space': {
       if (cfg.mode !== 'sentence' || value === '' || value.endsWith(' ')) return ignored();
       if (value.length >= cfg.maxLength) return { ...state, rejected: 'max' };
-      return { value: (cfg.autoCapitalize ? capitaliseLoneI(value) : value) + ' ', shift: state.shift, rejected: null };
+      return { value: value + ' ', shift: state.shift, rejected: null };
     }
     case 'char': {
       const ch = key.ch;
@@ -117,7 +112,7 @@ export function applyKey(state: KbState, key: KbKey, cfg: KbConfig): KbResult {
         return { value: value.slice(0, -1) + ch, shift: null, rejected: null };
       }
       if (value.length >= cfg.maxLength) return { ...state, rejected: 'max' };
-      return { value: (cfg.autoCapitalize ? capitaliseLoneI(value) : value) + ch, shift: null, rejected: null };
+      return { value: value + ch, shift: null, rejected: null };
     }
   }
 }

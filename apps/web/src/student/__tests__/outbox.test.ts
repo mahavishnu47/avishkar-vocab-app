@@ -180,14 +180,3 @@ describe('outbox', () => {
     });
   });
 });
-
-describe('outbox poison items (B-08)', () => {
-  it('drops an item that keeps failing with an unexpected error so later items still send', async () => {
-    vi.spyOn(console, 'warn').mockImplementation(() => {});
-    behaviour.next = (kind) => { if (kind === 'attempts') throw new SyntaxError('Unexpected token < in JSON'); return undefined; };
-    enqueue(A(1)); enqueue({ kind: 'completeWord', sessionId: 1, wordId: 'w' });
-    for (let i = 0; i < 8; i++) await vi.advanceTimersByTimeAsync(61_000);
-    expect(pendingCount()).toBe(0);
-    expect(calls).toContain('completeWord');
-  });
-});

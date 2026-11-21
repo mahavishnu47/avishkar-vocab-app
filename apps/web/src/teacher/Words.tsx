@@ -7,7 +7,7 @@ import { addDays, istToday } from './util.ts';
 
 const POS: PartOfSpeech[] = ['noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'pronoun', 'interjection'];
 
-function WordPicker({ onPick, onCancel, usedIds }: { onPick: (w: Word) => void; onCancel: () => void; usedIds: ReadonlySet<string> }) {
+function WordPicker({ onPick, onCancel }: { onPick: (w: Word) => void; onCancel: () => void }) {
   const [q, setQ] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [pos, setPos] = useState('');
@@ -43,7 +43,7 @@ function WordPicker({ onPick, onCancel, usedIds }: { onPick: (w: Word) => void; 
         {items.map((w) => (
           <li key={w.id}>
             <div><b>{w.word}</b> <span className="muted">{w.partOfSpeech} · level {w.difficulty}</span><div className="muted">{w.meaning}</div></div>
-            <button className="btn" disabled={usedIds.has(w.id)} onClick={() => onPick(w)}>{usedIds.has(w.id) ? 'Already in this day' : 'Use this'}</button>
+            <button className="btn" onClick={() => onPick(w)}>Use this</button>
           </li>
         ))}
       </ul>
@@ -103,12 +103,11 @@ export function Words() {
   const [custom, setCustom] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
-  const [pickErr, setPickErr] = useState<string | null>(null); // shown inside the open picker, not at the page bottom (B-10)
   const [recent, setRecent] = useState<Set<string>>(new Set());
   const cache = useRef(new Map<string, Set<string>>());
 
   useEffect(() => { setDraft(data ? data.words : null); setSlot(null); setCustom(false); }, [data]);
-  useEffect(() => { setMsg(null); setErr(null); setPickErr(null); }, [date]);
+  useEffect(() => { setMsg(null); setErr(null); }, [date]);
 
   // Words used in the previous 30 days (client-side check).
   useEffect(() => {
@@ -126,8 +125,8 @@ export function Words() {
   const apply = (set: DailySet, text: string) => { setData(set); setMsg(text); setErr(null); };
   const pick = (w: Word) => {
     if (!draft || slot === null) return;
-    if (draft.some((x, i) => i !== slot && x.id === w.id)) { setPickErr(`"${w.word}" is already in this day's set`); return; }
-    const next = draft.slice(); next[slot] = w; setDraft(next); setSlot(null); setCustom(false); setErr(null); setPickErr(null);
+    if (draft.some((x, i) => i !== slot && x.id === w.id)) { setErr(`"${w.word}" is already in today's set`); return; }
+    const next = draft.slice(); next[slot] = w; setDraft(next); setSlot(null); setCustom(false); setErr(null);
   };
   const save = async () => {
     if (!draft) return;
@@ -158,15 +157,14 @@ export function Words() {
                   <div className="muted">{w.meaning}</div>
                   {recent.has(w.id) && <div className="t-warn" role="note">⚠ Used in the last 30 days</div>}
                 </div>
-                <button className="btn" onClick={() => { setSlot(slot === i ? null : i); setCustom(false); setPickErr(null); }}>Change</button>
+                <button className="btn" onClick={() => { setSlot(slot === i ? null : i); setCustom(false); }}>Change</button>
                 {slot === i && (
                   <div className="t-slot-panel">
-                    {pickErr && <div className="t-error" role="alert">{pickErr}</div>}
                     {custom
                       ? <CustomWordForm onCreated={pick} onCancel={() => setCustom(false)} />
                       : <>
                           <button className="btn" onClick={() => setCustom(true)}>+ Custom word</button>
-                          <WordPicker onPick={pick} onCancel={() => setSlot(null)} usedIds={new Set(draft.filter((_, j) => j !== i).map((x) => x.id))} />
+                          <WordPicker onPick={pick} onCancel={() => setSlot(null)} />
                         </>}
                   </div>
                 )}
