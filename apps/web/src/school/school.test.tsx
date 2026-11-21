@@ -161,7 +161,8 @@ describe('super admin (mock)', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Create' }));
     await screen.findByText('Test School is ready');
     expect(screen.getByTestId('share-url').textContent).toContain('/a/SETUPABC');
-    fireEvent.click(screen.getAllByText('Suspend')[0]);
+    fireEvent.click(screen.getByRole('tab', { name: 'Schools' }));
+    fireEvent.click((await screen.findAllByRole('button', { name: 'Suspend' }))[0]);
     await screen.findByText('Suspended');
     fireEvent.click(screen.getByText('Sign out'));
     await screen.findByLabelText('Admin secret');

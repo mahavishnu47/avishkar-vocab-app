@@ -2,11 +2,12 @@
  * School-level services shared by the HTTP routes and the admin CLI. Contract: docs/ONBOARDING_SPEC.md 4.6, 4.7.
  */
 import { randomInt } from 'node:crypto';
-import { CODE_ALPHABET, schoolSetupText } from '@shabd/core';
+import { CODE_ALPHABET, addDays, schoolSetupText } from '@shabd/core';
 import type { AdminSchoolRow, ClassSummary, CreateSchoolRes, InviteWithText, School } from '@shabd/core';
 import { classOf } from '../mappers.ts';
 import { isUniqueViolation, type Queryable, type Row } from '../db/db.ts';
 import { HttpError, badRequest, notFound } from '../http.ts';
+import { today } from '../clock.ts';
 import { audit } from './audit.ts';
 import { DAY_MS, createInvite, inviteOf, withText } from './invites.ts';
 
@@ -72,11 +73,16 @@ export async function createSetupLink(q: Queryable, schoolId: number, base: stri
   return { ...out, whatsappText: schoolSetupText({ schoolName: school.name as string, url: out.url, expiresAt: out.expiresAt }) };
 }
 
-const ADMIN_ROW_SQL = `
+const adminRowSql = (): string => `
   SELECT s.*,
     (SELECT count(*) FROM teachers t WHERE t.school_id = s.id AND t.active = 1) AS teachers,
     (SELECT count(*) FROM classes c WHERE c.school_id = s.id AND c.archived = 0) AS classes,
-    (SELECT count(*) FROM students st JOIN classes c ON c.id = st.class_id WHERE c.school_id = s.id AND st.active = 1) AS students
+    (SELECT count(*) FROM students st JOIN classes c ON c.id = st.class_id WHERE c.school_id = s.id AND st.active = 1) AS students,
+    (SELECT count(DISTINCT se.student_id) FROM sessions se JOIN classes c ON c.id = se.class_id
+       WHERE c.school_id = s.id AND se.date >= '${addDays(today(), -6)}') AS active_students_7d,
+    (SELECT max(COALESCE(se.completed_at, se.started_at)) FROM sessions se JOIN classes c ON c.id = se.class_id WHERE c.school_id = s.id) AS last_activity_at,
+    (SELECT max(t.last_login_at) FROM teachers t WHERE t.school_id = s.id) AS last_teacher_login_at,
+    EXISTS (SELECT 1 FROM studies sd WHERE sd.school_id = s.id AND sd.status = 'running') AS study_running
   FROM schools s`;
 
 const adminRowOf = (r: Row): AdminSchoolRow => ({
@@ -84,14 +90,16 @@ const adminRowOf = (r: Row): AdminSchoolRow => ({
   udiseCode: (r.udise_code as string | null) ?? null,
   teachers: Number(r.teachers), classes: Number(r.classes), students: Number(r.students),
   createdAt: r.created_at as string,
+  activeStudents7d: Number(r.active_students_7d), lastActivityAt: (r.last_activity_at as string | null) ?? null,
+  lastTeacherLoginAt: (r.last_teacher_login_at as string | null) ?? null, studyRunning: r.study_running === true,
 });
 
 export async function listSchools(q: Queryable): Promise<AdminSchoolRow[]> {
-  return (await q.all(`${ADMIN_ROW_SQL} ORDER BY s.id DESC`)).map(adminRowOf);
+  return (await q.all(`${adminRowSql()} ORDER BY s.id DESC`)).map(adminRowOf);
 }
 
 export async function getAdminSchool(q: Queryable, id: number): Promise<AdminSchoolRow> {
-  const r = await q.get(`${ADMIN_ROW_SQL} WHERE s.id = ?`, [id]);
+  const r = await q.get(`${adminRowSql()} WHERE s.id = ?`, [id]);
   if (!r) throw notFound('School not found');
   return adminRowOf(r);
 }

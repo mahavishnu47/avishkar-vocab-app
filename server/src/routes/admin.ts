@@ -2,7 +2,8 @@
  * Super admin endpoints (X-Admin-Secret header, off when SUPER_ADMIN_SECRET is unset). Contract: docs/ONBOARDING_SPEC.md 4.7.
  */
 import { Router } from 'express';
-import type { AdminSchoolRow, AdminUpdateSchoolReq, CreateSchoolReq, CreateSchoolRes, InviteWithText } from '@shabd/core';
+import { getOverview, getSchoolDetail, listActivity } from '../services/adminStats.ts';
+import type { AdminActivityEntry, AdminOverview, AdminSchoolDetail, AdminSchoolRow, AdminUpdateSchoolReq, CreateSchoolReq, CreateSchoolRes, InviteWithText } from '@shabd/core';
 import { getDb } from '../db/db.ts';
 import { badRequest, type H } from '../http.ts';
 import { baseUrl } from '../services/invites.ts';
@@ -41,6 +42,21 @@ const patch: H<{ schoolId: string }, AdminSchoolRow, AdminUpdateSchoolReq> = asy
   res.json(await updateSchoolAsAdmin(getDb(), id, patchBody));
 };
 
+const overview: H<{}, AdminOverview> = async (_req, res) => {
+  res.json(await getOverview(getDb()));
+};
+const detail: H<{ schoolId: string }, AdminSchoolDetail> = async (req, res) => {
+  res.json(await getSchoolDetail(getDb(), idParam(req.params.schoolId)));
+};
+const activity: H<{}, AdminActivityEntry[]> = async (req, res) => {
+  const raw = Number(req.query.limit ?? 50);
+  const limit = Number.isInteger(raw) && raw >= 1 ? Math.min(raw, 200) : 50;
+  res.json(await listActivity(getDb(), limit));
+};
+
+adminRouter.get('/admin/overview', overview);
+adminRouter.get('/admin/activity', activity);
+adminRouter.get('/admin/schools/:schoolId', detail);
 adminRouter.get('/admin/schools', list);
 adminRouter.post('/admin/schools', create);
 adminRouter.post('/admin/schools/:schoolId/setup-link', setupLink);

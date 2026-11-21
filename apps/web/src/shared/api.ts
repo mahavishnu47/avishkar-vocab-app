@@ -8,7 +8,7 @@
  */
 import type { StudentProgressRes } from '@shabd/core';
 import type {
-  AddStudentsReq, AdminSchoolRow, AdminUpdateSchoolReq, ApiErrorCode, AttemptsReq, AttemptsRes, AuditEntry,
+  AddStudentsReq, AdminActivityEntry, AdminOverview, AdminSchoolDetail, AdminSchoolRow, AdminUpdateSchoolReq, ApiErrorCode, AttemptsReq, AttemptsRes, AuditEntry,
   ClassAnalyticsRes, ClassDashboardRes, ClassRoom, ClassSummary, CompleteWordRes, CreateClassReq, CreateInviteReq,
   CreateSchoolReq, CreateSchoolRes, CreateWordReq, DailySet, HealthRes, Invite, InviteInfoRes, InviteWithText,
   ApproveJoinRequestReq, CreateJoinRequestReq, CreateJoinRequestRes, JoinRequest, JoinRequestStatusRes,
@@ -253,6 +253,9 @@ function build(token?: string | null) {
     // super admin (X-Admin-Secret from sessionStorage)
     admin: {
       listSchools: () => admin<AdminSchoolRow[]>('GET', '/admin/schools'),
+      overview: () => admin<AdminOverview>('GET', '/admin/overview'),
+      schoolDetail: (schoolId: number) => admin<AdminSchoolDetail>('GET', `/admin/schools/${schoolId}`),
+      activity: (limit = 50) => admin<AdminActivityEntry[]>('GET', `/admin/activity?limit=${limit}`),
       createSchool: (b: CreateSchoolReq) => admin<CreateSchoolRes>('POST', '/admin/schools', b),
       setupLink: (schoolId: number) => admin<InviteWithText>('POST', `/admin/schools/${schoolId}/setup-link`),
       updateSchool: (schoolId: number, b: AdminUpdateSchoolReq) => admin<AdminSchoolRow>('PATCH', `/admin/schools/${schoolId}`, b),

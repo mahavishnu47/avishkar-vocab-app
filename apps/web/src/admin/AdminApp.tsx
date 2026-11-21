@@ -1,12 +1,19 @@
-/** Super admin page (/admin). The secret is typed once and kept in sessionStorage only. Not linked from anywhere, noindex. */
+/** Super admin dashboard (/admin). The secret is typed once and kept in sessionStorage only. Not linked from anywhere, noindex. */
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
-import type { AdminSchoolRow, InviteWithText } from '@shabd/core';
+import type { AdminActivityEntry, AdminOverview, AdminSchoolRow, InviteWithText } from '@shabd/core';
 import { ApiRequestError, api, getAdminSecret, setAdminSecret } from '../shared/api.ts';
 import '../school/school.css';
+import './admin.css';
 import { ShareBox } from '../school/ShareBox.tsx';
-import { errMsg, formatWhen, mockRequested } from '../school/util.ts';
+import { errMsg, mockRequested } from '../school/util.ts';
+import { ActivityTab } from './ActivityTab.tsx';
+import { OverviewTab } from './OverviewTab.tsx';
+import { SchoolDetail, SchoolsTab } from './SchoolsTab.tsx';
+import { whenFull } from './parts.tsx';
 
 interface Card { title: string; url: string; code: string; text: string }
+type Tab = 'overview' | 'schools' | 'activity';
+const TABS: { id: Tab; label: string }[] = [{ id: 'overview', label: 'Overview' }, { id: 'schools', label: 'Schools' }, { id: 'activity', label: 'Activity' }];
 
 export function adminErrMsg(e: unknown): string {
   if (e instanceof ApiRequestError) {
@@ -17,7 +24,14 @@ export function adminErrMsg(e: unknown): string {
 }
 
 function Admin({ onSignOut }: { onSignOut: () => void }) {
+  const [tab, setTab] = useState<Tab>('overview');
   const [rows, setRows] = useState<AdminSchoolRow[] | null>(null);
+  const [overview, setOverview] = useState<AdminOverview | null>(null);
+  const [activity, setActivity] = useState<AdminActivityEntry[] | null>(null);
+  const [updated, setUpdated] = useState<string | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
+  const [version, setVersion] = useState(0);
+  const [openId, setOpenId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [card, setCard] = useState<Card | null>(null);
   const [showForm, setShowForm] = useState(false);
@@ -26,13 +40,21 @@ function Admin({ onSignOut }: { onSignOut: () => void }) {
   const [udise, setUdise] = useState('');
   const [busy, setBusy] = useState(false);
 
-  const load = useCallback(async () => {
-    try { setRows(await api.admin.listSchools()); setError(null); } catch (e) {
-      if (e instanceof ApiRequestError && (e.status === 401 || e.status === 404)) { onSignOut(); return; }
-      setError(adminErrMsg(e));
-    }
+  const fail = useCallback((e: unknown) => {
+    if (e instanceof ApiRequestError && (e.status === 401 || e.status === 404)) { onSignOut(); return; }
+    setError(adminErrMsg(e));
   }, [onSignOut]);
+
+  const load = useCallback(async () => {
+    setRefreshing(true);
+    try {
+      const [s, o, a] = await Promise.all([api.admin.listSchools(), api.admin.overview(), api.admin.activity(100)]);
+      setRows(s); setOverview(o); setActivity(a); setUpdated(new Date().toISOString()); setError(null);
+    } catch (e) { fail(e); }
+    setRefreshing(false);
+  }, [fail]);
   useEffect(() => { void load(); }, [load]);
+  const reload = async () => { setVersion((v) => v + 1); await load(); };
 
   const udiseOk = udise === '' || /^\d{11}$/.test(udise);
   const create = async (e: FormEvent) => {
@@ -43,7 +65,7 @@ function Admin({ onSignOut }: { onSignOut: () => void }) {
       const r = await api.admin.createSchool({ name: name.trim(), ...(district.trim() ? { district: district.trim() } : {}), ...(udise ? { udiseCode: udise } : {}) });
       setCard({ title: `${r.school.name} is ready`, url: r.setupInvite.url, code: r.setupInvite.code, text: r.whatsappText });
       setName(''); setDistrict(''); setUdise(''); setShowForm(false);
-      await load();
+      await reload();
     } catch (err) { setError(adminErrMsg(err)); }
     setBusy(false);
   };
@@ -56,8 +78,10 @@ function Admin({ onSignOut }: { onSignOut: () => void }) {
   };
   const toggle = async (r: AdminSchoolRow) => {
     setError(null);
-    try { await api.admin.updateSchool(r.school.id, { status: r.school.status === 'active' ? 'suspended' : 'active' }); await load(); } catch (err) { setError(adminErrMsg(err)); }
+    try { await api.admin.updateSchool(r.school.id, { status: r.school.status === 'active' ? 'suspended' : 'active' }); await reload(); } catch (err) { setError(adminErrMsg(err)); }
   };
+  const showDetailError = useCallback((e: unknown) => fail(e), [fail]);
+  const pick = (t: Tab) => { setTab(t); setOpenId(null); };
 
   return (
     <main className="teacher screen s-admin">
@@ -91,33 +115,27 @@ function Admin({ onSignOut }: { onSignOut: () => void }) {
           </div>
         </form>
       ) : (
-        <button className="btn btn-primary" onClick={() => setShowForm(true)}>+ New school</button>
-      )}
-
-      {rows && rows.length === 0 && <p className="card">No schools yet.</p>}
-      {rows && rows.length > 0 && (
-        <div className="t-scroll">
-          <table>
-            <thead><tr><th>School</th><th>Status</th><th>Teachers</th><th>Classes</th><th>Students</th><th>Created</th><th>Actions</th></tr></thead>
-            <tbody>
-              {rows.map((r) => (
-                <tr key={r.school.id}>
-                  <td><strong>{r.school.name}</strong><div className="muted">{r.school.district}</div></td>
-                  <td>{r.school.status === 'active' ? 'Active' : <span className="t-badge t-badge-warn">Suspended</span>}</td>
-                  <td>{r.teachers}</td><td>{r.classes}</td><td>{r.students}</td>
-                  <td>{formatWhen(r.createdAt)}</td>
-                  <td>
-                    <div className="s-rowactions">
-                      <button className="btn" onClick={() => newLink(r)}>New setup link</button>
-                      <button className="btn" onClick={() => toggle(r)}>{r.school.status === 'active' ? 'Suspend' : 'Resume'}</button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="ad-bar">
+          <button className="btn btn-primary" onClick={() => setShowForm(true)}>+ New school</button>
+          <span className="row">
+            <span className="ad-updated" aria-live="polite">{refreshing ? 'Refreshing…' : updated ? `Updated ${whenFull(updated)}` : ''}</span>
+            <button className="btn" onClick={() => void reload()} disabled={refreshing}>Refresh</button>
+          </span>
         </div>
       )}
+
+      <div className="ad-tabs" role="tablist" aria-label="Dashboard sections">
+        {TABS.map((t) => (
+          <button key={t.id} role="tab" id={`ad-tab-${t.id}`} className="ad-tab" aria-selected={tab === t.id} aria-controls="ad-panel" onClick={() => pick(t.id)}>{t.label}</button>
+        ))}
+      </div>
+      <div id="ad-panel" role="tabpanel" aria-labelledby={`ad-tab-${tab}`} className="stack">
+        {tab === 'overview' && <OverviewTab data={overview} activity={activity} />}
+        {tab === 'schools' && (openId === null
+          ? <SchoolsTab rows={rows} onOpen={setOpenId} onLink={newLink} onToggle={toggle} />
+          : <SchoolDetail id={openId} row={rows?.find((r) => r.school.id === openId)} version={version} onBack={() => setOpenId(null)} onError={showDetailError} onLink={newLink} onToggle={toggle} />)}
+        {tab === 'activity' && <ActivityTab items={activity} />}
+      </div>
     </main>
   );
 }
