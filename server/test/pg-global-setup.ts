@@ -17,7 +17,7 @@ function adminUrl(): string {
 
 export default async function setup(): Promise<void> {
   const admin = new URL(adminUrl());
-  const dbName = 'shabd_test';
+  const dbName = process.env.TEST_DB_NAME ?? 'shabd_test'; // parallel workers/agents set TEST_DB_NAME so they do not wipe each other's data
   const client = new pg.Client({ connectionString: admin.toString() });
   await client.connect();
   try {
