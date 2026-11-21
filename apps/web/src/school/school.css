@@ -1,0 +1,54 @@
+/* School admin + super admin styles. Builds on theme.css and .teacher base rules from teacher.css (without importing across lanes). */
+.s-shell, .s-admin { max-width: 1100px; width: 100%; overflow-x: hidden; }
+.s-admin { max-width: 760px; }
+.s-shell input, .s-shell select, .s-admin input, .s-admin select {
+  font: inherit; min-height: var(--touch); padding: 0 var(--sp-3); border: 2px solid var(--c-border); border-radius: var(--radius-sm);
+  background: #fff; color: var(--c-text); width: 100%; max-width: 100%;
+}
+.s-shell input[type='checkbox'], .s-admin input[type='checkbox'], .teacher.t-login input[type='checkbox'] { width: 24px; height: 24px; min-height: 0; }
+.s-shell .t-field, .s-admin .t-field { display: flex; flex-direction: column; gap: var(--sp-1); font-weight: 600; }
+.s-shell .t-nav, .s-admin .t-nav { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; padding-bottom: var(--sp-2); border-bottom: 2px solid var(--c-border); }
+.s-shell .t-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--sp-3); border-radius: var(--radius-sm); color: var(--c-text); text-decoration: none; font-weight: 600; }
+.s-shell .t-nav a.active { background: var(--c-primary); color: #fff; }
+.s-shell .t-brand { font-weight: 700; }
+.s-shell .t-logout { margin-left: auto; min-height: 44px; }
+.s-shell .t-error, .s-admin .t-error, .teacher.t-login .t-error { background: #fee2e2; color: var(--c-danger); padding: var(--sp-3); border-radius: var(--radius-sm); font-weight: 600; }
+.s-shell .t-scroll, .s-admin .t-scroll { overflow-x: auto; max-width: 100%; border: 1px solid var(--c-border); border-radius: var(--radius-sm); background: var(--c-surface); }
+.s-shell .t-scroll table, .s-admin .t-scroll table { min-width: 100%; width: max-content; }
+.s-shell .t-badge, .s-admin .t-badge { display: inline-block; margin-left: var(--sp-2); padding: 1px 8px; border-radius: 999px; background: #e0e7ff; color: var(--c-primary-press); font-size: 13px; font-weight: 700; }
+.s-shell .t-badge-warn, .s-admin .t-badge-warn { background: var(--c-warn-bg); color: var(--c-warn); }
+.t-h2 { font-size: var(--fs-lg); margin: 0; }
+.t-warn { color: var(--c-warn); font-weight: 600; }
+
+.s-checklist { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-3); }
+.s-checklist li { display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-3); border-radius: var(--radius-sm); border: 1px solid var(--c-border); }
+.s-checklist li.next { border: 2px solid var(--c-primary); background: #eff6ff; }
+.s-checklist li.done .s-ck-label { text-decoration: line-through; color: var(--c-text-muted); }
+.s-ck-label { font-weight: 700; }
+.s-done { font-weight: 700; color: var(--c-success); background: var(--c-success-bg); }
+
+.s-totals { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: var(--sp-3); }
+.s-total { text-align: center; padding: var(--sp-3); }
+.s-num { font-size: var(--fs-xl); font-weight: 700; }
+.s-bar { height: 8px; width: 80px; background: var(--c-border); border-radius: 4px; overflow: hidden; margin-top: 2px; }
+.s-bar > div { height: 100%; background: var(--c-learn); }
+.s-lb { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--sp-2); }
+.s-lb-pct { float: right; font-weight: 700; }
+.s-rowactions { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.s-off td { opacity: 0.6; }
+.s-audit { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--sp-2); font-size: var(--fs-sm); }
+
+.s-share { max-width: 100%; }
+.s-linkbox { background: var(--c-surface-2); border-radius: var(--radius-sm); padding: var(--sp-3); }
+.s-link { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: var(--fs-lg); font-weight: 700; word-break: break-all; }
+.s-code { margin-top: var(--sp-1); }
+.s-actions { flex-wrap: wrap; }
+.s-text { font-size: var(--fs-sm); margin: 0; white-space: pre-wrap; word-break: break-word; }
+.s-qr { display: flex; justify-content: center; }
+
+.s-poster { display: none; }
+@media print {
+  .s-shell > *:not(.s-poster) { display: none !important; }
+  .s-shell .s-poster { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+  .s-poster-link { font-family: ui-monospace, monospace; font-size: 22px; word-break: break-all; }
+}

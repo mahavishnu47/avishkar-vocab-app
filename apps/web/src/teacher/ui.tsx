@@ -5,8 +5,14 @@ import type { ClassRoom, IsoDate } from '@shabd/core';
 import { api, ApiRequestError, setToken } from '../shared/api.ts';
 import { addDays, sortRows, type SortDir } from './util.ts';
 
+/** Login URL that returns the teacher to the page they were on (only /teacher and /school paths are honoured). */
+export function loginPath(): string {
+  const here = window.location.pathname + window.location.search;
+  return here === '/teacher' || here.startsWith('/teacher/login') ? '/teacher/login' : `/teacher/login?next=${encodeURIComponent(here)}`;
+}
+
 export function errMsg(e: unknown): string {
-  if (e instanceof ApiRequestError) return e.isNetwork ? 'Cannot reach the server. Check your connection.' : e.message;
+  if (e instanceof ApiRequestError) return e.isNetwork ? 'No internet. Your changes were not saved. Try again.' : e.message;
   return e instanceof Error ? e.message : 'Something went wrong';
 }
 
@@ -15,8 +21,8 @@ export function useAuthRedirect() {
   const navigate = useNavigate();
   return useCallback((e: unknown): boolean => {
     if (e instanceof ApiRequestError && e.status === 401) {
-      setToken(null);
-      navigate('/teacher/login', { replace: true });
+      setToken('staff', null);
+      navigate(loginPath(), { replace: true });
       return true;
     }
     return false;
@@ -50,7 +56,13 @@ export function Page({ classId, title, children, loading, error, className }: {
   const { data: classes } = useLoad(() => (classId ? api.listClasses() : Promise.resolve([] as ClassRoom[])), [classId]);
   const cls = classes?.find((c) => c.id === classId);
   const base = classId ? `/teacher/classes/${classId}` : '';
-  const logout = async () => { try { await api.logout(); } catch { /* ignore */ } setToken(null); navigate('/teacher/login'); };
+  const logout = async () => { try { await api.logout('staff'); } catch { /* ignore */ } setToken('staff', null); navigate('/teacher/login'); };
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    let live = true;
+    api.me('staff').then((m) => { if (live) setIsAdmin(m.role === 'teacher' && m.teacher.role === 'school_admin'); }, () => { /* the guard handles auth */ });
+    return () => { live = false; };
+  }, []);
   return (
     <main className={`teacher screen t-page ${className ?? ''}`}>
       <nav className="t-nav no-print" aria-label="Teacher">
@@ -58,7 +70,7 @@ export function Page({ classId, title, children, loading, error, className }: {
         {classId && classes && classes.length > 0 && (
           <select aria-label="Class" value={classId} onChange={(e) => navigate(e.target.value === 'all' ? '/teacher?all=1' : `/teacher/classes/${e.target.value}/dashboard`)}>
             {classes.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
-            <option value="all">All classes / New…</option>
+            <option value="all">All classes…</option>
           </select>
         )}
         {classId && (
@@ -68,9 +80,11 @@ export function Page({ classId, title, children, loading, error, className }: {
             <NavLink to={`${base}/roster`}>Roster</NavLink>
             <NavLink to={`${base}/leaderboard`}>Leaderboard</NavLink>
             <NavLink to={`${base}/analytics`}>Analytics</NavLink>
+            <NavLink to={`${base}/share`}>Share</NavLink>
             <NavLink to={`${base}/cards`}>Cards</NavLink>
           </>
         )}
+        {isAdmin && <Link to="/school">School</Link>}
         <button className="btn t-logout" onClick={logout}>Log out</button>
       </nav>
       {title && <h1 className="title t-title">{title}{cls ? <span className="muted t-sub"> · {cls.name} ({cls.classCode})</span> : null}</h1>}
@@ -139,6 +153,25 @@ export function DateStepper({ date, onChange, max }: { date: IsoDate; onChange: 
       <button className="btn" aria-label="Previous day" onClick={() => onChange(addDays(date, -1))}>‹</button>
       <input type="date" aria-label="Date" value={date} max={max} onChange={(e) => e.target.value && onChange(e.target.value)} />
       <button className="btn" aria-label="Next day" onClick={() => onChange(addDays(date, 1))} disabled={!!max && date >= max}>›</button>
+    </div>
+  );
+}
+
+/** Password input with a show/hide toggle (a typo is the most common join problem on a phone). */
+export function PasswordField({ label = 'Password', value, onChange, autoComplete, hint }: {
+  label?: string; value: string; onChange: (v: string) => void; autoComplete: string; hint?: string;
+}) {
+  const [show, setShow] = useState(false);
+  return (
+    <div className="t-field">
+      <label className="t-field-label">{label}
+        <input type={show ? 'text' : 'password'} value={value} onChange={(e) => onChange(e.target.value)} required
+          autoComplete={autoComplete} minLength={autoComplete === 'new-password' ? 8 : undefined} />
+      </label>
+      <div className="row t-pw-row">
+        {hint && <span className="muted t-hint">{hint}</span>}
+        <button type="button" className="btn t-link" aria-pressed={show} onClick={() => setShow(!show)}>{show ? 'Hide password' : 'Show password'}</button>
+      </div>
     </div>
   );
 }

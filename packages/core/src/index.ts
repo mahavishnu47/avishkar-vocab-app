@@ -8,3 +8,4 @@ export * from './sentence.ts';
 export * from './moderation.ts';
 export * from './gamification.ts';
 export * from './dates.ts';
+export * from './codes.ts';

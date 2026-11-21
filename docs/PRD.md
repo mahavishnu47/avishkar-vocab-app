@@ -115,7 +115,7 @@ The app is the intervention, and the research claim is what gets judged. The pro
 | Role | Status | Rationale |
 |---|---|---|
 | **Parent/guardian** | Out of scope as an app user. **In scope as a consent giver**: consent is captured offline through the school (F3). | A parent portal adds auth, notification and privacy complexity. A weekly paper or WhatsApp summary that the teacher exports covers the need. |
-| **School admin / headmaster** | Out of scope. The research team provisions schools and classes manually through a seed script or the Supabase dashboard. | There is only one pilot school (or a few). |
+| **School admin / headmaster** | **In scope (onboarding v2).** The super admin creates a school by invitation; the principal activates it from a one-time link, invites teachers with a school code, and sees school-wide progress. See `docs/ONBOARDING_SPEC.md`. | Schools need to onboard teachers and see adoption without engineering help. |
 | **Researcher** | Served through a CSV export (F20), not a dedicated UI. | Researchers can use spreadsheets or SPSS. |
 
 ---
@@ -140,7 +140,7 @@ The app is the intervention, and the research claim is what gets judged. The pro
 - Handwriting input or OCR.
 - Free-form chat or AI tutor features.
 - Student-to-student messaging, social feeds, or showing other students' sentences.
-- Parent accounts, school-admin dashboards, multi-school analytics.
+- Parent accounts, public school self-signup (schools are by invitation), cross-school analytics. (School-admin progress dashboards are in scope since onboarding v2.)
 - Payments, ads, in-app purchases (never, not just for the MVP).
 - Standards other than Standard 5. Subjects other than English vocabulary.
 - **LLM-graded sentences as the official score** (LLM help is a Phase 2 suggestion to the teacher only; see Section 8).

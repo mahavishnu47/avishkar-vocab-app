@@ -1,0 +1,15 @@
+.landing { gap: var(--sp-5); justify-content: center; text-align: center; }
+.landing-logo { font-size: 72px; line-height: 1; }
+.landing-title { font-size: var(--fs-xl); margin: 0; }
+.landing-tiles { display: flex; flex-direction: column; gap: var(--sp-4); width: 100%; }
+.landing-tile {
+  display: flex; align-items: center; gap: var(--sp-4); width: 100%; min-height: 96px; padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--radius); border: 2px solid transparent; box-shadow: var(--shadow); color: #fff;
+  font-size: var(--fs-xl); font-weight: 700; text-decoration: none; text-align: left; touch-action: manipulation;
+}
+.landing-tile:active { transform: translateY(2px); box-shadow: var(--shadow-press); }
+.landing-tile-icon { font-size: 44px; line-height: 1; }
+.landing-tile.student { background: var(--c-learn); }
+.landing-tile.teacher { background: var(--c-listen); }
+.landing-tile.school { background: var(--c-write); }
+.landing-foot { font-size: var(--fs-sm); }

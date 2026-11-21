@@ -129,8 +129,11 @@ async function studentFlow(browser, base, vp) {
   await page.fill('#cc', 'DEMO5A');
   await noHScroll(page, `${tag} login`);
   await page.getByRole('button', { name: /Next/ }).click();
-  await page.locator('button.btn-tall', { hasText: 'Riya' }).click();
+  await page.getByRole('button', { name: /Riya/ }).first().click(); // name grid at /j/DEMO5A
+  await noTextInputs(page, `${tag} pin pad`);
   for (const d of '1234') await page.getByRole('button', { name: d, exact: true }).click();
+  await page.waitForURL(/\/welcome/, { timeout: 15000 }); // first login shows the 3-card welcome
+  await page.getByRole('button', { name: /skip/i }).first().click();
   await page.getByText("Start today's words").waitFor();
   await noHScroll(page, `${tag} home`);
   await page.getByText("Start today's words").click();
@@ -187,6 +190,11 @@ async function teacherFlow(browser, base) {
   await page.fill('input[type=email]', 'demo@school.test');
   await page.fill('input[type=password]', 'demo1234');
   await page.getByRole('button', { name: 'Log in' }).click();
+  // Home shows the checklist and class cards until it is complete; open the class dashboard if we were not redirected
+  await page.waitForURL(/\/teacher(\/|$)/, { timeout: 15000 });
+  const dash = page.locator('a[href$="/dashboard"]').first();
+  await dash.or(page.getByRole('heading', { name: /Today/ })).first().waitFor({ timeout: 15000 });
+  if (await dash.count() && !/dashboard/.test(page.url())) await dash.click();
   await page.getByRole('heading', { name: /Today/ }).waitFor({ timeout: 15000 });
   await page.locator('td', { hasText: 'Riya' }).first().waitFor();
   assert(await page.getByText(/1\/10 completed/).count() === 1, 'dashboard should show 1/10 completed');

@@ -3,7 +3,8 @@
  */
 import { Router } from 'express';
 import type { ClassAnalyticsRes, ClassDashboardRes, LeaderboardRes, StudentDetailRes } from '@shabd/core';
-import { assertTeacherOwnsClass, assertTeacherOwnsStudent, requireTeacher } from '../auth.ts';
+import { requireTeacher } from '../auth.ts';
+import { assertCanAccessClass, assertCanAccessStudent, staffAuth } from '../tenancy.ts';
 import { today } from '../clock.ts';
 import { getDb } from '../db/db.ts';
 import { badRequest, type H } from '../http.ts';
@@ -12,17 +13,16 @@ import { idParam, optDate } from '../validate.ts';
 
 export const analyticsRouter = Router();
 
-const tid = (req: { auth?: { role: string; teacherId?: number } }) => req.auth!.teacherId!;
 
 const dashboard: H<{ classId: string }, ClassDashboardRes, unknown, { date?: string }> = async (req, res) => {
   const classId = idParam(req.params.classId);
-  await assertTeacherOwnsClass(tid(req), classId);
+  await assertCanAccessClass(staffAuth(req), classId);
   res.json(await classDashboard(getDb(), classId, optDate(req.query.date, 'date') ?? today()));
 };
 
 const classLeaderboard: H<{ classId: string }, LeaderboardRes, unknown, { period?: 'week' | 'all' }> = async (req, res) => {
   const classId = idParam(req.params.classId);
-  await assertTeacherOwnsClass(tid(req), classId);
+  await assertCanAccessClass(staffAuth(req), classId);
   const period = req.query.period ?? 'week';
   if (period !== 'week' && period !== 'all') throw badRequest("period must be 'week' or 'all'");
   res.json(await leaderboard(getDb(), classId, period, today()));
@@ -30,7 +30,7 @@ const classLeaderboard: H<{ classId: string }, LeaderboardRes, unknown, { period
 
 const classAnalytics: H<{ classId: string }, ClassAnalyticsRes, unknown, { from?: string; to?: string }> = async (req, res) => {
   const classId = idParam(req.params.classId);
-  await assertTeacherOwnsClass(tid(req), classId);
+  await assertCanAccessClass(staffAuth(req), classId);
   const def = defaultWindow(today());
   const to = optDate(req.query.to, 'to') ?? def.to;
   const from = optDate(req.query.from, 'from') ?? defaultWindow(to).from;
@@ -40,14 +40,14 @@ const classAnalytics: H<{ classId: string }, ClassAnalyticsRes, unknown, { from?
 
 const studentAnalytics: H<{ studentId: string }, StudentDetailRes> = async (req, res) => {
   const studentId = idParam(req.params.studentId);
-  await assertTeacherOwnsStudent(tid(req), studentId);
+  await assertCanAccessStudent(staffAuth(req), studentId);
   res.json(await studentDetail(getDb(), studentId));
 };
 
 const TYPES = ['attempts', 'sentences', 'daily', 'students'] as const;
 const exportCsv: H<{ classId: string }, string, unknown, { type?: string }> = async (req, res) => {
   const classId = idParam(req.params.classId);
-  await assertTeacherOwnsClass(tid(req), classId);
+  await assertCanAccessClass(staffAuth(req), classId);
   const type = req.query.type as (typeof TYPES)[number] | undefined;
   if (!type || !TYPES.includes(type)) throw badRequest(`type must be one of ${TYPES.join(', ')}`);
   const db = getDb();

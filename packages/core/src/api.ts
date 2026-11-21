@@ -2,11 +2,12 @@
  * REST API request/response types. Mirrors docs/API.md exactly.
  * Used by server route handlers AND apps/web/src/shared/api.ts.
  * Contract file: change only via a coordinated contract commit.
+ * FROZEN by O1 (onboarding v2, docs/ONBOARDING_SPEC.md 6.1): lanes O2-O6 must not edit; report needed changes to the integrator.
  */
 import type {
   ClassRoom, DailySet, IsoDate, LeaderboardMode, LevelInfo, MeaningAttemptInput, PartOfSpeech, Difficulty,
   Rubric, SentenceEvaluation, SentenceSubmissionInput, SpellAttemptInput, SpellingClassification,
-  StreakState, Student, StudentWithPin, Teacher, Word, WordScore, XpBreakdown,
+  RosterStudent, School, StaffRole, StreakState, Student, StudentWithPin, Teacher, Word, WordScore, XpBreakdown,
 } from './types.ts';
 import type { SentenceErrorCode, SpellingErrorCode } from './taxonomy.ts';
 
@@ -16,33 +17,109 @@ export interface ApiError {
 }
 export type ApiErrorCode =
   | 'bad_request' | 'unauthorized' | 'forbidden' | 'not_found' | 'conflict'
-  | 'locked' | 'not_implemented' | 'internal';
+  | 'locked' | 'not_implemented' | 'rate_limited' | 'internal';
 
 // ------------------------------------------------------------------ health
 export interface HealthRes { ok: true; ai: boolean; version: string }
 
 // ------------------------------------------------------------------ auth
-export interface TeacherRegisterReq { name: string; email: string; password: string; inviteCode?: string }
-export interface TeacherLoginReq { email: string; password: string }
-export interface TeacherAuthRes { token: string; teacher: Teacher }
+export type InviteKind = 'school_admin' | 'teacher' | 'password_reset';
+export interface Invite {
+  id: number;
+  kind: InviteKind;
+  /** 'ABCD-EFGH' */
+  code: string;
+  /** absolute URL */
+  url: string;
+  expiresAt: string;
+  maxUses: number | null;
+  useCount: number;
+  revokedAt: string | null;
+  createdAt: string;
+}
+export interface InviteInfoRes { kind: InviteKind; schoolName: string; expiresAt: string; teacherName?: string }
 
+/** inviteCode is now REQUIRED (the global TEACHER_INVITE_CODE is gone). */
+export interface TeacherRegisterReq { inviteCode: string; name: string; email: string; password: string }
+export interface TeacherLoginReq { email: string; password: string }
+export interface SchoolSetupReq { code: string; name: string; email: string; password: string }
+export interface PasswordResetReq { code: string; password: string }
+export interface TeacherAuthRes { token: string; teacher: Teacher; school: Pick<School, 'id' | 'name'> }
+
+export interface JoinStudent { id: number; firstName: string; avatar: string; rollNo: number }
+export interface JoinClassRes { schoolName: string; classRoom: { name: string; classCode: string }; students: JoinStudent[] }
+export interface JoinSchoolRes { schoolName: string; classes: { name: string; classCode: string; standard: number; division: string }[] }
+/** @deprecated kept for cached old clients */
 export interface PublicRosterRes {
   className: string;
   students: Pick<Student, 'id' | 'firstName' | 'avatar'>[];
 }
 export interface StudentLoginReq { classCode: string; studentId: number; pin: string }
-export interface StudentAuthRes { token: string; student: Student; className: string }
+export interface StudentAuthRes {
+  token: string;
+  student: Student;
+  className: string;
+  schoolName: string;
+  classCode: string;
+  /** true on the very first login of this child (show the welcome tutorial) */
+  firstLogin: boolean;
+}
 
 export type MeRes =
-  | { role: 'teacher'; teacher: Teacher }
-  | { role: 'student'; student: Student; classRoom: Pick<ClassRoom, 'id' | 'name' | 'leaderboardMode'> };
+  | { role: 'teacher'; teacher: Teacher; school: Pick<School, 'id' | 'name'> }
+  | { role: 'student'; student: Student; classRoom: Pick<ClassRoom, 'id' | 'name' | 'leaderboardMode'>; schoolName: string };
 
 // ------------------------------------------------------------------ classes & roster (teacher)
-export interface CreateClassReq { name: string; startDate?: IsoDate }
-export interface UpdateClassReq { name?: string; startDate?: IsoDate; leaderboardMode?: LeaderboardMode }
-export interface AddStudentsReq { students: { rollNo: number; firstName: string }[] }
+/** standard or name required */
+export interface CreateClassReq { standard?: number; division?: string; name?: string; startDate?: IsoDate }
+export interface UpdateClassReq {
+  name?: string; startDate?: IsoDate; leaderboardMode?: LeaderboardMode;
+  joinEnabled?: boolean; archived?: boolean; linkShared?: true;
+}
+export interface AddStudentsReq { students: { rollNo: number; firstName: string }[]; consentConfirmed?: boolean }
 export interface UpdateStudentReq { firstName?: string; rollNo?: number; avatar?: string; active?: boolean }
-export type RosterRes = StudentWithPin[];
+export type RosterRes = RosterStudent[];
+/** signOutDevices defaults to true */
+export interface ResetPinReq { signOutDevices?: boolean }
+export interface ShareInfoRes { joinUrl: string; schoolJoinUrl: string; classCode: string; whatsappText: string }
+
+export interface ClassSummary extends ClassRoom { studentCount: number; joinedCount: number; completedToday: number; teacherName: string }
+export interface TeacherChecklist { classCreated: boolean; studentsAdded: boolean; linkShared: boolean; firstStudentJoined: boolean; done: boolean }
+export interface TeacherOverviewRes {
+  teacher: Teacher; school: Pick<School, 'id' | 'name'>; date: IsoDate; classes: ClassSummary[]; checklist: TeacherChecklist;
+}
+
+// ------------------------------------------------------------------ school admin
+export interface SchoolChecklist { teacherLinkShared: boolean; firstTeacherJoined: boolean; firstClassCreated: boolean; firstStudentPlayed: boolean; done: boolean }
+export interface SchoolInfoRes { school: School; studentJoinUrl: string; teacherInvite: Invite | null; checklist: SchoolChecklist }
+export interface UpdateMySchoolReq { name?: string; district?: string; teacherLinkShared?: true }
+export interface SchoolClassRow {
+  classId: number; name: string; standard: number; division: string; teacherId: number; teacherName: string;
+  teacherActive: boolean; studentCount: number; joinedCount: number; completedToday: number; weekCompletionPct: number;
+  archived: boolean; joinEnabled: boolean;
+}
+export interface SchoolOverviewRes {
+  date: IsoDate;
+  totals: { teachers: number; classes: number; students: number; joined: number; completedToday: number };
+  classes: SchoolClassRow[];
+}
+export interface SchoolTeacherRow { id: number; name: string; email: string; role: StaffRole; active: boolean; classCount: number; lastLoginAt: string | null }
+export interface UpdateSchoolTeacherReq { active?: boolean; role?: StaffRole }
+/** expiresInDays 1-90, default 30 */
+export interface CreateInviteReq { expiresInDays?: number; maxUses?: number | null }
+/** Invite plus the ready-to-send WhatsApp text (reset links, setup links). */
+export type InviteWithText = Invite & { whatsappText: string };
+export interface UpdateSchoolClassReq { teacherId?: number; archived?: boolean }
+export interface AuditEntry {
+  id: number; at: string; actorType: 'super' | 'teacher' | 'student' | 'system'; actorName: string | null;
+  action: string; targetType: string | null; targetId: number | null; targetLabel: string | null; meta: Record<string, unknown>;
+}
+
+// ------------------------------------------------------------------ super admin
+export interface AdminSchoolRow { school: School; udiseCode: string | null; teachers: number; classes: number; students: number; createdAt: string }
+export interface CreateSchoolReq { name: string; district?: string; udiseCode?: string }
+export interface CreateSchoolRes { school: School; setupInvite: Invite; whatsappText: string }
+export interface AdminUpdateSchoolReq { name?: string; district?: string; status?: 'active' | 'suspended' }
 
 // ------------------------------------------------------------------ words (teacher)
 export interface WordSearchQuery {

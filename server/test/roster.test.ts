@@ -64,8 +64,8 @@ describe('roster paste-add', () => {
     expect((await post([{ rollNo: 9, firstName: '' }])).status).toBe(400);
     expect((await post([{ rollNo: 9, firstName: 'x'.repeat(31) }])).status).toBe(400);
     expect((await post([{ rollNo: 'nine', firstName: 'A' }])).status).toBe(400);
-    expect((await post(Array.from({ length: 61 }, (_, i) => ({ rollNo: i + 100, firstName: 'A' })))).status).toBe(400);
-    expect((await post(Array.from({ length: 60 }, (_, i) => ({ rollNo: i + 100, firstName: 'A' })))).status).toBe(201);
+    expect((await post(Array.from({ length: 101 }, (_, i) => ({ rollNo: i + 100, firstName: 'A' })))).status).toBe(400);
+    expect((await post(Array.from({ length: 100 }, (_, i) => ({ rollNo: i + 100, firstName: 'A' })))).status).toBe(201);
   });
 
   it('patches students (rename, deactivate, roll clash) and resets PINs', async () => {

@@ -10,7 +10,8 @@
     "test": "vitest run --passWithNoTests",
     "db:migrate": "tsx --env-file-if-exists=../.env scripts/migrate.ts",
     "db:seed": "tsx --env-file-if-exists=../.env scripts/seed.ts",
-    "db:seed:demo": "tsx --env-file-if-exists=../.env scripts/seed-demo.ts"
+    "db:seed:demo": "tsx --env-file-if-exists=../.env scripts/seed-demo.ts",
+    "admin": "tsx --env-file-if-exists=../.env scripts/admin.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.10.0",

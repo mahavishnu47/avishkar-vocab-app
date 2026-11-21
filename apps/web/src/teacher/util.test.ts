@@ -1,23 +1,73 @@
 import { describe, expect, it } from 'vitest';
 import { ERROR_LABELS } from '@shabd/core';
-import { addDays, filenameFromDisposition, heatStep, parseRosterText, sortRows, topCodes } from './util.ts';
+import { addDays, filenameFromDisposition, heatStep, parseRosterText, safeNext, shortLink, sortRows, topCodes, whatsappUrl } from './util.ts';
 import { codeFromLabel, REMEDIES } from './remedies.ts';
 
 describe('parseRosterText', () => {
-  it('parses comma, tab and space separated lines incl. Devanagari', () => {
-    const r = parseRosterText('1, Riya\n2\tArjun\n3 सानिका\n\n');
-    expect(r.errors).toEqual([]);
-    expect(r.rows).toEqual([{ rollNo: 1, firstName: 'Riya' }, { rollNo: 2, firstName: 'Arjun' }, { rollNo: 3, firstName: 'सानिका' }]);
+  const r = (t: string, ex: number[] = []) => parseRosterText(t, ex);
+  it('parses comma, tab, space and dot separated lines incl. Devanagari', () => {
+    const p = r('1, Riya\n2\tArjun\n3 सानिका\n4. Kabir\n\n');
+    expect(p.errors).toEqual([]);
+    expect(p.rows).toEqual([
+      { rollNo: 1, firstName: 'Riya' }, { rollNo: 2, firstName: 'Arjun' }, { rollNo: 3, firstName: 'सानिका' }, { rollNo: 4, firstName: 'Kabir' },
+    ]);
   });
-  it('flags bad lines and duplicate rolls (incl. existing)', () => {
-    const r = parseRosterText('x, Bad\n5, A\n5, B\n7, C', [7]);
-    expect(r.rows).toEqual([{ rollNo: 5, firstName: 'A' }]);
-    expect(r.errors).toHaveLength(3);
+  it('keeps only the first word of a full name and says so', () => {
+    const p = r('7, Riya Patil');
+    expect(p.rows).toEqual([{ rollNo: 7, firstName: 'Riya' }]);
+    expect(p.notices).toContain('We keep first names only.');
   });
-  it('rejects names over the server limit with the right line number (B-11)', () => {
-    const r = parseRosterText(`1, Meera\n2, ${'x'.repeat(31)}\n3, ${'y'.repeat(30)}`);
-    expect(r.rows.map((x) => x.rollNo)).toEqual([1, 3]);
-    expect(r.errors).toEqual(['Line 2: name is too long (max 30 letters)']);
+  it('gives automatic roll numbers to name-only lines, continuing after the highest roll', () => {
+    const p = r('Riya\nArjun\n20, Neha\nTara', [5, 9]);
+    expect(p.rows.map((x) => x.rollNo)).toEqual([21, 22, 20, 23]);
+    expect(r('Riya\nArjun').rows.map((x) => x.rollNo)).toEqual([1, 2]);
+  });
+  it('skips a header line and blank lines', () => {
+    expect(r('roll,name\n1,Riya\n\n2,Arjun').rows).toHaveLength(2);
+    expect(r('Roll No  Name\n1\tRiya').rows).toEqual([{ rollNo: 1, firstName: 'Riya' }]);
+    expect(r('Name\nRiya\nArjun').rows.map((x) => x.firstName)).toEqual(['Riya', 'Arjun']);
+  });
+  it('reads CSV file text with CRLF, a BOM, quotes and extra columns', () => {
+    const p = r('\uFEFFroll_no,first_name\r\n"1","Riya Patil"\r\n2,Arjun,Extra\r\n');
+    expect(p.errors).toEqual([]);
+    expect(p.rows).toEqual([{ rollNo: 1, firstName: 'Riya' }, { rollNo: 2, firstName: 'Arjun' }]);
+  });
+  it('flags duplicate rolls (pasted and existing) with simple messages', () => {
+    const p = r('5, A\n5, B\n7, C', [7]);
+    expect(p.rows).toEqual([{ rollNo: 5, firstName: 'A' }]);
+    expect(p.errors).toEqual(['Line 2: roll number 5 is used twice.', 'Line 3: roll number 7 is already in this class.']);
+  });
+  it('flags a number with no name, roll 0 and a huge roll', () => {
+    const p = r('6\n0, Zed\n20240001, Big');
+    expect(p.rows).toEqual([]);
+    expect(p.errors).toEqual(['Line 1: add a name after the number.', 'Line 2: roll number must be 1 or more.', 'Line 3: roll number 20240001 is too long.']);
+  });
+  it('notes duplicate first names', () => {
+    expect(r('1, Riya\n2, Riya\n3, Om').notices).toEqual(['Two students are called Riya. They will see their roll number.']);
+  });
+  it('allows 100 rows and blocks 101', () => {
+    const many = (n: number) => Array.from({ length: n }, (_, i) => `${i + 1}, Name${String.fromCharCode(97 + (i % 26))}${i}`).join('\n');
+    expect(r(many(100)).errors).toEqual([]);
+    const over = r(many(101));
+    expect(over.errors).toHaveLength(1);
+    expect(over.rows).toHaveLength(100);
+  });
+});
+
+describe('safeNext', () => {
+  it('allows only /school and /teacher paths', () => {
+    expect(safeNext('/school')).toBe('/school');
+    expect(safeNext('/school/teachers')).toBe('/school/teachers');
+    expect(safeNext('/teacher/classes/1/roster?x=1')).toBe('/teacher/classes/1/roster?x=1');
+    for (const bad of ['//evil.com', 'https://evil.com', '/schoolx', '/admin', '/', '', null, undefined, '/teacher\\evil', '/school://x', 'school'])
+      expect(safeNext(bad as string | null)).toBeNull();
+  });
+});
+
+describe('links', () => {
+  it('builds whatsapp urls and short links', () => {
+    expect(whatsappUrl('a b&c')).toBe('https://wa.me/?text=a%20b%26c');
+    expect(shortLink('https://shabd.app/j/K7Q2MX')).toBe('shabd.app/j/K7Q2MX');
   });
 });
 

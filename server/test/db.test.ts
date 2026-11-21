@@ -8,9 +8,11 @@ import { loadWordBank, seedDemo } from '../src/db/seed.ts';
 import { closeTestDb, setup, testDb } from './helpers.ts';
 
 let db: DB;
+let schoolId: number;
 beforeEach(async () => {
   await setup();
   db = testDb();
+  schoolId = Number((await db.run("INSERT INTO schools (name, student_code) VALUES ('S', 'TESTSC') RETURNING id")).rows[0]!.id);
 });
 afterAll(closeTestDb);
 
@@ -33,13 +35,13 @@ describe('types', () => {
     expect(r!.n).toBeGreaterThan(0);
   });
   it('iso_now() default produces ISO-8601 text', async () => {
-    const t = await db.run("INSERT INTO teachers (name, email, password_hash) VALUES ('a','a@b.c','x') RETURNING id, created_at");
+    const t = await db.run("INSERT INTO teachers (name, email, password_hash, school_id) VALUES ('a','a@b.c','x', ?) RETURNING id, created_at", [schoolId]);
     expect(t.rows[0]!.created_at).toMatch(/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/);
   });
 });
 
 describe('tx', () => {
-  const add = (q: Pick<DB, 'run'>, email: string) => q.run("INSERT INTO teachers (name, email, password_hash) VALUES ('t', ?, 'x') RETURNING id", [email]);
+  const add = (q: Pick<DB, 'run'>, email: string) => q.run("INSERT INTO teachers (name, email, password_hash, school_id) VALUES ('t', ?, 'x', ?) RETURNING id", [email, schoolId]);
   const count = async () => (await db.get<{ n: number }>('SELECT COUNT(*) AS n FROM teachers'))!.n;
 
   it('commits and returns the value', async () => {
@@ -100,8 +102,8 @@ describe('migrate', () => {
     await admin.end();
   });
   it('email uniqueness is case-insensitive; teacher_word_seq exists', async () => {
-    await db.run("INSERT INTO teachers (name, email, password_hash) VALUES ('a','A@x.in','x')");
-    await expect(db.run("INSERT INTO teachers (name, email, password_hash) VALUES ('b','a@X.IN','x')")).rejects.toSatisfy(isUniqueViolation);
+    await db.run("INSERT INTO teachers (name, email, password_hash, school_id) VALUES ('a','A@x.in','x', ?)", [schoolId]);
+    await expect(db.run("INSERT INTO teachers (name, email, password_hash, school_id) VALUES ('b','a@X.IN','x', ?)", [schoolId])).rejects.toSatisfy(isUniqueViolation);
     expect((await db.get<{ v: number }>("SELECT nextval('teacher_word_seq') AS v"))!.v).toBe(1);
   });
 });
@@ -159,8 +161,71 @@ describe('seeds', () => {
     } finally {
       if (prev === undefined) delete process.env.VERCEL_ENV; else process.env.VERCEL_ENV = prev;
     }
+    await db.exec('TRUNCATE schools CASCADE');
     expect(await seedDemo(db)).toBe(true);
     expect(await seedDemo(db)).toBe(false);
     expect((await db.get<{ n: number }>('SELECT COUNT(*) AS n FROM students'))!.n).toBe(10);
+    const t = await db.get<{ role: string; school_id: number }>("SELECT role, school_id FROM teachers WHERE email = 'demo@school.test'");
+    expect(t!.role).toBe('school_admin');
+    expect((await db.get<{ student_code: string }>('SELECT student_code FROM schools WHERE id = ?', [t!.school_id]))!.student_code).toBe('DEMSCH');
+    expect((await db.get<{ n: number }>("SELECT COUNT(*) AS n FROM invites WHERE code = 'TEACHERS' AND kind = 'teacher'"))!.n).toBe(1);
+    const c = await db.get<{ standard: number; division: string; class_code: string }>("SELECT standard, division, class_code FROM classes");
+    expect(c).toEqual({ standard: 5, division: 'A', class_code: 'DEMO5A' });
+  });
+});
+
+describe('migration v2 backfill (v1 database with data)', () => {
+  it('moves legacy data into a default school and is a no-op the second time', async () => {
+    const name = `shabd_mig2_${process.pid}`;
+    const admin = createDb(process.env.TEST_ADMIN_URL!, { max: 1 });
+    await admin.exec(`DROP DATABASE IF EXISTS ${name} WITH (FORCE)`);
+    await admin.exec(`CREATE DATABASE ${name}`);
+    const u = new URL(process.env.TEST_ADMIN_URL!);
+    u.pathname = `/${name}`;
+    const d = createDb(u.toString(), { max: 2 });
+    try {
+      const { MIGRATIONS } = await import('../src/db/migrations.ts');
+      // apply v1 only, then insert legacy data
+      await d.exec('CREATE TABLE schema_migrations (version integer PRIMARY KEY, name text NOT NULL, applied_at text NOT NULL DEFAULT now()::text)');
+      await d.exec(MIGRATIONS[0]!.sql);
+      await d.run("INSERT INTO schema_migrations (version, name) VALUES (1, 'initial schema')");
+      await d.run("INSERT INTO teachers (name, email, password_hash) VALUES ('T1','t1@x.in','x'), ('T2','t2@x.in','x')");
+      await d.run(`INSERT INTO classes (teacher_id, name, class_code, start_date) VALUES
+        (1,'5A','AAAAAA','2026-06-01'), (1,'5 - b','BBBBBB','2027-01-10'), (2,'Maths club','CCCCCC','2026-05-31'), (2,'12c','DDDDDD','2026-07-01'), (2,'13A','EEEEEE','2026-07-01')`);
+      await d.run("INSERT INTO students (class_id, roll_no, first_name, avatar, pin) VALUES (1,1,'Riya','x','1234'), (1,2,'Aarav','x','1234')");
+      await d.run("INSERT INTO auth_tokens (token, role, student_id, expires_at, created_at) VALUES ('tok1','student',1,'2099-01-01','2026-06-02T00:00:00.000Z'), ('tok2','student',1,'2099-01-01','2026-06-09T00:00:00.000Z')");
+      await d.run("INSERT INTO words (id, day_index, word, part_of_speech, difficulty, meaning, example_sentence, distractors_json, source, created_by) VALUES ('t-1', NULL, 'apple', 'noun', 1, 'm', 'e', '[]', 'teacher', 2)");
+
+      expect((await migrate(d)).length).toBe(1);
+
+      const schools = await d.all<{ id: number; name: string }>('SELECT id, name FROM schools');
+      expect(schools).toHaveLength(1);
+      expect(schools[0]!.name).toBe('My School');
+      const ts = await d.all<{ id: number; school_id: number; role: string }>('SELECT id, school_id, role FROM teachers ORDER BY id');
+      expect(ts.map((t) => t.school_id)).toEqual([schools[0]!.id, schools[0]!.id]);
+      expect(ts.map((t) => t.role)).toEqual(['school_admin', 'teacher']);
+      const cs = await d.all<{ name: string; school_id: number; standard: number; division: string; academic_year: string }>(
+        'SELECT name, school_id, standard, division, academic_year FROM classes ORDER BY id',
+      );
+      expect(cs.every((c) => c.school_id === schools[0]!.id)).toBe(true);
+      expect(cs.map((c) => [c.standard, c.division, c.academic_year])).toEqual([
+        [5, 'A', '2026-27'], [5, 'B', '2026-27'], [5, '', '2025-26'], [12, 'C', '2026-27'], [5, '', '2026-27'],
+      ]);
+      const sts = await d.all<{ first_login_at: string; last_login_at: string }>('SELECT first_login_at, last_login_at FROM students ORDER BY id');
+      expect(sts[0]).toEqual({ first_login_at: '2026-06-02T00:00:00.000Z', last_login_at: '2026-06-09T00:00:00.000Z' });
+      expect(sts[1]).toEqual({ first_login_at: null, last_login_at: null });
+      expect((await d.get<{ school_id: number }>("SELECT school_id FROM words WHERE id = 't-1'"))!.school_id).toBe(schools[0]!.id);
+      expect(await migrate(d)).toEqual([]);
+      // an empty database gets no default school
+    } finally {
+      await d.end();
+      await admin.exec(`DROP DATABASE ${name} WITH (FORCE)`);
+      await admin.end();
+    }
+  });
+  it('a fresh database has no default school', async () => {
+    expect((await db.get<{ n: number }>('SELECT COUNT(*) AS n FROM schools'))!.n).toBe(1); // only the one beforeEach made
+    const cols = await db.all<{ column_name: string }>("SELECT column_name FROM information_schema.columns WHERE table_name = 'invites'");
+    expect(cols.map((c) => c.column_name)).toContain('use_count');
   });
 });

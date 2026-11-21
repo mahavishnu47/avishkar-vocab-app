@@ -3,7 +3,8 @@
  */
 import { Router } from 'express';
 import type { CreateWordReq, DailySet, SetDailyWordsReq, Word, WordSearchRes } from '@shabd/core';
-import { assertTeacherOwnsClass, requireTeacher } from '../auth.ts';
+import { requireTeacher } from '../auth.ts';
+import { assertCanAccessClass, staffAuth } from '../tenancy.ts';
 import { today } from '../clock.ts';
 import { getDb } from '../db/db.ts';
 import { badRequest, type H } from '../http.ts';
@@ -16,7 +17,6 @@ wordsRouter.use(['/words', '/classes/:classId/daily-words'], requireTeacher);
 type WordQuery = { q?: string; difficulty?: string; partOfSpeech?: string; tag?: string; dayIndex?: string; limit?: string; offset?: string };
 
 const POS = ['noun', 'verb', 'adjective', 'adverb', 'preposition', 'conjunction', 'pronoun', 'interjection'];
-const teacherId = (req: { auth?: { role: string; teacherId?: number } }) => req.auth!.teacherId!;
 const likeEscape = (s: string) => s.replace(/[\\%_]/g, (c) => `\\${c}`);
 const wordCount = (s: string) => s.trim().split(/\s+/).filter(Boolean).length;
 
@@ -36,8 +36,9 @@ const searchWords: H<{}, WordSearchRes, unknown, WordQuery> = async (req, res) =
   const pos = req.query.partOfSpeech;
   if (pos !== undefined && pos !== '' && !POS.includes(pos)) throw badRequest('partOfSpeech is not valid');
 
-  const where: string[] = [];
-  const args: (string | number)[] = [];
+  // bank words (school_id NULL) plus this school's custom words only
+  const where: string[] = ['(school_id IS NULL OR school_id = ?)'];
+  const args: (string | number)[] = [staffAuth(req).schoolId];
   if (q) {
     where.push("(word ILIKE ? ESCAPE '\\' OR meaning ILIKE ? ESCAPE '\\')");
     args.push(`%${likeEscape(q)}%`, `%${likeEscape(q)}%`);
@@ -88,24 +89,24 @@ const createWord: H<{}, Word, CreateWordReq> = async (req, res) => {
   // Ids come from a sequence, so concurrent creates cannot collide (no MAX()+1 race).
   const ins = await db.run(
     `INSERT INTO words (id, day_index, word, part_of_speech, difficulty, meaning, meaning_marathi, example_sentence,
-       distractors_json, syllables_json, tags_json, context_words_json, forms_json, source, created_by)
-     VALUES ('c-' || nextval('teacher_word_seq'), NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'teacher', ?) RETURNING *`,
+       distractors_json, syllables_json, tags_json, context_words_json, forms_json, source, created_by, school_id)
+     VALUES ('c-' || nextval('teacher_word_seq'), NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'teacher', ?, ?) RETURNING *`,
     [word, partOfSpeech, difficulty, meaning, meaningMarathi, exampleSentence, JSON.stringify(distractors),
-      JSON.stringify(syllables), JSON.stringify(tags), JSON.stringify(contextWords), JSON.stringify(forms), teacherId(req)],
+      JSON.stringify(syllables), JSON.stringify(tags), JSON.stringify(contextWords), JSON.stringify(forms), staffAuth(req).teacherId, staffAuth(req).schoolId],
   );
   res.status(201).json(rowToWord(ins.rows[0]!));
 };
 
 const getDaily: H<{ classId: string }, DailySet, unknown, { date?: string }> = async (req, res) => {
   const classId = idParam(req.params.classId);
-  await assertTeacherOwnsClass(teacherId(req), classId);
+  await assertCanAccessClass(staffAuth(req), classId);
   const date = optDate(req.query.date, 'date') ?? today();
   res.json(await getDailySet(getDb(), classId, date));
 };
 
 const putDaily: H<{ classId: string; date: string }, DailySet, SetDailyWordsReq> = async (req, res) => {
   const classId = idParam(req.params.classId);
-  await assertTeacherOwnsClass(teacherId(req), classId);
+  await assertCanAccessClass(staffAuth(req), classId);
   const date = reqDate(req.params.date, 'date');
   const b = asObject(req.body);
   const ids = b.wordIds;
@@ -113,7 +114,12 @@ const putDaily: H<{ classId: string; date: string }, DailySet, SetDailyWordsReq>
     throw badRequest('wordIds must be exactly 5 distinct word ids');
   }
   const db = getDb();
-  for (const id of ids as string[]) if (!(await db.get('SELECT 1 FROM words WHERE id = ?', [id]))) throw badRequest(`wordIds: unknown word ${id}`);
+  for (const id of ids as string[]) {
+    // another school's custom word is indistinguishable from an unknown one
+    if (!(await db.get('SELECT 1 FROM words WHERE id = ? AND (school_id IS NULL OR school_id = ?)', [id, staffAuth(req).schoolId]))) {
+      throw badRequest(`Unknown word id ${id}`);
+    }
+  }
   await db.tx(async (q) => {
     await q.run('DELETE FROM daily_word_overrides WHERE class_id = ? AND date = ?', [classId, date]);
     let i = 0;
@@ -127,7 +133,7 @@ const putDaily: H<{ classId: string; date: string }, DailySet, SetDailyWordsReq>
 
 const deleteDaily: H<{ classId: string; date: string }, DailySet> = async (req, res) => {
   const classId = idParam(req.params.classId);
-  await assertTeacherOwnsClass(teacherId(req), classId);
+  await assertCanAccessClass(staffAuth(req), classId);
   const date = reqDate(req.params.date, 'date');
   const db = getDb();
   await db.run('DELETE FROM daily_word_overrides WHERE class_id = ? AND date = ?', [classId, date]);
