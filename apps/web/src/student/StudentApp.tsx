@@ -12,6 +12,7 @@ import { onStudentUnauthorized } from './common.tsx';
 import { Home } from './Home.tsx';
 import './InstallPrompt.tsx'; // capture beforeinstallprompt as early as possible
 import { JoinPage, PinScreen } from './Join.tsx';
+import { JoinRequestPage } from './JoinRequest.tsx';
 import { Leaderboard } from './Leaderboard.tsx';
 import { Login } from './Login.tsx';
 import { PickClass } from './PickClass.tsx';
@@ -63,6 +64,7 @@ export function StudentApp() {
       <Route index element={<Gate />} />
       <Route path="j/:classCode" element={<JoinPage />} />
       <Route path="j/:classCode/pin/:studentId" element={<PinScreen />} />
+      <Route path="j/:classCode/ask" element={<JoinRequestPage />} />
       <Route path="s/:schoolCode" element={<PickClass />} />
       <Route path="login" element={<Login />} />
       <Route path="who" element={<WhoIsPlaying />} />

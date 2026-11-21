@@ -75,6 +75,7 @@ export function JoinPage() {
       {res.students.length === 0
         ? <p className="center" style={{ textAlign: 'center' }}>Your teacher is still adding names. Come back soon 🙂</p>
         : <PickName students={res.students} onPick={pick} />}
+      <button className="link" style={{ alignSelf: 'center' }} onClick={() => nav(`/j/${classCode}/ask`)}>Not on the list? Ask to join</button>
     </main>
   );
 }

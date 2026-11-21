@@ -10,6 +10,7 @@ import type {
   AddStudentsReq, AdminSchoolRow, AdminUpdateSchoolReq, ApiErrorCode, AttemptsReq, AttemptsRes, AuditEntry,
   ClassAnalyticsRes, ClassDashboardRes, ClassRoom, ClassSummary, CompleteWordRes, CreateClassReq, CreateInviteReq,
   CreateSchoolReq, CreateSchoolRes, CreateWordReq, DailySet, HealthRes, Invite, InviteInfoRes, InviteWithText,
+  ApproveJoinRequestReq, CreateJoinRequestReq, CreateJoinRequestRes, JoinRequest, JoinRequestStatusRes,
   JoinClassRes, JoinSchoolRes, LeaderboardRes, MeRes, PasswordResetReq, PublicRosterRes, ResetPinReq, RosterRes,
   RosterStudent, SchoolInfoRes, SchoolOverviewRes, SchoolSetupReq, SchoolTeacherRow, SentenceReq, SentenceRes,
   SessionSummaryRes, SetDailyWordsReq, ShareInfoRes, StudentAuthRes, StudentDetailRes, StudentHomeRes,
@@ -175,6 +176,8 @@ function build(token?: string | null) {
     inviteInfo: (code: string) => open<InviteInfoRes>('GET', `/invites/${enc(code)}`),
     joinClass: (classCode: string) => open<JoinClassRes>('GET', `/join/class/${enc(classCode)}`),
     joinSchool: (studentCode: string) => open<JoinSchoolRes>('GET', `/join/school/${enc(studentCode)}`),
+    requestToJoin: (classCode: string, b: CreateJoinRequestReq) => open<CreateJoinRequestRes>('POST', `/join/class/${enc(classCode)}/request`, b),
+    joinRequestStatus: (requestId: number, secret: string) => open<JoinRequestStatusRes>('GET', `/join/request/${requestId}?secret=${enc(secret)}`),
     /** @deprecated use joinClass */
     publicRoster: (classCode: string) => open<PublicRosterRes>('GET', `/auth/classes/${enc(classCode)}/roster`),
 
@@ -195,6 +198,9 @@ function build(token?: string | null) {
     rotateClassCode: (classId: number) => staff<ClassRoom>('POST', `/classes/${classId}/rotate-code`),
     classShare: (classId: number) => staff<ShareInfoRes>('GET', `/classes/${classId}/share`),
     roster: (classId: number) => staff<RosterRes>('GET', `/classes/${classId}/students`),
+    joinRequests: (classId: number) => staff<JoinRequest[]>('GET', `/classes/${classId}/join-requests`),
+    approveJoinRequest: (classId: number, rid: number, b?: ApproveJoinRequestReq) => staff<RosterStudent>('POST', `/classes/${classId}/join-requests/${rid}/approve`, b ?? {}),
+    rejectJoinRequest: (classId: number, rid: number) => staff<{ ok: true }>('POST', `/classes/${classId}/join-requests/${rid}/reject`, {}),
     addStudents: (classId: number, b: AddStudentsReq) => staff<RosterRes>('POST', `/classes/${classId}/students`, b),
     updateStudent: (studentId: number, b: UpdateStudentReq) => staff<RosterStudent>('PATCH', `/students/${studentId}`, b),
     resetPin: (studentId: number, b?: ResetPinReq) => staff<RosterStudent>('POST', `/students/${studentId}/reset-pin`, b),

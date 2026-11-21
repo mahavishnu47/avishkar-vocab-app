@@ -13,6 +13,7 @@ import { wordsRouter } from './routes/words.ts';
 import { analyticsRouter } from './routes/analytics.ts';
 import { studentRouter } from './routes/student.ts';
 import { joinRouter } from './routes/join.ts';
+import { joinRequestsRouter } from './routes/joinRequests.ts';
 import { schoolRouter } from './routes/school.ts';
 import { adminRouter } from './routes/admin.ts';
 import { researchRouter } from './routes/research/index.ts';
@@ -28,7 +29,7 @@ export function createApp() {
   app.use(express.json({ limit: '256kb' }));
   app.use('/api', rejectNulBytes); // null characters crash Postgres text columns (S-1)
   app.use('/api', attachAuth);
-  app.use('/api', healthRouter, authRouter, classesRouter, wordsRouter, analyticsRouter, studyGateRouter, studentRouter, joinRouter, schoolRouter, adminRouter, researchRouter);
+  app.use('/api', healthRouter, authRouter, classesRouter, wordsRouter, analyticsRouter, studyGateRouter, studentRouter, joinRouter, joinRequestsRouter, schoolRouter, adminRouter, researchRouter);
   app.use('/api', (_req, _res, next) => next(notFound('Unknown API route')));
   app.use(errorHandler);
   return app;

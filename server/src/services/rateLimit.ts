@@ -11,6 +11,7 @@ export const WINDOW_MIN = 10;
 
 export const BUCKETS = {
   join: { limit: 120, message: 'Too many tries. Wait a few minutes 🙂' },
+  jreq: { limit: 3000, message: 'Too many tries. Wait a few minutes 🙂' }, // join-request status polling: a classroom shares one IP
   pin: { limit: 600, message: 'Too many tries on this Wi-Fi. Wait a few minutes 🙂' }, // per network: a whole classroom shares one IP (each child still has their own 5-try lock)
   invite: { limit: 20, message: 'Too many tries. Wait 10 minutes.' },
   tlogin: { limit: 10, message: 'Too many tries. Wait 10 minutes or ask your school admin.' },
