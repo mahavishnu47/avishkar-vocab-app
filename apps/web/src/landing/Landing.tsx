@@ -119,6 +119,7 @@ export function Landing() {
       <footer className="landing-foot muted">
         <p>New school? {contactText()}</p>
         <p>Privacy: we keep only first names and word scores.</p>
+        <p><a className="landing-admin" href="/admin">Admin</a></p>
       </footer>
     </main>
   );

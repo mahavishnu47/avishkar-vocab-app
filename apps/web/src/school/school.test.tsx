@@ -51,7 +51,7 @@ describe('landing', () => {
   it('has the three role links with the right destinations and a contact footer', () => {
     renderSchool('/');
     const hrefs = screen.getAllByRole('link').map((l) => l.getAttribute('href'));
-    expect(hrefs).toEqual(['/login', '/teacher/login', '/teacher/login?next=/school']);
+    expect(hrefs).toEqual(['/login', '/teacher/login', '/teacher/login?next=/school', '/admin']);
     expect(screen.getByText(/New school\?/)).toBeTruthy();
     expect(screen.getByText('How it works')).toBeTruthy();
   });

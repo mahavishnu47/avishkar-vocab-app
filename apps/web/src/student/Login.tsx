@@ -33,7 +33,7 @@ export function Login() {
       <h1 className="title">{welcomeBack ? 'Welcome back! 🎉' : 'Type your class code'}</h1>
       {welcomeBack && <p className="muted">Your phone forgot you. Type your class code again, then your PIN.</p>}
       <form className="stack" style={{ width: '100%' }} onSubmit={(e) => { e.preventDefault(); void next(); }}>
-        <label htmlFor="cc" className="muted">Class code (6 letters, from your card)</label>
+        <label htmlFor="cc" className="muted">Class code (6 letters or numbers, from your card)</label>
         <input id="cc" className="code-input" value={code} maxLength={6} autoCapitalize="characters" autoComplete="off"
           autoCorrect="off" spellCheck={false}
           onChange={(e) => setCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ''))} />

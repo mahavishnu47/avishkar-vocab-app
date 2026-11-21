@@ -50,3 +50,5 @@
   .landing-step { flex-direction: column; align-items: flex-start; }
 }
 @media (prefers-reduced-motion: reduce) { .landing-tile:active { transform: none; } .landing * { transition: none !important; animation: none !important; } }
+.landing-admin { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 var(--sp-4); border: 2px solid var(--c-border); border-radius: var(--radius); color: inherit; font-weight: 700; text-decoration: none; }
+.landing-admin:focus-visible { outline: 3px solid var(--c-text); outline-offset: 2px; }
