@@ -19,3 +19,4 @@ export * from './research/progress.ts';
 export * from './research/results.ts';
 export * from './research/instruments.ts';
 export * from './research/stats.ts';
+export * from './progress.ts';

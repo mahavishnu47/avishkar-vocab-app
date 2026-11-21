@@ -17,6 +17,7 @@ import { Leaderboard } from './Leaderboard.tsx';
 import { Login } from './Login.tsx';
 import { PickClass } from './PickClass.tsx';
 import { Play } from './Play.tsx';
+import { Progress } from './Progress.tsx';
 import { getActiveProfile, hasChosen, initProfiles, getProfiles } from './profiles.ts';
 import { isStudentDevice, requestPersistentStorage } from '../shared/persist.ts';
 import { Summary } from './Summary.tsx';
@@ -72,6 +73,7 @@ export function StudentApp() {
       <Route path="play" element={<Play />} />
       <Route path="summary" element={<Summary />} />
       <Route path="leaderboard" element={<Leaderboard />} />
+      <Route path="progress" element={<Progress />} />
       <Route path="test/*" element={<Suspense fallback={null}><TestApp /></Suspense>} />
       <Route path="recall" element={<Suspense fallback={null}><Recall /></Suspense>} />
       <Route path="bank" element={<Suspense fallback={null}><Bank /></Suspense>} />

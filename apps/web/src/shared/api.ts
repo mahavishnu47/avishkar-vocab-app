@@ -6,6 +6,7 @@
  * Tokens: two slots, 'student' (the ACTIVE profile's token) and 'staff' (teacher / school admin).
  * Every api.* method has a fixed scope; api.withToken(token) binds a client to an explicit token (outbox).
  */
+import type { StudentProgressRes } from '@shabd/core';
 import type {
   AddStudentsReq, AdminSchoolRow, AdminUpdateSchoolReq, ApiErrorCode, AttemptsReq, AttemptsRes, AuditEntry,
   ClassAnalyticsRes, ClassDashboardRes, ClassRoom, ClassSummary, CompleteWordRes, CreateClassReq, CreateInviteReq,
@@ -247,6 +248,7 @@ function build(token?: string | null) {
       student<CompleteWordRes>('POST', `/student/sessions/${sessionId}/words/${enc(wordId)}/complete`, {}),
     completeSession: (sessionId: number) => student<SessionSummaryRes>('POST', `/student/sessions/${sessionId}/complete`, {}),
     studentLeaderboard: () => student<LeaderboardRes>('GET', '/student/leaderboard'),
+    studentProgress: () => student<StudentProgressRes>('GET', '/student/progress'),
 
     // super admin (X-Admin-Secret from sessionStorage)
     admin: {

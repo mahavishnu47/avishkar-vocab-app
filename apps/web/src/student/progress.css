@@ -1,0 +1,13 @@
+.levelbar.big { height: 20px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.days14 { list-style: none; display: grid; grid-template-columns: repeat(14, 1fr); gap: 2px; padding: 0; margin: 0; }
+.days14 .day { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px; }
+.days14 .bar { display: flex; align-items: flex-end; width: 100%; max-width: 18px; height: 56px; border-radius: 6px; background: var(--c-surface-2); overflow: hidden; }
+.days14 .bar > span { width: 100%; background: var(--c-xp); }
+.days14 .dl { color: var(--c-muted, #666); }
+.skill { display: flex; flex-direction: column; gap: 6px; }
+.skill-head { display: flex; justify-content: space-between; font-size: 18px; }
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; }
+.chips .chip { font-size: 20px; padding: 6px 14px; }
+.recent { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.recent li { display: flex; justify-content: space-between; font-size: 18px; }
