@@ -59,6 +59,7 @@ export function Play() {
         if (student) saveToday(student.id, res);
       } catch (e) {
         if (handleAuthError(e, nav)) return;
+        if (e instanceof ApiRequestError && e.status === 409) { nav('/', { replace: true }); return; } // rest day: back to Home
         if (student) res = loadToday<TodaySessionRes>(student.id);
         if (!res) { if (live) setError('No internet. Try again 🙂'); return; }
       }
