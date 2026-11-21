@@ -48,11 +48,33 @@ describe('helpers', () => {
 });
 
 describe('landing', () => {
-  it('shows 3 tiles with the right links and a contact footer', () => {
+  it('has the three role links with the right destinations and a contact footer', () => {
     renderSchool('/');
-    const links = screen.getAllByRole('link');
-    expect(links.map((l) => l.getAttribute('href'))).toEqual(['/login', '/teacher/login', '/teacher/login?next=/school']);
+    const hrefs = screen.getAllByRole('link').map((l) => l.getAttribute('href'));
+    expect(hrefs).toEqual(['/login', '/teacher/login', '/teacher/login?next=/school']);
     expect(screen.getByText(/New school\?/)).toBeTruthy();
+    expect(screen.getByText('How it works')).toBeTruthy();
+  });
+
+  it('class code box: valid code navigates to /j/CODE', () => {
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/j/:code" element={<div>JOIN PAGE</div>} />
+          <Route path="/" element={<Landing />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+    fireEvent.change(screen.getByLabelText('Class code'), { target: { value: ' k7q 2mx ' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Go' }));
+    expect(screen.getByText('JOIN PAGE')).toBeTruthy();
+  });
+
+  it('class code box: junk is rejected with a friendly message', () => {
+    renderSchool('/');
+    fireEvent.change(screen.getByLabelText('Class code'), { target: { value: 'a!' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Go' }));
+    expect(screen.getByRole('alert').textContent).toMatch(/class code/);
   });
 });
 

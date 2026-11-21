@@ -1,15 +1,52 @@
-.landing { gap: var(--sp-5); justify-content: center; text-align: center; }
-.landing-logo { font-size: 72px; line-height: 1; }
+.landing { gap: var(--sp-5); align-items: stretch; text-align: left; max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+.landing-hero { text-align: center; }
+.landing-logo { font-size: 64px; line-height: 1; }
 .landing-title { font-size: var(--fs-xl); margin: 0; }
-.landing-tiles { display: flex; flex-direction: column; gap: var(--sp-4); width: 100%; }
+.landing-promise { margin: var(--sp-2) 0 0; font-size: var(--fs-base); color: var(--c-text-muted); }
+.landing-tiles { display: grid; grid-template-columns: 1fr; gap: var(--sp-3); width: 100%; }
 .landing-tile {
-  display: flex; align-items: center; gap: var(--sp-4); width: 100%; min-height: 96px; padding: var(--sp-3) var(--sp-5);
+  display: flex; align-items: center; gap: var(--sp-4); min-height: 88px; padding: var(--sp-3) var(--sp-4);
   border-radius: var(--radius); border: 2px solid transparent; box-shadow: var(--shadow); color: #fff;
-  font-size: var(--fs-xl); font-weight: 700; text-decoration: none; text-align: left; touch-action: manipulation;
+  text-decoration: none; text-align: left; touch-action: manipulation;
 }
 .landing-tile:active { transform: translateY(2px); box-shadow: var(--shadow-press); }
-.landing-tile-icon { font-size: 44px; line-height: 1; }
+.landing-tile:focus-visible, .landing-go:focus-visible, .landing-input:focus-visible { outline: 3px solid var(--c-text); outline-offset: 2px; }
+.landing-tile-icon { font-size: 40px; line-height: 1; }
+.landing-tile-text { display: flex; flex-direction: column; gap: 2px; }
+.landing-tile-label { font-size: var(--fs-lg); font-weight: 700; }
+.landing-tile-blurb { font-size: var(--fs-sm); }
+.landing-tile-verb { font-size: var(--fs-sm); font-weight: 700; text-decoration: underline; }
 .landing-tile.student { background: var(--c-learn); }
 .landing-tile.teacher { background: var(--c-listen); }
 .landing-tile.school { background: var(--c-write); }
-.landing-foot { font-size: var(--fs-sm); }
+.landing-card { background: var(--c-surface); border: 2px solid var(--c-border); border-radius: var(--radius); padding: var(--sp-4); }
+.landing-h2 { font-size: var(--fs-lg); margin: 0 0 var(--sp-3); }
+.landing-code { display: flex; gap: var(--sp-2); }
+.landing-input {
+  flex: 1; min-width: 0; min-height: 52px; padding: 0 var(--sp-3); font-size: var(--fs-lg); font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; border: 2px solid var(--c-text-muted); border-radius: var(--radius-sm); background: var(--c-surface); color: var(--c-text);
+}
+.landing-input::placeholder { letter-spacing: 0; text-transform: none; font-weight: 400; color: var(--c-text-muted); }
+.landing-go {
+  min-height: 52px; min-width: 88px; padding: 0 var(--sp-4); font-size: var(--fs-base); font-weight: 700; cursor: pointer;
+  border: 0; border-radius: var(--radius-sm); background: var(--c-primary); color: #fff; touch-action: manipulation;
+}
+.landing-err { margin: var(--sp-2) 0 0; font-weight: 700; color: var(--c-warn, #b45309); }
+.landing-small { margin: var(--sp-2) 0 0; font-size: var(--fs-sm); }
+.landing-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.landing-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
+.landing-step { display: flex; align-items: center; gap: var(--sp-3); min-height: 56px; }
+.landing-step-icon { font-size: 36px; line-height: 1; }
+.landing-list { margin: 0; padding-left: var(--sp-5); display: grid; gap: var(--sp-2); }
+.landing-faq { border: 2px solid var(--c-border); border-radius: var(--radius-sm); background: var(--c-surface); margin-bottom: var(--sp-2); }
+.landing-faq summary { min-height: 48px; display: flex; align-items: center; padding: 0 var(--sp-3); font-weight: 700; cursor: pointer; }
+.landing-faq p { margin: 0; padding: 0 var(--sp-3) var(--sp-3); }
+.landing-foot { font-size: var(--fs-sm); text-align: center; }
+.landing-foot p { margin: var(--sp-1) 0; }
+@media (min-width: 700px) {
+  .landing-tiles { grid-template-columns: repeat(3, 1fr); }
+  .landing-tile { flex-direction: column; align-items: flex-start; }
+  .landing-steps { grid-template-columns: repeat(3, 1fr); }
+  .landing-step { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { .landing-tile:active { transform: none; } .landing * { transition: none !important; animation: none !important; } }
