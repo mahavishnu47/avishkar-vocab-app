@@ -49,6 +49,16 @@ export const MeaningErrorCode = {
 } as const;
 export type MeaningErrorCode = (typeof MeaningErrorCode)[keyof typeof MeaningErrorCode];
 
+/** Part-of-speech activity outcomes (research feature F3). */
+export const PosErrorCode = {
+  WRONG_1: 'PS_WRONG_1', // correct on 2nd tap
+  WRONG_2: 'PS_WRONG_2', // wrong both times
+} as const;
+export type PosErrorCode = (typeof PosErrorCode)[keyof typeof PosErrorCode];
+
+/** The four word types the POS activity asks about. */
+export const POS_CHOICES = ['noun', 'verb', 'adjective', 'adverb'] as const;
+
 /** 9.3 Sentence error categories (derived from rubric + flags). */
 export const SentenceErrorCode = {
   WORD_MISSING: 'SN_WORD_MISSING', // R1 gate failed
@@ -66,7 +76,7 @@ export const SentenceErrorCode = {
 export type SentenceErrorCode = (typeof SentenceErrorCode)[keyof typeof SentenceErrorCode];
 
 /** Teacher-facing labels for dashboards (student detail + class heatmap). */
-export const ERROR_LABELS: Record<SpellingErrorCode | SentenceErrorCode | MeaningErrorCode, string> = {
+export const ERROR_LABELS: Record<SpellingErrorCode | SentenceErrorCode | MeaningErrorCode | PosErrorCode, string> = {
   SP_CORRECT: 'Correct',
   SP_PHONETIC: 'Spells by sound',
   SP_SILENT: 'Silent letters',
@@ -83,6 +93,8 @@ export const ERROR_LABELS: Record<SpellingErrorCode | SentenceErrorCode | Meanin
   SP_BLANK: 'No attempt',
   MN_WRONG_1: 'Meaning: 2nd try',
   MN_WRONG_2: 'Meaning: not understood',
+  PS_WRONG_1: 'Word type: 2nd try',
+  PS_WRONG_2: 'Word type: not yet',
   SN_WORD_MISSING: 'Forgets to use the word',
   SN_WORD_MISSPELT: 'Misspells the word in sentences',
   SN_WRONG_FORM: 'Wrong word form / usage',

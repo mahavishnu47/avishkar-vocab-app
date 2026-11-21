@@ -3,7 +3,7 @@
  */
 import { Router } from 'express';
 import {
-  SCORING, SCORING_VERSION, classifySpellingError, dayIndexFor, displayStreak, evaluateSentenceRules, levelFor, moderateSentence,
+  POS_CHOICES, SCORING, SCORING_VERSION, classifySpellingError, dayIndexFor, displayStreak, evaluateSentenceRules, levelFor, moderateSentence,
   scoreSentenceSubmission, weekStart,
   type AttemptsReq, type AttemptsRes, type CompleteWordRes, type DayStatus, type LeaderboardRes, type SentenceEvaluation, type SentenceReq,
   type SentenceRes, type SessionSummaryRes, type SpellingClassification, type SpellingHint, type StudentHomeRes, type TodaySessionRes, type Word,
@@ -117,8 +117,9 @@ const attempts: H<{ sessionId: string }, AttemptsRes, AttemptsReq> = async (req,
   const b = asObject(req.body);
   const spell = b.spell === undefined ? [] : b.spell;
   const meaning = b.meaning === undefined ? [] : b.meaning;
-  if (!Array.isArray(spell) || !Array.isArray(meaning)) throw badRequest('spell and meaning must be lists');
-  if (spell.length + meaning.length > 200) throw badRequest('Too many attempts in one request');
+  const pos = b.pos === undefined ? [] : b.pos;
+  if (!Array.isArray(spell) || !Array.isArray(meaning) || !Array.isArray(pos)) throw badRequest('spell, meaning and pos must be lists');
+  if (spell.length + meaning.length + pos.length > 200) throw badRequest('Too many attempts in one request');
 
   const accepted: string[] = [];
   const classifications: Record<string, SpellingClassification> = {};
@@ -179,6 +180,28 @@ const attempts: H<{ sessionId: string }, AttemptsRes, AttemptsReq> = async (req,
     if (!options.includes(o.chosen)) throw badRequest('chosen is not one of the options for this word');
     const primary = attemptNo === 2 ? (isCorrect ? 'MN_WRONG_1' : 'MN_WRONG_2') : null;
     pending.push({ clientId, params: [clientId, sessionId, studentId, wordId, 'meaning', attemptNo, o.chosen, isCorrect ? 1 : 0, '[]', '[]', primary, null, 0, msElapsed, clientTs] });
+  }
+  // Part-of-speech taps (F3). Correctness comes from words.part_of_speech; any client opinion is ignored.
+  for (const raw of pos) {
+    const o = asObject(raw);
+    const clientId = reqString(o, 'clientId', 1, 64);
+    const wordId = reqString(o, 'wordId', 1, 20);
+    const attemptNo = reqInt(o, 'attemptNo', 1, 2);
+    if (typeof o.chosen !== 'string' || !(POS_CHOICES as readonly string[]).includes(o.chosen)) throw badRequest('chosen must be noun, verb, adjective or adverb');
+    const msElapsed = reqInt(o, 'msElapsed', 0, 86_400_000);
+    const clientTs = reqIsoTs(o, 'clientTs');
+    const word = await wordInSession(db, session, wordId);
+    const existing = await db.get('SELECT * FROM word_attempts WHERE client_id = ?', [clientId]);
+    if (existing) {
+      if (existing.session_id !== sessionId) throw new HttpError(409, 'conflict', 'clientId already used');
+      pending.push({ clientId });
+      continue;
+    }
+    if (session.completed_at) throw SESSION_DONE();
+    if (!(POS_CHOICES as readonly string[]).includes(word.partOfSpeech)) throw badRequest('This word has no part-of-speech question');
+    const isCorrect = o.chosen === word.partOfSpeech;
+    const primary = attemptNo === 2 ? (isCorrect ? 'PS_WRONG_1' : 'PS_WRONG_2') : null;
+    pending.push({ clientId, params: [clientId, sessionId, studentId, wordId, 'pos', attemptNo, o.chosen, isCorrect ? 1 : 0, '[]', '[]', primary, null, 0, msElapsed, clientTs] });
   }
 
   await db.tx(async (q) => {
