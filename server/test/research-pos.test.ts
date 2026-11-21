@@ -59,7 +59,7 @@ describe('part-of-speech attempts (F3)', () => {
     const w = today.words[0]!;
     expect((await post(today.session.id, { pos: [tap(w.id, 'preposition', 1)] })).status).toBe(400);
     expect((await post(today.session.id, { pos: [tap(w.id, 'Noun', 1)] })).status).toBe(400);
-    expect((await post(today.session.id, { pos: [tap(w.id, 'noun', 3)] })).status).toBe(400);
+    expect((await post(today.session.id, { pos: [tap(w.id, 'noun', 3 as 1)] })).status).toBe(400);
     expect((await post(today.session.id, { pos: [tap('d999-9', 'noun', 1)] })).status).toBe(400);
     expect((await post(today.session.id, { pos: 'noun' })).status).toBe(400);
     expect(await rows()).toHaveLength(0);

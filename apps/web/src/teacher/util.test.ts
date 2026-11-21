@@ -113,7 +113,7 @@ describe('misc helpers', () => {
 describe('remedies', () => {
   it('has a remedy for every spelling and sentence code except CORRECT', () => {
     for (const code of Object.keys(ERROR_LABELS)) {
-      if (code.startsWith('MN_') || code === 'SP_CORRECT') continue;
+      if (code.startsWith('MN_') || code.startsWith('PS_') || code === 'SP_CORRECT') continue;
       expect(REMEDIES[code as keyof typeof REMEDIES], code).toBeTruthy();
     }
   });

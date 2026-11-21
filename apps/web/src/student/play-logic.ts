@@ -1,11 +1,11 @@
 /** Pure helpers + state shape for the /play runner (unit-tested where it matters). */
-import { acceptedForms } from '@shabd/core';
+import { POS_CHOICES, acceptedForms } from '@shabd/core';
 import type {
   SentenceEvaluation, SessionSummaryRes, SpellingHint, WordScore, Word,
 } from '@shabd/core';
 import type { WordRec } from './safe-core.ts';
 
-export type Stage = 'spell' | 'learn' | 'check' | 'write' | 'summary';
+export type Stage = 'spell' | 'learn' | 'check' | 'pos' | 'write' | 'summary';
 
 export interface SubRec { evaluation: SentenceEvaluation; counted: boolean; finalMarks: number | null; pending?: boolean }
 
@@ -16,6 +16,8 @@ export interface PlayState {
   stage: Stage;
   spell: { wrong: number; hints: SpellingHint[]; audioPlays: number; input: string; last: string; copy: boolean; done: boolean; t0: number };
   meaning: { wrongTaps: string[]; done: boolean };
+  /** Part-of-speech activity (F3). Absent in states saved by older builds; see normalizeState. */
+  pos: { wrongTaps: string[]; done: boolean; t0: number };
   sentence: { text: string; starter: boolean; counted: number; shown: SubRec | null; t0: number };
   recs: Record<string, WordRec>;
   localScores: WordScore[];
@@ -24,17 +26,29 @@ export interface PlayState {
   summaryLocal?: boolean;
 }
 
-export function freshWord(): Pick<PlayState, 'spell' | 'meaning' | 'sentence'> {
+export function freshWord(): Pick<PlayState, 'spell' | 'meaning' | 'pos' | 'sentence'> {
   const t0 = Date.now();
   return {
     spell: { wrong: 0, hints: [], audioPlays: 0, input: '', last: '', copy: false, done: false, t0 },
     meaning: { wrongTaps: [], done: false },
+    pos: { wrongTaps: [], done: false, t0 },
     sentence: { text: '', starter: false, counted: 0, shown: null, t0 },
   };
 }
 
 export function freshState(sessionId: number, wordIdx: number): PlayState {
   return { v: 1, sessionId, wordIdx, stage: wordIdx >= 5 ? 'summary' : 'spell', ...freshWord(), recs: {}, localScores: [] };
+}
+
+/** True when the word is a noun, verb, adjective or adverb, i.e. the POS stage applies. */
+export function hasPosStage(word: { partOfSpeech: string }): boolean {
+  return (POS_CHOICES as readonly string[]).includes(word.partOfSpeech);
+}
+
+/** Fills fields added after v1 was first saved, so an old in-progress session resumes instead of crashing. */
+export function normalizeState(s: PlayState): PlayState {
+  const pos = s.pos && Array.isArray(s.pos.wrongTaps) ? s.pos : { wrongTaps: [], done: false, t0: Date.now() };
+  return pos === s.pos ? s : { ...s, pos };
 }
 
 export function emptyRec(): WordRec { return { correctOn: null, hints: [], meaningOn: null, subs: [] }; }
