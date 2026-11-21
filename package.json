@@ -19,7 +19,7 @@
     "test": "npm run test --workspaces --if-present",
     "validate:words": "node scripts/validate-words.mjs",
     "e2e": "node e2e/student-flow.mjs",
-    "vercel-build": "npm run build -w @shabd/web && node scripts/build-api.mjs",
+    "vercel-build": "node scripts/migrate-on-build.mjs && npm run build -w @shabd/web && node scripts/build-api.mjs",
     "deploy": "node scripts/deploy.mjs",
     "e2e:prod": "node e2e/student-flow.mjs --prod",
     "e2e:onboarding": "node e2e/onboarding.mjs",
