@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { StudentHomeRes } from '@shabd/core';
+import type { StudentHomeRes, StudyDayRes } from '@shabd/core';
 import { api } from '../shared/api.ts';
+import { wordPlanApi } from '../shared/research/wordplan-api.ts';
+import { restMessage } from './research/cards/StudyDayCard.tsx';
 import { handleAuthError, saveHome, storedHome, TopBar, useRequireToken } from './common.tsx';
 import { InstallPrompt } from './InstallPrompt.tsx';
 import { HomeCards } from './research/HomeCards.tsx';
@@ -11,10 +13,13 @@ export function Home() {
   const authed = useRequireToken(nav);
   const [home, setHome] = useState<StudentHomeRes | null>(storedHome());
   const [offline, setOffline] = useState(false);
+  // undefined = still asking; null = asked (or offline) and nothing to say. Rest days hide the Start button, which would only bounce back here.
+  const [day, setDay] = useState<StudyDayRes | null | undefined>(undefined);
 
   useEffect(() => {
     if (!authed) return;
     let live = true;
+    wordPlanApi.studyDay().then((d) => { if (live) setDay(d); }, () => { if (live) setDay(null); });
     api.studentHome().then((h) => {
       if (!live) return;
       setHome(h); setOffline(false); saveHome(h);
@@ -47,8 +52,8 @@ export function Home() {
           {[0, 1, 2, 3, 4].map((i) => <span key={i} className={`pd ${i < home.today.wordsDone ? 'on' : ''}`} />)}
         </div>
       </section>
-      <HomeCards home={home} />
-      {st === 'completed' ? (
+      <HomeCards home={home} day={day} />
+      {st !== 'completed' && day && restMessage(day) ? null : st === 'completed' ? (
         <>
           <div className="feedback-ok pop" style={{ textAlign: 'center' }}>All done today! 🎉 Come back tomorrow</div>
           <button className="btn btn-primary btn-block btn-tall" onClick={() => nav(`/summary?s=${home.today.sessionId ?? ''}`)}>See my score</button>

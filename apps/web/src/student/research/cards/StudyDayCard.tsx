@@ -14,13 +14,15 @@ export function restMessage(r: StudyDayRes): { title: string; body: string } | n
 }
 
 /** Home card: shown only on rest days (weekend, holiday, before start, after the last day) and for comparison classes. */
-export function StudyDayCard(_props: { home: StudentHomeRes }) {
-  const [day, setDay] = useState<StudyDayRes | null>(null);
+export function StudyDayCard({ day: given }: { home: StudentHomeRes; day?: StudyDayRes | null }) {
+  const [fetched, setDay] = useState<StudyDayRes | null>(null);
   useEffect(() => {
+    if (given !== undefined) return; // the parent already knows (Home passes it so it can hide the Start button too)
     let live = true;
     wordPlanApi.studyDay().then((r) => { if (live) setDay(r); }, () => { /* offline: show nothing */ });
     return () => { live = false; };
-  }, []);
+  }, [given]);
+  const day = given !== undefined ? given : fetched;
   const msg = day ? restMessage(day) : null;
   if (!msg) return null;
   return (

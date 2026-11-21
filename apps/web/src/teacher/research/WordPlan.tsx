@@ -6,6 +6,7 @@ import { wordPlanApi } from '../../shared/research/wordplan-api.ts';
 import { Page, useLoad } from '../ui.tsx';
 
 const POS_ORDER = ['noun', 'verb', 'adjective', 'adverb'];
+const POS_SHORT: Record<string, string> = { noun: 'noun', verb: 'verb', adjective: 'adj', adverb: 'adv' };
 
 /** Teacher: the 20-day plan (day, date, 5 words with part of speech), holiday toggles, swap a word, print. */
 export default function WordPlan() {
@@ -65,7 +66,7 @@ export default function WordPlan() {
                     {d.words.length === 0 && <span className="muted">No words planned</span>}
                     {d.words.map((w) => (
                       <span key={w.wordId} style={{ display: 'inline-block', marginRight: 10 }}>
-                        <strong>{w.word}</strong> <span className="muted">({w.partOfSpeech.slice(0, 3)})</span>{' '}
+                        <strong>{w.word}</strong> <span className="muted">({POS_SHORT[w.partOfSpeech] ?? w.partOfSpeech})</span>{' '}
                         <button className="link no-print" aria-label={`Swap ${w.word}`} onClick={() => { setSwap({ dayNo: d.dayNo, position: w.position }); setQ(''); setFound([]); }}>swap</button>
                       </span>
                     ))}

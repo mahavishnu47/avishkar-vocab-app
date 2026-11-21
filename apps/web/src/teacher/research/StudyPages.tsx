@@ -163,6 +163,7 @@ function StudyHome() {
             <Link className="btn" to={`/teacher/study/${id}/instruments`}>Observations</Link>
             <Link className="btn" to={`/teacher/study/${id}/results`}>Results</Link>
             {s.classes.map((c) => <Link key={c.classId} className="btn" to={`/teacher/classes/${c.classId}/tests`}>Tests for {c.className}</Link>)}
+            {s.classes.map((c) => <Link key={`p${c.classId}`} className="btn" to={`/teacher/classes/${c.classId}/progress`}>Progress for {c.className}</Link>)}
           </section>
         </>
       )}
