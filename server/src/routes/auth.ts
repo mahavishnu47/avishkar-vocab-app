@@ -10,6 +10,9 @@ import { getDb, isUniqueViolation } from '../db/db.ts';
 import { HttpError, badRequest, forbidden, notFound, unauthorized, type H } from '../http.ts';
 import { classOf, studentOf, teacherOf } from '../mappers.ts';
 import { asObject, reqInt, reqString } from '../validate.ts';
+import {
+  ROSTER_MISS_RULE, TEACHER_EMAIL_RULE, TEACHER_IP_RULE, assertNotThrottled, clearFailures, recordFailure,
+} from '../throttle.ts';
 
 export const authRouter = Router();
 
@@ -26,6 +29,9 @@ const teacherRegister: H<{}, TeacherAuthRes, TeacherRegisterReq> = async (req, r
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw badRequest('email must be a valid email address');
   if (typeof b.password !== 'string' || b.password.length < 8) throw badRequest('password must be at least 8 characters');
   const invite = process.env.TEACHER_INVITE_CODE;
+  // Open sign-up is for local development only: in production an unset code closes registration (B-09).
+  const production = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV === 'production';
+  if (!invite && production) throw forbidden('Teacher sign-up is closed. The administrator must set TEACHER_INVITE_CODE.');
   if (invite && b.inviteCode !== invite) throw forbidden('Invite code is wrong');
   const db = getDb();
   const taken = new HttpError(409, 'conflict', 'This email is already registered');
@@ -45,17 +51,32 @@ const teacherLogin: H<{}, TeacherAuthRes, TeacherLoginReq> = async (req, res) =>
   const b = asObject(req.body);
   const email = typeof b.email === 'string' ? b.email.trim().toLowerCase() : '';
   const password = typeof b.password === 'string' ? b.password : '';
-  const row = await getDb().get('SELECT * FROM teachers WHERE lower(email) = lower(?)', [email]);
+  const db = getDb();
+  const emailKey = `teacher:${email.slice(0, 120)}`;
+  const ipKey = `login-ip:${req.ip ?? 'unknown'}`;
+  await assertNotThrottled(db, emailKey);
+  await assertNotThrottled(db, ipKey);
+  const row = await db.get('SELECT * FROM teachers WHERE lower(email) = lower(?)', [email]);
   const ok = verifyPassword(password, row ? (row.password_hash as string) : DUMMY_HASH);
-  if (!row || !ok) throw unauthorized('Wrong email or password');
+  if (!row || !ok) {
+    await recordFailure(db, emailKey, TEACHER_EMAIL_RULE);
+    await recordFailure(db, ipKey, TEACHER_IP_RULE);
+    throw unauthorized('Wrong email or password');
+  }
+  await clearFailures(db, emailKey);
   const teacher = teacherOf(row);
   res.json({ token: await issueToken('teacher', teacher.id), teacher });
 };
 
 const publicRoster: H<{ classCode: string }, PublicRosterRes> = async (req, res) => {
   const db = getDb();
+  const ipKey = `roster-ip:${req.ip ?? 'unknown'}`;
+  await assertNotThrottled(db, ipKey);
   const cls = await db.get<{ id: number; name: string }>('SELECT id, name FROM classes WHERE class_code = ?', [req.params.classCode.toUpperCase()]);
-  if (!cls) throw notFound('Class code not found');
+  if (!cls) {
+    await recordFailure(db, ipKey, ROSTER_MISS_RULE);
+    throw notFound('Class code not found');
+  }
   const students = await db.all<{ id: number; first_name: string; avatar: string }>(
     'SELECT id, first_name, avatar FROM students WHERE class_id = ? AND active = 1 ORDER BY lower(first_name), id',
     [cls.id],

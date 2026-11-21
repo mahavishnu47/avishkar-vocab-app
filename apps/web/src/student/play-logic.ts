@@ -1,6 +1,7 @@
 /** Pure helpers + state shape for the /play runner (unit-tested where it matters). */
+import { acceptedForms } from '@shabd/core';
 import type {
-  PartOfSpeech, SentenceEvaluation, SessionSummaryRes, SpellingHint, WordScore, Word,
+  SentenceEvaluation, SessionSummaryRes, SpellingHint, WordScore, Word,
 } from '@shabd/core';
 import type { WordRec } from './safe-core.ts';
 
@@ -53,26 +54,19 @@ export function seededShuffle<T>(arr: readonly T[], seedStr: string): T[] {
   return out;
 }
 
-export function starterFor(pos: PartOfSpeech, w: string): string {
-  switch (pos) {
-    case 'noun': return `I saw a ${w}`;
-    case 'verb': return `Every day I ${w}`;
-    case 'adjective': return `The ${w}`;
-    case 'adverb': return `She walked ${w}`;
-    default: return `I ${w}`;
-  }
-}
+/** Opening words for the "Help me start" hint; lives in core so the server can recognise a starter-only submission. */
+export { starterFor } from '@shabd/core';
 
 /** Split a sentence into [text, isTarget] parts, highlighting the word or an inflection of it. */
 export function highlightParts(sentence: string, word: Word | { word: string; forms?: string[] }): [string, boolean][] {
-  const stems = [word.word, ...(word.forms ?? [])].filter(Boolean).map((s) => s.toLowerCase());
-  const stem = word.word.toLowerCase();
-  const root = stem.length > 4 ? stem.slice(0, -1) : stem;
+  // Exact word plus its regular/listed inflections only. A prefix match highlighted unrelated words
+  // ("cat" -> category, "happy" -> happen) (B-12).
+  const accepted = new Set(acceptedForms(word.word, word.forms));
   const parts: [string, boolean][] = [];
   for (const tok of sentence.split(/(\b[A-Za-z']+\b)/)) {
     if (!tok) continue;
     const l = tok.toLowerCase();
-    parts.push([tok, /^[a-z']+$/.test(l) && (stems.includes(l) || l.startsWith(root))]);
+    parts.push([tok, /^[a-z']+$/.test(l) && accepted.has(l)]);
   }
   return parts;
 }

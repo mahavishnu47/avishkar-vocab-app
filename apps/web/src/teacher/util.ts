@@ -2,6 +2,8 @@
 import type { IsoDate } from '@shabd/core';
 import { getToken } from '../shared/api.ts';
 
+/** Same limit the server enforces on student first names. */
+export const MAX_FIRST_NAME = 30;
 export interface RosterRow { rollNo: number; firstName: string }
 export interface ParsedRoster { rows: RosterRow[]; errors: string[] }
 
@@ -18,6 +20,7 @@ export function parseRosterText(text: string, existingRolls: number[] = []): Par
     const rollNo = Number(m[1]);
     const firstName = m[2].replace(/^[,;\t\s]+/, '').trim();
     if (!firstName) { errors.push(`Line ${i + 1}: name is missing`); return; }
+    if (firstName.length > MAX_FIRST_NAME) { errors.push(`Line ${i + 1}: name is too long (max ${MAX_FIRST_NAME} letters)`); return; }
     if (rollNo < 1) { errors.push(`Line ${i + 1}: roll must be 1 or more`); return; }
     if (seen.has(rollNo)) { errors.push(`Line ${i + 1}: roll ${rollNo} already used`); return; }
     seen.add(rollNo);

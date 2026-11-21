@@ -4,7 +4,7 @@
  * AND on the server (authoritative; server may replace it with the Claude evaluator,
  * falling back to this on any error / no API key).
  *
- * Gate order: empty -> devanagari -> blocked (moderation) -> word_missing -> scored ('ok').
+ * Gate order: empty -> devanagari -> blocked (moderation) -> starter_only -> word_missing -> scored ('ok').
  * Non-'ok' gates return a zero rubric and do NOT count as a submission.
  */
 import { SCORING } from './scoring.config.ts';
@@ -126,6 +126,26 @@ function plausibleSlot(tokens: string[], idx: number, pos: string): boolean {
   }
 }
 
+/**
+ * Opening words offered by the "Help me start" hint. Uses "the" for nouns so it is correct for countable, plural
+ * and uncountable nouns alike ("I saw the island / the information"); "a" was wrong before vowels and mass nouns (B-05).
+ */
+export function starterFor(pos: string, w: string): string {
+  switch (pos) {
+    case 'noun': return `I saw the ${w}`;
+    case 'verb': return `Every day I ${w}`;
+    case 'adjective': return `The ${w}`;
+    case 'adverb': return `She walked ${w}`;
+    default: return `I ${w}`;
+  }
+}
+
+/** True when the text is just the hint's opening words plus fewer than 2 words of the child's own (B-04). */
+export function isStarterOnly(tokens: string[], word: SentenceWordContext): boolean {
+  const start = tokenize(starterFor(word.partOfSpeech, word.word));
+  return tokens.length - start.length < 2 && start.every((t, i) => tokens[i] === t);
+}
+
 function fb(key: FeedbackItem['key'], ok: boolean, message: string): FeedbackItem {
   return { key, ok, message };
 }
@@ -138,6 +158,7 @@ function gateResult(gate: SentenceGate, word: string): SentenceEvaluation {
   else if (gate === 'devanagari') { errorCodes = ['SN_NON_ENGLISH']; feedback = [fb('english_letters', false, 'Please write in English letters.')]; }
   else if (gate === 'blocked') { errorCodes = ['SN_FLAGGED']; feedback = [fb('blocked', false, 'Please try a different sentence.')]; }
   else if (gate === 'word_missing') { errorCodes = ['SN_WORD_MISSING']; feedback = [fb('word_missing', false, `Use the word "${word}" in your sentence.`)]; }
+  else if (gate === 'starter_only') { errorCodes = ['SN_TOO_SHORT']; feedback = [fb('too_short', false, 'Add your own words to finish it.')]; }
   return { gate, rubric, rawTotal: 0, errorCodes, confidence: 1, feedback, evaluator: RULE_EVALUATOR_VERSION };
 }
 
@@ -155,6 +176,8 @@ export function evaluateSentenceRules(sentence: string, word: SentenceWordContex
   const raw = tokenizeRaw(text);
   const tokens = raw.map((t) => t.toLowerCase());
   if (tokens.length === 0) return gateResult('empty', target);
+  // Submitting only the hint's opening words must not earn marks the hint cost less than (B-04).
+  if (isStarterOnly(tokens, word)) return gateResult('starter_only', target);
 
   // ---- R1: use of the word (gate)
   const forms = new Set(acceptedForms(target, word.forms));
@@ -208,12 +231,22 @@ export function evaluateSentenceRules(sentence: string, word: SentenceWordContex
   // ---- copy detection
   const exTokens = tokenize(word.exampleSentence ?? '');
   const copied = exTokens.length > 0 && jaccard(tokens, exTokens) >= SCORING.sentence.copyJaccard;
+  // Low-effort answers (B-04): one or two words is not a sentence; mostly repeated words ("warm warm warm ...") is spam.
+  const fragment = tokens.length < 3;
+  const spam = tokens.length >= 4 && new Set(tokens).size / tokens.length < 0.6;
+  // (PRD: a copied sentence keeps its mechanics marks but earns no relevance or length marks.)
+  if (copied) { /* unchanged */ } else if (spam) grammar = Math.min(grammar, 4);
+  else if (fragment) grammar = Math.min(grammar, 2);
 
   // ---- R3: relevance
   let relevance: number;
   if (copied) {
     relevance = 0;
     errorCodes.push('SN_COPIED');
+    confidence = Math.min(confidence, 0.7);
+  } else if (spam || fragment) {
+    relevance = 0;
+    errorCodes.push('SN_IRRELEVANT');
     confidence = Math.min(confidence, 0.7);
   } else {
     const ctxStems = new Set((word.contextWords ?? []).map((c) => stem(c.toLowerCase())));
@@ -234,6 +267,9 @@ export function evaluateSentenceRules(sentence: string, word: SentenceWordContex
   let hasConj = false;
   if (copied) {
     length = 0;
+  } else if (spam) {
+    length = 0;
+    errorCodes.push('SN_TOO_SHORT');
   } else {
     length = n < 4 ? 0 : n <= 5 ? 2 : n <= 8 ? 4 : 6;
     hasConj = tokens.some((t) => (SCORING.sentence.conjunctions as readonly string[]).includes(t));
@@ -243,6 +279,8 @@ export function evaluateSentenceRules(sentence: string, word: SentenceWordContex
   }
   if (copied) {
     feedback.push(fb('copied', false, 'Try writing your own idea!'));
+  } else if (spam) {
+    feedback.push(fb('too_short', false, 'Try using different words.'));
   } else {
     feedback.push(n >= 6 ? fb('long_enough', true, 'Nice long sentence!') : fb('too_short', false, 'Try adding more words.'));
     feedback.push(hasConj && n >= 6 ? fb('joining_word', true, 'Great joining word!') : fb('joining_word', false, 'Try a joining word like because.'));

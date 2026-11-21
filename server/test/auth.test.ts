@@ -175,3 +175,61 @@ describe('misc', () => {
     expect(bad.body.error.code).toBe('bad_request');
   });
 });
+
+describe('brute-force throttle (B-03)', () => {
+  it('locks teacher login after 8 wrong passwords, even for the right one, and unlocks per email only', async () => {
+    await registerTeacher(ctx.app, 'a@school.in');
+    await registerTeacher(ctx.app, 'b@school.in');
+    for (let i = 0; i < 8; i++) {
+      const r = await request(ctx.app).post('/api/auth/teacher/login').send({ email: 'a@school.in', password: `wrong-pass-${i}` });
+      expect(r.status).toBe(401);
+    }
+    const locked = await request(ctx.app).post('/api/auth/teacher/login').send({ email: 'a@school.in', password: 'password1' });
+    expect(locked.status).toBe(429);
+    expect(locked.body.error.code).toBe('locked');
+    expect(locked.body.error.message).toMatch(/wait \d+ minutes?/);
+    // another account from the same IP is unaffected
+    const other = await request(ctx.app).post('/api/auth/teacher/login').send({ email: 'b@school.in', password: 'password1' });
+    expect(other.status).toBe(200);
+  });
+
+  it('a successful login resets the failure counter', async () => {
+    await registerTeacher(ctx.app, 'a@school.in');
+    for (let round = 0; round < 3; round++) {
+      for (let i = 0; i < 7; i++) await request(ctx.app).post('/api/auth/teacher/login').send({ email: 'a@school.in', password: 'nope-nope' });
+      const ok = await request(ctx.app).post('/api/auth/teacher/login').send({ email: 'a@school.in', password: 'password1' });
+      expect(ok.status).toBe(200);
+    }
+  });
+
+  it('locks class-code lookups once an IP has too many misses, but valid codes still count nothing', async () => {
+    const { cls } = await makeClass(ctx.app, await registerTeacher(ctx.app), ['Riya']);
+    for (const ip of ['::ffff:127.0.0.1', '127.0.0.1', '::1']) {
+      await ctx.db.run('INSERT INTO auth_throttle (key, fails, window_start) VALUES (?, 99, ?)', [`roster-ip:${ip}`, new Date().toISOString()]);
+    }
+    const ok = await request(ctx.app).get(`/api/auth/classes/${cls.classCode}/roster`);
+    expect(ok.status).toBe(200);
+    const miss = await request(ctx.app).get('/api/auth/classes/NOPE12/roster');
+    expect(miss.status).toBe(404); // the 100th miss locks the key
+    const locked = await request(ctx.app).get(`/api/auth/classes/${cls.classCode}/roster`);
+    expect(locked.status).toBe(429);
+  });
+});
+
+describe('teacher sign-up in production (B-09)', () => {
+  it('is closed without an invite code and open with the right one', async () => {
+    const prev = process.env.NODE_ENV;
+    process.env.NODE_ENV = 'production';
+    try {
+      const closed = await request(ctx.app).post('/api/auth/teacher/register').send({ name: 'X', email: 'x@school.in', password: 'password1' });
+      expect(closed.status).toBe(403);
+      expect(closed.body.error.message).toMatch(/INVITE_CODE/);
+      process.env.TEACHER_INVITE_CODE = 'letmein';
+      const ok = await request(ctx.app).post('/api/auth/teacher/register').send({ name: 'X', email: 'x@school.in', password: 'password1', inviteCode: 'letmein' });
+      expect(ok.status).toBe(201);
+    } finally {
+      process.env.NODE_ENV = prev;
+      delete process.env.TEACHER_INVITE_CODE;
+    }
+  });
+});

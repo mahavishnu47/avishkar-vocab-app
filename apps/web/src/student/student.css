@@ -4,6 +4,10 @@
 .topbar-left, .topbar-right { display: flex; align-items: center; gap: var(--sp-2); min-width: 0; }
 .avatar { font-size: 32px; line-height: 1; }
 .name { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Primary actions stay on screen while a long feedback list scrolls (B-06). */
+.sticky-actions { position: sticky; bottom: 0; display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-2) 0 var(--sp-3); background: var(--c-bg); z-index: 5; }
+/* Roster tiles: show the whole name (wrap if needed) so similar names stay distinguishable (B-14). */
+.name-wrap { white-space: normal; overflow-wrap: break-word; text-align: left; line-height: 1.15; text-overflow: clip; font-size: clamp(15px, 4.8vw, 20px); min-width: 0; }
 .chip { display: inline-block; font-size: 13px; font-weight: 700; border-radius: 999px; padding: 2px 10px; background: var(--c-surface); border: 1px solid var(--c-border); white-space: nowrap; }
 .chip.waiting { background: var(--c-warn-bg); color: var(--c-warn); border-color: var(--c-warn); }
 .chip.saved { color: var(--c-text-muted); }

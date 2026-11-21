@@ -28,6 +28,14 @@
 
 .t-scroll { overflow-x: auto; max-width: 100%; border: 1px solid var(--c-border); border-radius: var(--radius-sm); background: var(--c-surface); }
 .t-scroll table { min-width: 100%; width: max-content; }
+/* Keep the student/name column visible while scrolling wide tables sideways (B-17). */
+.t-scroll th:first-child, .t-scroll td:first-child { position: sticky; left: 0; z-index: 1; background: var(--c-surface); }
+.t-scroll thead th:first-child { background: var(--c-surface-2, var(--c-surface)); z-index: 2; }
+/* Phones: one scrollable nav row instead of three wrapped rows (B-17). */
+@media (max-width: 640px) {
+  .t-nav { flex-wrap: nowrap; overflow-x: auto; white-space: nowrap; }
+  .t-nav .t-logout { margin-left: var(--sp-2); }
+}
 .teacher tr.clickable { cursor: pointer; }
 .teacher tr.clickable:hover td { background: var(--c-surface-2); }
 .t-th { background: none; border: 0; padding: 0; min-height: 32px; font-weight: 700; cursor: pointer; text-align: left; color: inherit; white-space: nowrap; }

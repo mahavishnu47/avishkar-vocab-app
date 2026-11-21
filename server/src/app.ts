@@ -14,6 +14,8 @@ import { studentRouter } from './routes/student.ts';
 export function createApp() {
   const app = express();
   app.disable('x-powered-by');
+  // Behind Vercel's proxy the real client is the last X-Forwarded-For hop; req.ip feeds the login throttle.
+  if (process.env.VERCEL) app.set('trust proxy', 1);
   app.use(express.json({ limit: '256kb' }));
   app.use('/api', attachAuth);
   app.use('/api', healthRouter, authRouter, classesRouter, wordsRouter, analyticsRouter, studentRouter);

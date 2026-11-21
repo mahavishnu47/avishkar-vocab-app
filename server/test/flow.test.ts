@@ -195,6 +195,41 @@ describe('full student flow', () => {
     expect(await count('xp_ledger')).toBe(4);
   });
 
+  it('freezes a finished session: no new attempts, sentences or re-scoring (B-01)', async () => {
+    const { cls, students } = await makeClass(ctx.app, teacher, ['Riya']);
+    const riya = await studentLogin(ctx.app, cls, students[0]!);
+    const today = await start(riya);
+    const sid = today.session.id;
+    const base = `/api/student/sessions/${sid}`;
+    const first = await playWord(riya, sid, today.words[0]!);
+    const done = await request(ctx.app).post(`${base}/complete`).set(auth(riya)).send({});
+    expect(done.status).toBe(200);
+    const before = done.body as SessionSummaryRes;
+
+    const w = today.words[0]!;
+    const late = await request(ctx.app).post(`${base}/attempts`).set(auth(riya)).send({
+      spell: [{ clientId: uuid(), wordId: w.id, attemptNo: 3, input: 'zzz', hints: ['first_letter', 'letter_tiles'], audioPlays: 0, msElapsed: 1, clientTs: ts() }],
+    });
+    expect(late.status).toBe(409);
+    const lateSentence = await request(ctx.app).post(`${base}/sentences`).set(auth(riya)).send({
+      clientId: uuid(), wordId: w.id, submissionNo: 2, text: `The ${w.word} is nice and I like it.`, starterHintUsed: false, msElapsed: 1, clientTs: ts(),
+    });
+    expect(lateSentence.status).toBe(409);
+
+    // a replay of an already stored item and of word completion stays harmless
+    const replay = await request(ctx.app).post(`${base}/attempts`).set(auth(riya)).send({
+      spell: [{ clientId: first.ids.s1, wordId: w.id, attemptNo: 1, input: w.word.slice(0, -1), hints: [], audioPlays: 1, msElapsed: 5000, clientTs: ts() }],
+    });
+    expect(replay.status).toBe(200);
+    const again = await request(ctx.app).post(`${base}/words/${w.id}/complete`).set(auth(riya)).send({});
+    expect(again.status).toBe(200);
+    expect(again.body.total).toBe(first.score.total);
+
+    const after = await request(ctx.app).post(`${base}/complete`).set(auth(riya)).send({});
+    expect(after.body).toEqual(before);
+    expect((after.body as SessionSummaryRes).wordScores.reduce((n, s) => n + s.total, 0)).toBe((after.body as SessionSummaryRes).totalMarks);
+  });
+
   it('limits counted sentences to 2, applies the 0.8 multiplier, and does not count gated ones', async () => {
     const { cls, students } = await makeClass(ctx.app, teacher, ['Riya']);
     const tok = await startToken(cls, students);

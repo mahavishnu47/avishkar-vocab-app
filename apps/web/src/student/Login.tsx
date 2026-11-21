@@ -87,9 +87,9 @@ export function Login() {
         {roster?.className && <p className="muted" style={{ margin: 0 }}>Class {roster.className}</p>}
         <div className="grid2">
           {roster?.students.map((s) => (
-            <button key={s.id} className="btn btn-tall" style={{ justifyContent: 'flex-start', overflow: 'hidden' }}
+            <button key={s.id} className="btn btn-tall" style={{ justifyContent: 'flex-start', overflow: 'hidden', paddingInline: 10, gap: 8 }}
               onClick={() => { setWho(s); setPin(''); setErr(''); setStep('pin'); }}>
-              <span className="avatar">{s.avatar}</span><span className="name">{s.firstName}</span>
+              <span className="avatar">{s.avatar}</span><span className="name name-wrap">{s.firstName}</span>
             </button>
           ))}
         </div>

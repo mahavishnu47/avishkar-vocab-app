@@ -2,6 +2,7 @@ import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeEach, describe, expect, it } from 'vitest';
+import { MIGRATIONS } from '../src/db/migrations.ts';
 import { createDb, isUniqueViolation, migrate, poolConfig, pooledUrl, toPgSql, type DB } from '../src/db/db.ts';
 import { loadWordBank, seedDemo } from '../src/db/seed.ts';
 import { closeTestDb, setup, testDb } from './helpers.ts';
@@ -80,7 +81,7 @@ describe('migrate', () => {
   it('is idempotent and records versions', async () => {
     expect(await migrate(db)).toEqual([]);
     const v = await db.all<{ version: number }>('SELECT version FROM schema_migrations ORDER BY version');
-    expect(v.map((r) => r.version)).toEqual([1]);
+    expect(v.map((r) => r.version)).toEqual([1, 2]);
   });
   it('serialises concurrent runs on a fresh database', async () => {
     const name = `shabd_mig_${process.pid}`;
@@ -92,7 +93,7 @@ describe('migrate', () => {
     const a = createDb(u.toString(), { max: 2 });
     const b = createDb(u.toString(), { max: 2 });
     const [ra, rb] = await Promise.all([migrate(a), migrate(b)]);
-    expect([ra.length, rb.length].sort()).toEqual([0, 1]);
+    expect([ra.length, rb.length].sort()).toEqual([0, MIGRATIONS.length]);
     await a.end();
     await b.end();
     await admin.exec(`DROP DATABASE ${name} WITH (FORCE)`);

@@ -201,4 +201,17 @@ CREATE TABLE streaks (
 );
 `,
   },
+  {
+    version: 2,
+    name: 'auth throttle',
+    sql: /* sql */ `
+-- Failed-attempt counters for teacher login and class-code lookups (DB-backed: serverless instances share no memory).
+CREATE TABLE auth_throttle (
+  key          text PRIMARY KEY,           -- e.g. 'teacher:<email>', 'login-ip:<ip>', 'roster-ip:<ip>'
+  fails        integer NOT NULL DEFAULT 0,
+  window_start text NOT NULL,
+  locked_until text
+);
+`,
+  },
 ];

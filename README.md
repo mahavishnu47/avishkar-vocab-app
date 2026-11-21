@@ -25,7 +25,7 @@ npm install
 npm run dev        # server on :4000 (API at /api), web on :5173 (proxies /api)
 ```
 
-`npm run dev` creates the tables, loads the word bank and seeds the demo data by itself. If `DATABASE_URL` is not set it uses `postgres://postgres:postgres@localhost:5432/shabd` (the Docker command above).
+`npm run dev` creates the local database if it is missing, then the tables, loads the word bank and seeds the demo data by itself. If `DATABASE_URL` is not set it uses `postgres://postgres:postgres@localhost:5432/shabd` (the Docker command above).
 
 Open http://localhost:5173 for students and http://localhost:5173/teacher for teachers. To test on a phone on the same Wi-Fi, open `http://<your-laptop-ip>:5173`.
 
@@ -41,7 +41,7 @@ Optional `.env` at the repo root (see `.env.example`):
 | `PORT` | 4000 | API port (local only) |
 | `ANTHROPIC_API_KEY` | (unset) | Turns on Claude sentence feedback. Without it, the rule-based evaluator is used. |
 | `CLAUDE_MODEL` | `claude-haiku-5-5` | Model for sentence feedback |
-| `TEACHER_INVITE_CODE` | (unset) | When set, teacher sign-up requires this code. **Set it in production.** |
+| `TEACHER_INVITE_CODE` | (unset) | Teacher sign-up requires this code. Unset = open sign-up in local dev, **closed in production** (so set it there). |
 | `SEED_DEMO` | 1 | Local dev only: seeds the demo teacher, class and students |
 | `FAKE_TODAY` | (unset) | `YYYY-MM-DD`; overrides "today" for demos and tests. Ignored on Vercel production. |
 

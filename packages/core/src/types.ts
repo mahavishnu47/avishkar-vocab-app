@@ -147,7 +147,7 @@ export interface Rubric {
 }
 
 /** Why a sentence was not scored (does NOT count as a submission). 'ok' = scored. */
-export type SentenceGate = 'ok' | 'empty' | 'word_missing' | 'devanagari' | 'blocked';
+export type SentenceGate = 'ok' | 'empty' | 'word_missing' | 'devanagari' | 'blocked' | 'starter_only';
 
 export type FeedbackKey =
   | 'used_word'

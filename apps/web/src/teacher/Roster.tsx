@@ -73,7 +73,7 @@ export function Roster() {
               {formError && <div className="t-error" role="alert">{formError}</div>}
               <div className="row">
                 <button className="btn btn-primary" disabled={!parsed.rows.length || parsed.errors.length > 0} onClick={save}>
-                  Save {parsed.rows.length || ''} students
+                  Save {parsed.rows.length || ''} {parsed.rows.length === 1 ? 'student' : 'students'}
                 </button>
                 <button className="btn" onClick={() => { setAdding(false); setText(''); }}>Cancel</button>
               </div>

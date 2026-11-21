@@ -14,6 +14,11 @@ describe('parseRosterText', () => {
     expect(r.rows).toEqual([{ rollNo: 5, firstName: 'A' }]);
     expect(r.errors).toHaveLength(3);
   });
+  it('rejects names over the server limit with the right line number (B-11)', () => {
+    const r = parseRosterText(`1, Meera\n2, ${'x'.repeat(31)}\n3, ${'y'.repeat(30)}`);
+    expect(r.rows.map((x) => x.rollNo)).toEqual([1, 3]);
+    expect(r.errors).toEqual(['Line 2: name is too long (max 30 letters)']);
+  });
 });
 
 describe('sortRows', () => {
