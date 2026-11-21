@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { StudentHomeRes } from '@shabd/core';
-import { api, setToken } from '../shared/api.ts';
-import { handleAuthError, LS, lsSet, storedHome, TopBar, useRequireToken } from './common.tsx';
+import { api } from '../shared/api.ts';
+import { handleAuthError, saveHome, storedHome, TopBar, useRequireToken } from './common.tsx';
+import { InstallPrompt } from './InstallPrompt.tsx';
 
 export function Home() {
   const nav = useNavigate();
@@ -15,16 +16,10 @@ export function Home() {
     let live = true;
     api.studentHome().then((h) => {
       if (!live) return;
-      setHome(h); setOffline(false); lsSet(LS.home, JSON.stringify(h));
+      setHome(h); setOffline(false); saveHome(h);
     }).catch((e) => { if (!handleAuthError(e, nav)) setOffline(true); });
     return () => { live = false; };
   }, [authed, nav]);
-
-  const logout = () => {
-    api.logout().catch(() => {});
-    setToken(null); lsSet(LS.home, null);
-    nav('/login', { replace: true });
-  };
 
   if (!home) {
     return <main className="screen center student-screen"><div className="mitra-bird">🦜</div><p>{offline ? 'No internet 🙂' : 'Loading…'}</p>
@@ -35,7 +30,7 @@ export function Home() {
   return (
     <main className="screen student-screen">
       <TopBar
-        left={<><span className="avatar">{home.student.avatar}</span><span className="name">{home.student.firstName}</span></>}
+        left={<><button className="btn btn-icon small switch-btn" aria-label="Switch player" onClick={() => nav('/who')}><span className="avatar" style={{ fontSize: 24 }}>{home.student.avatar}</span>⇄</button><span className="name">Hi {home.student.firstName}</span></>}
         right={home.leaderboardMode !== 'hidden' ? <button className="btn btn-icon small" aria-label="leaderboard" onClick={() => nav('/leaderboard')}>🏆</button> : null}
       />
       <section className="card stack">
@@ -62,7 +57,11 @@ export function Home() {
         </button>
       )}
       {offline && <p className="muted center" style={{ textAlign: 'center' }}>No internet. Showing saved info.</p>}
-      <button className="link" style={{ alignSelf: 'center' }} onClick={logout}>Not you? Switch</button>
+      {(st === 'completed' || home.streak > 0) && <InstallPrompt />}
+      <div className="row" style={{ justifyContent: 'center', flexWrap: 'wrap' }}>
+        <button className="link" onClick={() => nav('/welcome')}>How to play</button>
+        <button className="link" onClick={() => nav('/who')}>Not you?</button>
+      </div>
     </main>
   );
 }

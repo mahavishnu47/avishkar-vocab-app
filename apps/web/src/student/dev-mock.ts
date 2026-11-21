@@ -6,7 +6,7 @@
  */
 import type {
   AttemptsReq, AttemptsRes, SentenceEvaluation, SentenceReq, SentenceRes, SessionSummaryRes, StudentHomeRes, TodaySessionRes,
-  Word, WordScore, LeaderboardRes, FeedbackItem,
+  Word, WordScore, LeaderboardRes, FeedbackItem, JoinClassRes, JoinSchoolRes, StudentAuthRes,
 } from '@shabd/core';
 import { api, ApiRequestError, getToken } from '../shared/api.ts';
 
@@ -24,16 +24,23 @@ const WORDS: Word[] = [
   W(5, 'island', 'noun', 'land with water all around it', 'We took a boat to the island.', ['a very tall hill', 'a big forest'], ['is', 'land']),
 ];
 const STUDENTS = [
-  { id: 1, firstName: 'Riya', avatar: '🦁' }, { id: 2, firstName: 'Aarav', avatar: '🐯' }, { id: 3, firstName: 'Sai', avatar: '🐼' },
-  { id: 4, firstName: 'Meera', avatar: '🦊' },
+  { id: 1, firstName: 'Riya', avatar: '🦁', rollNo: 1 }, { id: 2, firstName: 'Aarav', avatar: '🐯', rollNo: 2 }, { id: 3, firstName: 'Sai', avatar: '🐼', rollNo: 3 },
+  { id: 4, firstName: 'Meera', avatar: '🦊', rollNo: 4 }, { id: 5, firstName: 'Riya', avatar: '🐰', rollNo: 7 }, { id: 6, firstName: 'Zoya', avatar: '🐸', rollNo: 8 },
+  { id: 7, firstName: 'Kabir', avatar: '🐵', rollNo: 9 }, { id: 8, firstName: 'Tara', avatar: '🦄', rollNo: 10 },
+];
+/** ?mock=1 class codes: DEMO5A and K7Q2MX are 5A; 5B (QP4R9T) has no students; school code DEMSCH. PIN is 1234 for everyone. */
+const CLASSES = [
+  { name: '5A', classCode: 'K7Q2MX', standard: 5, division: 'A' }, { name: '5B', classCode: 'QP4R9T', standard: 5, division: 'B' },
+  { name: '6A', classCode: 'M3X8WN', standard: 6, division: 'A' },
 ];
 
 interface Db {
+  tokens: Record<string, number>; firstSeen: Record<string, 1>; fails: Record<string, number>;
   token?: string; sid: number; started: boolean; completed: string[]; scores: WordScore[]; done: boolean; xp: number; streak: number;
   seen: Record<string, 1>; counts: { spell: number; meaning: number; sentence: number }; subs: Record<string, number[]>;
   spellOk: Record<string, number | null>; meaningOk: Record<string, number | null>; best: Record<string, number>; summary?: SessionSummaryRes;
 }
-const fresh = (): Db => ({ sid: 101, started: false, completed: [], scores: [], done: false, xp: 365, streak: 3, seen: {}, counts: { spell: 0, meaning: 0, sentence: 0 }, subs: {}, spellOk: {}, meaningOk: {}, best: {} });
+const fresh = (): Db => ({ tokens: {}, firstSeen: {}, fails: {}, sid: 101, started: false, completed: [], scores: [], done: false, xp: 365, streak: 3, seen: {}, counts: { spell: 0, meaning: 0, sentence: 0 }, subs: {}, spellOk: {}, meaningOk: {}, best: {} });
 function load(): Db { try { return { ...fresh(), ...JSON.parse(localStorage.getItem(KEY) ?? '{}') }; } catch { return fresh(); } }
 let db = load();
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch { /* ignore */ } };
@@ -43,7 +50,11 @@ const net = async () => {
   db = load();
 };
 const bad = (status: number, code: ApiRequestError['code'], msg: string) => new ApiRequestError(status, code, msg);
-const authed = () => { if (!db.token || getToken('student') !== db.token) throw bad(401, 'unauthorized', 'login'); };
+const authed = (token: string | null): number => {
+  const id = token ? db.tokens[token] : undefined;
+  if (!id) throw bad(401, 'unauthorized', 'login');
+  return id;
+};
 
 function level(xp: number) { let l = 0; while (xp >= 500 * ((l + 1) * (l + 2)) / 2) l++; const lo = 500 * (l * (l + 1)) / 2; const hi = 500 * ((l + 1) * (l + 2)) / 2; return { level: l, xpIntoLevel: xp - lo, xpForNextLevel: hi - lo }; }
 
@@ -66,34 +77,27 @@ function evaluate(text: string, w: Word): SentenceEvaluation {
   ]);
 }
 
-function install() {
-  Object.assign(api, {
-    async publicRoster(code: string) { await net(); if (code.toUpperCase() !== 'DEMO5A') throw bad(404, 'not_found', 'no class'); return { className: '5A', students: STUDENTS }; },
-    async studentLogin(b: { classCode: string; studentId: number; pin: string }) {
-      await net();
-      if (b.pin !== '1234') throw bad(401, 'unauthorized', 'wrong pin');
-      const s = STUDENTS.find((x) => x.id === b.studentId) ?? STUDENTS[0];
-      db.token = 'mock-' + Math.random().toString(16).slice(2); save();
-      return { token: db.token, className: '5A', student: { id: s.id, classId: 1, rollNo: s.id, firstName: s.firstName, avatar: s.avatar, active: true } };
-    },
-    async logout() { return undefined; },
+/** Student-scoped methods bound to a token source: the live client reads the 'student' slot, withToken(t) a fixed token. */
+function studentMethods(tok: () => string | null) {
+  return {
     async studentHome(): Promise<StudentHomeRes> {
-      await net(); authed();
+      await net(); const sid = authed(tok());
+      const me = STUDENTS.find((x) => x.id === sid) ?? STUDENTS[0];
       return {
-        student: { id: 1, classId: 1, rollNo: 1, firstName: 'Riya', avatar: '🦁', active: true }, className: '5A', leaderboardMode: 'individual',
+        student: { id: me.id, classId: 1, rollNo: me.rollNo, firstName: me.firstName, avatar: me.avatar, active: true }, className: '5A', leaderboardMode: 'individual',
         today: { date: DATE, dayIndex: 1, status: db.done ? 'completed' : db.started ? 'in_progress' : 'not_started', wordsDone: db.completed.length, sessionId: db.started ? db.sid : null },
         streak: db.streak, bestStreak: 5, xpTotal: db.xp, xpWeek: 120, level: level(db.xp),
       };
     },
     async startToday(): Promise<TodaySessionRes> {
-      await net(); authed(); db.started = true; save();
+      await net(); authed(tok()); db.started = true; save();
       return {
         session: { id: db.sid, date: DATE, dayIndex: 1, startedAt: new Date().toISOString(), completedAt: db.done ? new Date().toISOString() : null },
         words: WORDS, progress: { completedWordIds: db.completed, wordScores: db.scores },
       };
     },
     async postAttempts(_sid: number, b: AttemptsReq): Promise<AttemptsRes> {
-      await net(); authed();
+      await net(); authed(tok());
       const accepted: string[] = [];
       for (const a of b.spell ?? []) {
         accepted.push(a.clientId);
@@ -113,7 +117,7 @@ function install() {
       return { accepted, classifications: {} };
     },
     async postSentence(_sid: number, b: SentenceReq): Promise<SentenceRes> {
-      await net(); authed();
+      await net(); authed(tok());
       const w = WORDS.find((x) => x.id === b.wordId)!;
       const evaluation = evaluate(b.text, w);
       if (evaluation.gate !== 'ok') return { evaluation, counted: false, finalMarks: null };
@@ -126,7 +130,7 @@ function install() {
       return { evaluation, counted: true, finalMarks: db.best[b.wordId] ?? 0 };
     },
     async completeWord(_sid: number, wordId: string): Promise<WordScore> {
-      await net(); authed();
+      await net(); authed(tok());
       const ex = db.scores.find((s) => s.wordId === wordId);
       if (ex) return ex;
       const sp = Math.round(40 * ([1, 0.6, 0.3][(db.spellOk[wordId] ?? 4) - 1] ?? 0));
@@ -137,7 +141,7 @@ function install() {
       return s;
     },
     async completeSession(): Promise<SessionSummaryRes> {
-      await net(); authed();
+      await net(); authed(tok());
       if (db.summary) return db.summary;
       const wm = db.scores.reduce((a, s) => a + s.total, 0);
       const xp = { wordMarks: wm, completionBonus: 25, streakBonus: 20, perfectBonus: 0, total: wm + 45 };
@@ -147,10 +151,43 @@ function install() {
       return db.summary;
     },
     async studentLeaderboard(): Promise<LeaderboardRes> {
-      await net(); authed();
+      await net(); authed(tok());
       const entries = STUDENTS.map((s, i) => ({ rank: i + 1, studentId: s.id, firstName: s.firstName, avatar: s.avatar, xp: 900 - i * 150, isMe: s.id === 1 }));
       return { period: 'week', weekStart: '2026-11-16', mode: 'individual', entries, me: entries[0] };
     },
+    async logout() { return undefined; },
+  };
+}
+
+function install() {
+  const live = studentMethods(() => getToken('student'));
+  Object.assign(api, live, {
+    async joinClass(code: string): Promise<JoinClassRes> {
+      await net();
+      const c = code.toUpperCase() === 'DEMO5A' ? CLASSES[0] : CLASSES.find((x) => x.classCode === code.toUpperCase());
+      if (!c) throw bad(404, 'not_found', 'no class');
+      const students = c.classCode === 'K7Q2MX' ? [...STUDENTS].sort((a, b) => a.firstName.localeCompare(b.firstName)) : [];
+      return { schoolName: 'ZP School Kalwa', classRoom: { name: c.name, classCode: c.classCode }, students };
+    },
+    async joinSchool(code: string): Promise<JoinSchoolRes> {
+      await net();
+      if (code.toUpperCase() !== 'DEMSCH') throw bad(404, 'not_found', 'no school');
+      return { schoolName: 'ZP School Kalwa', classes: CLASSES };
+    },
+    async studentLogin(b: { classCode: string; studentId: number; pin: string }): Promise<StudentAuthRes> {
+      await net();
+      const s = STUDENTS.find((x) => x.id === b.studentId);
+      if (!s) throw bad(404, 'not_found', 'no student');
+      const k = String(s.id);
+      if ((db.fails[k] ?? 0) >= 5) throw bad(423, 'locked', 'locked');
+      if (b.pin !== '1234') { db.fails[k] = (db.fails[k] ?? 0) + 1; save(); throw bad(401, 'unauthorized', 'wrong pin'); }
+      db.fails[k] = 0;
+      const token = 'mock-' + s.id + '-' + Math.random().toString(16).slice(2);
+      db.tokens[token] = s.id;
+      const firstLogin = !db.firstSeen[k]; db.firstSeen[k] = 1; save();
+      return { token, className: '5A', schoolName: 'ZP School Kalwa', classCode: 'K7Q2MX', firstLogin, student: { id: s.id, classId: 1, rollNo: s.rollNo, firstName: s.firstName, avatar: s.avatar, active: true } };
+    },
+    withToken(token: string | null) { return { ...api, ...studentMethods(() => token) }; },
   });
 }
 
