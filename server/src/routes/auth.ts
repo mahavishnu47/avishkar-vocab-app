@@ -11,7 +11,7 @@ import { getDb, isUniqueViolation, type Queryable, type Row } from '../db/db.ts'
 import { HttpError, badRequest, forbidden, notFound, unauthorized, type H } from '../http.ts';
 import { classOf, studentOf, teacherOf } from '../mappers.ts';
 import { audit } from '../services/audit.ts';
-import { DAY_MS, consumeInvite, createInvite, findUsableInvite, liveTeacherInvite, notValid } from '../services/invites.ts';
+import { DAY_MS, DEFAULT_TEACHER_INVITE_USES, consumeInvite, createInvite, findUsableInvite, liveTeacherInvite, notValid } from '../services/invites.ts';
 import { checkLimit, clientKey, hashExtra, hit, recordHit } from '../services/rateLimit.ts';
 import { findJoinableClass } from '../services/join.ts';
 import { asObject, reqInt, reqString } from '../validate.ts';
@@ -97,7 +97,7 @@ const schoolSetup: H<{}, TeacherAuthRes, SchoolSetupReq> = async (req, res) => {
       // The school's first teacher invite, ready to share. Not made again when a live one already exists (second admin).
       const schoolId = inv.school_id as number;
       if (!(await liveTeacherInvite(q, schoolId))) {
-        const t = await createInvite(q, { kind: 'teacher', schoolId, createdByTeacherId: teacherId, maxUses: null, ttlMs: 30 * DAY_MS });
+        const t = await createInvite(q, { kind: 'teacher', schoolId, createdByTeacherId: teacherId, maxUses: DEFAULT_TEACHER_INVITE_USES, ttlMs: 30 * DAY_MS });
         await audit(q, { schoolId, actorType: 'system', action: 'invite.create', targetType: 'invite', targetId: t.id as number, meta: { kind: 'teacher' } });
       }
     }),

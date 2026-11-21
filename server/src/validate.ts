@@ -13,7 +13,8 @@ export function reqString(o: Record<string, unknown>, field: string, min = 1, ma
   const v = o[field];
   if (typeof v !== 'string') throw badRequest(`${field} must be a string`);
   const t = v.trim();
-  if (t.length < min || t.length > max) throw badRequest(`${field} must be ${min}-${max} characters`);
+  const len = [...t].length; // count what people see: an emoji is one character, not two (Pr-1)
+  if (len < min || len > max) throw badRequest(`${field} must be ${min}-${max} characters`);
   return t;
 }
 
@@ -53,10 +54,13 @@ export function reqIsoTs(o: Record<string, unknown>, field: string): string {
   return v;
 }
 
+/** Largest id Postgres integer columns can hold; anything bigger cannot exist (and used to crash the query, S-2). */
+export const MAX_ID = 2_147_483_647;
+
 /** Path id param -> positive integer; anything else is a 404 (nothing to find). */
 export function idParam(v: string | undefined): number {
   const n = Number(v);
-  if (!v || !Number.isInteger(n) || n <= 0) throw notFound();
+  if (!v || !Number.isInteger(n) || n <= 0 || n > MAX_ID) throw notFound();
   return n;
 }
 

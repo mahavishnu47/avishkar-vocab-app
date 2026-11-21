@@ -73,7 +73,8 @@ export function AddStudents() {
         <button className="btn btn-primary btn-block" disabled={!canSave} onClick={save}>
           {busy ? 'Saving…' : parsed.rows.length === 0 ? 'Save students' : `Save ${parsed.rows.length} student${parsed.rows.length === 1 ? '' : 's'}`}
         </button>
-        {parsed.rows.length > 0 && !consent && <p className="muted t-hint">Tick the consent box to save.</p>}
+        {parsed.errors.length > 0 && <p className="t-error t-hint" role="status">Fix the red lines above (or delete them) to save.</p>}
+        {parsed.rows.length > 0 && parsed.errors.length === 0 && !consent && <p className="muted t-hint">Tick the consent box to save.</p>}
       </section>
     </Page>
   );

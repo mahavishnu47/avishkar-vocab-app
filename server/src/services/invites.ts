@@ -71,7 +71,10 @@ export async function createInvite(q: Queryable, n: NewInvite): Promise<Row> {
   throw new HttpError(500, 'internal', 'Could not generate a code');
 }
 
-export const notValid = (msg = INVALID_CODE_MSG) => new HttpError(404, 'not_found', msg);
+/** How many teachers one invite link can add before the principal has to make a new one. */
+export const DEFAULT_TEACHER_INVITE_USES = 30;
+
+export const notValid =(msg = INVALID_CODE_MSG) => new HttpError(404, 'not_found', msg);
 
 /**
  * Look up a usable invite by typed code: right alphabet, not revoked, not expired, not used up, school active.

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { normalizeCode } from '@shabd/core';
 import { api, ApiRequestError } from '../shared/api.ts';
 import { ScreenHead } from './common.tsx';
@@ -7,6 +7,7 @@ import { ScreenHead } from './common.tsx';
 /** /login - fallback with no link: type the class code from the card (field id #cc), then the same name, PIN, welcome steps. */
 export function Login() {
   const nav = useNavigate();
+  const welcomeBack = (useLocation().state as { welcomeBack?: boolean } | null)?.welcomeBack === true;
   const [code, setCode] = useState('');
   const [err, setErr] = useState('');
   const [busy, setBusy] = useState(false);
@@ -29,7 +30,8 @@ export function Login() {
     <main className="screen center student-screen">
       <ScreenHead onBack={() => nav('/')} say="Type your class code" />
       <div className="mitra-bird" style={{ fontSize: 72 }}>🦜</div>
-      <h1 className="title">Type your class code</h1>
+      <h1 className="title">{welcomeBack ? 'Welcome back! 🎉' : 'Type your class code'}</h1>
+      {welcomeBack && <p className="muted">Your phone forgot you. Type your class code again, then your PIN.</p>}
       <form className="stack" style={{ width: '100%' }} onSubmit={(e) => { e.preventDefault(); void next(); }}>
         <label htmlFor="cc" className="muted">Class code (6 letters, from your card)</label>
         <input id="cc" className="code-input" value={code} maxLength={6} autoCapitalize="characters" autoComplete="off"

@@ -6,7 +6,7 @@ import {
   type SentenceScoreInput, type SessionSummaryRes, type SpellingHint, type StreakState, type WordScore, type XpBreakdown,
 } from '@shabd/core';
 import type { Queryable } from '../db/db.ts';
-import { badRequest, notFound } from '../http.ts';
+import { HttpError, badRequest, notFound } from '../http.ts';
 
 type Row = Record<string, unknown>;
 
@@ -125,8 +125,11 @@ export async function completeSession(db: Queryable, sessionId: number): Promise
 
     const studentId = session.student_id as number;
     const date = session.date as string;
+    // A day can only be finished once every word is finished. Opening the summary early (bookmark, Back, typed link)
+    // used to score the unplayed words 0, add a streak day and lock the child out of playing (K-1).
     const have = new Set((await storedWordScores(q, sessionId)).map((s) => s.wordId));
-    for (const id of sessionWordIds(session)) if (!have.has(id)) await completeWord(q, sessionId, id);
+    const missing = sessionWordIds(session).filter((id) => !have.has(id));
+    if (missing.length > 0) throw new HttpError(409, 'conflict', 'Finish all 5 words first');
     const wordScores = await storedWordScores(q, sessionId);
     const totalMarks = wordScores.reduce((n, s) => n + s.total, 0);
 

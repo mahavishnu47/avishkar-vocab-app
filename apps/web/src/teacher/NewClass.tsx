@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useRef, useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { className } from '@shabd/core';
 import { api, ApiRequestError } from '../shared/api.ts';
@@ -25,15 +25,20 @@ export function NewClass() {
   const name = className(standard, div);
 
   const pickDivision = (d: string) => { setOther(false); setDivision(division === d ? '' : d); };
+  // State updates are not instant, so four fast taps all got through and made four classes: a ref blocks repeats at once (T-1).
+  const sending = useRef(false);
   const submit = async (e: FormEvent) => {
     e.preventDefault();
+    if (sending.current) return;
     if (!valid) { setError('Use 1 to 3 letters or numbers for the division.'); return; }
+    sending.current = true;
     setError(null); setBusy(true);
     try {
       const c = await api.createClass({ standard, division: div, startDate });
       navigate(`/teacher/classes/${c.id}/students/add`);
     } catch (err) {
       setError(err instanceof ApiRequestError && err.status === 409 ? `Class ${name} already exists in your school. Ask your school admin.` : errMsg(err));
+      sending.current = false;
     } finally { setBusy(false); }
   };
 

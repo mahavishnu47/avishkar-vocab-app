@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { auth, makeClass, registerTeacher, setup, studentLogin, type Ctx } from './helpers.ts';
+import { auth, makeClass, registerTeacher, setup, studentLogin, type Ctx, finishWords } from './helpers.ts';
 
 let ctx: Ctx;
 let teacher: string;
@@ -46,6 +46,7 @@ describe('CSV export', () => {
     const text = 'The kitchen, said "Aai", is big.';
     await request(ctx.app).post(`/api/student/sessions/${sid}/sentences`).set(auth(tok))
       .send({ clientId: uuid(), wordId: w.id, submissionNo: 1, text, starterHintUsed: false, msElapsed: 5, clientTs: ts() });
+    await finishWords(ctx.app, tok);
     await request(ctx.app).post(`/api/student/sessions/${sid}/complete`).set(auth(tok)).send({});
 
     const get = (type: string, id = cls.id) => request(ctx.app).get(`/api/classes/${id}/export.csv?type=${type}`).set(auth(teacher)).buffer(true).parse((res, cb) => {

@@ -332,4 +332,16 @@ CREATE INDEX words_school_idx        ON words(school_id) WHERE school_id IS NOT 
 CREATE INDEX sessions_student_date_completed_idx ON sessions(class_id, date) WHERE completed_at IS NOT NULL;
 `,
   },
+  {
+    version: 3,
+    name: 'one active class per school slot',
+    sql: /* sql */ `
+-- Double-clicking "Create class" made identical classes (the duplicate check ran before the insert, so two requests both passed).
+-- First archive any existing duplicates (keep the oldest; nothing is deleted, an admin can restore one), then enforce it in the database.
+UPDATE classes SET archived = 1
+ WHERE archived = 0 AND school_id IS NOT NULL
+   AND id NOT IN (SELECT min(id) FROM classes WHERE archived = 0 AND school_id IS NOT NULL GROUP BY school_id, standard, division, academic_year);
+CREATE UNIQUE INDEX classes_active_slot_uq ON classes (school_id, standard, division, academic_year) WHERE archived = 0;
+`,
+  },
 ];

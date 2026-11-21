@@ -158,7 +158,7 @@ describe('school setup link', () => {
 
     const school = await get('/api/school', r.body.token);
     expect(school.body.teacherInvite.code).toMatch(CODE_RE);
-    expect(school.body.teacherInvite).toMatchObject({ kind: 'teacher', maxUses: null, useCount: 0 });
+    expect(school.body.teacherInvite).toMatchObject({ kind: 'teacher', maxUses: 30, useCount: 0 });
     expect(school.body.checklist).toEqual({ teacherLinkShared: false, firstTeacherJoined: false, firstClassCreated: false, firstStudentPlayed: false, done: false });
 
     const audit = (await ctx.db.all<{ action: string }>('SELECT action FROM audit_log WHERE school_id = ? ORDER BY id', [c.school.id])).map((a) => a.action);

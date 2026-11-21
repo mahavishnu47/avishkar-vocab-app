@@ -24,7 +24,9 @@ studentRouter.use('/student', requireStudent);
 
 type Row = Record<string, unknown>;
 const HINTS: SpellingHint[] = ['first_letter', 'letter_tiles'];
-const sid = (req: { auth?: { role: string; studentId?: number } }) => req.auth!.studentId!;
+const SESSION_DONE = () => new HttpError(409, 'conflict', 'This session is already finished');
+const sessionDone = () => new HttpError(409, 'conflict', 'This session is already finished');
+const sid = (req:{ auth?: { role: string; studentId?: number } }) => req.auth!.studentId!;
 
 /** Load a session owned by the student (404 otherwise). */
 async function ownSession(db: Queryable, sessionId: number, studentId: number): Promise<Row> {
@@ -146,6 +148,8 @@ const attempts: H<{ sessionId: string }, AttemptsRes, AttemptsReq> = async (req,
       pending.push({ clientId, cls: classificationFromRow(existing) });
       continue;
     }
+    if (session.completed_at) throw SESSION_DONE();
+    if (session.completed_at) throw sessionDone();
     const cls = classifySpellingError(word.word, o.input);
     pending.push({
       clientId, cls,
@@ -169,6 +173,8 @@ const attempts: H<{ sessionId: string }, AttemptsRes, AttemptsReq> = async (req,
       pending.push({ clientId });
       continue;
     }
+    if (session.completed_at) throw SESSION_DONE();
+    if (session.completed_at) throw sessionDone();
     const options = [word.meaning, ...word.distractorMeanings];
     if (!options.includes(o.chosen)) throw badRequest('chosen is not one of the options for this word');
     const primary = attemptNo === 2 ? (isCorrect ? 'MN_WRONG_1' : 'MN_WRONG_2') : null;
@@ -231,6 +237,7 @@ const sentence: H<{ sessionId: string }, SentenceRes, SentenceReq> = async (req,
   };
   const prior = await stored(db);
   if (prior) { res.json(prior); return; }
+  if (session.completed_at) throw sessionDone();
 
   const evaluation = await evaluateSentence(text, word);
   const counted = evaluation.gate === 'ok';
@@ -268,6 +275,14 @@ const sentence: H<{ sessionId: string }, SentenceRes, SentenceReq> = async (req,
 const completeWordRoute: H<{ sessionId: string; wordId: string }, CompleteWordRes> = async (req, res) => {
   const db = getDb();
   const session = await ownSession(db, idParam(req.params.sessionId), sid(req));
+  if (session.completed_at) {
+    // Finished sessions are frozen: a replay just returns the stored score.
+    if (!sessionWordIds(session).includes(req.params.wordId)) throw badRequest('That word is not part of this session');
+    const stored = (await storedWordScores(db, session.id as number)).find((w) => w.wordId === req.params.wordId);
+    if (!stored) throw sessionDone();
+    res.json(stored);
+    return;
+  }
   res.json(await completeWord(db, session.id as number, req.params.wordId));
 };
 

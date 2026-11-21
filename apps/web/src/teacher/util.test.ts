@@ -5,6 +5,11 @@ import { codeFromLabel, REMEDIES } from './remedies.ts';
 
 describe('parseRosterText', () => {
   const r = (t: string, ex: number[] = []) => parseRosterText(t, ex);
+  it('refuses a pasted sentence instead of making a student called "a"', () => {
+    const p = r('1, Meera\n2, a very very very long first name that goes on and on and on\n3, Om Prakash Kulkarni');
+    expect(p.rows.map((x) => x.firstName)).toEqual(['Meera', 'Om']);
+    expect(p.errors).toEqual(['Line 2: this looks like a sentence, not a name.']);
+  });
   it('parses comma, tab, space and dot separated lines incl. Devanagari', () => {
     const p = r('1, Riya\n2\tArjun\n3 सानिका\n4. Kabir\n\n');
     expect(p.errors).toEqual([]);

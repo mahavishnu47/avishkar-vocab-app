@@ -92,3 +92,10 @@ export async function studentLogin(app: Express, cls: ClassRoom, st: StudentWith
   if (r.status !== 200) throw new Error(`student login failed: ${JSON.stringify(r.body)}`);
   return r.body.token as string;
 }
+
+/** Mark every word of today's session finished (what the app does before it asks to finish the day). Returns the session id. */
+export async function finishWords(app: Express, token: string): Promise<number> {
+  const t = (await request(app).post('/api/student/sessions/today').set(auth(token)).send({})).body;
+  for (const w of t.words) await request(app).post(`/api/student/sessions/${t.session.id}/words/${w.id}/complete`).set(auth(token)).send({});
+  return t.session.id as number;
+}

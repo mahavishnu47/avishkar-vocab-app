@@ -45,7 +45,7 @@ export function PickName({ students, onPick }: { students: JoinStudent[]; onPick
           return (
             <button key={s.id} id={first ? `L-${l}` : undefined} className="btn btn-tall name-tile" onClick={() => onPick(s)}>
               <span className="avatar">{s.avatar}</span>
-              <span className="name">{names.get(s.id)}</span>
+              <span className="name name-wrap">{names.get(s.id)}</span>
               {getProfile(s.id) && <span className="chip pos small-chip" aria-label="on this phone">✓</span>}
             </button>
           );

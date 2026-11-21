@@ -81,8 +81,11 @@ async function send(it: OutboxItem, token: string): Promise<void> {
   }
 }
 
-function keepOnError(e: unknown): boolean {
-  if (!(e instanceof ApiRequestError)) return true;
+/** Unexpected (non-API) failures, e.g. an unreadable response, are retried a few times then dropped so they cannot block the queue. */
+const MAX_UNEXPECTED_TRIES = 5;
+
+function keepOnError(e: unknown, tries: number): boolean {
+  if (!(e instanceof ApiRequestError)) return tries + 1 < MAX_UNEXPECTED_TRIES;
   if (e.isNetwork || e.status >= 500) return true;
   return e.status === 401 || e.status === 408 || e.status === 429;
 }
@@ -107,7 +110,7 @@ export function flush(): Promise<void> {
         save();
       } catch (e) {
         if (e instanceof ApiRequestError && e.status === 401) markNeedsPin(it.studentId);
-        if (keepOnError(e)) {
+        if (keepOnError(e, it.tries)) {
           it.tries += 1;
           save();
           blocked.add(it.studentId);

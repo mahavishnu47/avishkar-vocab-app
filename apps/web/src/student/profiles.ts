@@ -5,6 +5,7 @@
  */
 import type { StudentAuthRes } from '@shabd/core';
 import { getToken, setToken } from '../shared/api.ts';
+import { markStudentDevice, requestPersistentStorage } from '../shared/persist.ts';
 
 export interface Profile {
   studentId: number;
@@ -27,10 +28,18 @@ const LAST_LINK = 'shabd.lastLink';
 function rd(k: string): string | null { try { return localStorage.getItem(k); } catch { return null; } }
 function wr(k: string, v: string | null): void { try { v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch { /* ignore */ } }
 
+/** Saved data can be damaged (low storage, half-written save): only well-formed profiles are used (K-2). */
+export function isProfile(x: unknown): x is Profile {
+  if (!x || typeof x !== 'object') return false;
+  const p = x as Record<string, unknown>;
+  return Number.isInteger(p.studentId) && typeof p.firstName === 'string' && typeof p.avatar === 'string'
+    && typeof p.classCode === 'string' && (p.token === null || typeof p.token === 'string');
+}
+
 export function getProfiles(): Profile[] {
   try {
     const p = JSON.parse(rd(KEY) ?? '[]');
-    return Array.isArray(p) ? (p as Profile[]) : [];
+    return Array.isArray(p) ? p.filter(isProfile).map((x) => ({ ...x, className: x.className ?? '', schoolName: x.schoolName ?? '', lastUsedAt: x.lastUsedAt ?? 0 })) : [];
   } catch { return []; }
 }
 function putProfiles(list: Profile[]): void { wr(KEY, JSON.stringify(list)); }
@@ -89,6 +98,8 @@ export function saveLogin(r: StudentAuthRes): Profile {
   putProfiles(list);
   wr(ACTIVE_KEY, String(p.studentId));
   setToken('student', p.token);
+  markStudentDevice();
+  void requestPersistentStorage(); // so the phone does not clear the profile when memory is low (P-1)
   return p;
 }
 

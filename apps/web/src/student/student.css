@@ -98,3 +98,8 @@
 .welcome-line { font-size: var(--fs-lg); font-weight: 700; margin: 0; }
 @keyframes pop-in { from { transform: scale(0.95); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (max-width: 340px) { .keypad .btn { font-size: 26px; } .grid2 { gap: var(--sp-1); } .names .name-tile { padding: 0 var(--sp-2); } }
+
+/* Primary actions stay on screen while a long feedback list scrolls (B-06). */
+.sticky-actions { position: sticky; bottom: 0; display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-2) 0 var(--sp-3); background: var(--c-bg); z-index: 5; }
+/* Name tiles: show the whole name (wrap at spaces) so similar names stay distinguishable (B-14). */
+.name-wrap { white-space: normal; overflow-wrap: break-word; text-align: left; line-height: 1.15; text-overflow: clip; font-size: clamp(15px, 4.8vw, 20px); min-width: 0; }

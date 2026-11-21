@@ -3,6 +3,7 @@
  */
 import request from 'supertest';
 import { beforeEach, describe, expect, it } from 'vitest';
+import { BUCKETS } from '../src/services/rateLimit.ts';
 import { adminAuth, makeClass, makeSchool, registerTeacher, setup, type Ctx } from './helpers.ts';
 
 let ctx: Ctx;
@@ -39,6 +40,9 @@ describe('rate limits', () => {
   });
 
   it('pin: only wrong PINs count; a busy IP is stopped without locking other children', async () => {
+    const realLimit = BUCKETS.pin.limit;
+    (BUCKETS.pin as { limit: number }).limit = 60; // the real limit is 600; shrink it so the test stays small
+    try {
     const t = await registerTeacher(ctx.app);
     const names = Array.from({ length: 16 }, (_, i) => `Kid${i + 1}`);
     const { cls, students } = await makeClass(ctx.app, t, names);
@@ -54,12 +58,13 @@ describe('rate limits', () => {
     }
     const blocked = await login(students[0]!, students[0]!.pin, 5); // even the right PIN is refused: the IP is over the limit
     expect(blocked.status).toBe(429);
-    expect(blocked.body.error).toEqual({ code: 'rate_limited', message: 'Too many tries on this phone. Wait 10 minutes 🙂' });
+    expect(blocked.body.error).toEqual({ code: 'rate_limited', message: 'Too many tries on this Wi-Fi. Wait a few minutes 🙂' });
     // no child was locked by the IP limit
     expect((await ctx.db.get<{ n: number }>('SELECT count(*) AS n FROM students WHERE locked_until IS NOT NULL'))!.n).toBe(0);
     // another IP (another phone) logs in as the same child immediately
     expect((await login(students[0]!, students[0]!.pin, 6)).status).toBe(200);
     expect((await login(students[1]!, students[1]!.pin, 6)).status).toBe(200);
+    } finally { (BUCKETS.pin as { limit: number }).limit = realLimit; }
   });
 
   it('pin: the per-student 5-strike lock still works with limits on', async () => {

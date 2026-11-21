@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { levelFor, type AttemptsRes, type SentenceRes, type SessionSummaryRes, type TodaySessionRes, type Word } from '@shabd/core';
-import { auth, makeClass, registerTeacher, setup, studentLogin, type Ctx } from './helpers.ts';
+import { auth, finishWords, makeClass, registerTeacher, setup, studentLogin, type Ctx } from './helpers.ts';
 
 let ctx: Ctx;
 let teacher: string;
@@ -187,12 +187,66 @@ describe('full student flow', () => {
     expect(await count('word_scores')).toBe(1);
     expect(c1.body).toMatchObject({ spelling: 0, meaning: 20 }); // wrong spelling only once; meaning right first time
 
+    await finishWords(ctx.app, tok);
     const s1 = await request(ctx.app).post(`/api/student/sessions/${sid}/complete`).set(auth(tok)).send({});
     const s2 = await request(ctx.app).post(`/api/student/sessions/${sid}/complete`).set(auth(tok)).send({});
     expect(s2.body).toEqual(s1.body);
     expect(s1.body.wordScores).toHaveLength(5); // unfinished words are scored from whatever is stored (0)
     expect(s1.body.xp.total).toBe(s2.body.xp.total);
     expect(await count('xp_ledger')).toBe(4);
+  });
+
+  it('refuses to finish a day while words are still to do, and awards nothing (K-1)', async () => {
+    const { cls, students } = await makeClass(ctx.app, teacher, ['Riya']);
+    const riya = await studentLogin(ctx.app, cls, students[0]!);
+    const today = await start(riya);
+    const sid = today.session.id;
+    await playWord(riya, sid, today.words[0]!); // only 1 of 5 words
+    const early = await request(ctx.app).post(`/api/student/sessions/${sid}/complete`).set(auth(riya)).send({});
+    expect(early.status).toBe(409);
+    expect(await count('xp_ledger')).toBe(0);
+    const home = await request(ctx.app).get('/api/student/home').set(auth(riya));
+    expect(home.body.today.status).toBe('in_progress');
+    expect(home.body.streak).toBe(0);
+    expect((await start(riya)).session.completedAt).toBeNull(); // the child can keep playing
+    await finishWords(ctx.app, riya);
+    expect((await request(ctx.app).post(`/api/student/sessions/${sid}/complete`).set(auth(riya)).send({})).status).toBe(200);
+  });
+
+  it('freezes a finished session: no new attempts, sentences or re-scoring (B-01)', async () => {
+    const { cls, students } = await makeClass(ctx.app, teacher, ['Riya']);
+    const riya = await studentLogin(ctx.app, cls, students[0]!);
+    const today = await start(riya);
+    const sid = today.session.id;
+    const base = `/api/student/sessions/${sid}`;
+    const first = await playWord(riya, sid, today.words[0]!);
+    await finishWords(ctx.app, riya);
+    const done = await request(ctx.app).post(`${base}/complete`).set(auth(riya)).send({});
+    expect(done.status).toBe(200);
+    const before = done.body as SessionSummaryRes;
+
+    const w = today.words[0]!;
+    const late = await request(ctx.app).post(`${base}/attempts`).set(auth(riya)).send({
+      spell: [{ clientId: uuid(), wordId: w.id, attemptNo: 3, input: 'zzz', hints: ['first_letter', 'letter_tiles'], audioPlays: 0, msElapsed: 1, clientTs: ts() }],
+    });
+    expect(late.status).toBe(409);
+    const lateSentence = await request(ctx.app).post(`${base}/sentences`).set(auth(riya)).send({
+      clientId: uuid(), wordId: w.id, submissionNo: 2, text: `The ${w.word} is nice and I like it.`, starterHintUsed: false, msElapsed: 1, clientTs: ts(),
+    });
+    expect(lateSentence.status).toBe(409);
+
+    // a replay of an already stored item and of word completion stays harmless
+    const replay = await request(ctx.app).post(`${base}/attempts`).set(auth(riya)).send({
+      spell: [{ clientId: first.ids.s1, wordId: w.id, attemptNo: 1, input: w.word.slice(0, -1), hints: [], audioPlays: 1, msElapsed: 5000, clientTs: ts() }],
+    });
+    expect(replay.status).toBe(200);
+    const again = await request(ctx.app).post(`${base}/words/${w.id}/complete`).set(auth(riya)).send({});
+    expect(again.status).toBe(200);
+    expect(again.body.total).toBe(first.score.total);
+
+    const after = await request(ctx.app).post(`${base}/complete`).set(auth(riya)).send({});
+    expect(after.body).toEqual(before);
+    expect((after.body as SessionSummaryRes).wordScores.reduce((n, s) => n + s.total, 0)).toBe((after.body as SessionSummaryRes).totalMarks);
   });
 
   it('limits counted sentences to 2, applies the 0.8 multiplier, and does not count gated ones', async () => {
@@ -271,6 +325,7 @@ describe('full student flow', () => {
 
     const finish = async () => {
       const t = await start(tok);
+      await finishWords(ctx.app, tok);
       return request(ctx.app).post(`/api/student/sessions/${t.session.id}/complete`).set(auth(tok)).send({});
     };
     expect((await finish()).body.streak.current).toBe(1);
@@ -294,6 +349,7 @@ describe('full student flow', () => {
     const today = await start(tok);
     const sid = today.session.id;
     for (const w of today.words.slice(0, 2)) await playWord(tok, sid, w);
+    await finishWords(ctx.app, tok);
     const results = await Promise.all(
       [1, 2, 3].map(() => request(ctx.app).post(`/api/student/sessions/${sid}/complete`).set(auth(tok)).send({})),
     );

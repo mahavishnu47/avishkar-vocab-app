@@ -82,7 +82,7 @@ describe('migrate', () => {
   it('is idempotent and records versions', async () => {
     expect(await migrate(db)).toEqual([]);
     const v = await db.all<{ version: number }>('SELECT version FROM schema_migrations ORDER BY version');
-    expect(v.map((r) => r.version)).toEqual([1, 2]);
+    expect(v.map((r) => r.version)).toEqual([1, 2, 3]);
   });
   it('serialises concurrent runs on a fresh database', async () => {
     const name = `shabd_mig_${process.pid}`;
@@ -94,7 +94,7 @@ describe('migrate', () => {
     const a = createDb(u.toString(), { max: 2 });
     const b = createDb(u.toString(), { max: 2 });
     const [ra, rb] = await Promise.all([migrate(a), migrate(b)]);
-    expect([ra.length, rb.length].sort()).toEqual([0, 2]);
+    expect([ra.length, rb.length].sort()).toEqual([0, 3]);
     await a.end();
     await b.end();
     await admin.exec(`DROP DATABASE ${name} WITH (FORCE)`);
@@ -195,7 +195,7 @@ describe('migration v2 backfill (v1 database with data)', () => {
       await d.run("INSERT INTO auth_tokens (token, role, student_id, expires_at, created_at) VALUES ('tok1','student',1,'2099-01-01','2026-06-02T00:00:00.000Z'), ('tok2','student',1,'2099-01-01','2026-06-09T00:00:00.000Z')");
       await d.run("INSERT INTO words (id, day_index, word, part_of_speech, difficulty, meaning, example_sentence, distractors_json, source, created_by) VALUES ('t-1', NULL, 'apple', 'noun', 1, 'm', 'e', '[]', 'teacher', 2)");
 
-      expect((await migrate(d)).length).toBe(1);
+      expect((await migrate(d)).length).toBe(MIGRATIONS.length - 1); // every migration after v1
 
       const schools = await d.all<{ id: number; name: string }>('SELECT id, name FROM schools');
       expect(schools).toHaveLength(1);

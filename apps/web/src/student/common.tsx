@@ -21,7 +21,9 @@ export function storedStudent(): Student | null {
 /** Home cache is per child: shabd.home.<studentId>. */
 export function storedHome(): StudentHomeRes | null {
   const id = getActiveId();
-  return id === null ? null : lsJson<StudentHomeRes>(homeKey(id));
+  const h = id === null ? null : lsJson<StudentHomeRes>(homeKey(id));
+  // a damaged cache must read as "no cache", not crash the home screen (K-2)
+  return h && typeof h === 'object' && h.student && typeof h.student === 'object' && h.today && h.level ? h : null;
 }
 export function saveHome(h: StudentHomeRes): void {
   const id = getActiveId();

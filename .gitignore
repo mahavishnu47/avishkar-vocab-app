@@ -8,3 +8,5 @@ coverage/
 .vite/
 .DS_Store
 server/dist/
+.vercel
+.env*

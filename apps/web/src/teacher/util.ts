@@ -56,6 +56,8 @@ export function parseRosterText(text: string, existingRolls: number[] = []): Par
     if (!cell) { errors.push(`Line ${lineNo}: add a name after the number.`); return; }
     if (!/\p{L}/u.test(cell)) { errors.push(`Line ${lineNo}: "${cell.slice(0, 20)}" does not look like a name.`); return; }
     const words = cell.split(/\s+/).filter(Boolean);
+    // a whole sentence is not a name (a pasted note once became a student called "a")
+    if (words.length > 5) { errors.push(`Line ${lineNo}: this looks like a sentence, not a name.`); return; }
     if (words.length > 1) sawFullName = true;
     const name = words[0].replace(/[.,]+$/, '');
     if (name.length > MAX_NAME_LEN) { errors.push(`Line ${lineNo}: the name is too long.`); return; }

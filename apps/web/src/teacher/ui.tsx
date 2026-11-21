@@ -63,6 +63,17 @@ export function Page({ classId, title, children, loading, error, className }: {
     api.me('staff').then((m) => { if (live) setIsAdmin(m.role === 'teacher' && m.teacher.role === 'school_admin'); }, () => { /* the guard handles auth */ });
     return () => { live = false; };
   }, []);
+  // A typed/old link like /teacher/classes/abc/roster used to show "NaNNaN" in the header and a bare "Not found" (T-4).
+  if (classId !== undefined && !Number.isInteger(classId)) {
+    return (
+      <main className="teacher screen t-page">
+        <nav className="t-nav no-print" aria-label="Teacher"><Link to="/teacher" className="t-brand">🦜 Shabd Mitra</Link></nav>
+        <h1 className="title t-title">We can't find that class</h1>
+        <p className="muted">The link may be old or mistyped.</p>
+        <Link className="btn btn-primary" to="/teacher">Go to my classes</Link>
+      </main>
+    );
+  }
   return (
     <main className={`teacher screen t-page ${className ?? ''}`}>
       <nav className="t-nav no-print" aria-label="Teacher">

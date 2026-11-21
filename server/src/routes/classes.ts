@@ -65,6 +65,13 @@ const teacherOverview: H<{}, TeacherOverviewRes> = async (req, res) => {
   });
 };
 
+/** A class cannot start before 2020 or more than a year from now (1800-01-01 and 9999-12-31 used to be accepted, T-2). */
+function classStartDate(d: string): string {
+  const max = new Date(Date.now() + 366 * 86_400_000).toISOString().slice(0, 10);
+  if (d < '2020-01-01' || d > max) throw badRequest('startDate must be between 2020-01-01 and a year from today');
+  return d;
+}
+
 const createClass: H<{}, ClassRoom, CreateClassReq> = async (req, res) => {
   const a = staffAuth(req);
   const b = asObject(req.body);
@@ -82,7 +89,7 @@ const createClass: H<{}, ClassRoom, CreateClassReq> = async (req, res) => {
     division = ok ? m![2]!.toUpperCase() : '';
   }
   name ??= makeClassName(standard, division);
-  const startDate = optDate(b.startDate, 'startDate') ?? today();
+  const startDate = classStartDate(optDate(b.startDate, 'startDate') ?? today());
   const year = academicYearFor(startDate);
   const db = getDb();
   await assertClassSlotFree(db, a.schoolId, standard, division, year);
@@ -99,6 +106,10 @@ const createClass: H<{}, ClassRoom, CreateClassReq> = async (req, res) => {
       return;
     } catch (e) {
       if (!isUniqueViolation(e)) throw e;
+      // two simultaneous "Create class" requests: the database index decides, the loser gets a normal 409 (T-1)
+      if ((e as { constraint?: string }).constraint === 'classes_active_slot_uq') {
+        throw new HttpError(409, 'conflict', `Class ${standard}${division} already exists in your school. Ask your school admin.`);
+      }
     }
   }
   throw new HttpError(500, 'internal', 'Could not generate a class code');
@@ -110,7 +121,7 @@ const updateClass: H<{ classId: string }, ClassRoom, UpdateClassReq> = async (re
   const cur = await assertCanAccessClass(a, classId);
   const b = asObject(req.body);
   const name = optString(b, 'name', 1, 40);
-  const startDate = b.startDate === undefined ? undefined : reqDate(b.startDate, 'startDate');
+  const startDate = b.startDate === undefined ? undefined : classStartDate(reqDate(b.startDate, 'startDate'));
   const mode = b.leaderboardMode;
   if (mode !== undefined && mode !== 'individual' && mode !== 'hidden') throw badRequest("leaderboardMode must be 'individual' or 'hidden'");
   for (const f of ['joinEnabled', 'archived'] as const) {

@@ -2,15 +2,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import type { SessionSummaryRes, StudentHomeRes, TodaySessionRes, WordScore } from '@shabd/core';
 import { starsFor } from '@shabd/core';
-import { api, ApiRequestError } from '../shared/api.ts';
-import { enqueue } from '../shared/outbox.ts';
+import { api, ApiRequestError, withTimeout } from '../shared/api.ts';
+import { enqueue, flush } from '../shared/outbox.ts';
 import { loadSession, loadToday, saveSession } from '../shared/session-store.ts';
 import { handleAuthError, storedHome, storedStudent, useRequireToken } from './common.tsx';
 import type { PlayState } from './play-logic.ts';
-import { localSummary } from './safe-core.ts';
+import { localSummary, streakBeforeSession } from './safe-core.ts';
 
-const race = <T,>(p: Promise<T>, ms: number) =>
-  Promise.race([p, new Promise<never>((_, rej) => setTimeout(() => rej(new ApiRequestError(0, 'network', 'timeout')), ms))]);
+const race = withTimeout;
 
 function Stars({ n }: { n: number }) {
   return <span className="stars" aria-label={`${n} stars`}>{[0, 1, 2].map((i) => <span key={i} className={i < n ? '' : 'off'}>★</span>)}</span>;
@@ -25,6 +24,15 @@ export function Summary() {
   const [local, setLocal] = useState(false);
   const [words, setWords] = useState<Record<string, string>>({});
   const [failed, setFailed] = useState(false);
+  const [retry, setRetry] = useState(0);
+  const [missing, setMissing] = useState(false);
+
+  // While showing an offline estimate, keep asking the server so the real numbers replace it (B-16).
+  useEffect(() => {
+    if (!local) return;
+    const t = setTimeout(() => setRetry((n) => n + 1), 5000);
+    return () => clearTimeout(t);
+  }, [local, retry]);
 
   useEffect(() => {
     if (!authed) return;
@@ -37,20 +45,26 @@ export function Summary() {
       if (today) setWords(Object.fromEntries(today.words.map((w) => [w.id, w.word])));
       const st = loadSession<PlayState>(sid);
       if (st?.summary && !st.summaryLocal) { setSum(st.summary); return; }
+      // Opening this page early must never finish the day: unfinished children go back to their words (K-1).
+      if (st && st.stage !== 'summary' && !st.summary) { nav('/play', { replace: true }); return; }
       if (st && !st.sessionEnqueued && st.stage === 'summary') {
         st.sessionEnqueued = true; saveSession(sid, st);
         enqueue({ kind: 'completeSession', sessionId: sid });
       }
       try {
+        // Send the last "word done" saves first: the server only finishes a day whose words are all finished.
+        try { await race(flush(), 5000); } catch { /* offline: handled below */ }
         const r = await race(api.completeSession(sid), 5000);
         if (!live) return;
         setSum(r); setLocal(false);
         if (st) saveSession(sid, { ...st, summary: r, summaryLocal: false });
       } catch (e) {
         if (handleAuthError(e, nav)) return;
+        if (e instanceof ApiRequestError && e.status === 409) { nav('/play', { replace: true }); return; } // words still to do
+        if (e instanceof ApiRequestError && !e.isNetwork && e.status >= 400 && e.status < 500) { if (live) setMissing(true); return; } // not this child's day
         if (st?.summary) { setSum(st.summary); setLocal(true); return; }
         const home = storedHome() as StudentHomeRes | null;
-        const prev = home ? { current: Math.max(0, home.streak), best: home.bestStreak, lastCompletedDate: null } : null;
+        const prev = home && today ? streakBeforeSession(home.streak, home.bestStreak, today.session.date) : null;
         const ls = st && today ? localSummary(sid, today.session.date, st.localScores, prev, today.session.date) : null;
         if (!live) return;
         if (ls) { setSum(ls); setLocal(true); if (st) saveSession(sid, { ...st, summary: ls, summaryLocal: true }); }
@@ -58,8 +72,12 @@ export function Summary() {
       }
     })();
     return () => { live = false; };
-  }, [authed, nav, qs]);
+  }, [authed, nav, qs, retry]);
 
+  if (!sum && missing) {
+    return <main className="screen center student-screen"><div className="mitra-bird">🦜</div><p>We can't find that day. Let's go home 🙂</p>
+      <button className="btn btn-primary" onClick={() => nav('/', { replace: true })}>Home</button></main>;
+  }
   if (!sum) {
     return <main className="screen center student-screen"><div className="mitra-bird spin">🦜</div><p>{failed ? 'No internet. Your work is saved 🙂' : 'Counting your stars…'}</p>
       {failed && <button className="btn btn-primary" onClick={() => nav('/')}>Home</button>}</main>;
@@ -67,7 +85,7 @@ export function Summary() {
   const sc = (s: WordScore, i: number) => words[s.wordId] ?? `Word ${i + 1}`;
   return (
     <main className="screen student-screen">
-      <div className="flame pop" aria-label={`streak ${sum.streak.current} days`}>🔥<div className="big-num">{sum.streak.current} {sum.streak.current === 1 ? 'day' : 'days'} <span className="pop" style={{ color: 'var(--c-streak)' }}>+1</span></div></div>
+      <div className="flame pop" aria-label={`streak ${sum.streak.current} days`}>🔥<div className="big-num">{sum.streak.current} {sum.streak.current === 1 ? 'day' : 'days'}</div></div>
       <div className="card stack">
         <div className="title center" style={{ textAlign: 'center' }}>{sum.totalMarks} / 500</div>
         {sum.wordScores.map((s, i) => (

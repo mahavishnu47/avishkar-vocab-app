@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { SentenceReq, SentenceRes, SpellingHint, TodaySessionRes, Word } from '@shabd/core';
-import { api, ApiRequestError } from '../shared/api.ts';
+import { api, ApiRequestError, withTimeout } from '../shared/api.ts';
 import { enqueue, flush, pendingCount } from '../shared/outbox.ts';
 import { KeyboardDisplay, OnScreenKeyboard } from '../shared/OnScreenKeyboard.tsx';
 import { loadSession, loadToday, pruneSessions, saveSession, saveToday } from '../shared/session-store.ts';
@@ -20,6 +20,7 @@ const GATE_MSG = (word: string): Record<string, string> => ({
   devanagari: 'Please write in English letters 🙂',
   blocked: "Let's write a kind sentence 🙂",
   empty: 'Write your sentence first 🙂',
+  starter_only: 'Add your own words to finish the sentence 🙂',
 });
 
 function Caterpillar({ wordIdx, stage }: { wordIdx: number; stage: Stage }) {
@@ -96,9 +97,12 @@ export function Play() {
   }
   const word = today.words[st.wordIdx];
   const common = { st, update, word, sessionId: st.sessionId, nav };
+  // The keyboard's bottom padding must go away on the sentence result screen, or "Next word" sits below the fold (B-06).
+  const sh = st.sentence.shown;
+  const showingResult = st.stage === 'write' && !!sh && sh.counted && !sh.pending;
   return (
     <>
-      <main className={`screen student-screen ${st.stage === 'spell' || st.stage === 'write' ? 'with-keyboard' : ''}`}>
+      <main className={`screen student-screen ${(st.stage === 'spell' || st.stage === 'write') && !showingResult ? 'with-keyboard' : ''}`}>
         <TopBar left={<button className="btn btn-icon small" aria-label="home" onClick={() => nav('/')}>🏠</button>} />
         <Caterpillar wordIdx={st.wordIdx} stage={st.stage} />
         {st.stage === 'spell' && <SpellStage key={word.id} {...common} />}
@@ -152,13 +156,19 @@ function SpellStage({ st, update, word, sessionId }: StageProps) {
     return { ...s, spell: { ...s.spell, hints, input } };
   });
 
+  const lastCheckAt = useRef(0);
   const check = () => {
     const input = sp.input.trim().toLowerCase();
     if (!input || sp.done) return;
+    // Hammering Check used up all 3 tries in a second (K-3): a short pause between tries, and the same wrong answer twice is not a new try.
+    const now = Date.now();
+    if (now - lastCheckAt.current < 800) return;
+    lastCheckAt.current = now;
     if (sp.copy) {
       if (input === word.word) update((s) => ({ ...s, stage: 'learn' })); else setWob((n) => n + 1);
       return;
     }
+    if (sp.wrong > 0 && input === sp.last) { setWob((n) => n + 1); return; }
     const attemptNo = (sp.wrong + 1) as 1 | 2 | 3;
     enqueue({
       kind: 'attempts', sessionId,
@@ -246,7 +256,9 @@ function LearnStage({ st, update, word }: StageProps) {
       <div className="speak-row" style={{ gridTemplateColumns: '1fr' }}>
         <button className="btn btn-learn" aria-label="Read aloud" onClick={() => void read()}>🔊 Listen</button>
       </div>
-      <button className="btn btn-learn btn-block" disabled={!ready} onClick={() => update((s) => ({ ...s, stage: 'check' }))}>Next ▶</button>
+      <button className="btn btn-learn btn-block" disabled={!ready} onClick={() => update((s) => ({ ...s, stage: 'check' }))}>
+        {ready ? 'Next ▶' : 'Read the word first… 👀'}
+      </button>
     </>
   );
 }
@@ -258,8 +270,12 @@ function CheckStage({ st, update, word, sessionId }: StageProps) {
     () => seededShuffle([word.meaning, ...word.distractorMeanings], `${sessionId}${word.id}`),
     [word, sessionId],
   );
+  const lastTapAt = useRef(0);
   const tap = (opt: string) => {
     if (m.done || m.wrongTaps.includes(opt)) return;
+    const now = Date.now(); // tapping every option as fast as possible used to fail the question in a blink (K-3)
+    if (now - lastTapAt.current < 600) return;
+    lastTapAt.current = now;
     const isCorrect = opt === word.meaning;
     const attemptNo = (m.wrongTaps.length + 1) as 1 | 2;
     enqueue({
@@ -322,16 +338,14 @@ function WriteStage({ st, update, word, sessionId, words }: StageProps & { words
       msElapsed: Date.now() - se.t0, clientTs: new Date().toISOString(), clientEvaluation: local,
     };
     let res: SentenceRes;
-    let fromServer = true;
     try {
-      if (pendingCount()) await flush();
-      res = await Promise.race([
-        api.postSentence(sessionId, body),
-        new Promise<never>((_, rej) => setTimeout(() => rej(new ApiRequestError(0, 'network', 'timeout')), 7000)),
-      ]);
+      // The 7 s limit covers flushing older queued items too; a stalled queue must not freeze "Checking…" (B-07).
+      res = await withTimeout((async () => {
+        if (pendingCount()) await flush();
+        return api.postSentence(sessionId, body);
+      })(), 7000);
     } catch (e) {
-      if (handleAuthError(e, nav)) return;
-      fromServer = false;
+      if (handleAuthError(e, nav)) { setBusy(false); return; }
       const counted = local.gate === 'ok';
       if (counted && (!(e instanceof ApiRequestError) || e.isNetwork || e.status >= 500)) enqueue({ kind: 'sentence', sessionId, body });
       res = {
@@ -339,7 +353,6 @@ function WriteStage({ st, update, word, sessionId, words }: StageProps & { words
         finalMarks: counted ? localSentenceMarks({ submissionNo, rubric: local.rubric, starterHintUsed: se.starter }) : null,
       };
     }
-    void fromServer;
     const final: SubRec = { evaluation: res.evaluation, counted: res.counted, finalMarks: res.finalMarks };
     update((s) => {
       const rec = { ...(s.recs[word.id] ?? emptyRec()) };
@@ -379,12 +392,15 @@ function WriteStage({ st, update, word, sessionId, words }: StageProps & { words
       {resultView && ev ? (
         <>
           <div className="card" style={{ fontSize: 20 }}>{se.text}</div>
+          {shown?.finalMarks != null && <div className="feedback-ok" role="status">⭐ {shown.finalMarks} / 40 marks</div>}
           <ul className="checklist" aria-label="feedback">
             {ev.feedback.map((f) => <li key={f.key}>{f.ok ? '✅' : '⚠️'} {f.message}</li>)}
           </ul>
           {ev.tip && <div className="tip">💡 {ev.tip}</div>}
-          {subs < 2 && <button className="btn btn-write btn-block" onClick={again}>Try again (better score)</button>}
-          <button className="btn btn-primary btn-block" onClick={next}>{st.wordIdx >= words.length - 1 ? 'Finish ▶' : 'Next word ▶'}</button>
+          <div className="sticky-actions">
+            {subs < 2 && !ev.feedback.every((f) => f.ok) && <button className="btn btn-write btn-block" onClick={again}>Try again (better score)</button>}
+            <button className="btn btn-primary btn-block" onClick={next}>{st.wordIdx >= words.length - 1 ? 'Finish ▶' : 'Next word ▶'}</button>
+          </div>
         </>
       ) : (
         <>

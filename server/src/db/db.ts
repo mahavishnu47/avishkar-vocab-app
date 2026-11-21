@@ -5,6 +5,7 @@
  * - bigint/numeric are parsed to JS numbers (COUNT/SUM must not come back as strings).
  * - Only unnamed statements are used, so Neon's PgBouncer (transaction mode) is safe.
  */
+import '../env.ts'; // clean BOMs/whitespace from environment values first (H-1)
 import pg from 'pg';
 import { MIGRATIONS } from './migrations.ts';
 
@@ -158,6 +159,30 @@ export function appDatabaseUrl(): string {
 /** URL for migrate/seed scripts: prefers the direct (unpooled) Neon URL. */
 export function scriptDatabaseUrl(): string {
   return process.env.DATABASE_URL_UNPOOLED || appDatabaseUrl();
+}
+
+/**
+ * Local dev convenience (B-18): if the database named in a localhost URL does not exist yet, create it.
+ * Never touches remote hosts; a no-op when the database is already there.
+ */
+export async function ensureLocalDatabase(url: string): Promise<void> {
+  const u = new URL(url);
+  if (!['localhost', '127.0.0.1', '[::1]', '::1'].includes(u.hostname)) return;
+  const name = decodeURIComponent(u.pathname.slice(1));
+  if (!name || !/^[A-Za-z0-9_]+$/.test(name)) return;
+  const admin = new URL(url);
+  admin.pathname = '/postgres';
+  const client = new pg.Client({ connectionString: admin.toString() });
+  await client.connect();
+  try {
+    const hit = await client.query('SELECT 1 FROM pg_database WHERE datname = $1', [name]);
+    if (hit.rowCount === 0) {
+      await client.query(`CREATE DATABASE "${name}"`);
+      console.log(`[server] created local database "${name}"`);
+    }
+  } finally {
+    await client.end();
+  }
 }
 
 let instance: DB | null = null;

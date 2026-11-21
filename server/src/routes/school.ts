@@ -12,7 +12,7 @@ import { today } from '../clock.ts';
 import { getDb, isUniqueViolation, type Queryable } from '../db/db.ts';
 import { HttpError, badRequest, notFound, type H } from '../http.ts';
 import { audit } from '../services/audit.ts';
-import { DAY_MS, baseUrl, createInvite, inviteOf, liveTeacherInvite, withText } from '../services/invites.ts';
+import { DAY_MS, DEFAULT_TEACHER_INVITE_USES, baseUrl, createInvite, inviteOf, liveTeacherInvite, withText } from '../services/invites.ts';
 import { assertClassSlotFree, classSummaries, generateStudentCode, schoolOf } from '../services/schools.ts';
 import { requireSchoolAdmin, staffAuth } from '../tenancy.ts';
 import { asObject, idParam, optDate, optInt, optString } from '../validate.ts';
@@ -221,8 +221,8 @@ const createTeacherInvite: H<{}, InviteWithText, CreateInviteReq> = async (req, 
   const a = staffAuth(req);
   const b = req.body === undefined || req.body === null ? {} : asObject(req.body);
   const days = optInt(b, 'expiresInDays', 1, 90) ?? 30;
-  let maxUses: number | null = null;
-  if (b.maxUses !== undefined && b.maxUses !== null) maxUses = optInt(b, 'maxUses', 1, 100_000)!;
+  let maxUses: number | null = DEFAULT_TEACHER_INVITE_USES; // a leaked staff-group link must not let strangers in forever (T-6)
+  if (b.maxUses !== undefined && b.maxUses !== null) maxUses = optInt(b, 'maxUses', 1, 500)!;
   const db = getDb();
   const inv = await db.tx(async (q) => {
     const old = await q.all<{ id: number }>(
@@ -289,7 +289,7 @@ const auditLog: H<{}, AuditEntry[], unknown, { limit?: string; before?: string }
   const limitN = req.query.limit === undefined ? 50 : Number(req.query.limit);
   if (!Number.isInteger(limitN) || limitN < 1 || limitN > 200) throw badRequest('limit must be 1-200');
   const before = req.query.before === undefined ? null : Number(req.query.before);
-  if (before !== null && (!Number.isInteger(before) || before < 1)) throw badRequest('before must be an id');
+  if (before !== null && (!Number.isInteger(before) || before < 1 || before > 2_147_483_647)) throw badRequest('before must be an id');
   const rows = await getDb().all(
     `SELECT l.*,
         CASE l.actor_type WHEN 'teacher' THEN (SELECT name FROM teachers WHERE id = l.actor_id)
