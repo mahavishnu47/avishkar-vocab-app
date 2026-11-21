@@ -4,6 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import './theme.css';
 import { App } from './App.tsx';
 import { ErrorBoundary } from './shared/ErrorBoundary.tsx';
+import { watchForUpdate } from './shared/updatePrompt.ts';
+
+watchForUpdate();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
