@@ -63,6 +63,7 @@ export function Home() {
           {st === 'in_progress' ? 'Continue ▶' : "Start today's words ▶"}
         </button>
       )}
+      <button className="btn btn-block" onClick={() => nav('/progress')}>My Progress 📈</button>
       {offline && <p className="muted center" style={{ textAlign: 'center' }}>No internet. Showing saved info.</p>}
       {(st === 'completed' || home.streak > 0) && <InstallPrompt />}
       <div className="row" style={{ justifyContent: 'center', flexWrap: 'wrap' }}>
