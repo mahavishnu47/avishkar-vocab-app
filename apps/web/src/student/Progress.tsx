@@ -26,6 +26,8 @@ const SKILL_UI: Record<SkillKey, { emoji: string; name: string }> = {
 const LABEL_EMOJI = { Super: '🌟', Good: '👍', 'Keep practising': '💪' } as const;
 const DAY = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 const dayLetters = (iso: string) => DAY[new Date(`${iso}T00:00:00Z`).getUTCDay()]!;
+/** "Sat 21 Nov" - children read this faster than 2026-11-21. */
+const niceDate = (iso: string) => new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).replace(',', '');
 
 export function Progress() {
   const nav = useNavigate();
@@ -125,7 +127,7 @@ export function Progress() {
           <div className="title" style={{ fontSize: 22 }}>My last days</div>
           <ul className="recent">
             {data.recentSessions.map((s) => (
-              <li key={s.sessionId}><span>{s.date}</span><span>{s.wordsDone}/5 words</span><span aria-label={`${s.stars} stars`}>⭐ {s.stars}</span></li>
+              <li key={s.sessionId}><span>{niceDate(s.date)}</span><span>{s.wordsDone}/5 words</span><span aria-label={`${s.stars} stars`}>⭐ {s.stars}</span></li>
             ))}
           </ul>
         </section>

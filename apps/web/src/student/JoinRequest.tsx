@@ -92,12 +92,12 @@ export function JoinRequestPage() {
       <h1 className="title">What is your first name?</h1>
       <label htmlFor="jr-name" className="muted">First name only</label>
       <input
-        id="jr-name" className="input" style={{ fontSize: 28, padding: 14 }} autoComplete="off" maxLength={30}
+        id="jr-name" className="kid-input" autoComplete="off" maxLength={30}
         value={name} onChange={(e) => setName(e.target.value)}
       />
       <label htmlFor="jr-roll" className="muted">Roll number (if you know it)</label>
       <input
-        id="jr-roll" className="input" inputMode="numeric" autoComplete="off" maxLength={4}
+        id="jr-roll" className="kid-input" inputMode="numeric" autoComplete="off" maxLength={4}
         value={roll} onChange={(e) => setRoll(e.target.value.replace(/\D/g, ''))}
       />
       <div className="err" role="alert">{err}</div>

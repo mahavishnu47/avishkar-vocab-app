@@ -4,9 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import './landing.css';
 
 export const TILES = [
-  { to: '/login', icon: '🎒', label: "I'm a Student", cls: 'student', verb: 'Play', blurb: "Play today's words. You need your class code and your PIN." },
-  { to: '/teacher/login', icon: '👩‍🏫', label: "I'm a Teacher", cls: 'teacher', verb: 'Open my class', blurb: 'Add your class, share the link, see who is learning.' },
-  { to: '/teacher/login?next=/school', icon: '🏫', label: 'My School', cls: 'school', verb: 'Set up school', blurb: 'Set up your school and invite teachers.' },
+  { to: '/login', icon: '🎒', label: "I'm a Student", cls: 'role-student', verb: 'Play', blurb: "Play today's words. You need your class code and your PIN." },
+  { to: '/teacher/login', icon: '👩‍🏫', label: "I'm a Teacher", cls: 'role-teacher', verb: 'Open my class', blurb: 'Add your class, share the link, see who is learning.' },
+  { to: '/teacher/login?next=/school', icon: '🏫', label: 'My School', cls: 'role-school', verb: 'Set up school', blurb: 'Set up your school and invite teachers.' },
 ] as const;
 
 const STEPS = [

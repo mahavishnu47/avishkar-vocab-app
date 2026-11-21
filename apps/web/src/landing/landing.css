@@ -16,9 +16,9 @@
 .landing-tile-label { font-size: var(--fs-lg); font-weight: 700; }
 .landing-tile-blurb { font-size: var(--fs-sm); }
 .landing-tile-verb { font-size: var(--fs-sm); font-weight: 700; text-decoration: underline; }
-.landing-tile.student { background: var(--c-learn); }
-.landing-tile.teacher { background: var(--c-listen); }
-.landing-tile.school { background: var(--c-write); }
+.landing-tile.role-student { background: var(--c-learn); }
+.landing-tile.role-teacher { background: var(--c-listen); }
+.landing-tile.role-school { background: var(--c-write); }
 .landing-card { background: var(--c-surface); border: 2px solid var(--c-border); border-radius: var(--radius); padding: var(--sp-4); }
 .landing-h2 { font-size: var(--fs-lg); margin: 0 0 var(--sp-3); }
 .landing-code { display: flex; gap: var(--sp-2); }
