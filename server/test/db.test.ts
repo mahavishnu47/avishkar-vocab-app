@@ -100,7 +100,7 @@ describe('migrate', () => {
     await b.end();
     await admin.exec(`DROP DATABASE ${name} WITH (FORCE)`);
     await admin.end();
-  });
+  }, 90_000); // applies every migration on a fresh database: it grows with each new migration
   it('email uniqueness is case-insensitive; teacher_word_seq exists', async () => {
     await db.run("INSERT INTO teachers (name, email, password_hash, school_id) VALUES ('a','A@x.in','x', ?)", [schoolId]);
     await expect(db.run("INSERT INTO teachers (name, email, password_hash, school_id) VALUES ('b','a@X.IN','x', ?)", [schoolId])).rejects.toSatisfy(isUniqueViolation);

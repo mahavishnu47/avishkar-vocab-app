@@ -10,3 +10,5 @@ coverage/
 server/dist/
 .vercel
 .env*
+
+.claude/
