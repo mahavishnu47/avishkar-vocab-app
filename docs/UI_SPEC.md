@@ -92,11 +92,13 @@ The student token lives in `localStorage` (`shared/api.ts#setToken`). Any 401 cl
 - An encouraging footer: "Every day you play gives bonus XP!"
 - Hidden mode: the route redirects to Home.
 
+> **Onboarding v2 supersedes parts of this file.** The student join flow (`/j/:code` tap your name, PIN keypad, `/welcome`, `/who` profile switcher, `/s/:code`), the landing page, the teacher checklist, create-class wizard, paste import, share/QR screen, and the `/school/*` and `/admin` screens are specified in `docs/ONBOARDING_SPEC.md` sections 2 and 5. The plain-language user guide is `docs/ONBOARDING_GUIDE.md`.
+
 ## 4. Teacher screens (routes under `/teacher`, `.teacher` class: dense, table-friendly)
 
 | Route | Screen | API |
 |---|---|---|
-| `/teacher/login` | Email and password login, with a "Create account" toggle (name, email, password, invite code). | `teacherLogin`, `teacherRegister` |
+| `/teacher/login` | Email and password login (`?next=/school` allowed), with links "New teacher? Join your school" (`/teacher/join`, or `/t/:code`) and "Forgot password? Ask your school admin". Joining needs the school's teacher invite code. | `teacherLogin`, `teacherRegister` |
 | `/teacher` | **My classes:** a list (name, code, start date) and "New class" (name, start date). One class → go straight to its dashboard. | `listClasses`, `createClass` |
 | `/teacher/classes/:id/roster` | **Roster:** a table (roll, name, avatar, PIN, active toggle, Reset PIN). "Add students": a textarea with one `roll, name` per line, a preview, then Save. | `roster`, `addStudents`, `updateStudent`, `resetPin` |
 | `/teacher/classes/:id/cards` | **Login cards** (print stylesheet): 8 cards per A4, each with the app URL, class code, avatar, first name and PIN in large digits. Has a Print button. | `roster` |

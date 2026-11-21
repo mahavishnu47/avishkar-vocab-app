@@ -30,7 +30,7 @@ The TypeScript types for every request and response are in `packages/core/src/ap
 // -> 201
 { "token": "9f2c…", "teacher": { "id": 1, "name": "Mrs. Patil", "email": "patil@school.in" } }
 ```
-- Password ≥ 8 characters. A duplicate email returns 409. If the env var `TEACHER_INVITE_CODE` is set, `inviteCode` must match (403 otherwise).
+- Password ≥ 8 characters. A duplicate email returns 409. `inviteCode` is **required**: the joining school's teacher invite code (`ABCD-EFGH`, dashes and case ignored). Unknown, expired or revoked codes return 404. The old global `TEACHER_INVITE_CODE` env var is removed.
 - Login with wrong credentials returns 401 `"Wrong email or password"`.
 
 ```jsonc
@@ -45,6 +45,17 @@ The TypeScript types for every request and response are in `packages/core/src/ap
 ```
 - A wrong PIN returns 401 `"Wrong PIN"` and increments `failed_pin_count`. After 5 wrong PINs: 423 `locked` for 5 minutes. A correct PIN resets the counter.
 - An inactive student, or a student not in that class, returns 404.
+
+### 2.1 Onboarding v2 (schools, invites, class join) - summary
+
+The full contract is `docs/ONBOARDING_SPEC.md` section 4 (it wins over this file). Key points:
+
+- Hierarchy: super admin -> school -> teachers (`role` `teacher` or `school_admin`) -> classes -> students. Cross-school access always returns **404**.
+- Public: `GET /join/class/:classCode` (name grid), `GET /join/school/:studentCode` (class tiles), `GET /invites/:code`, `POST /auth/school/setup` (principal, from a single-use setup link), `POST /auth/password-reset`. `POST /auth/student/login` now also returns `schoolName`, `classCode`, `firstLogin`. `GET /auth/classes/:classCode/roster` is kept as a deprecated alias.
+- Teacher: `GET /teacher/overview` (checklist), `GET /classes/:id/share`, `POST /classes/:id/rotate-code`, `POST /classes` takes `standard` + `division`, `POST /classes/:id/students` takes up to 100 rows and `consentConfirmed`, roster rows carry `firstLoginAt`, `lastLoginAt`, `locked`, and `POST /students/:id/reset-pin` signs the child out everywhere.
+- School admin (`/school/*`): school info and checklist, overview, teachers (turn off, role, reset link), teacher invites, classes (reassign, archive), audit log.
+- Super admin (`/admin/schools*`, header `X-Admin-Secret`, env `SUPER_ADMIN_SECRET`, off when unset): list and create schools, make setup links, suspend or resume. CLI: `npm run admin -- create-school --name "..."`.
+- New error code `rate_limited` (429). Student tokens last 60 days sliding, teacher tokens 7 days sliding.
 
 ## 3. Classes and roster (teacher)
 

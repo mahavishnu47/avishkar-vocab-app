@@ -6,7 +6,7 @@ A mobile-web vocabulary app for Maharashtra State Board **Std 5** students, buil
 2. 🟢 **Learn the meaning:** the meaning, a Marathi gloss and an example, then a 3-option check.
 3. 🟣 **Write your own sentence:** also typed on the on-screen keyboard, then scored by rules (optionally with Claude feedback).
 
-Teachers get a roster with PIN login cards, a daily-words editor, a dashboard, a leaderboard and a per-student weakness analysis, plus CSV export.
+Schools are onboarded by invitation (super admin → principal → teachers → classes → students, see `docs/ONBOARDING_SPEC.md`). Teachers get a roster with PIN login cards, a daily-words editor, a dashboard, a leaderboard and a per-student weakness analysis, plus CSV export.
 
 Product requirements are in `docs/PRD.md`. The MVP build contracts are in `docs/API.md`, `docs/UI_SPEC.md`, `docs/CONTENT_SPEC.md` and `docs/BUILD_PLAN.md`.
 
@@ -27,9 +27,9 @@ npm run dev        # server on :4000 (API at /api), web on :5173 (proxies /api)
 
 `npm run dev` creates the tables, loads the word bank and seeds the demo data by itself. If `DATABASE_URL` is not set it uses `postgres://postgres:postgres@localhost:5432/shabd` (the Docker command above).
 
-Open http://localhost:5173 for students and http://localhost:5173/teacher for teachers. To test on a phone on the same Wi-Fi, open `http://<your-laptop-ip>:5173`.
+Open http://localhost:5173 (landing page with Student, Teacher and School tiles). Teachers use http://localhost:5173/teacher, school admins `/school`, the platform owner `/admin`. To test on a phone on the same Wi-Fi, open `http://<your-laptop-ip>:5173`.
 
-Dev seed (`SEED_DEMO=1`, the default): the teacher is `demo@school.test` / `demo1234`, the class code is `DEMO5A`, and every student's PIN is `1234`.
+Dev seed (`SEED_DEMO=1`, the default): school "Demo School", the school admin and teacher is `demo@school.test` / `demo1234`, the class code is `DEMO5A` (student link `/j/DEMO5A`), the teacher invite is `TEAC-HERS` (`/t/TEACHERS`), the school student link is `/s/DEMSCH`, and every student's PIN is `1234`.
 
 Optional `.env` at the repo root (see `.env.example`):
 
@@ -41,7 +41,9 @@ Optional `.env` at the repo root (see `.env.example`):
 | `PORT` | 4000 | API port (local only) |
 | `ANTHROPIC_API_KEY` | (unset) | Turns on Claude sentence feedback. Without it, the rule-based evaluator is used. |
 | `CLAUDE_MODEL` | `claude-haiku-5-5` | Model for sentence feedback |
-| `TEACHER_INVITE_CODE` | (unset) | When set, teacher sign-up requires this code. **Set it in production.** |
+| `SUPER_ADMIN_SECRET` | (unset) | Turns on `/admin` and `/api/admin/*` (create schools). At least 16 random characters. Unset = feature off. **Set it in production.** |
+| `PUBLIC_APP_URL` | (from request headers) | Absolute app URL used in share links, e.g. `https://shabd-mitra.vercel.app`. **Required in production.** |
+| `VITE_CONTACT_TEXT` | (unset) | Optional "New school? ..." contact line on the landing page (build time) |
 | `SEED_DEMO` | 1 | Local dev only: seeds the demo teacher, class and students |
 | `FAKE_TODAY` | (unset) | `YYYY-MM-DD`; overrides "today" for demos and tests. Ignored on Vercel production. |
 
@@ -58,6 +60,9 @@ Optional `.env` at the repo root (see `.env.example`):
 | `npm run db:seed` | Loads the 1830-word bank (safe to re-run) |
 | `npm run db:seed:demo` | Adds the demo teacher, class and students (refuses in production) |
 | `npm run e2e` | Browser end-to-end test on a fresh throwaway database |
+| `npm run e2e:onboarding` | Full onboarding journey (super admin, principal, teacher, students) at 320x640 and 412x915 on a fresh database |
+| `npm run check:bundle` | Fails if the student bundle is over 150 KB gzipped or contains the QR library (run `npm run build` first) |
+| `npm run admin -- create-school --name "ZP School Kalwa"` | Super admin CLI: creates a school and prints its one-time setup link (`list`, `setup-link --school <id>` also available) |
 | `npm run e2e:prod` | Same, against the built bundle served the way Vercel serves it |
 | `npm run validate:words` | Validates `content/words/part-0*.json` (1830 words). Add `-- --part N` to check one part, or `-- --partial` to see progress. |
 | `node scripts/word-owner.mjs <word...>` | Shows which content part owns a word (no-duplicate rule) |
@@ -68,8 +73,9 @@ The app runs on Vercel (static PWA plus one serverless API function) with a free
 
 1. Create a Neon project (Singapore region) and copy its connection strings.
 2. From your laptop: `DATABASE_URL='<direct url>' npm run db:migrate` then `DATABASE_URL='<direct url>' npm run db:seed`.
-3. Import the GitHub repo in Vercel, set `DATABASE_URL` (pooled URL) and `TEACHER_INVITE_CODE`, and deploy.
+3. Import the GitHub repo in Vercel, set `DATABASE_URL` (pooled URL), `SUPER_ADMIN_SECRET` and `PUBLIC_APP_URL`, and deploy.
 4. Open `https://<your-app>.vercel.app/api/health`; it should answer `{"ok":true,"db":"ok","words":1830}`.
+5. Open `/admin`, enter the secret and create the first school. Send the setup link to the principal. Schools are by invitation only; see **[docs/ONBOARDING_GUIDE.md](docs/ONBOARDING_GUIDE.md)** for the one-page guide for principals, teachers and students.
 
 ## Layout
 
