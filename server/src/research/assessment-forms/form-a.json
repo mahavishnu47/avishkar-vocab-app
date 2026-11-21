@@ -1,0 +1,319 @@
+{
+  "formId": "A",
+  "formVersion": 1,
+  "note": "Server-only. Answers live here; the student API never returns correct/distractors/answer.",
+  "sectionA": [
+    {
+      "id": "a1",
+      "wordId": "d020-2",
+      "word": "honey",
+      "pos": "noun",
+      "difficulty": 1,
+      "correct": "a sweet golden liquid made by bees",
+      "distractors": [
+        "a thick sticky juice made from sugarcane",
+        "a sweet white cream made from milk",
+        "a person who lives in a place"
+      ]
+    },
+    {
+      "id": "a2",
+      "wordId": "d009-2",
+      "word": "kettle",
+      "pos": "noun",
+      "difficulty": 1,
+      "correct": "a metal pot with a spout for boiling water",
+      "distractors": [
+        "a flat pan used for making roti",
+        "a large bucket used for storing grain",
+        "an area at the edge of a big city"
+      ]
+    },
+    {
+      "id": "a3",
+      "wordId": "d004-5",
+      "word": "strawberry",
+      "pos": "noun",
+      "difficulty": 2,
+      "correct": "a small red fruit with tiny seeds on its skin",
+      "distractors": [
+        "a big green fruit with a hard skin",
+        "a long yellow fruit that grows in bunches",
+        "a story or an account of events"
+      ]
+    },
+    {
+      "id": "a4",
+      "wordId": "d003-5",
+      "word": "stomach",
+      "pos": "noun",
+      "difficulty": 2,
+      "correct": "the part inside your body where food goes",
+      "distractors": [
+        "the part of the body used for seeing things",
+        "the hard bone that protects your brain",
+        "a goodbye said when people part from each other"
+      ]
+    },
+    {
+      "id": "a5",
+      "wordId": "d002-1",
+      "word": "busy",
+      "pos": "adjective",
+      "difficulty": 1,
+      "correct": "having a lot of work to do",
+      "distractors": [
+        "having nothing to do at all",
+        "feeling hungry before lunch time",
+        "newly made or picked, not old"
+      ]
+    },
+    {
+      "id": "a6",
+      "wordId": "d007-1",
+      "word": "dull",
+      "pos": "adjective",
+      "difficulty": 1,
+      "correct": "not interesting or exciting",
+      "distractors": [
+        "full of fun and exciting things",
+        "very loud and noisy",
+        "so bad that it makes you feel ashamed"
+      ]
+    },
+    {
+      "id": "a7",
+      "wordId": "d016-4",
+      "word": "lumpy",
+      "pos": "adjective",
+      "difficulty": 2,
+      "correct": "full of small hard bumps",
+      "distractors": [
+        "smooth and flat like a mirror",
+        "thin and watery like plain water",
+        "clean, tidy and in good order"
+      ]
+    },
+    {
+      "id": "a8",
+      "wordId": "d012-3",
+      "word": "define",
+      "pos": "verb",
+      "difficulty": 2,
+      "correct": "to explain exactly what a word means",
+      "distractors": [
+        "to draw a picture of a word",
+        "to say a word very loudly",
+        "to put numbers or things together to get a total"
+      ]
+    },
+    {
+      "id": "a9",
+      "wordId": "d010-3",
+      "word": "nudge",
+      "pos": "verb",
+      "difficulty": 2,
+      "correct": "to push someone gently with your elbow",
+      "distractors": [
+        "to hit someone hard with a stick",
+        "to pull someone by the hand",
+        "to suggest a plan for others to think about"
+      ]
+    },
+    {
+      "id": "a10",
+      "wordId": "d004-3",
+      "word": "shiver",
+      "pos": "verb",
+      "difficulty": 2,
+      "correct": "to shake a little because you feel cold",
+      "distractors": [
+        "to jump up and down with joy",
+        "to shout loudly at a friend",
+        "to leave a place to begin a journey"
+      ]
+    }
+  ],
+  "sectionB": [
+    {
+      "id": "b1",
+      "wordId": "d018-2",
+      "word": "skirt",
+      "difficulty": 1,
+      "sentence": "Riya wore a blue skirt with her white blouse.",
+      "target": "skirt",
+      "answer": "noun"
+    },
+    {
+      "id": "b2",
+      "wordId": "d013-5",
+      "word": "globe",
+      "difficulty": 2,
+      "sentence": "Om spun the globe and pointed to India.",
+      "target": "globe",
+      "answer": "noun"
+    },
+    {
+      "id": "b3",
+      "wordId": "d019-5",
+      "word": "whisker",
+      "difficulty": 2,
+      "sentence": "The cat's whisker twitched when it smelt fish.",
+      "target": "whisker",
+      "answer": "noun"
+    },
+    {
+      "id": "b4",
+      "wordId": "d001-3",
+      "word": "lend",
+      "difficulty": 2,
+      "sentence": "Riya will lend me her pencil during the drawing class.",
+      "target": "lend",
+      "answer": "verb"
+    },
+    {
+      "id": "b5",
+      "wordId": "d019-3",
+      "word": "admit",
+      "difficulty": 2,
+      "sentence": "Riya was brave enough to admit that she broke the glass.",
+      "target": "admit",
+      "answer": "verb"
+    },
+    {
+      "id": "b6",
+      "wordId": "d006-3",
+      "word": "examine",
+      "difficulty": 2,
+      "sentence": "The doctor will examine the patient's throat with a small torch.",
+      "target": "examine",
+      "answer": "verb"
+    },
+    {
+      "id": "b7",
+      "wordId": "d004-1",
+      "word": "thick",
+      "difficulty": 1,
+      "sentence": "Aarav wore a thick sweater in the cold morning.",
+      "target": "thick",
+      "answer": "adjective"
+    },
+    {
+      "id": "b8",
+      "wordId": "d006-4",
+      "word": "shaggy",
+      "difficulty": 2,
+      "sentence": "The shaggy puppy ran around the courtyard.",
+      "target": "shaggy",
+      "answer": "adjective"
+    },
+    {
+      "id": "b9",
+      "wordId": "d003-4",
+      "word": "carefully",
+      "difficulty": 2,
+      "sentence": "Riya carried the glass of water carefully to her grandfather.",
+      "target": "carefully",
+      "answer": "adverb"
+    },
+    {
+      "id": "b10",
+      "wordId": "d006-2",
+      "word": "softly",
+      "difficulty": 1,
+      "sentence": "Grandmother sang softly to put the baby to sleep.",
+      "target": "softly",
+      "answer": "adverb"
+    }
+  ],
+  "sectionC": [
+    {
+      "id": "c1",
+      "wordId": "d013-2",
+      "word": "hall",
+      "pos": "noun",
+      "difficulty": 1,
+      "meaning": "a big room used for meetings or programmes",
+      "exampleSentence": "The annual day programme was held in the school hall.",
+      "contextWords": [
+        "school",
+        "programme",
+        "stage",
+        "meeting",
+        "big",
+        "chairs"
+      ]
+    },
+    {
+      "id": "c2",
+      "wordId": "d018-5",
+      "word": "silk",
+      "pos": "noun",
+      "difficulty": 2,
+      "meaning": "a soft shiny cloth made from threads spun by insects",
+      "exampleSentence": "Aai wore a beautiful silk saree on Diwali.",
+      "contextWords": [
+        "saree",
+        "cloth",
+        "shiny",
+        "soft",
+        "festival",
+        "thread"
+      ]
+    },
+    {
+      "id": "c3",
+      "wordId": "d014-1",
+      "word": "smoky",
+      "pos": "adjective",
+      "difficulty": 1,
+      "meaning": "full of smoke",
+      "exampleSentence": "The kitchen became smoky when the wood fire was lit.",
+      "contextWords": [
+        "smoke",
+        "fire",
+        "kitchen",
+        "wood",
+        "eyes",
+        "cough"
+      ]
+    },
+    {
+      "id": "c4",
+      "wordId": "d008-4",
+      "word": "sweaty",
+      "pos": "adjective",
+      "difficulty": 2,
+      "meaning": "wet with sweat",
+      "exampleSentence": "Aarav was sweaty after playing kabaddi in the sun.",
+      "contextWords": [
+        "hot",
+        "run",
+        "play",
+        "summer",
+        "shirt",
+        "tired"
+      ]
+    },
+    {
+      "id": "c5",
+      "wordId": "d007-3",
+      "word": "kneel",
+      "pos": "verb",
+      "difficulty": 2,
+      "meaning": "to go down and rest on your knees",
+      "exampleSentence": "Riya had to kneel to look under the bed.",
+      "contextWords": [
+        "knee",
+        "floor",
+        "pray",
+        "bow",
+        "ground",
+        "down"
+      ],
+      "forms": [
+        "knelt"
+      ]
+    }
+  ]
+}
