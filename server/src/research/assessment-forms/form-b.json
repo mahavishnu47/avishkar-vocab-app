@@ -1,0 +1,316 @@
+{
+  "formId": "B",
+  "formVersion": 1,
+  "note": "Server-only. Answers live here; the student API never returns correct/distractors/answer.",
+  "sectionA": [
+    {
+      "id": "a1",
+      "wordId": "d019-2",
+      "word": "raincoat",
+      "pos": "noun",
+      "difficulty": 1,
+      "correct": "a coat that keeps you dry in the rain",
+      "distractors": [
+        "a cloth held over your head for shade",
+        "a pair of boots worn in the mud",
+        "a small flying insect that bites and sucks blood"
+      ]
+    },
+    {
+      "id": "a2",
+      "wordId": "d003-2",
+      "word": "mirror",
+      "pos": "noun",
+      "difficulty": 1,
+      "correct": "a shiny glass in which you see yourself",
+      "distractors": [
+        "a window that lets in fresh air",
+        "a lamp that gives light at night",
+        "a tool with stiff hairs for cleaning or painting"
+      ]
+    },
+    {
+      "id": "a3",
+      "wordId": "d013-4",
+      "word": "atlas",
+      "pos": "noun",
+      "difficulty": 2,
+      "correct": "a book of maps",
+      "distractors": [
+        "a book of short poems",
+        "a book of old stories",
+        "something strange that nobody can explain"
+      ]
+    },
+    {
+      "id": "a4",
+      "wordId": "d011-4",
+      "word": "attic",
+      "pos": "noun",
+      "difficulty": 2,
+      "correct": "a small room just under the roof of a house",
+      "distractors": [
+        "a deep room built under the ground",
+        "a small room where we take a bath",
+        "a tool with sharp points used to pick up food"
+      ]
+    },
+    {
+      "id": "a5",
+      "wordId": "d008-1",
+      "word": "lovely",
+      "pos": "adjective",
+      "difficulty": 1,
+      "correct": "very nice and pleasant to see or enjoy",
+      "distractors": [
+        "very dirty and full of dust",
+        "very noisy and hard to bear",
+        "not known or not seen before"
+      ]
+    },
+    {
+      "id": "a6",
+      "wordId": "d003-1",
+      "word": "tasty",
+      "pos": "adjective",
+      "difficulty": 1,
+      "correct": "having a very good flavour",
+      "distractors": [
+        "having a bad smell and a bitter flavour",
+        "too hot to touch with your hand",
+        "many in number"
+      ]
+    },
+    {
+      "id": "a7",
+      "wordId": "d012-4",
+      "word": "thrilling",
+      "pos": "adjective",
+      "difficulty": 2,
+      "correct": "very exciting and full of surprises",
+      "distractors": [
+        "slow and boring for everyone",
+        "calm and quiet like a lake",
+        "unable to wait calmly"
+      ]
+    },
+    {
+      "id": "a8",
+      "wordId": "d008-3",
+      "word": "crawl",
+      "pos": "verb",
+      "difficulty": 2,
+      "correct": "to move on your hands and knees",
+      "distractors": [
+        "to walk very fast on two feet",
+        "to hop on one foot",
+        "to go on, or to move forward"
+      ]
+    },
+    {
+      "id": "a9",
+      "wordId": "d015-3",
+      "word": "blame",
+      "pos": "verb",
+      "difficulty": 2,
+      "correct": "to say that someone did something wrong",
+      "distractors": [
+        "to say thank you to a kind person",
+        "to give a prize to the winner",
+        "to go up using your hands and feet"
+      ]
+    },
+    {
+      "id": "a10",
+      "wordId": "d009-3",
+      "word": "giggle",
+      "pos": "verb",
+      "difficulty": 2,
+      "correct": "to laugh in a silly way, softly",
+      "distractors": [
+        "to cry loudly when you are hurt",
+        "to talk softly in the library",
+        "to clean the floor with a broom"
+      ]
+    }
+  ],
+  "sectionB": [
+    {
+      "id": "b1",
+      "wordId": "d001-2",
+      "word": "pillow",
+      "difficulty": 1,
+      "sentence": "Aarav hugged his soft pillow and fell asleep.",
+      "target": "pillow",
+      "answer": "noun"
+    },
+    {
+      "id": "b2",
+      "wordId": "d005-4",
+      "word": "eyelash",
+      "difficulty": 2,
+      "sentence": "Aarav blew a fallen eyelash off his cheek.",
+      "target": "eyelash",
+      "answer": "noun"
+    },
+    {
+      "id": "b3",
+      "wordId": "d005-5",
+      "word": "pancake",
+      "difficulty": 2,
+      "sentence": "Aai made a sweet pancake for breakfast on Sunday.",
+      "target": "pancake",
+      "answer": "noun"
+    },
+    {
+      "id": "b4",
+      "wordId": "d002-3",
+      "word": "decorate",
+      "difficulty": 2,
+      "sentence": "We decorate our house with lamps and flowers at Diwali.",
+      "target": "decorate",
+      "answer": "verb"
+    },
+    {
+      "id": "b5",
+      "wordId": "d016-3",
+      "word": "remember",
+      "difficulty": 2,
+      "sentence": "Can you remember the way to your grandmother's house?",
+      "target": "remember",
+      "answer": "verb"
+    },
+    {
+      "id": "b6",
+      "wordId": "d013-3",
+      "word": "solve",
+      "difficulty": 2,
+      "sentence": "Aarav can solve a hard sum in two minutes.",
+      "target": "solve",
+      "answer": "verb"
+    },
+    {
+      "id": "b7",
+      "wordId": "d020-1",
+      "word": "unkind",
+      "difficulty": 1,
+      "sentence": "It is unkind to laugh at someone who falls down.",
+      "target": "unkind",
+      "answer": "adjective"
+    },
+    {
+      "id": "b8",
+      "wordId": "d020-4",
+      "word": "jumpy",
+      "difficulty": 2,
+      "sentence": "Aarav felt jumpy after hearing a loud noise in the dark.",
+      "target": "jumpy",
+      "answer": "adjective"
+    },
+    {
+      "id": "b9",
+      "wordId": "d009-4",
+      "word": "quietly",
+      "difficulty": 2,
+      "sentence": "Aarav tiptoed quietly so he would not wake the baby.",
+      "target": "quietly",
+      "answer": "adverb"
+    },
+    {
+      "id": "b10",
+      "wordId": "d012-2",
+      "word": "upstairs",
+      "difficulty": 1,
+      "sentence": "Sai ran upstairs to bring her school bag.",
+      "target": "upstairs",
+      "answer": "adverb"
+    }
+  ],
+  "sectionC": [
+    {
+      "id": "c1",
+      "wordId": "d004-2",
+      "word": "soap",
+      "pos": "noun",
+      "difficulty": 1,
+      "meaning": "something we rub on our hands to wash them clean",
+      "exampleSentence": "Always wash your hands with soap before eating.",
+      "contextWords": [
+        "wash",
+        "hands",
+        "clean",
+        "bath",
+        "water",
+        "bubbles"
+      ]
+    },
+    {
+      "id": "c2",
+      "wordId": "d001-4",
+      "word": "vegetable",
+      "pos": "noun",
+      "difficulty": 2,
+      "meaning": "a plant that we cook and eat, like a carrot",
+      "exampleSentence": "Aai bought fresh vegetables from the market for dinner.",
+      "contextWords": [
+        "market",
+        "cook",
+        "fresh",
+        "carrot",
+        "spinach",
+        "farmer"
+      ]
+    },
+    {
+      "id": "c3",
+      "wordId": "d011-1",
+      "word": "windy",
+      "pos": "adjective",
+      "difficulty": 1,
+      "meaning": "with a lot of wind blowing",
+      "exampleSentence": "It was a windy day, so Aarav flew his kite very high.",
+      "contextWords": [
+        "kite",
+        "air",
+        "breeze",
+        "storm",
+        "blow",
+        "leaves"
+      ]
+    },
+    {
+      "id": "c4",
+      "wordId": "d002-5",
+      "word": "talkative",
+      "pos": "adjective",
+      "difficulty": 2,
+      "meaning": "liking to talk a lot",
+      "exampleSentence": "Our talkative friend Om never stops chatting in class.",
+      "contextWords": [
+        "friend",
+        "chat",
+        "speak",
+        "class",
+        "words",
+        "loud"
+      ]
+    },
+    {
+      "id": "c5",
+      "wordId": "d020-3",
+      "word": "attract",
+      "pos": "verb",
+      "difficulty": 2,
+      "meaning": "to pull something closer to itself",
+      "exampleSentence": "A magnet can attract small iron pins.",
+      "contextWords": [
+        "magnet",
+        "iron",
+        "pull",
+        "flowers",
+        "bees",
+        "light"
+      ]
+    }
+  ]
+}

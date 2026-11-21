@@ -1,0 +1,14 @@
+/* F4 student test + home card. Mobile first: works at 320 px, tap targets >= 56 px. */
+.test-head { display: flex; flex-direction: column; gap: 4px; }
+.test-timer { height: 14px; }
+.test-q { font-size: 24px; line-height: 1.35; overflow-wrap: anywhere; }
+.test-target { text-decoration-thickness: 3px; text-underline-offset: 4px; font-weight: 800; }
+.test-opt { min-height: 56px; height: auto; padding: var(--sp-3); text-align: left; justify-content: flex-start; white-space: normal; line-height: 1.3; background: var(--c-surface); color: var(--c-text); border: 2px solid var(--c-border); }
+.test-opt.picked { background: var(--c-primary); color: var(--c-on-primary); border-color: var(--c-primary-press); }
+.test-nav { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+.test-code { font-size: 44px; letter-spacing: 0.3em; text-align: center; width: 100%; max-width: 280px; min-height: 72px; border: 3px solid var(--c-primary); border-radius: var(--radius); text-transform: uppercase; background: var(--c-surface); color: var(--c-text); }
+.test-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-2); }
+.test-chip { min-height: 56px; background: var(--c-surface); color: var(--c-text); border: 2px dashed var(--c-warn); }
+.test-chip.done { border-style: solid; border-color: var(--c-success); }
+.student-screen .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.feedback-warn { color: var(--c-warn); font-weight: 700; }
