@@ -57,6 +57,9 @@
 .syl { font-size: var(--fs-lg); font-weight: 700; color: var(--c-learn); text-align: center; }
 .example mark { background: #fde68a; color: inherit; border-radius: 4px; padding: 0 3px; font-weight: 700; }
 .option { min-height: 64px; text-align: left; justify-content: flex-start; font-size: 19px; font-weight: 600; line-height: 1.3; padding: var(--sp-2) var(--sp-4); }
+.pos-option { flex-wrap: wrap; gap: 0 var(--sp-2); }
+.pos-help { font-weight: 400; font-size: 15px; opacity: 0.8; }
+.pos-example { text-align: center; }
 .option.grey { opacity: 0.45; text-decoration: line-through; }
 .option.right { background: var(--c-success-bg); border-color: var(--c-success); color: var(--c-success); }
 .checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--sp-2); }

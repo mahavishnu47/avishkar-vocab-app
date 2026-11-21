@@ -6,9 +6,10 @@ import { enqueue, flush, pendingCount } from '../shared/outbox.ts';
 import { KeyboardDisplay, OnScreenKeyboard } from '../shared/OnScreenKeyboard.tsx';
 import { loadSession, loadToday, pruneSessions, saveSession, saveToday } from '../shared/session-store.ts';
 import { currentVoiceName, speak, speechSupported, stopSpeaking } from '../shared/speech.ts';
+import { PosStage } from './PosStage.tsx';
 import { handleAuthError, storedStudent, TopBar, useRequireToken } from './common.tsx';
 import {
-  emptyRec, freshState, freshWord, highlightParts, praise, seededShuffle, starterFor, uuid, wordIdxFromProgress,
+  emptyRec, freshState, freshWord, hasPosStage, highlightParts, normalizeState, praise, seededShuffle, starterFor, uuid, wordIdxFromProgress,
 } from './play-logic.ts';
 import type { PlayState, Stage, SubRec } from './play-logic.ts';
 import { localClassify, localEvaluate, localPositions, localSentenceMarks, localWordScore } from './safe-core.ts';
@@ -24,12 +25,12 @@ const GATE_MSG = (word: string): Record<string, string> => ({
 });
 
 function Caterpillar({ wordIdx, stage }: { wordIdx: number; stage: Stage }) {
-  const si = stage === 'spell' ? 0 : stage === 'write' ? 2 : stage === 'summary' ? 3 : 1;
+  const si = stage === 'spell' ? 0 : stage === 'pos' ? 2 : stage === 'write' ? 3 : stage === 'summary' ? 4 : 1;
   return (
     <div className="cat" role="img" aria-label={`Word ${Math.min(wordIdx + 1, 5)} of 5`}>
       {[0, 1, 2, 3, 4].map((w) => (
         <span key={w} className={`cat-seg ${w === wordIdx ? 'cur' : ''}`}>
-          {[0, 1, 2].map((d) => (
+          {[0, 1, 2, 3].map((d) => (
             <span key={d} className={`cat-dot ${w < wordIdx || (w === wordIdx && d < si) ? 'done' : w === wordIdx && d === si ? 'now' : ''}`} />
           ))}
         </span>
@@ -70,6 +71,7 @@ export function Play() {
         state = freshState(res.session.id, fi);
         if (old) { state.recs = old.recs; state.localScores = old.localScores; }
       }
+      state = normalizeState(state);
       saveSession(state.sessionId, state);
       setToday(res); setSt(state);
     })();
@@ -108,6 +110,7 @@ export function Play() {
         {st.stage === 'spell' && <SpellStage key={word.id} {...common} />}
         {st.stage === 'learn' && <LearnStage key={word.id} {...common} />}
         {st.stage === 'check' && <CheckStage key={word.id} {...common} />}
+        {st.stage === 'pos' && <PosStage key={word.id} {...common} />}
         {st.stage === 'write' && <WriteStage key={word.id} {...common} words={today.words} />}
       </main>
     </>
@@ -309,7 +312,9 @@ function CheckStage({ st, update, word, sessionId }: StageProps) {
       <div role="status" className={solved ? 'feedback-ok' : m.wrongTaps.length ? 'feedback-almost' : ''}>
         {solved ? praise(word.id.length + 1) : gaveUp ? `It means: ${word.meaning}` : m.wrongTaps.length ? 'Try again 💪' : ''}
       </div>
-      {m.done && <button className="btn btn-learn btn-block" onClick={() => update((s) => ({ ...s, stage: 'write', sentence: { ...s.sentence, t0: Date.now() } }))}>Next ▶</button>}
+      {m.done && <button className="btn btn-learn btn-block" onClick={() => update((s) => (hasPosStage(word)
+        ? { ...s, stage: 'pos', pos: { ...s.pos, t0: Date.now() } }
+        : { ...s, stage: 'write', sentence: { ...s.sentence, t0: Date.now() } }))}>Next ▶</button>}
     </>
   );
 }
