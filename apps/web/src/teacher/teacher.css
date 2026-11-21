@@ -17,7 +17,7 @@
 .t-error { background: #fee2e2; color: var(--c-danger); padding: var(--sp-3); border-radius: var(--radius-sm); font-weight: 600; }
 .t-warn { color: var(--c-warn); font-weight: 600; }
 .t-link { background: none; border: none; box-shadow: none; color: var(--c-primary); text-decoration: underline; }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.sr-only { position: absolute; left: 0; top: 0; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .t-nav { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; padding-bottom: var(--sp-2); border-bottom: 2px solid var(--c-border); }
 .t-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--sp-3); border-radius: var(--radius-sm); color: var(--c-text); text-decoration: none; font-weight: 600; }
