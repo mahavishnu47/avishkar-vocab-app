@@ -2,7 +2,7 @@
  * In-browser mock of the school admin + super admin API (?mock=1). Replaces methods on the shared `api` object.
  * Data lives in memory and resets on reload.
  */
-import type { AdminSchoolRow, AuditEntry, ClassSummary, Invite, School, SchoolTeacherRow } from '@shabd/core';
+import type { AdminActivityEntry, AdminOverview, AdminSchoolDetail, AdminSchoolRow,AuditEntry, ClassSummary, Invite, School, SchoolTeacherRow } from '@shabd/core';
 import { ApiRequestError, api, getAdminSecret, getToken } from '../shared/api.ts';
 import { todayIst } from './util.ts';
 
@@ -46,7 +46,25 @@ export function installMock(): void {
   const me = () => ({ role: 'teacher' as const, teacher: { id: 1, name: 'Principal Joshi', email: 'demo@school.test', schoolId: 1, role: 'school_admin' as const, active: true }, school: { id: 1, name: school.name } });
 
   // super admin
-  let admin: AdminSchoolRow[] = [{ school: { ...school }, udiseCode: null, teachers: 3, classes: 2, students: 62, createdAt: new Date().toISOString() }];
+  const EXTRA = { activeStudents7d: 41, lastActivityAt: new Date().toISOString(), lastTeacherLoginAt: new Date().toISOString(), studyRunning: false };
+  let admin: AdminSchoolRow[] = [{ school: { ...school }, udiseCode: null, teachers: 3, classes: 2, students: 62, createdAt: new Date().toISOString(), ...EXTRA }];
+  const mockOverview = (): AdminOverview => ({
+    totals: { schoolsActive: admin.filter((r) => r.school.status === 'active').length, schoolsSuspended: admin.filter((r) => r.school.status !== 'active').length, teachers: 3, classes: 2, students: 62, joinRequestsPending: 1, studiesRunning: 0 },
+    activity: { studentsToday: 30, students7d: 41, students30d: 55, sessionsCompletedToday: 24, sessionsCompleted7d: 150, wordsCompleted7d: 750 },
+    daily: Array.from({ length: 30 }, (_, i) => ({ date: new Date(Date.now() - (29 - i) * 864e5).toISOString().slice(0, 10), activeStudents: 10 + ((i * 7) % 25), sessionsCompleted: 8 + ((i * 5) % 20) })),
+    health: { db: 'ok', migrationsApplied: 11, latestMigration: 11, wordsLoaded: 1500, appVersion: '0.1.0', serverTime: new Date().toISOString() },
+    topSchools: [{ schoolId: 1, name: school.name, activeStudents7d: 41, students: 62 }],
+  });
+  const mockActivity = (): AdminActivityEntry[] => [
+    { id: 2, at: new Date().toISOString(), schoolId: 1, schoolName: school.name, actorType: 'teacher', action: 'class.create', targetType: 'class', targetId: 1 },
+    { id: 1, at: new Date().toISOString(), schoolId: 1, schoolName: school.name, actorType: 'super', action: 'school.create', targetType: 'school', targetId: 1 },
+  ];
+  const mockDetail = (row: AdminSchoolRow): AdminSchoolDetail => ({
+    row,
+    teachers: [{ id: 1, name: 'Principal Joshi', email: 'demo@school.test', role: 'school_admin', active: true, lastLoginAt: new Date().toISOString() }],
+    classes: [{ id: 1, name: '5A', classCode: 'ABC234', students: 31, active7d: 20, archived: false }],
+    recentActivity: mockActivity(),
+  });
   const adminGuard = (): Promise<never> | null => (getAdminSecret() === 'test-secret-1234567890' ? null : Promise.reject(fail(401, 'unauthorized', 'Wrong secret.')));
 
   Object.assign(api, {
@@ -95,9 +113,12 @@ export function installMock(): void {
     schoolAudit: () => delay([...audit]),
     admin: {
       listSchools: () => adminGuard() ?? delay([...admin]),
+      overview: () => adminGuard() ?? delay(mockOverview()),
+      schoolDetail: (id: number) => adminGuard() ?? delay(mockDetail(admin.find((r) => r.school.id === id) ?? admin[0]!)),
+      activity: () => adminGuard() ?? delay(mockActivity()),
       createSchool: (b: { name: string; district?: string; udiseCode?: string }) => {
         const s: School = { id: nextId++, name: b.name, district: b.district ?? '', studentCode: 'NEWSCH', status: 'active' };
-        admin = [...admin, { school: s, udiseCode: b.udiseCode ?? null, teachers: 0, classes: 0, students: 0, createdAt: new Date().toISOString() }];
+        admin = [...admin, { school: s, udiseCode: b.udiseCode ?? null, teachers: 0, classes: 0, students: 0, createdAt: new Date().toISOString(), ...EXTRA, activeStudents7d: 0, lastActivityAt: null }];
         const inv = mkInvite('school_admin', 'SETUPABC');
         return delay({ school: s, setupInvite: inv, whatsappText: `Namaste! Your school is ready on Shabd Mitra 🦜. Open this link to set up your school (takes 1 minute): ${inv.url}.` });
       },

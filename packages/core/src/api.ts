@@ -124,7 +124,39 @@ export interface AuditEntry {
 }
 
 // ------------------------------------------------------------------ super admin
-export interface AdminSchoolRow { school: School; udiseCode: string | null; teachers: number; classes: number; students: number; createdAt: string }
+export interface AdminSchoolRow {
+  school: School; udiseCode: string | null; teachers: number; classes: number; students: number; createdAt: string;
+  /** Students who started a session in the last 7 days (today included). */
+  activeStudents7d: number;
+  /** Latest session start or finish in the school, ISO, or null. */
+  lastActivityAt: string | null;
+  lastTeacherLoginAt: string | null;
+  /** True when the school has a research study with status 'running'. */
+  studyRunning: boolean;
+}
+export interface AdminDailyPoint { date: string; activeStudents: number; sessionsCompleted: number }
+export interface AdminTopSchool { schoolId: number; name: string; activeStudents7d: number; students: number }
+export interface AdminOverview {
+  totals: {
+    schoolsActive: number; schoolsSuspended: number; teachers: number; classes: number; students: number;
+    joinRequestsPending: number; studiesRunning: number;
+  };
+  activity: {
+    studentsToday: number; students7d: number; students30d: number;
+    sessionsCompletedToday: number; sessionsCompleted7d: number; wordsCompleted7d: number;
+  };
+  /** 30 entries, oldest first, ending today. */
+  daily: AdminDailyPoint[];
+  health: { db: 'ok'; migrationsApplied: number; latestMigration: number | null; wordsLoaded: number; appVersion: string; serverTime: string };
+  topSchools: AdminTopSchool[];
+}
+export interface AdminTeacherRow { id: number; name: string; email: string; role: 'teacher' | 'school_admin'; active: boolean; lastLoginAt: string | null }
+export interface AdminClassRow { id: number; name: string; classCode: string; students: number; active7d: number; archived: boolean }
+export interface AdminActivityEntry {
+  id: number; at: string; schoolId: number | null; schoolName: string | null;
+  actorType: 'super' | 'teacher' | 'student' | 'system'; action: string; targetType: string | null; targetId: number | null;
+}
+export interface AdminSchoolDetail { row: AdminSchoolRow; teachers: AdminTeacherRow[]; classes: AdminClassRow[]; recentActivity: AdminActivityEntry[] }
 export interface CreateSchoolReq { name: string; district?: string; udiseCode?: string }
 export interface CreateSchoolRes { school: School; setupInvite: Invite; whatsappText: string }
 export interface AdminUpdateSchoolReq { name?: string; district?: string; status?: 'active' | 'suspended' }
