@@ -4,6 +4,7 @@ import type { StudentHomeRes, StudyDayRes } from '@shabd/core';
 import { api } from '../shared/api.ts';
 import { wordPlanApi } from '../shared/research/wordplan-api.ts';
 import { restMessage } from './research/cards/StudyDayCard.tsx';
+import { getActiveProfile, getProfiles, removeProfile } from './profiles.ts';
 import { handleAuthError, saveHome, storedHome, TopBar, useRequireToken } from './common.tsx';
 import { InstallPrompt } from './InstallPrompt.tsx';
 import { HomeCards } from './research/HomeCards.tsx';
@@ -13,6 +14,7 @@ export function Home() {
   const authed = useRequireToken(nav);
   const [home, setHome] = useState<StudentHomeRes | null>(storedHome());
   const [offline, setOffline] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
   // undefined = still asking; null = asked (or offline) and nothing to say. Rest days hide the Start button, which would only bounce back here.
   const [day, setDay] = useState<StudyDayRes | null | undefined>(undefined);
 
@@ -30,6 +32,22 @@ export function Home() {
   if (!home) {
     return <main className="screen center student-screen"><div className="mitra-bird">🦜</div><p>{offline ? 'No internet 🙂' : 'Loading…'}</p>
       {offline && <button className="btn" onClick={() => location.reload()}>Try again</button>}</main>;
+  }
+  const logOut = () => {
+    const me = getActiveProfile();
+    if (me?.token) void api.withToken(me.token).logout('student').catch(() => {});
+    if (me) removeProfile(me.studentId);
+    nav(getProfiles().length > 0 ? '/who' : '/', { replace: true });
+  };
+  if (loggingOut) {
+    return (
+      <main className="screen center student-screen">
+        <div style={{ fontSize: 64 }}>{home.student.avatar}</div>
+        <p className="title" style={{ textAlign: 'center' }}>Log out {home.student.firstName} from this phone?</p>
+        <button className="btn btn-primary btn-block btn-tall" onClick={logOut}>Yes, log out</button>
+        <button className="btn btn-block btn-tall" onClick={() => setLoggingOut(false)}>No</button>
+      </main>
+    );
   }
   const st = home.today.status;
   const pct = Math.min(100, Math.round((home.level.xpIntoLevel / Math.max(1, home.level.xpForNextLevel)) * 100));
@@ -68,6 +86,7 @@ export function Home() {
       <div className="row" style={{ justifyContent: 'center', flexWrap: 'wrap' }}>
         <button className="link" onClick={() => nav('/welcome')}>How to play</button>
         <button className="link" onClick={() => nav('/who')}>Not you?</button>
+        <button className="link" onClick={() => setLoggingOut(true)}>Log out</button>
       </div>
     </main>
   );
