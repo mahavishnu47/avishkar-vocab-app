@@ -1,11 +1,63 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import type { RosterStudent } from '@shabd/core';
+import type { JoinRequest, RosterStudent } from '@shabd/core';
 import { api } from '../shared/api.ts';
 import { errMsg, Page, SortTable, useLoad } from './ui.tsx';
 
 function joinedText(s: RosterStudent): string {
   return s.firstLoginAt ? `✅ ${s.firstLoginAt.slice(0, 10)}` : 'not yet';
+}
+
+/** Children who asked to join from the class link. Hidden when nobody is waiting. */
+export function WaitingToJoin({ classId, onApproved, onMessage }: {
+  classId: number; onApproved: (s: RosterStudent) => void; onMessage: (m: string) => void;
+}) {
+  const [reqs, setReqs] = useState<JoinRequest[]>([]);
+  const [rolls, setRolls] = useState<Record<number, string>>({});
+  const [busy, setBusy] = useState<number | null>(null);
+  useEffect(() => {
+    let live = true;
+    api.joinRequests(classId).then((r) => { if (live) setReqs(r); }, () => {});
+    return () => { live = false; };
+  }, [classId]);
+  if (reqs.length === 0) return null;
+
+  const approve = async (r: JoinRequest) => {
+    const typed = (rolls[r.id] ?? '').trim();
+    const rollNo = typed === '' ? undefined : Number(typed);
+    if (rollNo !== undefined && (!Number.isInteger(rollNo) || rollNo < 1)) { onMessage('Roll number must be a number like 12.'); return; }
+    setBusy(r.id);
+    try {
+      const s = await api.approveJoinRequest(classId, r.id, rollNo === undefined ? undefined : { rollNo });
+      setReqs((x) => x.filter((y) => y.id !== r.id));
+      onApproved(s);
+      onMessage(`${s.firstName} is in. PIN: ${s.pin}. Tell them their PIN.`);
+    } catch (e) { onMessage(errMsg(e)); } finally { setBusy(null); }
+  };
+  const remove = async (r: JoinRequest) => {
+    if (!window.confirm(`Remove the request from ${r.firstName}?`)) return;
+    setBusy(r.id);
+    try { await api.rejectJoinRequest(classId, r.id); setReqs((x) => x.filter((y) => y.id !== r.id)); } catch (e) { onMessage(errMsg(e)); } finally { setBusy(null); }
+  };
+
+  return (
+    <section className="card stack" aria-label="Waiting to join">
+      <h2>Waiting to join ({reqs.length})</h2>
+      <p className="muted">These children asked to join. Only approve students from your class.</p>
+      {reqs.map((r) => (
+        <div className="row" key={r.id}>
+          <span className="deva">{r.firstName}</span>
+          <input
+            type="number" min={1} inputMode="numeric" style={{ width: 90 }}
+            aria-label={`Roll number for ${r.firstName}`} placeholder={r.requestedRollNo ? String(r.requestedRollNo) : 'Roll no.'}
+            value={rolls[r.id] ?? ''} onChange={(e) => setRolls({ ...rolls, [r.id]: e.target.value })}
+          />
+          <button className="btn btn-primary" disabled={busy === r.id} onClick={() => approve(r)}>Approve</button>
+          <button className="btn" disabled={busy === r.id} onClick={() => remove(r)}>Remove</button>
+        </div>
+      ))}
+    </section>
+  );
 }
 
 export function Roster() {
@@ -28,6 +80,10 @@ export function Roster() {
       {msg && <div className="feedback-ok" role="status">{msg}</div>}
       {data && (
         <>
+          <WaitingToJoin
+            classId={classId} onMessage={setMsg}
+            onApproved={(s) => setData((d) => [...(d ?? []), s].sort((a, b) => a.rollNo - b.rollNo))}
+          />
           {data.length === 0 && (
             <section className="card stack">
               <p className="muted">No students yet. Paste your class list to add them.</p>

@@ -49,6 +49,14 @@ export interface TeacherAuthRes { token: string; teacher: Teacher; school: Pick<
 export interface JoinStudent { id: number; firstName: string; avatar: string; rollNo: number }
 export interface JoinClassRes { schoolName: string; classRoom: { name: string; classCode: string }; students: JoinStudent[] }
 export interface JoinSchoolRes { schoolName: string; classes: { name: string; classCode: string; standard: number; division: string }[] }
+
+/** Join requests: a child asks to join a class, the class teacher approves or removes the request. */
+export type JoinRequestStatus = 'pending' | 'approved' | 'rejected';
+export interface CreateJoinRequestReq { firstName: string; rollNo?: number }
+export interface CreateJoinRequestRes { requestId: number; secret: string }
+export interface JoinRequestStatusRes { status: JoinRequestStatus; firstName: string }
+export interface JoinRequest { id: number; firstName: string; requestedRollNo: number | null; createdAt: string }
+export interface ApproveJoinRequestReq { rollNo?: number }
 /** @deprecated kept for cached old clients */
 export interface PublicRosterRes {
   className: string;

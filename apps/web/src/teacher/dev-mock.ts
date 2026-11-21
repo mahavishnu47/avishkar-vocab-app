@@ -148,6 +148,7 @@ export function installMock(): void {
       });
     },
     roster: (id: number) => delay([...rosterOf(id)]),
+    joinRequests: () => delay([]),
     addStudents: (id: number, b: { students: { rollNo: number; firstName: string }[]; consentConfirmed?: boolean }) => {
       const cur = rosterOf(id);
       for (const n of b.students) if (cur.some((s) => s.rollNo === n.rollNo)) return Promise.reject(fail(409, 'conflict', `Roll ${n.rollNo} already exists`));

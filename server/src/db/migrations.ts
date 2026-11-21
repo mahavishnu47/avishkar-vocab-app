@@ -11,6 +11,7 @@ import { M0007 } from './migrations/m0007-assessment.ts';
 import { M0008 } from './migrations/m0008-authenticity.ts';
 import { M0009 } from './migrations/m0009-recall.ts';
 import { M0010 } from './migrations/m0010-instruments.ts';
+import { M0011 } from './migrations/m0011-join-requests.ts';
 
 export interface Migration { version: number; name: string; sql: string }
 
@@ -359,4 +360,5 @@ CREATE UNIQUE INDEX classes_active_slot_uq ON classes (school_id, standard, divi
   ...M0008,
   ...M0009,
   ...M0010,
+  ...M0011,
 ];
