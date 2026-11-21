@@ -95,7 +95,7 @@ describe('migrate', () => {
     const a = createDb(u.toString(), { max: 2 });
     const b = createDb(u.toString(), { max: 2 });
     const [ra, rb] = await Promise.all([migrate(a), migrate(b)]);
-    expect([ra.length, rb.length].sort()).toEqual([0, 3]);
+    expect([ra.length, rb.length].sort()).toEqual([0, MIGRATIONS.length]);
     await a.end();
     await b.end();
     await admin.exec(`DROP DATABASE ${name} WITH (FORCE)`);
