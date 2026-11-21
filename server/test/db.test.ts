@@ -228,14 +228,3 @@ describe('migration v2 backfill (v1 database with data)', () => {
     expect(cols.map((c) => c.column_name)).toContain('use_count');
   });
 });
-
-describe('onboarding endpoint stubs (until O2)', () => {
-  it('answer 501 not_implemented', async () => {
-    const { default: request } = await import('supertest');
-    const { createApp } = await import('../src/app.ts');
-    const r = await request(createApp()).get('/api/join/class/ABCDEF');
-    expect(r.status).toBe(501);
-    expect(r.body.error.code).toBe('not_implemented');
-    expect((await request(createApp()).get('/api/admin/schools')).status).toBe(501);
-  });
-});

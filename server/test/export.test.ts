@@ -33,7 +33,9 @@ const uuid = () => crypto.randomUUID();
 
 describe('CSV export', () => {
   it('has a BOM, a header row, CRLF, quoting and a download filename for every type', async () => {
-    const { cls, students } = await makeClass(ctx.app, teacher, ['=cmd', 'Aarav, "Jr"']);
+    const { cls, students } = await makeClass(ctx.app, teacher, ['=cmd', 'Aarav']);
+    // the API keeps first names only, so plant a name with a comma and quotes directly to exercise CSV quoting
+    await ctx.db.run('UPDATE students SET first_name = ? WHERE id = ?', ['Aarav, "Jr"', students[1]!.id]);
     const tok = await studentLogin(ctx.app, cls, students[0]!);
     const today = (await request(ctx.app).post('/api/student/sessions/today').set(auth(tok)).send({})).body;
     const w = today.words[0];

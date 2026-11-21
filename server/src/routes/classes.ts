@@ -1,53 +1,101 @@
 /**
- * Classes & roster (teacher). OWNER: Lane A. Contract: docs/API.md section 3.
+ * Classes, roster, teacher overview, share info. Staff only; every class/student access goes through tenancy.ts.
+ * Contract: docs/ONBOARDING_SPEC.md 4.5.
  */
 import { Router } from 'express';
 import type {
-  AddStudentsReq, ClassRoom, CreateClassReq, RosterRes, RosterStudent, StudentWithPin, UpdateClassReq, UpdateStudentReq,
+  AddStudentsReq, ClassRoom, CreateClassReq, ResetPinReq, RosterRes, RosterStudent, ShareInfoRes, TeacherOverviewRes,
+  UpdateClassReq, UpdateStudentReq,
 } from '@shabd/core';
-import { assertTeacherOwnsClass, assertTeacherOwnsStudent, avatarFor, generateClassCode, generatePin, requireTeacher } from '../auth.ts';
+import { academicYearFor, className as makeClassName, classJoinText, joinPath, schoolJoinPath } from '@shabd/core';
+import { avatarFor, generateClassCode, generatePin, requireTeacher } from '../auth.ts';
 import { today } from '../clock.ts';
 import { getDb, isUniqueViolation } from '../db/db.ts';
-import { academicYearFor, className as makeClassName } from '@shabd/core';
 import { HttpError, badRequest, type H } from '../http.ts';
-import { classOf, getClassRow, rosterStudentOf, studentWithPinOf } from '../mappers.ts';
+import { classOf, getClassRow, rosterStudentOf } from '../mappers.ts';
+import { audit } from '../services/audit.ts';
+import { baseUrl } from '../services/invites.ts';
+import { assertClassSlotFree, classSummaries } from '../services/schools.ts';
+import { assertCanAccessClass, assertCanAccessStudent, staffAuth } from '../tenancy.ts';
 import { asObject, idParam, optDate, optInt, optString, reqDate, reqInt, reqString } from '../validate.ts';
 
 export const classesRouter = Router();
-classesRouter.use(['/classes', '/students'], requireTeacher);
+classesRouter.use(['/classes', '/students', '/teacher'], requireTeacher);
 
-const MAX_STUDENTS_PER_REQUEST = 60;
+const MAX_STUDENTS_PER_REQUEST = 100;
 
-const listClasses: H<{}, ClassRoom[]> = async (req, res) => {
-  const rows = await getDb().all('SELECT * FROM classes WHERE teacher_id = ? ORDER BY id DESC', [(req.auth as { teacherId: number }).teacherId]);
+/** Defence in depth: only the first whitespace-separated word of a name is kept. */
+const firstWord = (s: string): string => s.trim().split(/\s+/)[0] ?? '';
+
+const listClasses: H<{}, ClassRoom[], unknown, { archived?: string }> = async (req, res) => {
+  const a = staffAuth(req);
+  const rows = await getDb().all(
+    `SELECT * FROM classes WHERE teacher_id = ? ${req.query.archived === '1' ? '' : 'AND archived = 0'} ORDER BY id DESC`,
+    [a.teacherId],
+  );
   res.json(rows.map(classOf));
 };
 
+const teacherOverview: H<{}, TeacherOverviewRes> = async (req, res) => {
+  const a = staffAuth(req);
+  const db = getDb();
+  const date = today();
+  const me = (await db.get('SELECT * FROM teachers WHERE id = ?', [a.teacherId]))!;
+  const school = (await db.get<{ id: number; name: string }>('SELECT id, name FROM schools WHERE id = ?', [a.schoolId]))!;
+  const classes = await classSummaries(db, date, 'c.teacher_id = ? AND c.archived = 0', [a.teacherId]);
+  const flags = (await db.get<{ students: number; shared: number; joined: number }>(
+    `SELECT count(s.id) AS students,
+            (SELECT count(*) FROM classes c2 WHERE c2.teacher_id = ? AND c2.link_shared_at IS NOT NULL) AS shared,
+            count(s.first_login_at) AS joined
+       FROM classes c LEFT JOIN students s ON s.class_id = c.id
+      WHERE c.teacher_id = ?`,
+    [a.teacherId, a.teacherId],
+  ))!;
+  const checklist = {
+    classCreated: classes.length > 0 || (await db.get('SELECT 1 FROM classes WHERE teacher_id = ?', [a.teacherId])) !== undefined,
+    studentsAdded: Number(flags.students) > 0,
+    linkShared: Number(flags.shared) > 0,
+    firstStudentJoined: Number(flags.joined) > 0,
+    done: false,
+  };
+  checklist.done = checklist.classCreated && checklist.studentsAdded && checklist.linkShared && checklist.firstStudentJoined;
+  res.json({
+    teacher: { id: me.id as number, name: me.name as string, email: me.email as string, schoolId: a.schoolId, role: a.staffRole, active: true },
+    school, date, classes, checklist,
+  });
+};
+
 const createClass: H<{}, ClassRoom, CreateClassReq> = async (req, res) => {
+  const a = staffAuth(req);
   const b = asObject(req.body);
-  // O1 minimal shim; O2 owns the full wizard rules (409 on duplicates, etc.).
   let standard = optInt(b, 'standard', 1, 12);
   let division = (optString(b, 'division', 0, 3) ?? '').toUpperCase();
+  if (b.division === '') division = '';
+  if (!/^[A-Z0-9]{0,3}$/.test(division)) throw badRequest('division must be up to 3 letters or digits');
   let name = optString(b, 'name', 1, 40);
   if (standard === undefined) {
     if (name === undefined) throw badRequest('standard or name is required');
+    // legacy { name }: parsed like the migration backfill, otherwise standard 5, no division
     const m = /^([0-9]{1,2})\s*-?\s*([A-Za-z]?)$/.exec(name.trim());
-    standard = m && Number(m[1]) >= 1 && Number(m[1]) <= 12 ? Number(m[1]) : 5;
-    division = m && Number(m[1]) >= 1 && Number(m[1]) <= 12 ? m[2]!.toUpperCase() : '';
+    const ok = m && Number(m[1]) >= 1 && Number(m[1]) <= 12;
+    standard = ok ? Number(m[1]) : 5;
+    division = ok ? m![2]!.toUpperCase() : '';
   }
   name ??= makeClassName(standard, division);
   const startDate = optDate(b.startDate, 'startDate') ?? today();
-  const teacherId = (req.auth as { teacherId: number }).teacherId;
+  const year = academicYearFor(startDate);
   const db = getDb();
-  const schoolId = (await db.get<{ school_id: number }>('SELECT school_id FROM teachers WHERE id = ?', [teacherId]))!.school_id;
+  await assertClassSlotFree(db, a.schoolId, standard, division, year);
   for (let attempt = 0; attempt < 20; attempt++) {
     try {
       // Not inside a transaction: a unique clash on class_code just retries with a new code.
       const ins = await db.run(
         'INSERT INTO classes (teacher_id, school_id, name, class_code, start_date, standard, division, academic_year) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id',
-        [teacherId, schoolId, name, generateClassCode(), startDate, standard, division, academicYearFor(startDate)],
+        [a.teacherId, a.schoolId, name, generateClassCode(), startDate, standard, division, year],
       );
-      res.status(201).json(classOf(await getClassRow(db, Number(ins.rows[0]!.id))));
+      const id = Number(ins.rows[0]!.id);
+      await audit(db, { schoolId: a.schoolId, actorType: 'teacher', actorId: a.teacherId, action: 'class.create', targetType: 'class', targetId: id });
+      res.status(201).json(classOf(await getClassRow(db, id)));
       return;
     } catch (e) {
       if (!isUniqueViolation(e)) throw e;
@@ -57,40 +105,91 @@ const createClass: H<{}, ClassRoom, CreateClassReq> = async (req, res) => {
 };
 
 const updateClass: H<{ classId: string }, ClassRoom, UpdateClassReq> = async (req, res) => {
+  const a = staffAuth(req);
   const classId = idParam(req.params.classId);
-  await assertTeacherOwnsClass((req.auth as { teacherId: number }).teacherId, classId);
+  const cur = await assertCanAccessClass(a, classId);
   const b = asObject(req.body);
   const name = optString(b, 'name', 1, 40);
   const startDate = b.startDate === undefined ? undefined : reqDate(b.startDate, 'startDate');
   const mode = b.leaderboardMode;
   if (mode !== undefined && mode !== 'individual' && mode !== 'hidden') throw badRequest("leaderboardMode must be 'individual' or 'hidden'");
+  for (const f of ['joinEnabled', 'archived'] as const) {
+    if (b[f] !== undefined && typeof b[f] !== 'boolean') throw badRequest(`${f} must be true or false`);
+  }
+  if (b.linkShared !== undefined && b.linkShared !== true) throw badRequest('linkShared must be true');
   const db = getDb();
+  if (b.archived === false && cur.archived === 1) {
+    await assertClassSlotFree(db, cur.school_id as number, cur.standard as number, cur.division as string, cur.academic_year as string, classId);
+  }
   await db.run(
     `UPDATE classes SET name = COALESCE(?, name), start_date = COALESCE(?, start_date),
-            leaderboard_mode = COALESCE(?, leaderboard_mode) WHERE id = ?`,
-    [name ?? null, startDate ?? null, mode ?? null, classId],
+            leaderboard_mode = COALESCE(?, leaderboard_mode), join_enabled = COALESCE(?, join_enabled),
+            archived = COALESCE(?, archived), link_shared_at = CASE WHEN ? THEN COALESCE(link_shared_at, ?) ELSE link_shared_at END
+      WHERE id = ?`,
+    [name ?? null, startDate ?? null, mode ?? null, b.joinEnabled === undefined ? null : b.joinEnabled ? 1 : 0,
+      b.archived === undefined ? null : b.archived ? 1 : 0, b.linkShared === true, new Date().toISOString(), classId],
   );
+  const sid = a.schoolId;
+  if (b.joinEnabled !== undefined && (b.joinEnabled ? 1 : 0) !== cur.join_enabled) {
+    await audit(db, { schoolId: sid, actorType: 'teacher', actorId: a.teacherId, action: 'class.join_toggle', targetType: 'class', targetId: classId, meta: { joinEnabled: b.joinEnabled as boolean } });
+  }
+  if (b.archived === true && cur.archived === 0) {
+    await audit(db, { schoolId: sid, actorType: 'teacher', actorId: a.teacherId, action: 'class.archive', targetType: 'class', targetId: classId });
+  }
   res.json(classOf(await getClassRow(db, classId)));
+};
+
+const rotateCode: H<{ classId: string }, ClassRoom> = async (req, res) => {
+  const a = staffAuth(req);
+  const classId = idParam(req.params.classId);
+  await assertCanAccessClass(a, classId);
+  const db = getDb();
+  for (let attempt = 0; attempt < 20; attempt++) {
+    try {
+      await db.run('UPDATE classes SET class_code = ? WHERE id = ?', [generateClassCode(), classId]);
+      await audit(db, { schoolId: a.schoolId, actorType: 'teacher', actorId: a.teacherId, action: 'class.code_rotate', targetType: 'class', targetId: classId });
+      res.json(classOf(await getClassRow(db, classId)));
+      return;
+    } catch (e) {
+      if (!isUniqueViolation(e)) throw e;
+    }
+  }
+  throw new HttpError(500, 'internal', 'Could not generate a class code');
+};
+
+const shareInfo: H<{ classId: string }, ShareInfoRes> = async (req, res) => {
+  const classId = idParam(req.params.classId);
+  const cls = classOf(await assertCanAccessClass(staffAuth(req), classId));
+  const db = getDb();
+  const school = (await db.get<{ name: string; student_code: string }>('SELECT name, student_code FROM schools WHERE id = ?', [cls.schoolId]))!;
+  const base = baseUrl(req);
+  const joinUrl = `${base}${joinPath(cls.classCode)}`;
+  res.json({
+    joinUrl, schoolJoinUrl: `${base}${schoolJoinPath(school.student_code)}`, classCode: cls.classCode,
+    whatsappText: classJoinText({ schoolName: school.name, className: cls.name, url: joinUrl }),
+  });
 };
 
 const listStudents: H<{ classId: string }, RosterRes> = async (req, res) => {
   const classId = idParam(req.params.classId);
-  await assertTeacherOwnsClass((req.auth as { teacherId: number }).teacherId, classId);
+  await assertCanAccessClass(staffAuth(req), classId);
   const rows = await getDb().all('SELECT * FROM students WHERE class_id = ? ORDER BY roll_no', [classId]);
   res.json(rows.map(rosterStudentOf));
 };
 
 const addStudents: H<{ classId: string }, RosterRes, AddStudentsReq> = async (req, res) => {
+  const a = staffAuth(req);
   const classId = idParam(req.params.classId);
-  await assertTeacherOwnsClass((req.auth as { teacherId: number }).teacherId, classId);
+  await assertCanAccessClass(a, classId);
   const b = asObject(req.body);
   if (!Array.isArray(b.students) || b.students.length < 1 || b.students.length > MAX_STUDENTS_PER_REQUEST) {
     throw badRequest(`students must be a list of 1-${MAX_STUDENTS_PER_REQUEST} entries`);
   }
+  if (b.consentConfirmed !== undefined && typeof b.consentConfirmed !== 'boolean') throw badRequest('consentConfirmed must be true or false');
   const parsed = (b.students as unknown[]).map((s, i) => {
     const o = asObject(s);
     try {
-      return { rollNo: reqInt(o, 'rollNo', 1, 9999), firstName: reqString(o, 'firstName', 1, 30) };
+      return { rollNo: reqInt(o, 'rollNo', 1, 9999), firstName: firstWord(reqString(o, 'firstName', 1, 30)) };
     } catch (e) {
       throw badRequest(`students[${i}]: ${(e as Error).message}`);
     }
@@ -114,6 +213,12 @@ const addStudents: H<{ classId: string }, RosterRes, AddStudentsReq> = async (re
         );
         out.push(rosterStudentOf(ins.rows[0]!));
       }
+      if (b.consentConfirmed === true) {
+        await q.run('UPDATE classes SET consent_attested_at = ?, consent_attested_by = ? WHERE id = ? AND consent_attested_at IS NULL', [
+          new Date().toISOString(), a.teacherId, classId,
+        ]);
+      }
+      await audit(q, { schoolId: a.schoolId, actorType: 'teacher', actorId: a.teacherId, action: 'students.add', targetType: 'class', targetId: classId, meta: { count: out.length } });
       return out;
     });
   } catch (e) {
@@ -124,40 +229,59 @@ const addStudents: H<{ classId: string }, RosterRes, AddStudentsReq> = async (re
   res.status(201).json(created);
 };
 
-const updateStudent: H<{ studentId: string }, StudentWithPin, UpdateStudentReq> = async (req, res) => {
+const updateStudent: H<{ studentId: string }, RosterStudent, UpdateStudentReq> = async (req, res) => {
+  const a = staffAuth(req);
   const studentId = idParam(req.params.studentId);
-  await assertTeacherOwnsStudent((req.auth as { teacherId: number }).teacherId, studentId);
+  const cur = await assertCanAccessStudent(a, studentId);
   const b = asObject(req.body);
-  const firstName = optString(b, 'firstName', 1, 30);
+  const rawName = optString(b, 'firstName', 1, 30);
+  const firstName = rawName === undefined ? undefined : firstWord(rawName);
   const rollNo = optInt(b, 'rollNo', 1, 9999);
   const avatar = optString(b, 'avatar', 1, 16);
   if (b.active !== undefined && typeof b.active !== 'boolean') throw badRequest('active must be true or false');
   const active = b.active === undefined ? null : b.active ? 1 : 0;
   const db = getDb();
   try {
-    await db.run(
-      `UPDATE students SET first_name = COALESCE(?, first_name), roll_no = COALESCE(?, roll_no),
-              avatar = COALESCE(?, avatar), active = COALESCE(?, active) WHERE id = ?`,
-      [firstName ?? null, rollNo ?? null, avatar ?? null, active, studentId],
-    );
+    await db.tx(async (q) => {
+      await q.run(
+        `UPDATE students SET first_name = COALESCE(?, first_name), roll_no = COALESCE(?, roll_no),
+                avatar = COALESCE(?, avatar), active = COALESCE(?, active) WHERE id = ?`,
+        [firstName ?? null, rollNo ?? null, avatar ?? null, active, studentId],
+      );
+      if (active === 0 && cur.active === 1) {
+        await q.run('DELETE FROM auth_tokens WHERE student_id = ?', [studentId]);
+        await audit(q, { schoolId: a.schoolId, actorType: 'teacher', actorId: a.teacherId, action: 'student.deactivate', targetType: 'student', targetId: studentId });
+      }
+    });
   } catch (e) {
     if (isUniqueViolation(e)) throw new HttpError(409, 'conflict', 'That roll number is already used in this class');
     throw e;
   }
-  res.json(studentWithPinOf((await db.get('SELECT * FROM students WHERE id = ?', [studentId]))!));
+  res.json(rosterStudentOf((await db.get('SELECT * FROM students WHERE id = ?', [studentId]))!));
 };
 
-const resetPin: H<{ studentId: string }, StudentWithPin> = async (req, res) => {
+const resetPin: H<{ studentId: string }, RosterStudent, ResetPinReq> = async (req, res) => {
+  const a = staffAuth(req);
   const studentId = idParam(req.params.studentId);
-  await assertTeacherOwnsStudent((req.auth as { teacherId: number }).teacherId, studentId);
+  await assertCanAccessStudent(a, studentId);
+  const b = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? (req.body as Record<string, unknown>) : {};
+  if (b.signOutDevices !== undefined && typeof b.signOutDevices !== 'boolean') throw badRequest('signOutDevices must be true or false');
+  const signOut = b.signOutDevices !== false;
   const db = getDb();
-  await db.run('UPDATE students SET pin = ?, failed_pin_count = 0, locked_until = NULL WHERE id = ?', [generatePin(), studentId]);
-  res.json(studentWithPinOf((await db.get('SELECT * FROM students WHERE id = ?', [studentId]))!));
+  await db.tx(async (q) => {
+    await q.run('UPDATE students SET pin = ?, failed_pin_count = 0, locked_until = NULL WHERE id = ?', [generatePin(), studentId]);
+    if (signOut) await q.run('DELETE FROM auth_tokens WHERE student_id = ?', [studentId]);
+    await audit(q, { schoolId: a.schoolId, actorType: 'teacher', actorId: a.teacherId, action: 'student.pin_reset', targetType: 'student', targetId: studentId, meta: { signOutDevices: signOut } });
+  });
+  res.json(rosterStudentOf((await db.get('SELECT * FROM students WHERE id = ?', [studentId]))!));
 };
 
+classesRouter.get('/teacher/overview', teacherOverview);
 classesRouter.get('/classes', listClasses);
 classesRouter.post('/classes', createClass);
 classesRouter.patch('/classes/:classId', updateClass);
+classesRouter.post('/classes/:classId/rotate-code', rotateCode);
+classesRouter.get('/classes/:classId/share', shareInfo);
 classesRouter.get('/classes/:classId/students', listStudents);
 classesRouter.post('/classes/:classId/students', addStudents);
 classesRouter.patch('/students/:studentId', updateStudent);

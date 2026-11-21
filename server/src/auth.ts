@@ -4,11 +4,12 @@
  */
 import { randomBytes, randomInt, scryptSync, timingSafeEqual } from 'node:crypto';
 import type { NextFunction, Request, Response } from 'express';
-import { getDb } from './db/db.ts';
-import { notFound, unauthorized } from './http.ts';
+import type { StaffRole } from '@shabd/core';
+import { getDb, type Queryable } from './db/db.ts';
+import { unauthorized } from './http.ts';
 
-export interface TeacherAuth { role: 'teacher'; teacherId: number; token: string }
-export interface StudentAuth { role: 'student'; studentId: number; classId: number; token: string }
+export interface TeacherAuth { role: 'teacher'; teacherId: number; schoolId: number; staffRole: StaffRole; token: string }
+export interface StudentAuth { role: 'student'; studentId: number; classId: number; schoolId: number; token: string }
 export type AuthContext = TeacherAuth | StudentAuth;
 
 declare module 'express-serve-static-core' {
@@ -65,38 +66,82 @@ export function avatarFor(rollNo: number): string {
   return AVATARS[(((rollNo - 1) % AVATARS.length) + AVATARS.length) % AVATARS.length]!;
 }
 
-/** Create and store a token; returns it. */
-export async function issueToken(role: 'teacher' | 'student', id: number): Promise<string> {
+/** Create and store a token; returns it. Pass a transaction handle to issue it inside that transaction. */
+export async function issueToken(role: 'teacher' | 'student', id: number, q: Queryable = getDb()): Promise<string> {
   const token = newToken();
   const days = role === 'teacher' ? TEACHER_TOKEN_DAYS : STUDENT_TOKEN_DAYS;
-  const expires = new Date(Date.now() + days * 86_400_000).toISOString();
-  await getDb().run('INSERT INTO auth_tokens (token, role, teacher_id, student_id, expires_at) VALUES (?, ?, ?, ?, ?)', [
-    token, role, role === 'teacher' ? id : null, role === 'student' ? id : null, expires,
+  const now = Date.now();
+  await q.run('INSERT INTO auth_tokens (token, role, teacher_id, student_id, expires_at, last_used_at) VALUES (?, ?, ?, ?, ?, ?)', [
+    token, role, role === 'teacher' ? id : null, role === 'student' ? id : null,
+    new Date(now + days * 86_400_000).toISOString(), new Date(now).toISOString(),
   ]);
   return token;
 }
 
-interface TokenRow { role: 'teacher' | 'student'; teacher_id: number | null; student_id: number | null; class_id: number | null; active: number | null }
+interface TokenRow {
+  role: 'teacher' | 'student'; last_used_at: string | null; teacher_id: number | null; student_id: number | null;
+  t_school: number | null; t_role: StaffRole | null; t_active: number | null; t_status: string | null;
+  class_id: number | null; s_active: number | null; c_archived: number | null; s_school: number | null; s_status: string | null;
+}
 
-/** Resolves Authorization: Bearer <token> into req.auth (if valid and unexpired). Never rejects. */
+const RENEW_AFTER_MS = 86_400_000;
+
+/** Fire-and-forget housekeeping, about 1 request in 100. */
+function maybeCleanup(): void {
+  if (Math.random() >= 0.01) return;
+  const db = getDb();
+  const now = Date.now();
+  db.run('DELETE FROM auth_tokens WHERE expires_at < ?', [new Date(now).toISOString()])
+    .then(() => db.run('DELETE FROM rate_limits WHERE window_start < ?', [new Date(now - 86_400_000).toISOString()]))
+    .catch((e) => console.error('[auth] cleanup failed', e));
+}
+
+/**
+ * Resolves Authorization: Bearer <token> into req.auth. Never rejects. Leaves req.auth unset when the token is
+ * unknown/expired, the teacher or student is turned off, the class is archived or the school is suspended.
+ * Valid tokens slide: at most one write per token per day extends expiry (7 days teacher, 60 days student).
+ */
 export async function attachAuth(req: Request, _res: Response, next: NextFunction): Promise<void> {
   try {
     const header = req.headers.authorization;
     const m = typeof header === 'string' ? /^Bearer\s+([0-9a-f]{64})$/i.exec(header.trim()) : null;
     if (m) {
       const token = m[1]!.toLowerCase();
-      const row = await getDb().get<TokenRow>(
-        `SELECT t.role, t.teacher_id, t.student_id, s.class_id, s.active
-           FROM auth_tokens t LEFT JOIN students s ON s.id = t.student_id
+      const db = getDb();
+      const now = Date.now();
+      const nowIso = new Date(now).toISOString();
+      const row = await db.get<TokenRow>(
+        `SELECT t.role, t.last_used_at, t.teacher_id, t.student_id,
+                te.school_id AS t_school, te.role AS t_role, te.active AS t_active, ts.status AS t_status,
+                s.class_id, s.active AS s_active, c.archived AS c_archived, c.school_id AS s_school, ss.status AS s_status
+           FROM auth_tokens t
+           LEFT JOIN teachers te ON te.id = t.teacher_id
+           LEFT JOIN schools ts ON ts.id = te.school_id
+           LEFT JOIN students s ON s.id = t.student_id
+           LEFT JOIN classes c ON c.id = s.class_id
+           LEFT JOIN schools ss ON ss.id = c.school_id
           WHERE t.token = ? AND t.expires_at > ?`,
-        [token, new Date().toISOString()],
+        [token, nowIso],
       );
-      if (row?.role === 'teacher' && row.teacher_id !== null) {
-        req.auth = { role: 'teacher', teacherId: row.teacher_id, token };
-      } else if (row?.role === 'student' && row.student_id !== null && row.class_id !== null && row.active === 1) {
-        req.auth = { role: 'student', studentId: row.student_id, classId: row.class_id, token };
+      let ok = false;
+      if (row?.role === 'teacher' && row.teacher_id !== null && row.t_school !== null && row.t_active === 1 && row.t_status === 'active') {
+        req.auth = { role: 'teacher', teacherId: row.teacher_id, schoolId: row.t_school, staffRole: row.t_role!, token };
+        ok = true;
+      } else if (
+        row?.role === 'student' && row.student_id !== null && row.class_id !== null && row.s_school !== null &&
+        row.s_active === 1 && row.c_archived === 0 && row.s_status === 'active'
+      ) {
+        req.auth = { role: 'student', studentId: row.student_id, classId: row.class_id, schoolId: row.s_school, token };
+        ok = true;
+      }
+      if (ok && (row!.last_used_at === null || now - Date.parse(row!.last_used_at) > RENEW_AFTER_MS)) {
+        const days = row!.role === 'teacher' ? TEACHER_TOKEN_DAYS : STUDENT_TOKEN_DAYS;
+        await db.run('UPDATE auth_tokens SET last_used_at = ?, expires_at = ? WHERE token = ?', [nowIso, new Date(now + days * 86_400_000).toISOString(), token]);
+        if (row!.role === 'student') await db.run('UPDATE students SET last_login_at = ? WHERE id = ?', [nowIso, row!.student_id]);
+        else await db.run('UPDATE teachers SET last_login_at = ? WHERE id = ?', [nowIso, row!.teacher_id]);
       }
     }
+    maybeCleanup();
   } catch (err) {
     // A DB failure must not look like "not logged in": surface it as a 500 instead of a misleading 401.
     console.error('[auth] token lookup failed', err);
@@ -106,7 +151,7 @@ export async function attachAuth(req: Request, _res: Response, next: NextFunctio
   next();
 }
 
-/** 401 unless req.auth.role === 'teacher'. */
+/** 401 unless req.auth.role === 'teacher' (any staff member, including school admins). */
 export function requireTeacher(req: Request, _res: Response, next: NextFunction): void {
   if (req.auth?.role !== 'teacher') return next(unauthorized());
   next();
@@ -116,18 +161,4 @@ export function requireTeacher(req: Request, _res: Response, next: NextFunction)
 export function requireStudent(req: Request, _res: Response, next: NextFunction): void {
   if (req.auth?.role !== 'student') return next(unauthorized());
   next();
-}
-
-/** Throws 404 unless the class belongs to the authenticated teacher (other teachers' classes are not revealed). */
-export async function assertTeacherOwnsClass(teacherId: number, classId: number): Promise<void> {
-  const row = await getDb().get('SELECT 1 FROM classes WHERE id = ? AND teacher_id = ?', [classId, teacherId]);
-  if (!row) throw notFound('Class not found');
-}
-
-/** Throws 404 unless the student is in one of the teacher's classes. */
-export async function assertTeacherOwnsStudent(teacherId: number, studentId: number): Promise<void> {
-  const row = await getDb().get('SELECT 1 FROM students s JOIN classes c ON c.id = s.class_id WHERE s.id = ? AND c.teacher_id = ?', [
-    studentId, teacherId,
-  ]);
-  if (!row) throw notFound('Student not found');
 }

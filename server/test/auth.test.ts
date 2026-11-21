@@ -1,6 +1,6 @@
 import request from 'supertest';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { auth, makeClass, registerTeacher, setup, studentLogin, type Ctx } from './helpers.ts';
+import { auth, makeClass, makeSchool, registerTeacher, setup, studentLogin, type Ctx } from './helpers.ts';
 import { generateClassCode, generatePin, hashPassword, verifyPassword } from '../src/auth.ts';
 
 let ctx: Ctx;
@@ -26,17 +26,20 @@ describe('auth primitives', () => {
 
 describe('teacher auth', () => {
   it('registers, rejects duplicates, short passwords (TEACHER_INVITE_CODE is gone)', async () => {
-    const r = await request(ctx.app).post('/api/auth/teacher/register').send({ name: 'A', email: 'a@x.in', password: 'password1' });
+    const sch = await makeSchool(ctx.app);
+    const reg = (b: object) => request(ctx.app).post('/api/auth/teacher/register').send({ inviteCode: sch.teacherCode, ...b });
+    expect((await request(ctx.app).post('/api/auth/teacher/register').send({ name: 'A', email: 'a@x.in', password: 'password1' })).status).toBe(400);
+    const r = await reg({ name: 'A', email: 'a@x.in', password: 'password1' });
     expect(r.status).toBe(201);
     expect(r.body.teacher).toMatchObject({ name: 'A', email: 'a@x.in', role: 'teacher', active: true });
     expect(r.body.school.id).toBe(r.body.teacher.schoolId);
     expect(r.body.token).toMatch(/^[0-9a-f]{64}$/);
 
-    const dup = await request(ctx.app).post('/api/auth/teacher/register').send({ name: 'A', email: 'A@x.in', password: 'password1' });
+    const dup = await reg({ name: 'A', email: 'A@x.in', password: 'password1' });
     expect(dup.status).toBe(409);
     expect(dup.body.error.code).toBe('conflict');
 
-    const short = await request(ctx.app).post('/api/auth/teacher/register').send({ name: 'B', email: 'b@x.in', password: 'short' });
+    const short = await reg({ name: 'B', email: 'b@x.in', password: 'short' });
     expect(short.status).toBe(400);
   });
 

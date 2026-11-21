@@ -5,6 +5,7 @@ import { createApp } from '../src/app.ts';
 import { createDb, setDb, type DB } from '../src/db/db.ts';
 import { loadWordBank } from '../src/db/seed.ts';
 
+export const ADMIN_SECRET = 'test-secret-1234567890';
 export const FAKE_TODAY = '2026-11-20'; // a Friday; the week starts Monday 2026-11-16
 
 export interface Ctx { app: Express; db: DB }
@@ -27,7 +28,9 @@ export async function closeTestDb(): Promise<void> {
 export async function setup(): Promise<Ctx> {
   console.warn = () => {}; // quiet [seed] notices
   process.env.FAKE_TODAY = FAKE_TODAY;
-  delete process.env.TEACHER_INVITE_CODE;
+  process.env.SUPER_ADMIN_SECRET = ADMIN_SECRET;
+  process.env.RATE_LIMIT_OFF = '1';
+  delete process.env.PUBLIC_APP_URL;
   delete process.env.ANTHROPIC_API_KEY;
   const db = testDb();
   const tables = await db.all<{ tablename: string }>("SELECT tablename FROM pg_tables WHERE schemaname = 'public' AND tablename <> 'schema_migrations'");
@@ -38,14 +41,42 @@ export async function setup(): Promise<Ctx> {
 
 export const auth = (token: string) => ({ Authorization: `Bearer ${token}` });
 
-export async function registerTeacher(app: Express, email = 'patil@school.in'): Promise<string> {
-  const r = await request(app).post('/api/auth/teacher/register').send({ name: 'Mrs. Patil', email, password: 'password1' });
+export const adminAuth = { 'X-Admin-Secret': ADMIN_SECRET };
+
+export interface TestSchool {
+  schoolId: number;
+  studentCode: string;
+  /** school admin token */
+  adminToken: string;
+  adminEmail: string;
+  /** teacher invite code as typed ('ABCD-EFGH') */
+  teacherCode: string;
+}
+
+/** Real flow: super admin creates the school, the principal redeems the setup link, the teacher invite is ready. */
+export async function makeSchool(app: Express, name = 'Test School', adminEmail = `admin-${Math.random().toString(36).slice(2, 8)}@school.in`): Promise<TestSchool> {
+  const c = await request(app).post('/api/admin/schools').set(adminAuth).send({ name, district: 'Thane' });
+  if (c.status !== 201) throw new Error(`create school failed: ${c.status} ${JSON.stringify(c.body)}`);
+  const setup = await request(app).post('/api/auth/school/setup').send({ code: c.body.setupInvite.code, name: 'Principal', email: adminEmail, password: 'password1' });
+  if (setup.status !== 201) throw new Error(`school setup failed: ${setup.status} ${JSON.stringify(setup.body)}`);
+  const token = setup.body.token as string;
+  const info = await request(app).get('/api/school').set(auth(token));
+  return { schoolId: c.body.school.id, studentCode: c.body.school.studentCode, adminToken: token, adminEmail, teacherCode: info.body.teacherInvite.code };
+}
+
+/**
+ * Registers a plain teacher. Without `school`, each call makes a brand-new school (so old single-teacher tests stay
+ * isolated, and two calls with different emails are two different schools).
+ */
+export async function registerTeacher(app: Express, email = 'patil@school.in', school?: TestSchool): Promise<string> {
+  const sch = school ?? (await makeSchool(app, `School of ${email}`));
+  const r = await request(app).post('/api/auth/teacher/register').send({ inviteCode: sch.teacherCode, name: 'Mrs. Patil', email, password: 'password1' });
   if (r.status !== 201) throw new Error(`register failed: ${r.status} ${JSON.stringify(r.body)}`);
   return r.body.token as string;
 }
 
-export async function makeClass(app: Express, token: string, names: string[] = ['Riya', 'Aarav', 'Kabir'], startDate?: string) {
-  const c = await request(app).post('/api/classes').set(auth(token)).send({ name: '5A', ...(startDate ? { startDate } : {}) });
+export async function makeClass(app: Express, token: string, names: string[] = ['Riya', 'Aarav', 'Kabir'], startDate?: string, division = 'A') {
+  const c = await request(app).post('/api/classes').set(auth(token)).send({ standard: 5, division, ...(startDate ? { startDate } : {}) });
   if (c.status !== 201) throw new Error(`class failed: ${JSON.stringify(c.body)}`);
   const cls = c.body as ClassRoom;
   const s = await request(app)
