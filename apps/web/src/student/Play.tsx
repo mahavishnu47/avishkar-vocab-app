@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { SentenceReq, SentenceRes, SpellingHint, TodaySessionRes, Word } from '@shabd/core';
+import { nextTypingCounts, type TypingCounts } from '@shabd/core';
 import { api, ApiRequestError, withTimeout } from '../shared/api.ts';
 import { enqueue, flush, pendingCount } from '../shared/outbox.ts';
 import { KeyboardDisplay, OnScreenKeyboard } from '../shared/OnScreenKeyboard.tsx';
@@ -320,7 +321,7 @@ function CheckStage({ st, update, word, sessionId }: StageProps) {
 }
 
 // ------------------------------------------------------------------ Stage 3
-function WriteStage({ st, update, word, sessionId, words }: StageProps & { words: Word[] }) {
+export function WriteStage({ st, update, word, sessionId, words }: StageProps & { words: Word[] }) {
   const se = st.sentence;
   const [busy, setBusy] = useState(false);
   const nav = useNavigate();
@@ -328,8 +329,21 @@ function WriteStage({ st, update, word, sessionId, words }: StageProps & { words
   const resultView = !!shown && shown.counted && !shown.pending;
   const subs = se.counted;
 
-  const setText = (text: string) => update((s) => ({ ...s, sentence: { ...s.sentence, text } }));
-  const starter = () => update((s) => s.sentence.text ? s : ({ ...s, sentence: { ...s.sentence, starter: true, text: starterFor(word.partOfSpeech, word.word) + ' ' } }));
+  // F5: typing counts for this submission (text restored after a reload counts as typed). Never shown to the child.
+  const typing = useRef<TypingCounts>({ keystrokes: se.text.length, deletions: 0 });
+  const prevText = useRef(se.text);
+  const setText = (text: string) => {
+    typing.current = nextTypingCounts(typing.current, prevText.current, text);
+    prevText.current = text;
+    update((s) => ({ ...s, sentence: { ...s.sentence, text } }));
+  };
+  const starter = () => update((s) => {
+    if (s.sentence.text) return s;
+    const text = starterFor(word.partOfSpeech, word.word) + ' ';
+    typing.current = { keystrokes: text.length, deletions: 0 }; // the starter is app-supplied text, not pasted text
+    prevText.current = text;
+    return { ...s, sentence: { ...s.sentence, starter: true, text } };
+  });
 
   const submit = async () => {
     const text = se.text.trim();
@@ -340,6 +354,7 @@ function WriteStage({ st, update, word, sessionId, words }: StageProps & { words
     const submissionNo = (subs + 1) as 1 | 2;
     const body: SentenceReq = {
       clientId: uuid(), wordId: word.id, submissionNo, text, starterHintUsed: se.starter,
+      keystrokes: typing.current.keystrokes, deletions: typing.current.deletions,
       msElapsed: Date.now() - se.t0, clientTs: new Date().toISOString(), clientEvaluation: local,
     };
     let res: SentenceRes;
@@ -370,7 +385,7 @@ function WriteStage({ st, update, word, sessionId, words }: StageProps & { words
     setBusy(false);
   };
 
-  const again = () => update((s) => ({ ...s, sentence: { ...s.sentence, text: '', shown: null, t0: Date.now() } }));
+  const again = () => { typing.current = { keystrokes: 0, deletions: 0 }; prevText.current = ''; update((s) => ({ ...s, sentence: { ...s.sentence, text: '', shown: null, t0: Date.now() } })); };
 
   const next = () => {
     enqueue({ kind: 'completeWord', sessionId, wordId: word.id });

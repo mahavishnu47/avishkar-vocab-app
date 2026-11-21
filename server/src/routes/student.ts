@@ -1,9 +1,10 @@
 /**
  * Student flow. OWNER: Lane A. Contract: docs/API.md section 7.
  */
+import { createHash } from 'node:crypto';
 import { Router } from 'express';
 import {
-  POS_CHOICES, SCORING, SCORING_VERSION, classifySpellingError, dayIndexFor, displayStreak, evaluateSentenceRules, levelFor, moderateSentence,
+  POS_CHOICES, normaliseSentence, SCORING, SCORING_VERSION, classifySpellingError, dayIndexFor, displayStreak, evaluateSentenceRules, levelFor, moderateSentence,
   scoreSentenceSubmission, weekStart,
   type AttemptsReq, type AttemptsRes, type CompleteWordRes, type DayStatus, type LeaderboardRes, type SentenceEvaluation, type SentenceReq,
   type SentenceRes, type SessionSummaryRes, type SpellingClassification, type SpellingHint, type StudentHomeRes, type TodaySessionRes, type Word,
@@ -17,7 +18,7 @@ import { leaderboard } from '../services/analytics.ts';
 import { getDailySet, getWordsByIds } from '../services/dailySet.ts';
 import { evaluateSentence } from '../services/sentenceEvaluator.ts';
 import { completeSession, completeWord, getStreak, sessionWordIds, storedWordScores, xpTotal } from '../services/scoringService.ts';
-import { asObject, idParam, reqBool, reqInt, reqIsoTs, reqString } from '../validate.ts';
+import { asObject, idParam, optInt, reqBool, reqInt, reqIsoTs, reqString } from '../validate.ts';
 
 export const studentRouter = Router();
 studentRouter.use('/student', requireStudent);
@@ -250,6 +251,9 @@ const sentence: H<{ sessionId: string }, SentenceRes, SentenceReq> = async (req,
   const starterHintUsed = b.starterHintUsed === undefined ? false : reqBool(b, 'starterHintUsed');
   const msElapsed = reqInt(b, 'msElapsed', 0, 86_400_000);
   const clientTs = reqIsoTs(b, 'clientTs');
+  const keystrokes = optInt(b, 'keystrokes', 0, 100_000) ?? null; // F5 typing signals (optional)
+  const deletions = optInt(b, 'deletions', 0, 100_000) ?? null;
+  const normHash = createHash('sha1').update(normaliseSentence(text)).digest('hex');
   const word = await wordInSession(db, session, wordId);
 
   const stored = async (q: Queryable): Promise<SentenceRes | null> => {
@@ -282,13 +286,13 @@ const sentence: H<{ sessionId: string }, SentenceRes, SentenceReq> = async (req,
     await q.run(
       `INSERT INTO sentence_submissions (client_id, session_id, student_id, word_id, submission_no, text, gate, counted,
          r_use, r_grammar, r_relevance, r_length, raw_total, multiplier, hint_cost, final_marks, error_codes_json, feedback_json,
-         confidence, evaluator, tip, rules_json, moderation_reason, ms_elapsed, client_ts)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+         confidence, evaluator, tip, rules_json, moderation_reason, ms_elapsed, client_ts, keystrokes, deletions, norm_hash)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [clientId, sessionId, studentId, wordId, effectiveNo, text, evaluation.gate, counted ? 1 : 0,
         evaluation.rubric.use, evaluation.rubric.grammar, evaluation.rubric.relevance, evaluation.rubric.length, evaluation.rawTotal,
         SCORING.sentence.submissionMultipliers[effectiveNo - 1], starterHintUsed ? SCORING.sentence.starterHintCost : 0, finalMarks,
         JSON.stringify(evaluation.errorCodes), JSON.stringify(evaluation.feedback), evaluation.confidence, evaluation.evaluator,
-        evaluation.tip ?? null, rules ? JSON.stringify(rules) : null, reason, msElapsed, clientTs],
+        evaluation.tip ?? null, rules ? JSON.stringify(rules) : null, reason, msElapsed, clientTs, keystrokes, deletions, normHash],
     );
     return { evaluation, counted, finalMarks };
   });
