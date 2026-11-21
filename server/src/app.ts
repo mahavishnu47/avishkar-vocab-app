@@ -15,6 +15,8 @@ import { studentRouter } from './routes/student.ts';
 import { joinRouter } from './routes/join.ts';
 import { schoolRouter } from './routes/school.ts';
 import { adminRouter } from './routes/admin.ts';
+import { researchRouter } from './routes/research/index.ts';
+import { studyGateRouter } from './routes/research/studyGate.ts';
 
 export function createApp() {
   const app = express();
@@ -26,7 +28,7 @@ export function createApp() {
   app.use(express.json({ limit: '256kb' }));
   app.use('/api', rejectNulBytes); // null characters crash Postgres text columns (S-1)
   app.use('/api', attachAuth);
-  app.use('/api', healthRouter, authRouter, classesRouter, wordsRouter, analyticsRouter, studentRouter, joinRouter, schoolRouter, adminRouter);
+  app.use('/api', healthRouter, authRouter, classesRouter, wordsRouter, analyticsRouter, studyGateRouter, studentRouter, joinRouter, schoolRouter, adminRouter, researchRouter);
   app.use('/api', (_req, _res, next) => next(notFound('Unknown API route')));
   app.use(errorHandler);
   return app;

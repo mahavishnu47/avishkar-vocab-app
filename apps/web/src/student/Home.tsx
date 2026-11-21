@@ -4,6 +4,7 @@ import type { StudentHomeRes } from '@shabd/core';
 import { api } from '../shared/api.ts';
 import { handleAuthError, saveHome, storedHome, TopBar, useRequireToken } from './common.tsx';
 import { InstallPrompt } from './InstallPrompt.tsx';
+import { HomeCards } from './research/HomeCards.tsx';
 
 export function Home() {
   const nav = useNavigate();
@@ -46,6 +47,7 @@ export function Home() {
           {[0, 1, 2, 3, 4].map((i) => <span key={i} className={`pd ${i < home.today.wordsDone ? 'on' : ''}`} />)}
         </div>
       </section>
+      <HomeCards home={home} />
       {st === 'completed' ? (
         <>
           <div className="feedback-ok pop" style={{ textAlign: 'center' }}>All done today! 🎉 Come back tomorrow</div>

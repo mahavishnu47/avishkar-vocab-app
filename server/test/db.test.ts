@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { afterAll, beforeEach, describe, expect, it } from 'vitest';
 import { createDb, isUniqueViolation, migrate, poolConfig, pooledUrl, toPgSql, type DB } from '../src/db/db.ts';
 import { loadWordBank, seedDemo } from '../src/db/seed.ts';
+import { MIGRATIONS } from '../src/db/migrations.ts';
 import { closeTestDb, setup, testDb } from './helpers.ts';
 
 let db: DB;
@@ -82,7 +83,7 @@ describe('migrate', () => {
   it('is idempotent and records versions', async () => {
     expect(await migrate(db)).toEqual([]);
     const v = await db.all<{ version: number }>('SELECT version FROM schema_migrations ORDER BY version');
-    expect(v.map((r) => r.version)).toEqual([1, 2, 3]);
+    expect(v.map((r) => r.version)).toEqual(MIGRATIONS.map((m) => m.version));
   });
   it('serialises concurrent runs on a fresh database', async () => {
     const name = `shabd_mig_${process.pid}`;

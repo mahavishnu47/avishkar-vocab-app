@@ -4,6 +4,14 @@
  * Conventions: identity integer PKs (except words.id = content id), dates 'YYYY-MM-DD' (IST),
  * timestamps ISO-8601 text, JSON arrays stored as text columns suffixed _json, booleans 0/1.
  */
+import { M0004 } from './migrations/m0004-study.ts';
+import { M0005 } from './migrations/m0005-wordplan.ts';
+import { M0006 } from './migrations/m0006-pos.ts';
+import { M0007 } from './migrations/m0007-assessment.ts';
+import { M0008 } from './migrations/m0008-authenticity.ts';
+import { M0009 } from './migrations/m0009-recall.ts';
+import { M0010 } from './migrations/m0010-instruments.ts';
+
 export interface Migration { version: number; name: string; sql: string }
 
 export const MIGRATIONS: Migration[] = [
@@ -344,4 +352,11 @@ UPDATE classes SET archived = 1
 CREATE UNIQUE INDEX classes_active_slot_uq ON classes (school_id, standard, division, academic_year) WHERE archived = 0;
 `,
   },
+  ...M0004,
+  ...M0005,
+  ...M0006,
+  ...M0007,
+  ...M0008,
+  ...M0009,
+  ...M0010,
 ];

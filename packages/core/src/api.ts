@@ -5,7 +5,7 @@
  * FROZEN by O1 (onboarding v2, docs/ONBOARDING_SPEC.md 6.1): lanes O2-O6 must not edit; report needed changes to the integrator.
  */
 import type {
-  ClassRoom, DailySet, IsoDate, LeaderboardMode, LevelInfo, MeaningAttemptInput, PartOfSpeech, Difficulty,
+  ClassRoom, DailySet, IsoDate, LeaderboardMode, LevelInfo, MeaningAttemptInput, PosAttemptInput, PartOfSpeech, Difficulty,
   Rubric, SentenceEvaluation, SentenceSubmissionInput, SpellAttemptInput, SpellingClassification,
   RosterStudent, School, StaffRole, StreakState, Student, StudentWithPin, Teacher, Word, WordScore, XpBreakdown,
 } from './types.ts';
@@ -261,7 +261,7 @@ export interface TodaySessionRes {
   progress: SessionProgress;
 }
 
-export interface AttemptsReq { spell?: SpellAttemptInput[]; meaning?: MeaningAttemptInput[] }
+export interface AttemptsReq { spell?: SpellAttemptInput[]; meaning?: MeaningAttemptInput[]; pos?: PosAttemptInput[] }
 export interface AttemptsRes {
   /** clientIds stored (or already stored - idempotent) */
   accepted: string[];

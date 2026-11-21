@@ -130,7 +130,7 @@ export interface DailySet {
 }
 
 // ---------------------------------------------------------------- attempts
-export type Stage = 'spell' | 'meaning' | 'sentence';
+export type Stage = 'spell' | 'meaning' | 'sentence' | 'pos';
 
 /** One spelling attempt as captured by the client (Stage 1). */
 export interface SpellAttemptInput {
@@ -143,6 +143,16 @@ export interface SpellAttemptInput {
   hints: SpellingHint[];
   /** number of times the audio was (re)played before this attempt, research only */
   audioPlays: number;
+  msElapsed: number;
+  clientTs: IsoDateTime;
+}
+
+/** One part-of-speech tap (POS activity). */
+export interface PosAttemptInput {
+  clientId: string;
+  wordId: string;
+  attemptNo: 1 | 2;
+  chosen: 'noun' | 'verb' | 'adjective' | 'adverb';
   msElapsed: number;
   clientTs: IsoDateTime;
 }
@@ -228,6 +238,8 @@ export interface SentenceSubmissionInput {
   wordId: string;
   submissionNo: 1 | 2;
   text: string;
+  keystrokes?: number;
+  deletions?: number;
   starterHintUsed: boolean;
   msElapsed: number;
   clientTs: IsoDateTime;

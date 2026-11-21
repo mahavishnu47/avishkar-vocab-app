@@ -3,7 +3,7 @@
  *   /  /j/:classCode  /j/:classCode/pin/:studentId  /s/:schoolCode  /login  /who  /welcome  /play  /summary  /leaderboard
  * Append ?mock=1 once to run against the in-browser mock server (student/dev-mock.ts).
  */
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { STUDENT_UNAUTHORIZED_EVENT } from '../shared/api.ts';
 import { startOutbox } from '../shared/outbox.ts';
@@ -21,6 +21,11 @@ import { isStudentDevice, requestPersistentStorage } from '../shared/persist.ts'
 import { Summary } from './Summary.tsx';
 import { Welcome } from './Welcome.tsx';
 import { WhoIsPlaying } from './WhoIsPlaying.tsx';
+
+const TestApp = lazy(() => import('./research/TestApp.tsx'));
+const Recall = lazy(() => import('./research/Recall.tsx'));
+const Bank = lazy(() => import('./research/Bank.tsx'));
+const Feedback = lazy(() => import('./research/Feedback.tsx'));
 
 function wantsMock(): boolean {
   try {
@@ -65,6 +70,10 @@ export function StudentApp() {
       <Route path="play" element={<Play />} />
       <Route path="summary" element={<Summary />} />
       <Route path="leaderboard" element={<Leaderboard />} />
+      <Route path="test/*" element={<Suspense fallback={null}><TestApp /></Suspense>} />
+      <Route path="recall" element={<Suspense fallback={null}><Recall /></Suspense>} />
+      <Route path="bank" element={<Suspense fallback={null}><Bank /></Suspense>} />
+      <Route path="feedback" element={<Suspense fallback={null}><Feedback /></Suspense>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

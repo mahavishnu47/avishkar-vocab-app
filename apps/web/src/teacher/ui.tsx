@@ -91,10 +91,14 @@ export function Page({ classId, title, children, loading, error, className }: {
             <NavLink to={`${base}/roster`}>Roster</NavLink>
             <NavLink to={`${base}/leaderboard`}>Leaderboard</NavLink>
             <NavLink to={`${base}/analytics`}>Analytics</NavLink>
+            <NavLink to={`${base}/progress`}>Progress</NavLink>
+            <NavLink to={`${base}/tests`}>Tests</NavLink>
+            <NavLink to={`${base}/authenticity`}>Checks</NavLink>
             <NavLink to={`${base}/share`}>Share</NavLink>
             <NavLink to={`${base}/cards`}>Cards</NavLink>
           </>
         )}
+        <NavLink to="/teacher/study">Study</NavLink>
         {isAdmin && <Link to="/school">School</Link>}
         <button className="btn t-logout" onClick={logout}>Log out</button>
       </nav>

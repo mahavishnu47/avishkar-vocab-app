@@ -23,6 +23,13 @@ import { Roster } from './Roster.tsx';
 import { Share } from './Share.tsx';
 import { StudentDetail } from './StudentDetail.tsx';
 import { Words } from './Words.tsx';
+import StudyPages from './research/StudyPages.tsx';
+import WordPlan from './research/WordPlan.tsx';
+import Assessments from './research/Assessments.tsx';
+import Authenticity from './research/Authenticity.tsx';
+import Progress from './research/Progress.tsx';
+import Results from './research/Results.tsx';
+import Instruments from './research/Instruments.tsx';
 
 function Guard({ children }: { children: ReactNode }) {
   const [state, setState] = useState<'checking' | 'ok' | 'out'>(getToken('staff') ? 'checking' : 'out');
@@ -75,6 +82,13 @@ export default function TeacherApp() {
       <Route path="classes/:classId/dashboard" element={<Guard><Dashboard /></Guard>} />
       <Route path="classes/:classId/leaderboard" element={<Guard><Leaderboard /></Guard>} />
       <Route path="classes/:classId/analytics" element={<Guard><Analytics /></Guard>} />
+      <Route path="study/*" element={<Guard><StudyPages /></Guard>} />
+      <Route path="study/:studyId/words" element={<Guard><WordPlan /></Guard>} />
+      <Route path="study/:studyId/results/*" element={<Guard><Results /></Guard>} />
+      <Route path="study/:studyId/instruments/*" element={<Guard><Instruments /></Guard>} />
+      <Route path="classes/:classId/tests/*" element={<Guard><Assessments /></Guard>} />
+      <Route path="classes/:classId/authenticity" element={<Guard><Authenticity /></Guard>} />
+      <Route path="classes/:classId/progress" element={<Guard><Progress /></Guard>} />
       <Route path="students/:studentId" element={<Guard><StudentDetail /></Guard>} />
       <Route path="*" element={<Guard><Home /></Guard>} />
     </Routes>
