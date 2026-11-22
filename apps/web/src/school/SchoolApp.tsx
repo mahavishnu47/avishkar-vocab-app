@@ -43,9 +43,19 @@ function Guard({ children }: { children: (me: Teacher, schoolName: string) => Re
   return <>{children(st.me, st.schoolName)}</>;
 }
 
+const SCHOOL_LEAD: Record<string,[string,string]> = {
+  "/school": ["School progress", "How every class in your school is doing this week."],
+  "/school/teachers": ["Teachers", "Invite teachers, reset passwords and turn accounts on or off."],
+  "/school/classes": ["Classes", "All classes in your school. Change the teacher or archive a class."],
+  "/school/settings": ["School settings", "School name, student link, poster and recent activity."],
+};
+
 function Shell({ me, schoolName }: { me: Teacher; schoolName: string }) {
   const navigate = useNavigate();
   const logout = async () => { try { await api.logout('staff'); } catch { /* ignore */ } setToken('staff', null); navigate('/teacher/login'); };
+  const { pathname } = useLocation();
+  const lead = SCHOOL_LEAD[pathname.replace(/\/$/, '')];
+  useEffect(() => { document.title = (lead ? lead[0] + ' · ' : '') + schoolName + ' · WordWise'; }, [lead, schoolName]);
   return (
     <SchoolCtx.Provider value={{ me, schoolName }}>
       <main className="teacher screen t-page s-shell">
@@ -55,9 +65,10 @@ function Shell({ me, schoolName }: { me: Teacher; schoolName: string }) {
           <NavLink to="/school/teachers">Teachers</NavLink>
           <NavLink to="/school/classes">Classes</NavLink>
           <NavLink to="/school/settings">Settings</NavLink>
-          <Link to="/teacher">My classes</Link>
+          <Link to="/teacher">Teacher view</Link>
           <button className="btn t-logout" onClick={logout}>Log out</button>
         </nav>
+        {lead && <p className="muted t-lead">{lead[1]}</p>}
         <Suspense fallback={<p className="muted">Loading…</p>}>
           <Routes>
             <Route index element={<Progress />} />

@@ -119,6 +119,9 @@ function StudyHome() {
   return (
     <Page title={s?.name ?? 'Study'} loading={loading} error={error}>
       {msg && <div className="t-error" role="alert">{msg}</div>}
+      {s && s.status === "running" && new Date().getTime() > new Date(s.startDate + "T00:00:00").getTime() + Math.ceil(s.schoolDays * 7 / 5 + 7) * 86400000 && (
+        <div className="card" role="status">⏰ This study's school days are over. When all tests are in, set the status below to <b>Closed</b> so results are final.</div>
+      )}
       {s && (
         <>
           <section className="card stack">

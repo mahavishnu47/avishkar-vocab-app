@@ -114,7 +114,8 @@ async function importSchool(url: string, file: string, dryRun: boolean): Promise
       map[s.table] = new Map();
       const rows = dump.tables[s.table] ?? [];
       counts[s.table] = rows.length;
-      for (const row of rows) {
+      // Re-map foreign keys, then insert in batches (one round trip per ~200 rows, so it is fast over the internet).
+      const prepared = rows.map((row) => {
         const copy: Row = { ...row };
         for (const [col, parent] of Object.entries(s.fks)) {
           const v = copy[col];
@@ -125,15 +126,26 @@ async function importSchool(url: string, file: string, dryRun: boolean): Promise
         }
         const oldId = s.serial ? String(copy.id) : '';
         if (s.serial) delete copy.id;
-        const cols = Object.keys(copy);
-        const vals = cols.map((k) => {
-          const v = copy[k];
-          const t = colTypes.get(`${s.table}.${k}`);
-          return v !== null && typeof v === 'object' && (t === 'jsonb' || t === 'json') ? JSON.stringify(v) : v;
+        return { oldId, copy };
+      });
+      if (prepared.length === 0) continue;
+      const cols = Object.keys(prepared[0]!.copy);
+      const per = Math.max(1, Math.min(200, Math.floor(60000 / cols.length)));
+      for (let i = 0; i < prepared.length; i += per) {
+        const chunk = prepared.slice(i, i + per);
+        const vals: unknown[] = [];
+        const groups = chunk.map((p) => {
+          const ph = cols.map((k) => {
+            const v = p.copy[k];
+            const t = colTypes.get(`${s.table}.${k}`);
+            vals.push(v !== null && typeof v === 'object' && (t === 'jsonb' || t === 'json') ? JSON.stringify(v) : v);
+            return `$${vals.length}`;
+          });
+          return `(${ph.join(', ')})`;
         });
-        const sql = `INSERT INTO "${s.table}" (${cols.map((k) => `"${k}"`).join(', ')}) VALUES (${cols.map((_, i) => `$${i + 1}`).join(', ')})${s.serial ? ' RETURNING id' : ''}`;
+        const sql = `INSERT INTO "${s.table}" (${cols.map((k) => `"${k}"`).join(', ')}) VALUES ${groups.join(', ')}${s.serial ? ' RETURNING id' : ''}`;
         const res = await c.query(sql, vals);
-        if (s.serial) map[s.table]!.set(oldId, String(res.rows[0].id));
+        if (s.serial) chunk.forEach((p, j) => map[s.table]!.set(p.oldId, String(res.rows[j].id)));
       }
     }
     if (dryRun) { await c.query('ROLLBACK'); console.log('Dry run finished, nothing saved.'); } else { await c.query('COMMIT'); console.log('Saved.'); }
@@ -144,7 +156,58 @@ async function importSchool(url: string, file: string, dryRun: boolean): Promise
   } finally { await c.end(); }
 }
 
+/**
+ * Delete one school (found by its exact name) and everything under it, in one transaction.
+ * Without --yes it only shows what would be deleted and rolls back.
+ */
+async function deleteSchool(url: string, name: string, yes: boolean): Promise<void> {
+  const c = await connect(url);
+  console.log(`Target: ${hostOf(url)}${yes ? '' : '  (PREVIEW ONLY: nothing is deleted without --yes)'}`);
+  try {
+    const sch = (await c.query('SELECT id FROM schools WHERE name = $1', [name])).rows;
+    if (sch.length !== 1) throw new Error(`Expected exactly one school named "${name}", found ${sch.length}. Nothing was changed.`);
+    const schoolId = String(sch[0].id);
+    await c.query('BEGIN');
+    const ids: Record<string, string[]> = { schools: [schoolId] };
+    for (const s of SPECS) {
+      if (!s.serial || s.table === 'schools') continue;
+      const parents = s.by.from === 'schools' ? [schoolId] : ids[s.by.from] ?? [];
+      ids[s.table] = parents.length === 0 ? [] : (await c.query(`SELECT id FROM "${s.table}" WHERE "${s.by.col}" = ANY($1::bigint[])`, [parents])).rows.map((r) => String(r.id));
+    }
+    const del = async (label: string, sql: string, params: unknown[]): Promise<void> => {
+      const r = await c.query(sql, params);
+      console.log(`${label.padEnd(26)} ${r.rowCount}`);
+    };
+    const T = ids.teachers ?? [], S = ids.students ?? [], ST = ids.studies ?? [], CL = ids.classes ?? [];
+    await del('auth_tokens', 'DELETE FROM auth_tokens WHERE teacher_id = ANY($1::bigint[]) OR student_id = ANY($2::bigint[])', [T, S]);
+    await del('feedback_responses', 'DELETE FROM feedback_responses WHERE study_id = ANY($1::bigint[])', [ST]);
+    await del('observation_records', 'DELETE FROM observation_records WHERE study_id = ANY($1::bigint[])', [ST]);
+    await del('daily_word_overrides', 'DELETE FROM daily_word_overrides WHERE class_id = ANY($1::bigint[])', [CL]);
+    await del('audit_log', 'DELETE FROM audit_log WHERE school_id = $1', [schoolId]);
+    for (const s of [...SPECS].reverse()) {
+      if (s.table === 'schools') continue;
+      const parents = s.by.from === 'schools' ? [schoolId] : ids[s.by.from] ?? [];
+      await del(s.table, `DELETE FROM "${s.table}" WHERE "${s.by.col}" = ANY($1::bigint[])`, [parents]);
+    }
+    await del('words (custom)', 'DELETE FROM words WHERE school_id = $1', [schoolId]);
+    await del('schools', 'DELETE FROM schools WHERE id = $1', [schoolId]);
+    if (yes) { await c.query('COMMIT'); console.log('Deleted.'); } else { await c.query('ROLLBACK'); console.log('Preview only, nothing deleted. Add --yes to delete.'); }
+  } catch (e) {
+    await c.query('ROLLBACK').catch(() => undefined);
+    throw e;
+  } finally { await c.end(); }
+}
+
 const [cmd, url, a, b, flag] = process.argv.slice(2);
 if (cmd === 'export' && url && a && b) await exportSchool(url, Number(a), b);
 else if (cmd === 'import' && url && a) await importSchool(url, a, [b, flag].includes('--dry-run'));
-else { console.log('Usage:\n  export "<DATABASE_URL>" <schoolId> <out.json>\n  import "<DATABASE_URL>" <in.json> [--dry-run]'); process.exit(1); }
+else if (cmd === 'delete' && url && a) await deleteSchool(url, a, [b, flag].includes('--yes'));
+else {
+  console.log([
+    'Usage:',
+    '  export "<DATABASE_URL>" <schoolId> <out.json>',
+    '  import "<DATABASE_URL>" <in.json> [--dry-run]',
+    '  delete "<DATABASE_URL>" "<exact school name>" [--yes]',
+  ].join('\n'));
+  process.exit(1);
+}

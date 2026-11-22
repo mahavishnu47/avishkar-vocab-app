@@ -37,7 +37,7 @@ export function Dashboard() {
               { key: 'name', label: 'Name', get: (s) => s.firstName, render: (s) => <span className="deva">{s.firstName}</span> },
               { key: 'status', label: 'Status', get: (s) => STATUS[s.status].n, render: (s) => <span>{STATUS[s.status].icon} {STATUS[s.status].label}</span> },
               { key: 'words', label: 'Words', get: (s) => s.wordsDone, render: (s) => `${s.wordsDone}/5` },
-              { key: 'marks', label: 'Marks /500', get: (s) => s.totalMarks },
+              { key: 'marks', label: 'Marks (of 500 for the 50 test words)', get: (s) => s.totalMarks },
               { key: 'streak', label: 'Streak', get: (s) => s.streak, render: (s) => `🔥 ${s.streak}` },
               { key: 'xp', label: 'XP week', get: (s) => s.xpWeek },
             ]}

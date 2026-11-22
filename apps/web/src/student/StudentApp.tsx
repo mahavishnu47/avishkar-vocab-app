@@ -4,7 +4,7 @@
  * Append ?mock=1 once to run against the in-browser mock server (student/dev-mock.ts).
  */
 import { lazy, Suspense, useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { STUDENT_UNAUTHORIZED_EVENT } from '../shared/api.ts';
 import { startOutbox } from '../shared/outbox.ts';
 import { Landing } from '../landing/Landing.tsx';
@@ -48,6 +48,8 @@ function Gate() {
 
 export function StudentApp() {
   const nav = useNavigate();
+  const { pathname } = useLocation();
+  useEffect(() => { const T: Record<string, string> = { "/": "Home", "/play": "Today's words", "/summary": "Your result", "/progress": "My progress", "/leaderboard": "Leaderboard", "/bank": "My Word Bank", "/recall": "Recall challenge", "/test": "Word test", "/feedback": "Tell us what you think", "/who": "Who's playing?", "/login": "Log in", "/welcome": "Welcome" }; const t = T[pathname]; document.title = t ? t + " · WordWise" : "WordWise"; }, [pathname]);
   const [ready, setReady] = useState(() => !wantsMock());
   const [booted] = useState(() => { initProfiles(); if (getProfiles().length > 0) void requestPersistentStorage(); return true; });
   useEffect(() => {

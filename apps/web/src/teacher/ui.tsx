@@ -1,6 +1,6 @@
 /** Shared teacher UI pieces: data hook, shell with nav, sortable table, bars, date stepper. */
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import type { ClassRoom, IsoDate } from '@shabd/core';
 import { api, ApiRequestError, setToken } from '../shared/api.ts';
 import { addDays, sortRows, type SortDir } from './util.ts';
@@ -48,11 +48,42 @@ export function useLoad<T>(fn: () => Promise<T>, deps: unknown[]) {
   return { data, setData, error, loading, reload: run };
 }
 
-/** Page frame: nav bar (class switcher + links) and a loading/error shell. */
-export function Page({ classId, title, children, loading, error, className }: {
-  classId?: number; title?: string; children?: ReactNode; loading?: boolean; error?: string | null; className?: string;
+/** One-line "what is this page for" shown under each page title, so nobody needs a manual. */
+const PAGE_LEAD: Record<string, string> = {
+  'My classes': "Your classes in one place. Open a class to see today's play, or add a new class.",
+  Today: "Who has played today's five words, and how they did. Use the arrows to look at another day.",
+  "Today's words": 'The five words children learn today. They are picked for you; change them if you like.',
+  Roster: 'Every child in this class: login PINs, joining requests and PIN resets.',
+  Leaderboard: 'Who earned the most XP. You can hide this from children if you prefer.',
+  'Class analytics': 'Which words and skills the class finds hard, so you know what to revise on the board.',
+  Progress: "Each child's days played, words completed and accuracy. You can print it.",
+  'Research studies': 'A study compares test scores before and after children use WordWise. Start here to set one up.',
+  'Word plan': 'The words taught on each study day. The first days include every word used in the tests.',
+  'Observations and feedback': 'Weekly teacher observations and the end-of-study student questionnaire.',
+  'Login cards': "Printable cards with each child's name, PIN and a QR code to open the class.",
+  'Add students': 'Paste your class list. We only keep first names.',
+  'Create class': 'A class is one standard and division, for example 5B.',
+};
+
+const LAST_CLASS_KEY = 'wordwise.lastClass';
+export const rememberClass = (id: number): void => { try { localStorage.setItem(LAST_CLASS_KEY, String(id)); } catch { /* private mode */ } };
+
+const CLASS_TABS: { to: string; label: string }[] = [
+  { to: 'dashboard', label: 'Today' }, { to: 'words', label: 'Words' }, { to: 'roster', label: 'Roster' },
+  { to: 'progress', label: 'Progress' }, { to: 'analytics', label: 'Analytics' }, { to: 'leaderboard', label: 'Leaderboard' },
+  { to: 'tests', label: 'Tests' }, { to: 'authenticity', label: 'Sentence check' },
+  { to: 'share', label: 'Share' }, { to: 'cards', label: 'Login cards' },
+];
+
+/**
+ * Page frame. The top bar is the SAME on every teacher page (brand, My classes, Research study, School, Log out).
+ * When a page belongs to a class, a second bar shows the class switcher and that class's tabs.
+ */
+export function Page({ classId, title, children, loading, error, className, lead }: {
+  classId?: number; title?: string; children?: ReactNode; loading?: boolean; error?: string | null; className?: string; lead?: string;
 }) {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { data: classes } = useLoad(() => (classId ? api.listClasses() : Promise.resolve([] as ClassRoom[])), [classId]);
   const cls = classes?.find((c) => c.id === classId);
   const base = classId ? `/teacher/classes/${classId}` : '';
@@ -63,46 +94,53 @@ export function Page({ classId, title, children, loading, error, className }: {
     api.me('staff').then((m) => { if (live) setIsAdmin(m.role === 'teacher' && m.teacher.role === 'school_admin'); }, () => { /* the guard handles auth */ });
     return () => { live = false; };
   }, []);
+  useEffect(() => { if (classId && Number.isInteger(classId)) rememberClass(classId); }, [classId]);
+  useEffect(() => { document.title = title ? `${title} · WordWise` : 'WordWise'; }, [title]);
+  const tabsRef = useRef<HTMLElement | null>(null);
+  useEffect(() => { tabsRef.current?.querySelector('a.active')?.scrollIntoView?.({ block: 'nearest', inline: 'center' }); }, [pathname]);
+  const inClass = pathname.startsWith('/teacher/classes') || pathname.startsWith('/teacher/students');
+  const inStudy = pathname.startsWith('/teacher/study');
+  const onClasses = !inStudy && (pathname === '/teacher' || inClass);
+  const topBar = (
+    <nav className="t-nav no-print" aria-label="Main">
+      <Link to="/teacher" className="t-brand">🦜 WordWise</Link>
+      <Link to="/teacher" className={onClasses ? 'active' : ''} aria-current={onClasses ? 'page' : undefined}>My classes</Link>
+      <Link to="/teacher/study" className={inStudy ? 'active' : ''} aria-current={inStudy ? 'page' : undefined}>Research study</Link>
+      {isAdmin && <Link to="/school">School</Link>}
+      <button className="btn t-logout" onClick={logout}>Log out</button>
+    </nav>
+  );
   // A typed/old link like /teacher/classes/abc/roster used to show "NaNNaN" in the header and a bare "Not found" (T-4).
   if (classId !== undefined && !Number.isInteger(classId)) {
     return (
       <main className="teacher screen t-page">
-        <nav className="t-nav no-print" aria-label="Teacher"><Link to="/teacher" className="t-brand">🦜 WordWise</Link></nav>
+        {topBar}
         <h1 className="title t-title">We can't find that class</h1>
         <p className="muted">The link may be old or mistyped.</p>
         <Link className="btn btn-primary" to="/teacher">Go to my classes</Link>
       </main>
     );
   }
+  const text = lead ?? (title ? PAGE_LEAD[title] : undefined);
   return (
     <main className={`teacher screen t-page ${className ?? ''}`}>
-      <nav className="t-nav no-print" aria-label="Teacher">
-        <Link to="/teacher" className="t-brand">🦜 WordWise</Link>
-        {classId && classes && classes.length > 0 && (
-          <select aria-label="Class" value={classId} onChange={(e) => navigate(e.target.value === 'all' ? '/teacher?all=1' : `/teacher/classes/${e.target.value}/dashboard`)}>
-            {classes.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
-            <option value="all">All classes…</option>
-          </select>
-        )}
-        {classId && (
-          <>
-            <NavLink to={`${base}/dashboard`}>Today</NavLink>
-            <NavLink to={`${base}/words`}>Words</NavLink>
-            <NavLink to={`${base}/roster`}>Roster</NavLink>
-            <NavLink to={`${base}/leaderboard`}>Leaderboard</NavLink>
-            <NavLink to={`${base}/analytics`}>Analytics</NavLink>
-            <NavLink to={`${base}/progress`}>Progress</NavLink>
-            <NavLink to={`${base}/tests`}>Tests</NavLink>
-            <NavLink to={`${base}/authenticity`}>Checks</NavLink>
-            <NavLink to={`${base}/share`}>Share</NavLink>
-            <NavLink to={`${base}/cards`}>Cards</NavLink>
-          </>
-        )}
-        <NavLink to="/teacher/study">Study</NavLink>
-        {isAdmin && <Link to="/school">School</Link>}
-        <button className="btn t-logout" onClick={logout}>Log out</button>
-      </nav>
+      {topBar}
+      {classId && (
+        <div className="t-classbar no-print">
+          <label className="t-classpick">
+            <span className="muted">Class</span>
+            <select aria-label="Class" value={classId} onChange={(e) => navigate(e.target.value === 'all' ? '/teacher' : `/teacher/classes/${e.target.value}/dashboard`)}>
+              {(classes ?? []).map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
+              <option value="all">All classes…</option>
+            </select>
+          </label>
+          <nav className="t-tabs" aria-label="Class pages" ref={tabsRef}>
+            {CLASS_TABS.map((t) => <NavLink key={t.to} to={`${base}/${t.to}`}>{t.label}</NavLink>)}
+          </nav>
+        </div>
+      )}
       {title && <h1 className="title t-title">{title}{cls ? <span className="muted t-sub"> · {cls.name} ({cls.classCode})</span> : null}</h1>}
+      {text && !error && <p className="muted t-lead">{text}</p>}
       {error && <div className="t-error" role="alert">{error}</div>}
       {loading && !error ? <p className="muted">Loading…</p> : children}
     </main>

@@ -49,7 +49,7 @@ export default function Progress() {
         ))}
 
       <div className="row s-datebar">
-        <label className="t-field">Date
+        <label className="t-field">Show progress for date
           <input type="date" value={date} max={todayIst()} onChange={(e) => e.target.value && setDate(e.target.value)} />
         </label>
       </div>

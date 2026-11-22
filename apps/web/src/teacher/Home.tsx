@@ -92,5 +92,5 @@ export function Home() {
       </>
     );
   };
-  return <Page title="Home" loading={loading} error={error}>{body()}</Page>;
+  return <Page title="My classes" loading={loading} error={error}>{body()}</Page>;
 }

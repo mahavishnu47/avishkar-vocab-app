@@ -52,6 +52,7 @@ function Dashboard({ res }: { res: StudyResultsRes }) {
   };
   return (
     <>
+      <PlainSummary res={res} />
       <Tiles res={res} />
       <section className="card stack no-print">
         <h2 className="t-h2">Research export</h2>
@@ -66,6 +67,19 @@ function Dashboard({ res }: { res: StudyResultsRes }) {
       </section>
       <Body res={res} />
     </>
+  );
+}
+
+/** One plain-English sentence so a teacher never has to decode the statistics. */
+function PlainSummary({ res }: { res: StudyResultsRes }) {
+  const s = totalOf(interv(res));
+  const t = testOf(res, 'intervention', 'total')?.test ?? null;
+  if (!s || !s.n) return <p className="card muted" role="status">No results yet. Results appear once children have taken both the pre-test and the post-test.</p>;
+  const up = (s.meanGain ?? 0) > 0;
+  return (
+    <p className="card" role="status" style={{ fontSize: 17 }}>
+      <strong>In short:</strong> {s.n} children scored {fmt(s.meanPre)} on average before and {fmt(s.meanPost)} after (out of 30), {up ? 'a gain of ' : 'a change of '}{fmt(s.meanGain)} marks.{t ? (t.p < 0.05 ? ' The gain is statistically significant, so it is unlikely to be luck.' : ' The gain is not yet statistically significant.') : ''}
+    </p>
   );
 }
 

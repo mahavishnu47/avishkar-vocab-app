@@ -59,7 +59,7 @@ export function Home() {
       />
       <section className="card stack">
         <div className="streak-card">
-          <div><div className="big-num">🔥 {home.streak}</div><div className="muted">{home.streak === 1 ? 'day!' : 'days!'}</div></div>
+          <div><div className="big-num">🔥 {home.streak}</div><div className="muted">{home.streak === 0 ? 'Play today to start a streak' : home.streak === 1 ? 'day in a row!' : 'days in a row!'}</div></div>
           <div><div className="big-num">⭐ {home.xpTotal}</div><div className="muted">Level {home.level.level + 1}</div></div>
         </div>
         <div className="levelbar" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label="level progress"><div style={{ width: `${pct}%` }} /></div>

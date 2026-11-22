@@ -147,3 +147,21 @@
 .t-card-qr { flex: none; }
 .t-card-foot { font-size: 12px; color: #374151; }
 .t-card-link { font-size: 14px; font-weight: 700; word-break: break-all; }
+
+/* Consistent navigation: the main bar never changes; class tabs sit in a second, scrollable bar. */
+.t-nav { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.t-nav::-webkit-scrollbar { display: none; }
+.t-nav a, .t-nav .t-logout { white-space: nowrap; flex: none; }
+.t-classbar { display: flex; align-items: center; gap: var(--sp-3); padding: var(--sp-2) 0; border-bottom: 1px solid var(--c-border); position: sticky; top: 0; background: var(--c-bg, #fffbe9); z-index: 5; }
+.t-classpick { display: flex; align-items: center; gap: var(--sp-2); flex: none; }
+.t-classpick select { width: auto; min-height: 44px; }
+.t-tabs { display: flex; gap: var(--sp-1); overflow-x: auto; scrollbar-width: thin; flex: 1; min-width: 0; padding-bottom: 2px; }
+.t-tabs a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--sp-3); border-radius: var(--radius-sm); color: var(--c-text); text-decoration: none; font-weight: 600; white-space: nowrap; flex: none; }
+.t-tabs a.active { background: var(--c-primary); color: #fff; }
+.t-lead { margin: 0 0 var(--sp-3); max-width: 60ch; }
+.t-th { min-height: 44px; }
+.teacher input[type="checkbox"], .teacher input[type="radio"] { width: 24px; height: 24px; }
+@media (max-width: 600px) { .t-classbar { flex-wrap: wrap; } .t-classpick { width: 100%; } .t-classpick select { flex: 1; } }
+
+/* Wide tables scroll sideways inside their card on phones */
+@media (max-width: 600px) { .teacher table { display: block; overflow-x: auto; max-width: 100%; } .teacher table::after { content: ""; } }

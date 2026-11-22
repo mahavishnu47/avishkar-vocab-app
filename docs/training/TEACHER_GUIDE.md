@@ -46,7 +46,12 @@ Each child gets a **roll number**, an **animal avatar** and a **4-digit PIN**. T
 ### 2.3 Share the class link with parents
 On the **Share** screen tap **Send on WhatsApp**. The message contains the class link `https://YOUR-APP/j/K7Q2MX`. A parent opens it on the child's phone, taps the child's name and types the PIN.
 
-You can also pin the **QR code** on the class board.
+You can also pin the **QR code** on the class board: tap **Show on screen** to display it large.
+
+Other things on the **Share** screen:
+- **Students can join with this link:** switch this **off** to stop anyone using the class link (for example after everyone has joined), and back **on** when you need it.
+- **Make a new link:** creates a new class code and link. The old link stops working. Use it if the link was shared with the wrong people.
+- **Print login cards** and **Add students** are here too.
 
 ### 2.4 The Roster
 **Roster** lists every child with their status. From here you can:
