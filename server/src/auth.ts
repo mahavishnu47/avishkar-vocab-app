@@ -59,6 +59,20 @@ export function generatePin(): string {
   }
 }
 
+/**
+ * A PIN no other child in the class already has. Two children sharing a PIN could open each other's profile,
+ * so retry until it is free (a class has far fewer than 10,000 children, so this ends fast).
+ */
+export async function generateClassPin(q: Queryable, classId: number, exceptStudentId?: number): Promise<string> {
+  const rows = await q.all<{ pin: string }>('SELECT pin FROM students WHERE class_id = ? AND id <> ?', [classId, exceptStudentId ?? 0]);
+  const taken = new Set(rows.map((r) => r.pin));
+  for (let i = 0; i < 200; i++) {
+    const pin = generatePin();
+    if (!taken.has(pin)) return pin;
+  }
+  throw new Error('No free PIN left in this class');
+}
+
 /** Avatar emoji pool; pick deterministically by roll number so cards are stable. */
 export const AVATARS = ['🦁', '🐯', '🐼', '🦊', '🐸', '🐵', '🐘', '🦒', '🐢', '🐬', '🦉', '🐝', '🦋', '🐞', '🐧', '🐨', '🦓', '🐰', '🐻', '🦚'] as const;
 

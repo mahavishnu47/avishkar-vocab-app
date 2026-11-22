@@ -7,7 +7,7 @@ import { Router } from 'express';
 import type {
   ApproveJoinRequestReq, CreateJoinRequestReq, CreateJoinRequestRes, JoinRequest, JoinRequestStatusRes, RosterStudent,
 } from '@shabd/core';
-import { avatarFor, generatePin, requireTeacher } from '../auth.ts';
+import { avatarFor, generateClassPin, requireTeacher } from '../auth.ts';
 import { getDb, isUniqueViolation } from '../db/db.ts';
 import { HttpError, badRequest, notFound, type H } from '../http.ts';
 import { rosterStudentOf } from '../mappers.ts';
@@ -109,7 +109,7 @@ const approve: H<{ classId: string; rid: string }, RosterStudent, ApproveJoinReq
       }
       const ins = await q.run(
         'INSERT INTO students (class_id, roll_no, first_name, avatar, pin) VALUES (?, ?, ?, ?, ?) RETURNING *',
-        [classId, rollNo, r.first_name, avatarFor(rollNo), generatePin()],
+        [classId, rollNo, r.first_name, avatarFor(rollNo), await generateClassPin(q, classId)],
       );
       const row = ins.rows[0]!;
       await q.run(

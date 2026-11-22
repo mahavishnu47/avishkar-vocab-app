@@ -25,6 +25,26 @@ describe('classes', () => {
   });
 });
 
+describe('PINs are unique within a class', () => {
+  it('never gives two children in a class the same PIN, on add or on reset', async () => {
+    const t = await registerTeacher(ctx.app);
+    const { cls } = await makeClass(ctx.app, t, ['Riya']);
+    // 300 children: with plain random 4-digit PINs a clash would be almost certain (birthday problem).
+    const many = Array.from({ length: 300 }, (_, i) => ({ rollNo: 100 + i, firstName: `Kid${String.fromCharCode(97 + (i % 26))}` }));
+    for (let i = 0; i < many.length; i += 100) {
+      const add = await request(ctx.app).post(`/api/classes/${cls.id}/students`).set(auth(t)).send({ students: many.slice(i, i + 100) });
+      expect(add.status).toBe(201);
+    }
+    const roster = (await request(ctx.app).get(`/api/classes/${cls.id}/students`).set(auth(t))).body as { id: number; pin: string }[];
+    expect(new Set(roster.map((s) => s.pin)).size).toBe(roster.length);
+    for (const s of roster.slice(0, 40)) {
+      await request(ctx.app).post(`/api/students/${s.id}/reset-pin`).set(auth(t)).send({});
+    }
+    const after = (await request(ctx.app).get(`/api/classes/${cls.id}/students`).set(auth(t))).body as { pin: string }[];
+    expect(new Set(after.map((s) => s.pin)).size).toBe(after.length);
+  });
+});
+
 describe('roster paste-add', () => {
   it('adds students with deterministic avatars and random PINs, ordered by roll', async () => {
     const t = await registerTeacher(ctx.app);

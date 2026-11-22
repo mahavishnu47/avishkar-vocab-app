@@ -8,7 +8,7 @@ import type {
   UpdateClassReq, UpdateStudentReq,
 } from '@shabd/core';
 import { academicYearFor, className as makeClassName, classJoinText, joinPath, schoolJoinPath } from '@shabd/core';
-import { avatarFor, generateClassCode, generatePin, requireTeacher } from '../auth.ts';
+import { avatarFor, generateClassCode, generateClassPin, requireTeacher } from '../auth.ts';
 import { today } from '../clock.ts';
 import { getDb, isUniqueViolation } from '../db/db.ts';
 import { HttpError, badRequest, type H } from '../http.ts';
@@ -220,7 +220,7 @@ const addStudents: H<{ classId: string }, RosterRes, AddStudentsReq> = async (re
         }
         const ins = await q.run(
           'INSERT INTO students (class_id, roll_no, first_name, avatar, pin) VALUES (?, ?, ?, ?, ?) RETURNING *',
-          [classId, s.rollNo, s.firstName, avatarFor(s.rollNo), generatePin()],
+          [classId, s.rollNo, s.firstName, avatarFor(s.rollNo), await generateClassPin(q, classId)],
         );
         out.push(rosterStudentOf(ins.rows[0]!));
       }
@@ -274,13 +274,13 @@ const updateStudent: H<{ studentId: string }, RosterStudent, UpdateStudentReq> =
 const resetPin: H<{ studentId: string }, RosterStudent, ResetPinReq> = async (req, res) => {
   const a = staffAuth(req);
   const studentId = idParam(req.params.studentId);
-  await assertCanAccessStudent(a, studentId);
+  const stu = await assertCanAccessStudent(a, studentId);
   const b = req.body && typeof req.body === 'object' && !Array.isArray(req.body) ? (req.body as Record<string, unknown>) : {};
   if (b.signOutDevices !== undefined && typeof b.signOutDevices !== 'boolean') throw badRequest('signOutDevices must be true or false');
   const signOut = b.signOutDevices !== false;
   const db = getDb();
   await db.tx(async (q) => {
-    await q.run('UPDATE students SET pin = ?, failed_pin_count = 0, locked_until = NULL WHERE id = ?', [generatePin(), studentId]);
+    await q.run('UPDATE students SET pin = ?, failed_pin_count = 0, locked_until = NULL WHERE id = ?', [await generateClassPin(q, Number(stu.class_id), studentId), studentId]);
     if (signOut) await q.run('DELETE FROM auth_tokens WHERE student_id = ?', [studentId]);
     await audit(q, { schoolId: a.schoolId, actorType: 'teacher', actorId: a.teacherId, action: 'student.pin_reset', targetType: 'student', targetId: studentId, meta: { signOutDevices: signOut } });
   });
