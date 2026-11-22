@@ -103,7 +103,7 @@ describe('super admin API', () => {
     // nothing works while suspended
     const login = await post('/api/auth/teacher/login', { email: 'teach@x.in', password: 'password1' });
     expect(login.status).toBe(403);
-    expect(login.body.error.message).toBe('Your school is paused. Contact Shabd Mitra.');
+    expect(login.body.error.message).toBe('Your school is paused. Contact WordWise.');
     expect((await get(`/api/join/class/${cls.classCode}`)).status).toBe(404);
     expect((await get(`/api/join/school/${sch.studentCode}`)).status).toBe(404);
     expect((await post('/api/auth/student/login', { classCode: cls.classCode, studentId: students[0]!.id, pin: students[0]!.pin })).status).toBe(404);

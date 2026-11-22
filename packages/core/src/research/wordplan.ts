@@ -83,6 +83,10 @@ export interface StudyDayRes {
 export function planWarnings(counts: Record<string, number>): string[] {
   const w: string[] = [];
   const adv = counts.adverb ?? 0;
-  if (adv < MIN_PLAN_ADVERBS) w.push(`Only ${adv} adverb${adv === 1 ? '' : 's'} in this plan. Part-of-speech tests need about ${PLAN_POS_TARGET.adverb}.`);
+  const total = Object.values(counts).reduce((a, b) => a + b, 0);
+  // A full 100-word plan needs MIN_PLAN_ADVERBS; a shorter plan (e.g. 10 school days = 50 words) needs proportionally fewer.
+  const min = total >= 100 ? MIN_PLAN_ADVERBS : Math.floor(total / 12);
+  const target = total >= 100 ? PLAN_POS_TARGET.adverb : Math.round((PLAN_POS_TARGET.adverb * total) / 100);
+  if (adv < min) w.push(`Only ${adv} adverb${adv === 1 ? '' : 's'} in this plan. Part-of-speech tests need about ${target}.`);
   return w;
 }

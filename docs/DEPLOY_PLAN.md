@@ -1,6 +1,6 @@
 # Deploy plan: Vercel + hosted Postgres
 
-Goal: run Shabd Mitra on Vercel the same way `pyq-dojo` runs: hosted Postgres on **Neon** through `DATABASE_URL`. The code stays plain Postgres, so Supabase would also work. The Express 5 API becomes one Vercel serverless function. The Vite PWA is served as static files with SPA rewrites. SQLite (`better-sqlite3`) is removed, because a Vercel function has no persistent disk.
+Goal: run WordWise on Vercel the same way `pyq-dojo` runs: hosted Postgres on **Neon** through `DATABASE_URL`. The code stays plain Postgres, so Supabase would also work. The Express 5 API becomes one Vercel serverless function. The Vite PWA is served as static files with SPA rewrites. SQLite (`better-sqlite3`) is removed, because a Vercel function has no persistent disk.
 
 Status: plan only. Nothing below is implemented yet.
 

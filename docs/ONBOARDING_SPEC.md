@@ -62,7 +62,7 @@ Tap counts exclude typing. Every journey ends on a screen with **one obvious nex
 1. Open `/admin` and type the secret once (kept in `sessionStorage`).
 2. **Schools** list → "+ New school": name (required), district (optional), UDISE code (optional, 11 digits) → **Create**.
 3. The result card shows the **school setup link** `https://<app>/a/ABCDEFGH` (single use, 14 days), with **Copy**, **WhatsApp** and **Share** buttons and this ready text:
-   > Namaste! Your school is ready on Shabd Mitra 🦜. Open this link to set up your school (takes 1 minute): https://…/a/ABCDEFGH. This link works once and ends on 4 Dec.
+   > Namaste! Your school is ready on WordWise 🦜. Open this link to set up your school (takes 1 minute): https://…/a/ABCDEFGH. This link works once and ends on 4 Dec.
 4. Per school row: counts (teachers, classes, students), **New setup link** (for a lost link or a second admin), **Suspend / Resume**.
 
 ### 2.2 School admin (principal or coordinator)
@@ -71,7 +71,7 @@ Tap counts exclude typing. Every journey ends on a screen with **one obvious nex
 
 | Step | Screen | What happens |
 |---|---|---|
-| 1 | `/a/:code` → `/school/setup/:code` | "Set up **Zilla Parishad School, Kalwa**" (the name comes from `GET /invites/:code`). Fields: your name, email, password (8+ characters, with a show toggle). Button **Create my account**. An invalid or used code shows "This link has expired or was already used. Ask Shabd Mitra for a new one." |
+| 1 | `/a/:code` → `/school/setup/:code` | "Set up **Zilla Parishad School, Kalwa**" (the name comes from `GET /invites/:code`). Fields: your name, email, password (8+ characters, with a show toggle). Button **Create my account**. An invalid or used code shows "This link has expired or was already used. Ask WordWise for a new one." |
 | 2 | `/school` (first-run checklist on top) | The server has already made the school's **teacher invite** when the account was created. Checklist card: |
 | | | ☐ **Invite your teachers**: big **WhatsApp** button (also Copy and Share) with the teacher link `…/t/ABCDEFGH` and the code `ABCD-EFGH`. Tapping it ticks the item (`PATCH /school {teacherLinkShared:true}`). |
 | | | ☐ **First teacher joined** (automatic) |
@@ -81,13 +81,13 @@ Tap counts exclude typing. Every journey ends on a screen with **one obvious nex
 | 3 | `/school` dashboard | Once all items are done, the checklist folds into a small "Setup complete ✅" line and the progress view takes over. |
 
 Teacher WhatsApp text (built by core `teacherInviteText()`):
-> Join our school on Shabd Mitra 🦜 (daily English words for Std 5). 1) Open https://…/t/ABCDEFGH 2) Enter your name, email and a password. School code: ABCD-EFGH. Works until 20 Dec.
+> Join our school on WordWise 🦜 (daily English words for Std 5). 1) Open https://…/t/ABCDEFGH 2) Enter your name, email and a password. School code: ABCD-EFGH. Works until 20 Dec.
 
 **Everyday screens (`/school/*`):**
 - **Progress** (`/school`): a date picker (default today) and totals: teachers, classes, students, joined (logged in at least once), played today. A table with one row per class: Class · Teacher · Students · Joined (x/y with a bar) · Played today · This week %. Tapping a row opens that class's dashboard (`/teacher/classes/:id/dashboard`); the admin has access.
 - **Teachers** (`/school/teachers`): name, email, role, classes, last login, on/off switch. Row actions: **Make admin / Remove admin**, **Reset password** (makes a 24-hour single-use link `…/r/ABCDEFGH` with a WhatsApp button), **Turn off** (signs them out; their classes stay and show a "needs a teacher" badge). Top card: the current teacher invite (code, link, expiry, uses) with **Share**, **New code** (revokes the old one) and **Turn off code**.
 - **Classes** (`/school/classes`): all classes in the school with the teacher, counts and join on/off. Actions: **Change teacher** (a select of active teachers), **Archive**.
-- **Settings** (`/school/settings`): school name and district. The **student school link** `…/s/DEMSCH` with a QR code, WhatsApp text and a printable poster ("Scan to play Shabd Mitra"), plus **New link** (rotate). **Recent activity**: the last 50 audit rows in plain words ("Mrs. Patil reset Riya's PIN").
+- **Settings** (`/school/settings`): school name and district. The **student school link** `…/s/DEMSCH` with a QR code, WhatsApp text and a printable poster ("Scan to play WordWise"), plus **New link** (rotate). **Recent activity**: the last 50 audit rows in plain words ("Mrs. Patil reset Riya's PIN").
 - Reset access in one place: from any class, the admin opens the roster and uses **Reset PIN**, like a teacher.
 
 ### 2.3 Teacher
@@ -133,7 +133,7 @@ Below the checklist, class cards show: name, code, students, joined x/y, played 
 - Big **QR code** (SVG, 240 px) of the join link, the link in large text `shabd…/j/K7Q2MX`, and the class code.
 - Buttons: **Send on WhatsApp** (`https://wa.me/?text=<encoded>`; `navigator.share` first when available), **Copy link**, **Copy message**, **Print login cards** (→ `/teacher/classes/:id/cards`), **Show on screen** (a full-screen QR for a classroom projector).
 - WhatsApp text (core `classJoinText()`, no PINs):
-  > Shabd Mitra 🦜: 5 new English words every day, for Class 5A, ZP School Kalwa. On your child's phone: 1) Open https://…/j/K7Q2MX 2) Tap your child's name 3) Type the 4-digit PIN from the card the teacher gave. Free. No ads. About 15 minutes a day.
+  > WordWise 🦜: 5 new English words every day, for Class 5A, ZP School Kalwa. On your child's phone: 1) Open https://…/j/K7Q2MX 2) Tap your child's name 3) Type the 4-digit PIN from the card the teacher gave. Free. No ads. About 15 minutes a day.
 - A toggle **Students can join with this link** (on/off), and **Make a new link** (rotates `class_code`, with the warning "Old link and printed cards stop working for new phones. Children already playing are not affected.").
 - **Login cards** (existing page, upgraded): 8 per A4. Each card has the avatar, first name, roll number, PIN in large digits, the class QR code, the short link and "Ask a grown-up to open this link". A footer line: "Keep this card safe. It is your key."
 
@@ -165,7 +165,7 @@ Fallback with no link: Landing `/` → **I'm a Student** → `/login` (class cod
 - Maximum 6 profiles. Adding a 7th removes the least recently used one, after a confirmation.
 
 **Install to home screen (PWA)** (`student/InstallPrompt.tsx`):
-- Capture `beforeinstallprompt` as soon as the student bundle loads. Show the card only **after the first completed session** (on Summary → back to Home), never during onboarding: "📲 Put Shabd Mitra on your home screen" with an **Add** button that calls `prompt()`. Hide it if `display-mode: standalone` matches.
+- Capture `beforeinstallprompt` as soon as the student bundle loads. Show the card only **after the first completed session** (on Summary → back to Home), never during onboarding: "📲 Put WordWise on your home screen" with an **Add** button that calls `prompt()`. Hide it if `display-mode: standalone` matches.
 - With no event available (an in-app browser such as the WhatsApp webview, or an old Chrome), show a text version: "Open in Chrome, tap ⋮, then 'Add to Home screen'". If `navigator.userAgent` contains `WhatsApp` or `wv` on the first link open, show a top banner on the name screen: "For best results, open in Chrome ⋮ → Open in Chrome". Opening inside the webview still works, but its storage may not persist.
 - "Not now" hides it for 7 days (`shabd.installDismissedAt`). After 3 dismissals it never shows again.
 
@@ -456,7 +456,7 @@ The limits are generous because 40 children on one school Wi-Fi share one IP. **
 | `GET /invites/:code` | none | → `InviteInfoRes` | 404 "This code is not valid. Ask for a new one." for unknown, expired, revoked or used-up codes, or a suspended school (identical message). RL `invite`. |
 | `POST /auth/school/setup` | none | `SchoolSetupReq` → 201 `TeacherAuthRes` | The invite must be kind `school_admin`. In one transaction: create the teacher (`role school_admin`), `use_count + 1`, create the school's first **teacher invite** (30 days), and write audit rows. Duplicate email → 409 "This email is already registered. Log in instead." |
 | `POST /auth/teacher/register` | none | `TeacherRegisterReq` → 201 `TeacherAuthRes` | `inviteCode` **required**, kind `teacher` (a `school_admin` code is also accepted and makes an admin). Missing → 400. Invalid → 404 (as above). The global `TEACHER_INVITE_CODE` is **gone** (the env var is ignored; DEPLOY.md says to delete it). |
-| `POST /auth/teacher/login` | none | unchanged → `TeacherAuthRes` | Inactive teacher → 403 `forbidden` "Your account is turned off. Ask your school admin." Suspended school → 403 "Your school is paused. Contact Shabd Mitra." RL `tlogin` on failure. |
+| `POST /auth/teacher/login` | none | unchanged → `TeacherAuthRes` | Inactive teacher → 403 `forbidden` "Your account is turned off. Ask your school admin." Suspended school → 403 "Your school is paused. Contact WordWise." RL `tlogin` on failure. |
 | `POST /auth/password-reset` | none | `PasswordResetReq` → `TeacherAuthRes` | Kind `password_reset`, single use. Sets the password, **deletes all the teacher's tokens**, then issues a new one. |
 | `GET /auth/me` | any | → `MeRes` | Includes `school` / `schoolName`. |
 | `POST /auth/logout` | any | 204 | unchanged |
@@ -566,7 +566,7 @@ All student screens use `.screen.student-screen`, keep one task per screen, have
 
 | Screen | Content | Empty and error states |
 |---|---|---|
-| Landing (O5 component, shown by O3) | 🦜 logo, "Shabd Mitra", "5 new English words every day". Three tiles, full width, at least 96 px tall, icon + label: **🎒 I'm a Student** → `/login`; **👩‍🏫 I'm a Teacher** → `/teacher/login`; **🏫 My School** → `/teacher/login?next=/school`. Small footer: "New school? {VITE_CONTACT_TEXT}". | |
+| Landing (O5 component, shown by O3) | 🦜 logo, "WordWise", "5 new English words every day". Three tiles, full width, at least 96 px tall, icon + label: **🎒 I'm a Student** → `/login`; **👩‍🏫 I'm a Teacher** → `/teacher/login`; **🏫 My School** → `/teacher/login?next=/school`. Small footer: "New school? {VITE_CONTACT_TEXT}". | |
 | `/login` | "Type your class code" (from your card), one field `#cc` (6 characters, `autocapitalize=characters`), **Next ▶**, and a picture hint showing where the code is on the card. | 404: "We can't find that class. Check the code 🙂". Network: "No internet. Try again 🙂". |
 | `/j/:code` | Class and school header, 🔊 "Find your name", name grid, letter chips over 24 students, a WhatsApp-webview banner (section 2.4). | 404: big 🤔 "This link is not working. Ask your teacher for a new one 🙂" + **Type a class code** → `/login`. No students: "Your teacher is still adding names. Come back soon 🙂". |
 | PIN pad | Avatar and name, 4 dots, 3×4 keypad (72 px keys), "Forgot PIN? 🙋". | Wrong: wobble + "Try again 💪" (never red). 423: "Too many tries. Wait 5 minutes 🙂". 429: the message from the server. |

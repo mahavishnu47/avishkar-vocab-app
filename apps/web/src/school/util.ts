@@ -64,7 +64,7 @@ const VERBS: Record<string, string> = {
 
 /** One plain-words line for the activity list, e.g. "Mrs. Patil reset the PIN of Riya". */
 export function describeAudit(e: AuditEntry): string {
-  const who = e.actorName ?? (e.actorType === 'super' ? 'Shabd Mitra' : e.actorType === 'student' ? 'A student' : 'The system');
+  const who = e.actorName ?? (e.actorType === 'super' ? 'WordWise' : e.actorType === 'student' ? 'A student' : 'The system');
   const verb = VERBS[e.action] ?? e.action.replace(/[._]/g, ' ');
   return [who, verb, e.targetLabel].filter(Boolean).join(' ');
 }

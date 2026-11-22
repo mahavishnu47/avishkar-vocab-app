@@ -144,7 +144,7 @@ export function installMock(): void {
       const joinUrl = `${BASE()}/j/${c.classCode}`;
       return delay({
         joinUrl, schoolJoinUrl: `${BASE()}/s/DEMSCH`, classCode: c.classCode,
-        whatsappText: `Shabd Mitra 🦜: 5 new English words every day, for Class ${c.name}, ${school.name}. On your child's phone: 1) Open ${joinUrl} 2) Tap your child's name 3) Type the 4-digit PIN from the card the teacher gave. Free. No ads. About 15 minutes a day.`,
+        whatsappText: `WordWise 🦜: 5 new English words every day, for Class ${c.name}, ${school.name}. On your child's phone: 1) Open ${joinUrl} 2) Tap your child's name 3) Type the 4-digit PIN from the card the teacher gave. Free. No ads. About 15 minutes a day.`,
       });
     },
     roster: (id: number) => delay([...rosterOf(id)]),

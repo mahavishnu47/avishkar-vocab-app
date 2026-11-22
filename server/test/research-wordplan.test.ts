@@ -21,7 +21,7 @@ async function world() {
   const a = await makeClass(app, t, ['Riya', 'Aarav'], undefined, 'A');
   const b = await makeClass(app, t, ['Meera'], undefined, 'B');
   const st = await request(app).post('/api/studies').set(auth(t)).send({
-    name: 'Word-a-Day', startDate: '2026-11-16',
+    name: 'Word-a-Day', startDate: '2026-11-16', schoolDays: 20,
     classes: [{ classId: a.cls.id, group: 'intervention' }, { classId: b.cls.id, group: 'comparison' }],
   });
   expect(st.status).toBe(201);
@@ -54,6 +54,20 @@ describe('F2 plan file', () => {
       const f = JSON.parse(readFileSync(resolve(root, `server/src/research/assessment-forms/form-${n}.json`), 'utf8'));
       for (const s of ['sectionA', 'sectionB', 'sectionC']) for (const i of f[s] as { wordId?: string }[]) if (i.wordId) expect(ids, `${n} ${i.wordId}`).toContain(i.wordId);
     }
+  });
+});
+
+describe('two-week study (10 school days)', () => {
+  it('teaches every word of forms A and B within days 1-10, so no test item is unseen', () => {
+    const first10 = new Set(planFile.days.filter((d) => d.day <= 10).flatMap((d) => d.wordIds));
+    expect(first10.size).toBe(50);
+    const tested = new Set<string>();
+    for (const n of ['a', 'b']) {
+      const f = JSON.parse(readFileSync(resolve(root, `server/src/research/assessment-forms/form-${n}.json`), 'utf8'));
+      for (const s of ['sectionA', 'sectionB', 'sectionC']) for (const i of f[s] as { wordId?: string }[]) if (i.wordId) tested.add(i.wordId);
+    }
+    expect(tested.size).toBe(50);
+    for (const id of tested) expect(first10, id).toContain(id);
   });
 });
 

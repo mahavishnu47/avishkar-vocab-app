@@ -40,7 +40,7 @@ export function ResetPassword() {
   if (bad) {
     return (
       <main className="teacher screen t-login">
-        <h1 className="title">🦜 Shabd Mitra</h1>
+        <h1 className="title">🦜 WordWise</h1>
         <div className="card stack">
           <div className="t-error" role="alert">This link has expired or was already used. Ask your school admin for a new one.</div>
           <Link className="btn" to="/teacher/login">Back to log in</Link>

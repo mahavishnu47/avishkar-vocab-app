@@ -28,7 +28,7 @@ export default function Settings() {
 
   const si = info.data;
   const url = si?.studentJoinUrl ?? '';
-  const text = si ? `Shabd Mitra 🦜: 5 new English words every day at ${si.school.name}. Open ${url} and tap your class and name.` : '';
+  const text = si ? `WordWise 🦜: 5 new English words every day at ${si.school.name}. Open ${url} and tap your class and name.` : '';
   return (
     <div className="stack">
       {(error ?? info.error) && <p className="t-error" role="alert">{error ?? info.error}</p>}
@@ -58,8 +58,8 @@ export default function Settings() {
 
       {si && (
         <section className="s-poster" aria-hidden="true">
-          <h1>🦜 Shabd Mitra</h1>
-          <h2>Scan to play Shabd Mitra</h2>
+          <h1>🦜 WordWise</h1>
+          <h2>Scan to play WordWise</h2>
           <QrSvg text={url} size={360} label="Student link QR code" />
           <p className="s-poster-link">{url}</p>
           <p>{si.school.name}</p>

@@ -1,8 +1,8 @@
-# Product Requirements Document: "Shabd Mitra" Daily Vocabulary App (MVP)
+# Product Requirements Document: "WordWise" Daily Vocabulary App (MVP)
 
 | Field | Value |
 |---|---|
-| Working name | **Shabd Mitra** ("Word Friend"); placeholder, the team can rename it |
+| Working name | **WordWise** ("Word Friend"); placeholder, the team can rename it |
 | Context | Avishkar Inter-University Research Convention (Mumbai), B.Ed research team |
 | MVP audience | Maharashtra State Board, Standard 5 (ages 10-11) |
 | Document status | v1.0, ready for build planning |

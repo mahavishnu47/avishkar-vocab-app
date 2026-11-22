@@ -8,7 +8,7 @@ export const STUDY_GROUPS: readonly StudyGroup[] = ['intervention', 'comparison'
 export const STUDY_STATUSES: readonly StudyStatus[] = ['setup', 'running', 'closed'];
 export const CONSENT_STATUSES: readonly ConsentStatus[] = ['pending', 'given', 'declined', 'withdrawn'];
 
-export const DEFAULT_SCHOOL_DAYS = 20;
+export const DEFAULT_SCHOOL_DAYS = 10;
 export const DEFAULT_WORDS_PER_DAY = 5;
 
 /** S01, S02 ... for the intervention group; C01, C02 ... for the comparison group. Two digits minimum. */

@@ -9,8 +9,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Shabd Mitra',
-        short_name: 'Shabd Mitra',
+        name: 'WordWise',
+        short_name: 'WordWise',
         description: '5 new English words every day',
         theme_color: '#1d4ed8',
         background_color: '#fffbea',

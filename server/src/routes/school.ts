@@ -198,7 +198,7 @@ const resetLink: H<{ teacherId: string }, InviteWithText> = async (req, res) => 
   const db = getDb();
   const t = await db.get<{ id: number; name: string }>('SELECT id, name FROM teachers WHERE id = ? AND school_id = ?', [id, a.schoolId]);
   if (!t) throw notFound('Teacher not found');
-  if (t.id === a.teacherId) throw badRequest('You cannot make a reset link for yourself. Ask Shabd Mitra for a new setup link.');
+  if (t.id === a.teacherId) throw badRequest('You cannot make a reset link for yourself. Ask WordWise for a new setup link.');
   const out = await db.tx(async (q) => {
     await q.run(
       "UPDATE invites SET revoked_at = ? WHERE kind = 'password_reset' AND teacher_id = ? AND revoked_at IS NULL AND use_count = 0",

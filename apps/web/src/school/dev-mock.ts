@@ -98,7 +98,7 @@ export function installMock(): void {
     },
     teacherResetLink: (id: number) => {
       const inv = mkInvite('password_reset', 'RESETABC');
-      return delay({ ...inv, whatsappText: `Namaste ${teachers.find((t) => t.id === id)?.name}! Open this link to choose a new Shabd Mitra password: ${inv.url}. It works once and ends in 24 hours.` });
+      return delay({ ...inv, whatsappText: `Namaste ${teachers.find((t) => t.id === id)?.name}! Open this link to choose a new WordWise password: ${inv.url}. It works once and ends in 24 hours.` });
     },
     schoolInvites: () => delay(invite ? [invite] : []),
     createInvite: () => { invite = mkInvite('teacher', 'WXYZ2345'); return delay(invite); },
@@ -120,9 +120,9 @@ export function installMock(): void {
         const s: School = { id: nextId++, name: b.name, district: b.district ?? '', studentCode: 'NEWSCH', status: 'active' };
         admin = [...admin, { school: s, udiseCode: b.udiseCode ?? null, teachers: 0, classes: 0, students: 0, createdAt: new Date().toISOString(), ...EXTRA, activeStudents7d: 0, lastActivityAt: null }];
         const inv = mkInvite('school_admin', 'SETUPABC');
-        return delay({ school: s, setupInvite: inv, whatsappText: `Namaste! Your school is ready on Shabd Mitra 🦜. Open this link to set up your school (takes 1 minute): ${inv.url}.` });
+        return delay({ school: s, setupInvite: inv, whatsappText: `Namaste! Your school is ready on WordWise 🦜. Open this link to set up your school (takes 1 minute): ${inv.url}.` });
       },
-      setupLink: () => { const inv = mkInvite('school_admin', 'SETUPXYZ'); return delay({ ...inv, whatsappText: `Namaste! Your school is ready on Shabd Mitra 🦜. Open this link: ${inv.url}.` }); },
+      setupLink: () => { const inv = mkInvite('school_admin', 'SETUPXYZ'); return delay({ ...inv, whatsappText: `Namaste! Your school is ready on WordWise 🦜. Open this link: ${inv.url}.` }); },
       updateSchool: (id: number, b: { status?: 'active' | 'suspended' }) => {
         admin = admin.map((r) => (r.school.id === id ? { ...r, school: { ...r.school, ...b } } : r));
         return delay(admin.find((r) => r.school.id === id)!);

@@ -1,4 +1,4 @@
-# Build Plan: Shabd Mitra MVP (local, about 2 days)
+# Build Plan: WordWise MVP (local, about 2 days)
 
 **Read first:** `docs/PRD.md` sections 5-13 (product), `docs/API.md`, `docs/UI_SPEC.md`, `docs/CONTENT_SPEC.md`, and `packages/core/src/{types,api,taxonomy,scoring.config}.ts` (the contract).
 **MVP simplifications vs the PRD:**

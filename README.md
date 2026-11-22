@@ -1,4 +1,4 @@
-# Shabd Mitra: 5 new English words a day (MVP)
+# WordWise: 5 new English words a day (MVP)
 
 A mobile-web vocabulary app for Maharashtra State Board **Std 5** students, built for a 200-student pilot on home Android phones. Every day a student learns 5 words in 3 stages:
 

@@ -2,7 +2,7 @@
   "name": "shabd-mitra",
   "private": true,
   "version": "0.1.0",
-  "description": "Shabd Mitra - daily vocabulary app for Maharashtra Std 5 (local MVP)",
+  "description": "WordWise - daily vocabulary app for Maharashtra Std 5 (local MVP)",
   "type": "module",
   "engines": {
     "node": "22.x"

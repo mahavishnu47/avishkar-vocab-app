@@ -24,7 +24,7 @@ describe('F1 study setup', () => {
     const { t, a, b } = await world();
     const c = await create(t, { name: 'Word-a-Day', classes: [{ classId: a.cls.id, group: 'intervention' }] });
     expect(c.status).toBe(201);
-    expect(c.body).toMatchObject({ name: 'Word-a-Day', schoolDays: 20, wordsPerDay: 5, status: 'setup' });
+    expect(c.body).toMatchObject({ name: 'Word-a-Day', schoolDays: 10, wordsPerDay: 5, status: 'setup' });
     const id = c.body.id as number;
     const put = await request(app).put(`/api/studies/${id}/classes/${b.cls.id}`).set(auth(t)).send({ group: 'comparison' });
     expect(put.status).toBe(200);
@@ -35,7 +35,7 @@ describe('F1 study setup', () => {
     // roll order: roll 1 = S01
     const s01 = p.body.find((x: { studyCode: string }) => x.studyCode === 'S01');
     expect(s01).toMatchObject({ firstName: 'Riya', rollNo: 1, group: 'intervention', consent: 'pending', analysable: false });
-    expect(await getStudyForClass(db, a.cls.id)).toMatchObject({ studyId: id, group: 'intervention', schoolDays: 20, status: 'setup' });
+    expect(await getStudyForClass(db, a.cls.id)).toMatchObject({ studyId: id, group: 'intervention', schoolDays: 10, status: 'setup' });
     expect(await getStudyForClass(db, b.cls.id)).toMatchObject({ group: 'comparison' });
   });
 

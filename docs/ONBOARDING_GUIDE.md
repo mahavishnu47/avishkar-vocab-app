@@ -1,16 +1,16 @@
-# Shabd Mitra: getting started (one page)
+# WordWise: getting started (one page)
 
 Replace `YOUR-APP` with your school's app address (for example `shabd-mitra.vercel.app`). You never need an email invite: everything works through links you send on WhatsApp.
 
 ## Principals (or school coordinators)
 
-1. Shabd Mitra sends you a **setup link** on WhatsApp: `https://YOUR-APP/a/ABCDEFGH`. It works once, for 14 days.
+1. WordWise sends you a **setup link** on WhatsApp: `https://YOUR-APP/a/ABCDEFGH`. It works once, for 14 days.
 2. Open it. You see "Set up your school". Type your **name, email and a password** (8 or more characters). Tap **Create my account**.
 3. On the next screen tap the big green **WhatsApp** button under "Invite your teachers". Send the message to your staff group. It contains the **teacher link** (`https://YOUR-APP/t/ABCDEFGH`) and the school code (`ABCD-EFGH`).
 4. Each morning open `https://YOUR-APP/school` (log in with your email and password). **Progress** shows, for each class, how many children have joined and how many played today.
 5. In **Teachers** you can turn a teacher off, make another teacher an admin, or tap **Reset password** to get a link for a teacher who forgot theirs (send it on WhatsApp). In **Classes** you can change a class's teacher. In **Settings** you get the school's student link, a QR poster and recent activity.
 
-Lost your setup link or password? Ask Shabd Mitra for a new setup link.
+Lost your setup link or password? Ask WordWise for a new setup link.
 
 ## Teachers
 

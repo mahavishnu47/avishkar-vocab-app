@@ -67,7 +67,7 @@ export function Page({ classId, title, children, loading, error, className }: {
   if (classId !== undefined && !Number.isInteger(classId)) {
     return (
       <main className="teacher screen t-page">
-        <nav className="t-nav no-print" aria-label="Teacher"><Link to="/teacher" className="t-brand">🦜 Shabd Mitra</Link></nav>
+        <nav className="t-nav no-print" aria-label="Teacher"><Link to="/teacher" className="t-brand">🦜 WordWise</Link></nav>
         <h1 className="title t-title">We can't find that class</h1>
         <p className="muted">The link may be old or mistyped.</p>
         <Link className="btn btn-primary" to="/teacher">Go to my classes</Link>
@@ -77,7 +77,7 @@ export function Page({ classId, title, children, loading, error, className }: {
   return (
     <main className={`teacher screen t-page ${className ?? ''}`}>
       <nav className="t-nav no-print" aria-label="Teacher">
-        <Link to="/teacher" className="t-brand">🦜 Shabd Mitra</Link>
+        <Link to="/teacher" className="t-brand">🦜 WordWise</Link>
         {classId && classes && classes.length > 0 && (
           <select aria-label="Class" value={classId} onChange={(e) => navigate(e.target.value === 'all' ? '/teacher?all=1' : `/teacher/classes/${e.target.value}/dashboard`)}>
             {classes.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}

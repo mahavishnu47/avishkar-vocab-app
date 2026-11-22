@@ -46,7 +46,7 @@ function NewStudy() {
   const { data: classes, error, loading } = useLoad(() => api.listClasses(), []);
   const [name, setName] = useState('');
   const [startDate, setStartDate] = useState('');
-  const [schoolDays, setSchoolDays] = useState('20');
+  const [schoolDays, setSchoolDays] = useState('10');
   const [picked, setPicked] = useState<Record<number, StudyGroup | ''>>({});
   const [msg, setMsg] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);

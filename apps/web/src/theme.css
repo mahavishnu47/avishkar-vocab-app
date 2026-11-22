@@ -1,5 +1,5 @@
 /*
- * Shabd Mitra design tokens + base primitives. CONTRACT FILE (architect).
+ * WordWise design tokens + base primitives. CONTRACT FILE (architect).
  * Lanes consume tokens via var(--...) and may use the base classes below.
  * Lane-specific styles go in lane folders (student/*.css, teacher/*.css, shared/OnScreenKeyboard.css).
  * Targets: low-end Android phones, 320-430px wide, bright sunlight, 10-year-olds. WCAG AA contrast.

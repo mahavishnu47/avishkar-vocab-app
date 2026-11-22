@@ -55,17 +55,17 @@ function shortDate(iso: string): string {
 }
 
 export function classJoinText(a: { schoolName: string; className: string; url: string }): string {
-  return `Shabd Mitra 🦜: 5 new English words every day, for Class ${a.className}, ${a.schoolName}. On your child's phone: 1) Open ${a.url} 2) Tap your child's name 3) Type the 4-digit PIN from the card the teacher gave. Free. No ads. About 15 minutes a day.`;
+  return `WordWise 🦜: 5 new English words every day, for Class ${a.className}, ${a.schoolName}. On your child's phone: 1) Open ${a.url} 2) Tap your child's name 3) Type the 4-digit PIN from the card the teacher gave. Free. No ads. About 15 minutes a day.`;
 }
 
 export function teacherInviteText(a: { schoolName: string; url: string; code: string; expiresAt: string }): string {
-  return `Join our school on Shabd Mitra 🦜 (daily English words for Std 5). 1) Open ${a.url} 2) Enter your name, email and a password. School code: ${formatInviteCode(a.code)}. Works until ${shortDate(a.expiresAt)}.`;
+  return `Join our school on WordWise 🦜 (daily English words for Std 5). 1) Open ${a.url} 2) Enter your name, email and a password. School code: ${formatInviteCode(a.code)}. Works until ${shortDate(a.expiresAt)}.`;
 }
 
 export function schoolSetupText(a: { schoolName: string; url: string; expiresAt: string }): string {
-  return `Namaste! Your school is ready on Shabd Mitra 🦜. Open this link to set up your school (takes 1 minute): ${a.url}. This link works once and ends on ${shortDate(a.expiresAt)}.`;
+  return `Namaste! Your school is ready on WordWise 🦜. Open this link to set up your school (takes 1 minute): ${a.url}. This link works once and ends on ${shortDate(a.expiresAt)}.`;
 }
 
 export function resetText(a: { teacherName: string; url: string }): string {
-  return `Namaste ${a.teacherName}! Open this link to choose a new Shabd Mitra password: ${a.url}. It works once and ends in 24 hours.`;
+  return `Namaste ${a.teacherName}! Open this link to choose a new WordWise password: ${a.url}. It works once and ends in 24 hours.`;
 }

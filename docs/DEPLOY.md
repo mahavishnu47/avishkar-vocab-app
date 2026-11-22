@@ -1,4 +1,4 @@
-# Deploying Shabd Mitra (Vercel + Neon)
+# Deploying WordWise (Vercel + Neon)
 
 This guide takes you from nothing to a live website. You need: a GitHub account with this repo, a free Neon account, a free Vercel account, and a laptop with **Node 22** and `git` installed. No server knowledge is needed. Allow about 30 minutes.
 

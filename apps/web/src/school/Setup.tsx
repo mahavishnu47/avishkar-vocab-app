@@ -6,7 +6,7 @@ import { api, setToken } from '../shared/api.ts';
 import { useLoad } from './hooks.ts';
 import { errMsg } from './util.ts';
 
-export const EXPIRED = 'This link has expired or was already used. Ask Shabd Mitra for a new one.';
+export const EXPIRED = 'This link has expired or was already used. Ask WordWise for a new one.';
 
 export default function Setup() {
   const { code = '' } = useParams();
@@ -24,7 +24,7 @@ export default function Setup() {
   if (info.error || !info.data || info.data.kind !== 'school_admin') {
     return (
       <main className="teacher screen t-login">
-        <h1 className="title">🦜 Shabd Mitra</h1>
+        <h1 className="title">🦜 WordWise</h1>
         <p className="t-error" role="alert">{info.error && !/not|expired|invalid/i.test(info.error) ? info.error : EXPIRED}</p>
         <Link to="/" className="btn btn-block">Go to home</Link>
       </main>

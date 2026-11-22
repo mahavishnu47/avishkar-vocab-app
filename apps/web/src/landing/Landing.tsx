@@ -30,7 +30,7 @@ export function normalizeClassCode(raw: string): string | null {
 
 function contactText(): string {
   const v = (import.meta as unknown as { env?: Record<string, string | undefined> }).env?.VITE_CONTACT_TEXT;
-  return v && v.trim() ? v.trim() : 'Contact Shabd Mitra.';
+  return v && v.trim() ? v.trim() : 'Contact WordWise.';
 }
 
 export function Landing() {
@@ -53,7 +53,7 @@ export function Landing() {
     <main className="screen landing">
       <header className="landing-hero">
         <div className="landing-logo" aria-hidden="true">🦜</div>
-        <h1 className="landing-title">Shabd Mitra</h1>
+        <h1 className="landing-title">WordWise</h1>
         <p className="landing-promise">5 new English words every day, a few minutes of play.</p>
       </header>
 

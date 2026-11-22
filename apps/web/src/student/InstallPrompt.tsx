@@ -44,7 +44,7 @@ export function InstallPrompt() {
   };
   return (
     <section className="card stack install-card" aria-label="Install">
-      <div className="title" style={{ fontSize: 20 }}>📲 Put Shabd Mitra on your home screen</div>
+      <div className="title" style={{ fontSize: 20 }}>📲 Put WordWise on your home screen</div>
       {deferred
         ? <button className="btn btn-primary btn-block" onClick={() => void add()}>Add</button>
         : <p className="muted" style={{ margin: 0 }}>Open in Chrome, tap ⋮, then "Add to Home screen"</p>}

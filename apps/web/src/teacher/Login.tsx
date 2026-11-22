@@ -26,7 +26,7 @@ export function Login() {
 
   return (
     <main className="teacher screen t-login">
-      <h1 className="title">🦜 Shabd Mitra · Teacher</h1>
+      <h1 className="title">🦜 WordWise · Teacher</h1>
       <form className="card stack" onSubmit={submit}>
         <h2 className="t-h2">Log in</h2>
         <label className="t-field">Email

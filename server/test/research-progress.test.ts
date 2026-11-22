@@ -108,7 +108,7 @@ describe('progress tracker (F7)', () => {
 
   it('follows the study school days (weekends and holidays excluded) and shows study codes', async () => {
     const st = await request(ctx.app).post('/api/studies').set(auth(teacher)).send({
-      name: 'Word-a-Day', startDate: '2026-11-16', classes: [{ classId, group: 'intervention' }],
+      name: 'Word-a-Day', startDate: '2026-11-16', schoolDays: 20, classes: [{ classId, group: 'intervention' }],
     });
     expect(st.status).toBe(201);
     const body = (await get()).body as ProgressRes;

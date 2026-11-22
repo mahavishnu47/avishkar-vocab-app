@@ -120,7 +120,7 @@ const teacherLogin: H<{}, TeacherAuthRes, TeacherLoginReq> = async (req, res) =>
   }
   if (row.active !== 1) throw forbidden('Your account is turned off. Ask your school admin.');
   const school = await db.get<{ id: number; name: string; status: string }>('SELECT id, name, status FROM schools WHERE id = ?', [row.school_id]);
-  if (!school || school.status !== 'active') throw forbidden('Your school is paused. Contact Shabd Mitra.');
+  if (!school || school.status !== 'active') throw forbidden('Your school is paused. Contact WordWise.');
   await db.run('UPDATE teachers SET last_login_at = ? WHERE id = ?', [new Date().toISOString(), row.id]);
   const teacher = teacherOf(row);
   res.json({ token: await issueToken('teacher', teacher.id), teacher, school: { id: school.id, name: school.name } });

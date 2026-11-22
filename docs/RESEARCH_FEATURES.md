@@ -1,4 +1,4 @@
-# Research Features: "Word-a-Day" study support for Shabd Mitra
+# Research Features: "Word-a-Day" study support for WordWise
 
 Status: plan (no code written). Author: product/engineering analysis, 2026-11-21.
 Study: *Word-a-Day: Effectiveness of a Digital Vocabulary Learning Application in Enhancing Vocabulary Competency Among Grade V Students* (Avishkar). One-group pre-test/post-test (optional comparison class), 30-40 Grade V students, 20 school days, 5 words/day (100 words), 15-20 min/day. Outcome: a 30-mark test, 3 skills x 10 marks: (A) word meanings, (B) parts of speech, (C) sentence construction. Different but comparable pre and post forms.

@@ -86,7 +86,7 @@ function Admin({ onSignOut }: { onSignOut: () => void }) {
   return (
     <main className="teacher screen s-admin">
       <nav className="t-nav" aria-label="Super admin">
-        <span className="t-brand">🦜 Shabd Mitra admin</span>
+        <span className="t-brand">🦜 WordWise admin</span>
         <button className="btn t-logout" onClick={onSignOut}>Sign out</button>
       </nav>
       {error && <p className="t-error" role="alert">{error}</p>}
